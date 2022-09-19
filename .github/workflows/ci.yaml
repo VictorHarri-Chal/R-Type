@@ -16,7 +16,7 @@ jobs:
     name: Delete useless files
     runs-on: ubuntu-latest
     env:
-      USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|(.*(?i)pain_au_chocolat.*)|^tmp\/.*|.*\/tmp\/.*
+      USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|^tmp\/.*|.*\/tmp\/.*
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
