@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [ main ]
-  delete:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -17,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Build R-Type on Ubuntu (desktop)
         run: |
           mkdir build
@@ -30,7 +27,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
-
       - name: Build R-Type on Windows (desktop)
         run: |
           mkdir build && cd build
@@ -39,8 +35,10 @@ jobs:
       - name: Check Windows build (desktop)
         run: Test-Path r-type
 
-  clean_repo:
-    name: Delete useless files
+  clean-repo:
+    needs:
+      - build-on-ubuntu
+      - build-on-windows
     runs-on: ubuntu-latest
     env:
       USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|^tmp\/.*|.*\/tmp\/.*
@@ -66,7 +64,10 @@ jobs:
         run: exit 1
 
   mirror:
-    name: Push content of the current repo on mirror
+    needs:
+      - build-on-ubuntu
+      - build-on-windows
+      - clean-repo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
