@@ -36,7 +36,6 @@ jobs:
       - name: Build R-Type on Ubuntu (web)
         run: |
           rm -fr build
-          emcmake cmake -S . -B build -DPLATFORM=Web
           cd build && make
       - name: Check Ubuntu build (web)
         run: test -f r-type.js
