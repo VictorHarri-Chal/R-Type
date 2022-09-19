@@ -35,7 +35,6 @@ jobs:
 
       - name: Build R-Type on Ubuntu (web)
         run: |
-          source ~/emsdk/emsdk_env.sh
           rm -fr build
           emcmake cmake -S . -B build -DPLATFORM=Web
           cd build && make
