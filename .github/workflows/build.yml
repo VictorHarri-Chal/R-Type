@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build Bomberman on Ubuntu (desktop)
+      - name: Build R-Type on Ubuntu (desktop)
         run: |
           mkdir build
           cd build && cmake ..
@@ -33,7 +33,7 @@ jobs:
       - name: Check Ubuntu build (desktop)
         run: test -f r-type
 
-      - name: Build Bomberman on Ubuntu (web)
+      - name: Build R-Type on Ubuntu (web)
         run: |
           source ~/emsdk/emsdk_env.sh
           rm -fr build
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Build Bomberman on Windows (desktop)
+      - name: Build R-Type on Windows (desktop)
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Debug
