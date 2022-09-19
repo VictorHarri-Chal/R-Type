@@ -33,13 +33,6 @@ jobs:
       - name: Check Ubuntu build (desktop)
         run: test -f r-type
 
-      - name: Build R-Type on Ubuntu (web)
-        run: |
-          rm -fr build
-          cd build && make
-      - name: Check Ubuntu build (web)
-        run: test -f r-type.js
-
   build-on-windows:
     runs-on: windows-latest
     steps:
