@@ -1,18 +1,23 @@
-set(INCROOT ${PROJECT_SOURCE_DIR}/src)
-set(SRCROOT ${PROJECT_SOURCE_DIR}/src)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 
-set(SRC)
+set(SRC
+    ${SRCROOT}main.cpp
+)
 
-set(INCDIRS ${INCROOT})
+set(INCDIRS
+)
 
-source_group("" FILES ${SRC})
+add_executable(${PROJECT_NAME} ${SRC})
 
-set(TARGET_NAME R-Type)
+target_include_directories(${PROJECT_NAME} PRIVATE ${INCDIRS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${INTERFACES_NAME})
 
-add_executable(${TARGET_NAME} ${SRCROOT}/main.cpp)
+# Checks if OSX and links appropriate frameworks (Only required on MacOS)
+if(APPLE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework IOKit")
+    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework Cocoa")
+    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework OpenGL")
+endif()
 
-add_custom_command(
-  TARGET ${TARGET_NAME}
-  POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}>
-          ${PROJECT_SOURCE_DIR})
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})

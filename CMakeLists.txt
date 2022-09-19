@@ -1,18 +1,29 @@
-cmake_minimum_required(VERSION 3.17.0)
+# Cmake version
+cmake_minimum_required(VERSION 3.17)
+project(r-type)
 
-project(R-Type LANGUAGES CXX)
+SET(CMAKE_BUILD_TYPE Release)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set(CMAKE_CXX_STANDARD 20)
 
-add_compile_options("-Wall" "-pedantic" "$<$<CONFIG:RELEASE>:-O3;>"
-                    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+if (MSVC)
+    add_compile_options(/W2)
+else ()
+    add_compile_options(-Wall -Wshadow -Wno-unused -Wno-deprecated-copy -Wno-deprecated-declarations)
+endif ()
 
-if(CMAKE_COMPILER_IS_GNUCXX)
-  set(CMAKE_CXX_FLAGS
-      "${CMAKE_CXX_FLAGS} -std=c++20 -Wextra -Wshadow -Wpointer-arith")
-endif(CMAKE_COMPILER_IS_GNUCXX)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
+
+set(SRC_INTERFACE
+
+)
+
+set(INTERFACES_NAME interface)
+
+add_library(${INTERFACES_NAME} INTERFACE)
+
+target_include_directories(${INTERFACES_NAME} INTERFACE ${INCROOT})
 
 add_subdirectory(src)

@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "**/CMakeLists.txt"
+      - "**/*.hpp"
+      - "**/*.cpp"
+      - ".github/workflows/*.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**/CMakeLists.txt"
+      - "**/*.hpp"
+      - "**/*.cpp"
+      - ".github/workflows/*.yml"
+
+jobs:
+
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build R-Type on Ubuntu (desktop)
+        run: |
+          mkdir build
+          cd build && cmake ..
+          cmake --build .
+      - name: Check Ubuntu build (desktop)
+        run: test -f r-type
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build R-Type on Windows (desktop)
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
+          cmake --build .
+      - name: Check Windows build (desktop)
+        run: Test-Path r-type
