@@ -26,7 +26,7 @@ The dependencies are ![Visual Studio](https://visualstudio.microsoft.com/fr/), !
 The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
 # :video_game:  How to play
-Depending on your setup :
+Depending on your setup : (look to the settings in game)
 
   - No mouse -> Move with the ```PAD``` and shoot with ```SPACE```
  
