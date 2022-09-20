@@ -5,8 +5,7 @@
 ** Component (ECS)
 */
 
-#ifndef ICOMPONENT_HPP_
-#define ICOMPONENT_HPP_
+#pragma once
 
 namespace rtype
 {
@@ -66,5 +65,3 @@ namespace rtype
         }
     }
 }
-
-#endif /* !ICOMPONENT_HPP_ */

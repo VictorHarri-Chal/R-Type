@@ -24,8 +24,3 @@ rtype::ecs::entity::entityType rtype::ecs::entity::Entity::getEntityType() const
 {
     return (this->_type);
 }
-
-// std::vector<rtype::ecs::component::IComponent> rtype::ecs::entity::Entity::getComponentVector() const
-// {
-//     return (this->_componentVector);
-// }

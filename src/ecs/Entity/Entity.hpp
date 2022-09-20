@@ -5,8 +5,7 @@
 ** Entity (ECS)
 */
 
-#ifndef ENTITY_HPP_
-#define ENTITY_HPP_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -63,7 +62,6 @@ namespace rtype
                  */
                 bool hasCompoType(rtype::ecs::component::compoType type)
                 {
-                    std::cout << this->_componentVector.size() << std::endl;
                     for (auto &compo : _componentVector) {
                         if (compo->getType() == type)
                             return (true);
@@ -89,25 +87,27 @@ namespace rtype
                     this->_componentVector.push_back(std::unique_ptr<T>(new T{std::forward<Args>(args)...}));
                 }
 
-                // /**
-                //  * @brief Remove component to entity
-                //  *
-                //  * @tparam Type The type of component
-                //  * @param type Type of component who want remove
-                //  */
-                // void remove(rtype::ecs::component::compoType type)
-                // {
-                //     if (hasCompoType(type) == false) {
-                //         std::cout << "Component not found" << std::endl;
-                //         return;
-                //     }
-                //     for (auto &compo : _componentVector) {
-                //         if (compo->getType() == type) {
-                //             compo.reset();
-                //             break;
-                //         }
-                //     }
-                // }
+                /**
+                 * @brief Remove component to entity
+                 *
+                 * @tparam Type The type of component
+                 * @param type Type of component who want remove
+                 */
+                void remove(rtype::ecs::component::compoType type)
+                {
+                    std::vector<std::unique_ptr<rtype::ecs::component::IComponent>>::iterator it = this->_componentVector.begin();
+
+                    if (hasCompoType(type) == false) {
+                        std::cout << "Component not found" << std::endl;
+                        return;
+                    }
+                    for (auto &compo : _componentVector) {
+                        it++;
+                        if (compo->getType() == type)
+                            break;
+                    }
+                    this->_componentVector.erase(it);
+                }
 
                 // /**
                 //  * @brief Get the Drawable Vector
@@ -144,13 +144,6 @@ namespace rtype
                     return (nullptr);
                 }
 
-                // /**
-                //  * @brief Get the vector of all components
-                //  *
-                //  * @return std::vector<std::unique_ptr<rtype::ecs::component::IComponent>> The vector of all components
-                //  */
-                // std::vector<std::unique_ptr<rtype::ecs::component::IComponent>> getComponentVector() const;
-
                 /**
                  * @brief Get the Entity Type
                  *
@@ -173,6 +166,3 @@ namespace rtype
         }
     }
 }
-
-
-#endif /* !ENTITY_HPP_ */
