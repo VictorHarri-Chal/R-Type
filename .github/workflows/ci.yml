@@ -15,24 +15,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build R-Type on Ubuntu (desktop)
+      - name: install SFML
+        run: |
+          sudo apt install libsfml-dev
+          apt list --installed | grep -i sfml
+      - name: build on Ubuntu
         run: |
           mkdir build
           cd build && cmake ..
           cmake --build .
-      - name: Check Ubuntu build (desktop)
+      - name: check build
         run: test -f r-type
 
   build-on-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build R-Type on Windows (desktop)
+      - name: build on Windows
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
-      - name: Check Windows build (desktop)
+      - name: check build
         run: Test-Path r-type
 
   clean-repo:
@@ -67,6 +71,7 @@ jobs:
     needs:
       - build-on-ubuntu
       - build-on-windows
+      - clean-repo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
