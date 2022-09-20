@@ -1,48 +1,28 @@
-# R-TYPE
-
 [![Build](https://img.shields.io/github/workflow/status/JohanCDev/Bomberman/Build)](https://github.com/JohanCDev/Bomberman/actions/workflows/build_and_mirror.yml)
+# What is R-Type ?
+Our project R-Type is an ersatz of the famous ![R-Type](https://www.youtube.com/watch?v=2xAX6XTzpg0) arcade game, the purpose of the game is to control a ship and navigate throught the space while shooting and destroying ennemy ships.
+However, the specifity of our game is that we implemented a multiplayer mode that allow you to play in coop from 2 to 4 players.
 
-# Screenshots
+# In game preview
 
+# Pre-compiled version for the impatient ones
+You can look on the right side of our repository, in the ```Releases``` section in order to download a pre-compiled version to play right away
+
+# Supported Platforms
+Our project can be played on both ```Linux``` and ```Windows``` OS as well as ```MacOS```
 
 # Building
+To build our project you need to execute a simple script a the root of our repository
+He will take care of dowloading the dependencies as well as compiling our code.
+```placeholder```
 
-## Command Line (via CMake)
+## On Linux
+The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
-Required tools:
-- CMake 3.17 (minimum)
-
-on Linux:
-```sh
-# Create the build directory
-mkdir build && cd build 
-
-# Configure the project
-cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release
-
-# Build the executable and libraries
-cmake --build .
-
-# Return to previous directory
-cd -
-```
-
-on Windows:
-
-Required tools:
-- Visual Studio 17 2022 (minimum)
-```sh
-# Create the build directory
-mkdir build && cd build 
-
-# Configure the project
-cmake .. -G 'Visual Studio 17 2022' -DCMAKE_BUILD_TYPE=Release
-
-# Build the executable and libraries
-cmake --build .
-
-# Return to previous directory
-cd -
-```
+## On Windows
+The dependencies are ![Visual Studio](https://visualstudio.microsoft.com/fr/), ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
 # Documentation
+To access our project documentation, you need need to ...
+
+# Authors
