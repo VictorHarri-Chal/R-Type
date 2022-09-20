@@ -14,9 +14,23 @@ namespace rtype
     {
         namespace component
         {
+            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
+            enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
+            enum compoType {
+                TRANSFORM,
+                DRAWABLE2D,
+                ALIVE,
+                INVENTORY,
+                EXPLODABLE,
+                COLLIDE,
+                SOUND,
+                DESTROYABLE,
+                MODEL
+            };
             class IComponent {
                 public:
                     virtual ~IComponent() = default;
+                    virtual rtype::ecs::component::compoType getType() const = 0;
 
                 protected:
                 private:
