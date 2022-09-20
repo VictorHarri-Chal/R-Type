@@ -67,7 +67,6 @@ jobs:
     needs:
       - build-on-ubuntu
       - build-on-windows
-      - clean-repo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
