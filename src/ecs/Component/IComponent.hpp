@@ -14,26 +14,54 @@ namespace rtype
     {
         namespace component
         {
-            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
-            enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
+            class Transform;
+
+            /**
+             * @brief Enum for component type
+             *
+             */
             enum compoType {
                 TRANSFORM,
                 DRAWABLE2D,
+                DRAWABLE3D,
                 ALIVE,
+                COLLECTABLE,
                 INVENTORY,
                 EXPLODABLE,
                 COLLIDE,
                 SOUND,
                 DESTROYABLE,
-                MODEL
+                MODEL,
+                ANIMATED,
+                UNKNOWNCOMPO
             };
-            class IComponent {
-                public:
-                    virtual ~IComponent() = default;
-                    virtual rtype::ecs::component::compoType getType() const = 0;
+            /**
+             * @brief Enum for drawable type
+             *
+             */
+            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
+            /**
+             * @brief Enum for bonus type
+             *
+             */
+            enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
 
-                protected:
-                private:
+            /// @brief Component interface
+            class IComponent {
+              public:
+                /**
+                 * @brief Create a new IComponent.
+                 */
+                virtual ~IComponent() = default;
+
+                /**
+                 * @brief Get type of the component.
+                 *
+                 * @return the compoType value of the component.
+                 */
+                virtual rtype::ecs::component::compoType getType() const = 0;
+
+              private:
             };
         }
     }
