@@ -27,6 +27,7 @@ The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-d
 
 # :video_game:  How to play
 Depending on your setup :
+
   -> No mouse
   Move with the ```PAD``` and shoot with ```SPACE```
  
