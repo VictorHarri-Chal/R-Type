@@ -16,14 +16,17 @@ To build our project you need to execute a simple script a the root of our repos
 He will take care of dowloading the dependencies as well as compiling our code.
 ```placeholder```
 
-## - On Linux
+###  On Linux
 The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
-## - On Windows
+### On Windows
 The dependencies are ![Visual Studio](https://visualstudio.microsoft.com/fr/), ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
+
+### On Mac
+The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
 # Documentation
 To access our project documentation, you need need to ...
 
 # Authors
-[Henri Chauvet](https://github.com/H-chauvet) [Nathan Le Bigot](https://github.com/nlbxyz) [Matthis Lesur](https://github.com/tistech0) [Simon Le Fourn](https://github.com/simlf) [Victor Harri-Chal](https://github.com/VictorHarri-Chal)
+[Henri Chauvet](https://github.com/H-chauvet) - [Nathan Le Bigot](https://github.com/nlbxyz) - [Matthis Lesur](https://github.com/tistech0) - [Simon Le Fourn](https://github.com/simlf) - [Victor Harri-Chal](https://github.com/VictorHarri-Chal)
