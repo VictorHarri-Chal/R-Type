@@ -12,8 +12,10 @@ You can look on the right side of our repository, in the ```Releases``` section 
 Our project can be played on both ```Linux``` and ```Windows``` OS as well as ```MacOS```
 
 # :hammer:  Building
-To build our project you need to execute a simple script a the root of our repository
+To build our project you need to execute a simple script a the root of our repository.
+
 He will take care of dowloading the dependencies as well as compiling our code.
+
 ```placeholder```
 
 ### On Linux
