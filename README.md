@@ -28,14 +28,11 @@ The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-d
 # :video_game:  How to play
 Depending on your setup :
 
-  -> No mouse
-  Move with the ```PAD``` and shoot with ```SPACE```
+  - No mouse -> Move with the ```PAD``` and shoot with ```SPACE```
  
-  -> Mouse
-  Move with the ```MOUSE``` and shoot with ```LEFT CLICK```
+  - Mouse -> Move with the ```MOUSE``` and shoot with ```LEFT CLICK```
 
-  -> Controller
-  Move with the ```RIGHT JOYSTICK``` and shoot with ```X```
+  - Controller -> Move with the ```RIGHT JOYSTICK``` and shoot with ```X```
 
 # :page_with_curl:  Documentation
 To access our project documentation, you need to ...
