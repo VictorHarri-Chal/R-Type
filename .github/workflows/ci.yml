@@ -76,6 +76,6 @@ jobs:
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            git@github.com:EpitechPromo2025/B-CPP-500-NAN-5-1-rtype-victor.harri-chal.git
+            ${{ secrets.REPO_URL }}
           ssh_private_key:
             ${{ secrets.SSH_KEY }}
