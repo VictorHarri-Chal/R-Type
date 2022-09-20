@@ -5,6 +5,22 @@ set(ECSROOT ${SRCROOT}/ecs/)
 set(SRC_ECS
     ${ECSROOT}Entity/Entity.cpp
     ${ECSROOT}Entity/Entity.hpp
+    ${ECSROOT}Component/Alive/Alive.cpp
+    ${ECSROOT}Component/Alive/Alive.hpp
+    ${ECSROOT}Component/Collide/Collide.cpp
+    ${ECSROOT}Component/Collide/Collide.hpp
+    ${ECSROOT}Component/Destroyable/Destroyable.cpp
+    ${ECSROOT}Component/Destroyable/Destroyable.hpp
+    ${ECSROOT}Component/Drawable2D/Drawable2D.cpp
+    ${ECSROOT}Component/Drawable2D/Drawable2D.hpp
+    ${ECSROOT}Component/Explodable/Explodable.cpp
+    ${ECSROOT}Component/Explodable/Explodable.hpp
+    ${ECSROOT}Component/Inventory/Inventory.cpp
+    ${ECSROOT}Component/Inventory/Inventory.hpp
+    ${ECSROOT}Component/Sound/Sound.cpp
+    ${ECSROOT}Component/Sound/Sound.hpp
+    ${ECSROOT}Component/Transform/Transform.cpp
+    ${ECSROOT}Component/Transform/Transform.hpp
     ${ECSROOT}Component/IComponent.hpp
     ${ECSROOT}System/ISystem.hpp
 )
