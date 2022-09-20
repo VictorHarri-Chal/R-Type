@@ -1,16 +1,20 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
-set(ECSROOT ${PROJECT_SOURCE_DIR}/src/ecs/)
+set(ECSROOT ${SRCROOT}/ecs/)
 
-set(SRC
-    ${SRCROOT}main.cpp
+set(SRC_ECS
     ${ECSROOT}Entity/Entity.cpp
-)
-
-set(INCDIRS
     ${ECSROOT}Entity/Entity.hpp
     ${ECSROOT}Component/IComponent.hpp
     ${ECSROOT}System/ISystem.hpp
+)
+
+set(SRC
+    ${SRCROOT}main.cpp
+    ${SRC_ECS}
+)
+    
+set(INCDIRS
 )
 
 add_executable(${PROJECT_NAME} ${SRC})
