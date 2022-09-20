@@ -5,28 +5,28 @@ However, the specifity of our game is that we implemented a multiplayer mode tha
 
 # In game preview
 
-# Pre-compiled version for the impatient ones
+# :star: Pre-compiled version for the impatient ones
 You can look on the right side of our repository, in the ```Releases``` section in order to download a pre-compiled version to play right away
 
-# Supported Platforms
+# :computer: Supported Platforms
 Our project can be played on both ```Linux``` and ```Windows``` OS as well as ```MacOS```
 
-# Building
+# :hammer: Building
 To build our project you need to execute a simple script a the root of our repository
 He will take care of dowloading the dependencies as well as compiling our code.
 ```placeholder```
 
-###  On Linux
+### :penguin: On Linux
 The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
-### On Windows
+### :diamonds: On Windows
 The dependencies are ![Visual Studio](https://visualstudio.microsoft.com/fr/), ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
-### On Mac
+### :apple: On Mac
 The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
-# Documentation
+# :page_with_curl: Documentation
 To access our project documentation, you need to ...
 
-# Authors
+# :dancers: Authors
 [Henri Chauvet](https://github.com/H-chauvet) - [Nathan Le Bigot](https://github.com/nlbxyz) - [Matthis Lesur](https://github.com/tistech0) - [Simon Le Fourn](https://github.com/simlf) - [Victor Harri-Chal](https://github.com/VictorHarri-Chal)
