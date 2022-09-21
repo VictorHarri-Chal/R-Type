@@ -18,13 +18,7 @@ He will take care of dowloading the dependencies as well as compiling our code.
 
 ```placeholder```
 
-### On Linux
-The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
-
-### On Windows
-The dependencies are ![Visual Studio](https://visualstudio.microsoft.com/fr/), ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
-
-### On Mac
+### On Linux, Windows & Mac
 The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
 
 # :video_game:  How to play
