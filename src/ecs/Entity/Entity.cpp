@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** Entity
+** Entity (ENTITY)
 ** File description:
-** Entity
+** Entity (ENTITY)
 */
 
 #include "Entity.hpp"

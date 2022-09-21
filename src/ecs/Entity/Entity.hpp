@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** Entity (ECS)
+** Entity (ENTITY)
 ** File description:
-** Entity (ECS)
+** Entity (ENTITY)
 */
 
 #pragma once
@@ -32,7 +32,7 @@ namespace rtype
              * @brief Entity Type for entity object creation
              *
              */
-            enum entityType { PLAYER_1, PLAYER_2, PLAYER_3, PLAYER_4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
+            enum entityType { PLAYER, ENNEMY, MISSILE, BOSS, BUILDING, UNKNOWN };
             /// @brief Entity class
             class Entity {
               public:
