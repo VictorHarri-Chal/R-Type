@@ -2,21 +2,8 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** main
+** server
 */
-
-#include <iostream>
-
-/**
- * \file main.c
- * \brief Programme de tests.
- * \author Matthou
- * \version 0.1
- * \date 19 septembre 2022
- *
- * Programme de test
- *
- */
 
 #include <boost/asio.hpp>
 #include <iostream>

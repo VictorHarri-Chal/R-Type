@@ -25,5 +25,6 @@ set(INTERFACES_NAME interface)
 add_library(${INTERFACES_NAME} INTERFACE)
 
 target_include_directories(${INTERFACES_NAME} INTERFACE ${INCROOT})
+target_compile_definitions(asio PUBLIC ASIO_STANDALONE)
 
 add_subdirectory(src)
