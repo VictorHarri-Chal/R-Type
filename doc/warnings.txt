@@ -1,0 +1,1 @@
+/home/henrichauvet/EPITECH/Tek3/CPP/R-Type/CMakeLists.txt:8: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
