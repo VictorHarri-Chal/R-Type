@@ -1,44 +1,89 @@
-/*
-** EPITECH PROJECT, 2022
-** R-Type
-** File description:
-** server
-*/
+//
+// server.cpp
+// ~~~~~~~~~~
+//
+// Copyright (c) 2003-2022 Christopher M. Kohlhoff (chris at kohlhoff dot com)
+//
+// Distributed under the Boost Software License, Version 1.0. (See accompanying
+// file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+//
 
-#include <boost/asio.hpp>
+#include <ctime>
 #include <iostream>
+#include <string>
+#include <boost/array.hpp>
+#include <boost/bind/bind.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/asio.hpp>
 
-using namespace boost::asio;
-using ip::tcp;
-using std::string;
-using std::cout;
-using std::endl;
+using boost::asio::ip::udp;
 
-string read_(tcp::socket & socket) {
-       boost::asio::streambuf buf;
-       boost::asio::read_until( socket, buf, "\n" );
-       string data = boost::asio::buffer_cast<const char*>(buf.data());
-       return data;
+std::string make_daytime_string()
+{
+  using namespace std; // For time_t, time and ctime;
+  time_t now = time(0);
+  return ctime(&now);
 }
-void send_(tcp::socket & socket, const string& message) {
-       const string msg = message + "\n";
-       boost::asio::write( socket, boost::asio::buffer(message) );
-}
+
+class udp_server
+{
+public:
+  udp_server(boost::asio::io_context& io_context)
+    : socket_(io_context, udp::endpoint(udp::v4(), 13))
+  {
+    start_receive();
+  }
+
+private:
+  void start_receive()
+  {
+    socket_.async_receive_from(
+        boost::asio::buffer(recv_buffer_), remote_endpoint_,
+        boost::bind(&udp_server::handle_receive, this,
+          boost::asio::placeholders::error,
+          boost::asio::placeholders::bytes_transferred));
+  }
+
+  void handle_receive(const boost::system::error_code& error,
+      std::size_t /*bytes_transferred*/)
+  {
+    if (!error)
+    {
+      boost::shared_ptr<std::string> message(
+          new std::string(make_daytime_string()));
+
+      socket_.async_send_to(boost::asio::buffer(*message), remote_endpoint_,
+          boost::bind(&udp_server::handle_send, this, message,
+            boost::asio::placeholders::error,
+            boost::asio::placeholders::bytes_transferred));
+
+      start_receive();
+    }
+  }
+
+  void handle_send(boost::shared_ptr<std::string> /*message*/,
+      const boost::system::error_code& /*error*/,
+      std::size_t /*bytes_transferred*/)
+  {
+  }
+
+  udp::socket socket_;
+  udp::endpoint remote_endpoint_;
+  boost::array<char, 1> recv_buffer_;
+};
 
 int main()
 {
-    boost::asio::io_service io_service;
-    //listen for new connection
-    tcp::acceptor acceptor_(io_service, tcp::endpoint(tcp::v4(), 1234 ));
-    //socket creation
-    tcp::socket socket_(io_service);
-    //waiting for connection
-    acceptor_.accept(socket_);
-    //read operation
-    string message = read_(socket_);
-    cout << message << endl;
-    //write operation
-    send_(socket_, "Hello From Server!");
-    cout << "Servent sent Hello message to Client!" << endl;
-    return 0;
+  try
+  {
+    boost::asio::io_context io_context;
+    udp_server server(io_context);
+    io_context.run();
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << e.what() << std::endl;
+  }
+
+  return 0;
 }
