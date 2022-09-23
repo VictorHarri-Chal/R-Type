@@ -8,6 +8,7 @@ on:
     branches:
       - main
 
+jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +24,6 @@ on:
           cmake --build .
       - name: check build
         run: test -f r-type
-
   build-on-windows:
     runs-on: windows-latest
     steps:
