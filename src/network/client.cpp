@@ -1,52 +1,50 @@
-//
-// client.cpp
-// ~~~~~~~~~~
-//
-// Copyright (c) 2003-2008 Christopher M. Kohlhoff (chris at kohlhoff dot com)
-//
-// Distributed under the Boost Software License, Version 1.0. (See accompanying
-// file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-//
-
 #include <iostream>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 
 using boost::asio::ip::udp;
 
-int main(int argc, char* argv[])
+class UDPClient
 {
-  try
-  {
-    if (argc != 2)
-    {
-      std::cerr << "Usage: client <host>" << std::endl;
-      return 1;
-    }
+public:
+	UDPClient(
+		boost::asio::io_service& io_service, 
+		const std::string& host, 
+		const std::string& port
+	) : io_service_(io_service), socket_(io_service, udp::endpoint(udp::v4(), 0)) {
+		udp::resolver resolver(io_service_);
+		udp::resolver::query query(udp::v4(), host, port);
+		udp::resolver::iterator iter = resolver.resolve(query);
+		endpoint_ = *iter;
+	}
 
-    boost::asio::io_service io_service;
+	~UDPClient()
+	{
+		socket_.close();
+	}
 
-    udp::resolver resolver(io_service);
-    udp::resolver::query query(udp::v4(), argv[1], "daytime");
-    udp::endpoint receiver_endpoint = *resolver.resolve(query);
-
-    udp::socket socket(io_service);
-    socket.open(udp::v4());
-
-    boost::array<char, 1> send_buf  = { 0 };
-    socket.send_to(boost::asio::buffer(send_buf), receiver_endpoint);
-
+	void send(const std::string& msg) {
+		socket_.send_to(boost::asio::buffer(msg, msg.size()), endpoint_);
+	}
+  void receive() {
     boost::array<char, 128> recv_buf;
     udp::endpoint sender_endpoint;
-    size_t len = socket.receive_from(
-        boost::asio::buffer(recv_buf), sender_endpoint);
+  
+		 size_t len = socket_.receive_from(boost::asio::buffer(recv_buf), sender_endpoint);
+     std::cout.write(recv_buf.data(), len);
+	}
 
-    std::cout.write(recv_buf.data(), len);
-  }
-  catch (std::exception& e)
-  {
-    std::cerr << e.what() << std::endl;
-  }
+private:
+	boost::asio::io_service& io_service_;
+	udp::socket socket_;
+	udp::endpoint endpoint_;
+};
 
-  return 0;
+int main()
+{
+	boost::asio::io_service io_service;
+	UDPClient client(io_service, "localhost", "4242");
+
+  // client.receive();
+	client.send("Hello, World!");
 }
