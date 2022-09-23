@@ -44,7 +44,14 @@ int main()
 {
 	boost::asio::io_service io_service;
 	UDPClient client(io_service, "localhost", "4242");
+  std::string message;
 
   // client.receive();
-	client.send("Hello, World!");
+  while (message != "quit") {
+    message = "";
+    std::cout << "message = ";
+	  std::getline(std::cin >> std::ws, message);
+    client.send(message);
+  }
+  
 }
