@@ -24,3 +24,13 @@ rtype::ecs::entity::entityType rtype::ecs::entity::Entity::getEntityType() const
 {
     return (this->_type);
 }
+
+size_t rtype::ecs::entity::Entity::getId() const
+{
+    return this->_id;
+}
+
+void rtype::ecs::entity::Entity::setId(size_t id)
+{
+    this->_id = id;
+}

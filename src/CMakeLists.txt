@@ -5,6 +5,8 @@ set(ECSROOT ${SRCROOT}/ecs/)
 set(SRC_ECS
     ${ECSROOT}Entity/Entity.cpp
     ${ECSROOT}Entity/Entity.hpp
+    ${ECSROOT}world.cpp
+    ${ECSROOT}world.hpp
     ${ECSROOT}Component/Alive/Alive.cpp
     ${ECSROOT}Component/Alive/Alive.hpp
     ${ECSROOT}Component/Collide/Collide.cpp

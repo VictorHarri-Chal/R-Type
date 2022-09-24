@@ -150,6 +150,18 @@ namespace rtype
                  * @return rtype::ecs::entity::entityType The entity type
                  */
                 rtype::ecs::entity::entityType getEntityType() const;
+                /**
+                 * @brief Get the id of Entity
+                 *
+                 * @return size_t The entity id
+                 */
+                size_t getId(void) const;
+                /**
+                 * @brief set the id of Entity
+                 *
+                 * @param id id of entity to set
+                 */
+                void setId(size_t id);
 
               private:
                 /**
@@ -162,6 +174,11 @@ namespace rtype
                  *
                  */
                 entity::entityType _type;
+                /**
+                 * @brief Entity id
+                 *
+                 */
+                size_t _id;
             };
         }
     }
