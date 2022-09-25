@@ -24,6 +24,7 @@
 
 namespace rtype
 {
+    /// \file Docs/doc-Ecs
     namespace ecs
     {
         namespace entity

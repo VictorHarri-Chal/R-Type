@@ -9,11 +9,13 @@
 
 rtype::ecs::entity::Entity::Entity()
 {
+    this->_id = 0;
 }
 
 rtype::ecs::entity::Entity::Entity(rtype::ecs::entity::entityType type)
 {
     this->_type = type;
+    this->_id = 0;
 }
 
 rtype::ecs::entity::Entity::~Entity()

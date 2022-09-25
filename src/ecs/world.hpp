@@ -15,11 +15,12 @@
 
 namespace rtype
 {
+    /// \file Docs/doc-Ecs
     namespace ecs
     {
         namespace world
         {
-            /// @brief Entity class
+            /// @brief World class don't delete entity in world the destructor will do it
             class World {
               public:
                 /**
@@ -28,7 +29,7 @@ namespace rtype
                  */
                 World();
                 /**
-                 * @brief Destroy entity.
+                 * @brief Destroy entity pointer.
                  */
                 ~World();
 
@@ -38,12 +39,23 @@ namespace rtype
                  * @tparam entity the Entity to add
                  * @param entity Entity who want to add to world
                  */
-                void addComponent(entity::Entity *entity)
-                {
-                    entity->setId(this->nbEntities);
-                    this->_entitiesVector.push_back(entity);
-                    nbEntities++;
-                }
+                void addComponent(entity::Entity *entity);
+
+                /**
+                 * @brief Get the Entity of the given id
+                 *
+                 * @param id The id of the entity to get
+                 *
+                 * @return rtype::ecs::entity::Entity* Pointer to the wanted Entity if entity exist | nullptr if entity doesn't exist
+                 */
+                rtype::ecs::entity::Entity *getEntity(size_t id) const;
+
+                /**
+                 * @brief Get the Entities vector with all entities
+                 *
+                 * @return std::vector<rtype::ecs::entity::Entity*> with all entities contain in this world
+                 */
+                std::vector<rtype::ecs::entity::Entity*> getEntities() const;
 
               private:
                 /**
