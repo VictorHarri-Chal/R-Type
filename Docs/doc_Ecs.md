@@ -1,7 +1,6 @@
-ECS
+# ECS
 
-Getting started
-
+## Getting started -> World
 
 First, you have to create a rtype::ecs::world::World object. It will represent the object that contains all your Entities.
 
@@ -13,9 +12,7 @@ A world have 3 methodes :
 
 Example with simple world :
 
-#include <iostream>
-#include "ecs/world.hpp"
-
+```
 int main()
 {
     rtype::ecs::world::World w;
@@ -34,12 +31,17 @@ int main()
     std::cout << "L'univers est un espace infini où s'entrechoque tous les hasards." << std::endl;
     return 0;
 }
+```
 
 result :
 
 B je suis vivant
+
 C je suis mort
+
 L'univers est un espace infini où s'entrechoque tous les hasards.
+
+## Next the Entity with her component
 
 Next you will need rtype::ecs::entity::Entity object. It will represent the object that contains all your componenent.
 
@@ -55,7 +57,7 @@ Components definition :
 
 
 A Component must inherite from IComponent and have a method rtype::ecs::component::compoType getType() const ->
-
+```
 class ExampleComponent : public IComponent {
     public:
     ExampleComponent();
@@ -66,10 +68,9 @@ class ExampleComponent : public IComponent {
     protected:
     private:
 };
-
+```
 Example :
-
-
+```
 #include <iostream>
 #include "Entity.hpp"
 #include "IComponent.hpp"
@@ -101,17 +102,27 @@ int main()
         std::cout << "J'ai bien le composent alive" << std::endl;
     return 0;
 }
-
-Exit :
+```
+result :
 
 J'ai bien le composent alive
+
 Hp = 1
+
 Je passe Alive a false
+
 Hp = 0
+
 J'essaye de rajouter un componeent Alive
+
 Component already exist
+
 J'ai toujours le composent alive
+
 J'ai remove le composent alive
+
 J'ai plus le composent alive
+
 J'ajouter un componeent Alive
+
 J'ai bien le composent alive
