@@ -1,6 +1,9 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(ECSROOT ${SRCROOT}/ecs/)
+set(EVENTSROOT ${SRCROOT}/events/)
+set(GAMEROOT ${SRCROOT}/game/)
+set(SCREENSROOT ${SRCROOT}/screens/)
 
 set(SRC_ECS
     ${ECSROOT}Entity/Entity.cpp
@@ -27,9 +30,28 @@ set(SRC_ECS
     ${ECSROOT}System/ISystem.hpp
 )
 
+set(SRC_EVENTS
+    ${EVENTSROOT}Events.cpp
+    ${EVENTSROOT}Events.hpp
+)
+
+set(SRC_GAME
+    ${GAMEROOT}Game.cpp
+    ${GAMEROOT}Game.hpp
+)
+
+set(SRC_SCREENS
+    ${SCREENSROOT}IScreen.hpp
+    ${SCREENSROOT}menu/MenuScreen.cpp
+    ${SCREENSROOT}menu/MenuScreen.hpp
+)
+
 set(SRC
     ${SRCROOT}main.cpp
     ${SRC_ECS}
+    ${SRC_EVENTS}
+    ${SRC_GAME}
+    ${SRC_SCREENS}
 )
     
 set(INCDIRS

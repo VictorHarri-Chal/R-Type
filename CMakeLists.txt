@@ -6,18 +6,15 @@ SET(CMAKE_BUILD_TYPE Release)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
-
-if (MSVC)
-    add_compile_options(/W2)
-else ()
-    add_compile_options(-Wall -Wshadow -Wno-unused -Wno-deprecated-copy -Wno-deprecated-declarations)
-endif ()
+if(CMAKE_COMPILER_IS_GNUCXX)
+  set(CMAKE_CXX_FLAGS
+      "${CMAKE_CXX_FLAGS} -std=c++20 -Wextra -Wshadow -lsfml-system -lsfml-window -lsfml-graphics")
+endif(CMAKE_COMPILER_IS_GNUCXX)
 
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 
 set(SRC_INTERFACE
-
+    ${INCROOT}events.hpp
 )
 
 set(INTERFACES_NAME interface)
