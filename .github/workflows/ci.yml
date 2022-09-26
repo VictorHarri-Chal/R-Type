@@ -37,9 +37,6 @@ jobs:
         run: Test-Path r-type
 
   clean-repo:
-    needs:
-      - build-on-ubuntu
-      - build-on-windows
     runs-on: ubuntu-latest
     env:
       USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|^tmp\/.*|.*\/tmp\/.*
