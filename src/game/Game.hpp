@@ -78,14 +78,20 @@ namespace rtype
         //  *
         //  */
         // void destroySystems();
-        // /// @brief Swap between screens
-        // /// @param ret Scene number
+
+        /// @brief Swap between screens
+        /// @param ret Scene number
         void handleScreensSwap(int ret);
-        // /// @brief Reinitialize the game class elements
+        /// @brief Reinitialize the game class elements
         void reinitGame();
-        // /// @brief Set the actual screen
-        // /// @param newScreen The new screen
+        /// @brief Set the actual screen
+        /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
+        /// @brief Tool for responsive
+        /// @param percent The percent of the screen
+        /// @param isWidth If true, the percent is for the width, else for the height
+        float getPercentage(float percent, bool isWidth);
+        
         // /**
         //  * @brief Set the Sound Event
         //  *
@@ -119,8 +125,9 @@ namespace rtype
         rtype::menu::MenuScreen *_menu;
         /// @brief Game screen
         // rtype::menu::GameScreen *_game;
-
+        /// @brief Last sfml event caught
         sf::Event _sfmlEvent;
+        /// @brief Event class
         rtype::Event _event;
         // std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> _sound_entities;
         // std::vector<std::unique_ptr<rtype::ecs::system::ISystem>> _sound_systems;

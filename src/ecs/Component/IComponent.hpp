@@ -5,7 +5,11 @@
 ** Component (ECS)
 */
 
-#pragma once
+
+#ifndef ICOMPONENT_HPP_
+#define ICOMPONENT_HPP_
+
+#include "../../sfml/Sfml.hpp"
 
 namespace rtype
 {
@@ -66,3 +70,5 @@ namespace rtype
         }
     }
 }
+
+#endif /* !ICOMPONENT_HPP_ */

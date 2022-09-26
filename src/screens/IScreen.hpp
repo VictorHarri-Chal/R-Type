@@ -12,6 +12,7 @@
 #include "../ecs/Entity/Entity.hpp"
 #include "../ecs/System/ISystem.hpp"
 #include "../../include/EventCode.hpp"
+#include "../sfml/Sfml.hpp"
 
 namespace rtype
 {

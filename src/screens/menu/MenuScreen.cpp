@@ -13,8 +13,6 @@ rtype::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
 
 void rtype::menu::MenuScreen::init()
 {
-    
-
     // this->_positionsCursor[NEW_GAME] = tools::Tools::getPercentage(27.f, false);
     // this->_positionsCursor[LOAD_GAME] = tools::Tools::getPercentage(47.f, false);
     // this->_positionsCursor[EXIT] = tools::Tools::getPercentage(67.f, false);
@@ -25,7 +23,6 @@ void rtype::menu::MenuScreen::draw()
     for (auto &system : this->_systems) {
         // system->update(this->_entities);
     }
-
 }
 
 int rtype::menu::MenuScreen::handleEvent(rtype::Event &event)

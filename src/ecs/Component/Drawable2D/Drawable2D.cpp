@@ -12,45 +12,42 @@ rtype::ecs::component::Drawable2D::Drawable2D()
     this->_radius = 0.0;
     this->_height = 0.0;
     this->_width = 0.0;
-    // this->_color = WHITE;
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = rtype::ecs::component::drawableType::UNKNOWNDRAWABLE;
 }
 
-// rtype::ecs::component::Drawable2D::Drawable2D(float radius, Color color)
-// {
-//     this->_radius = radius;
-//     this->_height = 0.0;
-//     this->_width = 0.0;
-//     this->_color = color;
-//     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
-//     this->_drawableType = rtype::ecs::component::drawableType::CIRCLE;
-// }
+rtype::ecs::component::Drawable2D::Drawable2D(float radius)
+{
+    this->_radius = radius;
+    this->_height = 0.0;
+    this->_width = 0.0;
+    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
+    this->_drawableType = rtype::ecs::component::drawableType::CIRCLE;
+}
 
-// rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, float height, float width, Color color)
-// {
-//     this->_radius = 0.0;
-//     this->_height = height;
-//     this->_width = width;
-//     this->_color = color;
-//     this->_texturePath = texturePath;
-//     if (!texturePath.empty())
-//         this->_texture = rtype::raylib::Texture2D::load(texturePath.c_str());
-//     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
-//     this->_drawableType = rtype::ecs::component::drawableType::RECTANGLE;
-// }
+rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, float height, float width)
+{
+    this->_radius = 0.0;
+    this->_height = height;
+    this->_width = width;
+    this->_texturePath = texturePath;
+    if (!texturePath.empty())
+        _texture.loadFromFile(texturePath.c_str());
+    _sprite = sf::Sprite(_texture);
+    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
+    this->_drawableType = rtype::ecs::component::drawableType::RECTANGLE;
+}
 
-// rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, Color color)
-// {
-//     this->_radius = 0.0;
-//     this->_height = 0.0;
-//     this->_width = 0.0;
-//     this->_color = color;
-//     this->_text = text;
-//     this->_fontSize = fontSize;
-//     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
-//     this->_drawableType = rtype::ecs::component::drawableType::TEXT;
-// }
+rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize)
+{
+    this->_radius = 0.0;
+    this->_height = 0.0;
+    this->_width = 0.0;
+    this->_text = text;
+    this->_fontSize = fontSize;
+    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
+    this->_drawableType = rtype::ecs::component::drawableType::TEXT;
+}
 
 std::string rtype::ecs::component::Drawable2D::getText()
 {
@@ -75,11 +72,6 @@ rtype::ecs::component::drawableType rtype::ecs::component::Drawable2D::getDrawTy
 {
     return (this->_drawableType);
 }
-
-// Color rtype::ecs::component::Drawable2D::getColor()
-// {
-//     return (this->_color);
-// }
 
 float rtype::ecs::component::Drawable2D::getRadius()
 {
@@ -106,17 +98,10 @@ void rtype::ecs::component::Drawable2D::setTexturePath(std::string texturePath)
     this->_texturePath = texturePath;
 }
 
-// Texture2D rtype::ecs::component::Drawable2D::getTexture() const
-// {
-//     return (this->_texture);
-// }
-
-// void rtype::ecs::component::Drawable2D::setTexture(std::string texturePath)
-// {
-//     rtype::raylib::Texture2D::unload(this->_texture);
-//     this->_texturePath = texturePath;
-//     this->_texture = rtype::raylib::Texture2D::load(texturePath.c_str());
-// }
+sf::Sprite rtype::ecs::component::Drawable2D::getSprite() const
+{
+    return (this->_sprite);
+}
 
 void rtype::ecs::component::Drawable2D::setText(std::string text)
 {
