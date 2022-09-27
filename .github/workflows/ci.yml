@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: install sfml
         run: |
-          which vcpkg
+          .\vcpkg install sfml
       - uses: actions/checkout@v1
       - name: build on Windows
         run: |
