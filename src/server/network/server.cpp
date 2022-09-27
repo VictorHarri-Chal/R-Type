@@ -9,11 +9,7 @@
 
 using boost::asio::ip::udp;
 
-// udp_server::udp_server(boost::asio::io_service& io_service)
-//       : _socket(io_service, udp::endpoint(udp::v4(), 4242))
-// {
-//   start_receive();
-// }
+// TODO: Add class constructor here
 
 void udp_server::start_receive()
 {

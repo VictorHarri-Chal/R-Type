@@ -14,7 +14,7 @@ int main()
   try
   {
     boost::asio::io_service io_service;
-    udp_server server(io_service);
+    udp_server server(io_service, 4242);
     std::cout << "server started" << std::endl;
     io_service.run();
     std::cout << "server stopped" << std::endl;

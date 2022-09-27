@@ -20,7 +20,7 @@ using boost::asio::ip::udp;
 class udp_server
 {
   public:
-    udp_server(boost::asio::io_service& io_service) : _socket(io_service, udp::endpoint(udp::v4(), 4242)) {
+    udp_server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
       start_receive();
   }
 
@@ -36,6 +36,7 @@ class udp_server
     udp::socket _socket;
     udp::endpoint _remote_endpoint;
     boost::array<char, 64> _recv_buffer;
+    int _port;
 };
 
 
