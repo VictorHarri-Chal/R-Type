@@ -21,8 +21,10 @@ jobs:
           cd build && cmake ..
           cmake --build .
       - name: check build
-        run: test -f r-type
-
+        run: |
+          test -f r-type_client
+          test -f r-type_server
+  
   build-on-windows:
     runs-on: windows-latest
     steps:
@@ -34,7 +36,9 @@ jobs:
           cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
       - name: check build
-        run: Test-Path r-type
+        run: |
+          Test-Path r-type_client
+          Test-Path r-type_server
 
   clean-repo:
     runs-on: ubuntu-latest
