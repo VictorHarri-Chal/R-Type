@@ -12,3 +12,6 @@ src/client/client
 src/server/server
 # Shame on you!
 vgcore.*
+
+# Libs
+asio/
