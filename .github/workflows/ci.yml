@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: install sfml
         run: |
-          which dotnet
+          dotnet add package SFML.Net --version 2.5.0
       - uses: actions/checkout@v1
       - name: build on Windows
         run: |
