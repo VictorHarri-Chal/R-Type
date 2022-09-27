@@ -1,0 +1,132 @@
+\hypertarget{md_Docs_doc_Ecs_autotoc_md6}{}\doxysection{Getting started -\/$>$ World}\label{md_Docs_doc_Ecs_autotoc_md6}
+First, you have to create a \mbox{\hyperlink{classrtype_1_1ecs_1_1world_1_1World}{rtype\+::ecs\+::world\+::\+World}} object. It will represent the object that contains all your Entities.
+
+A world have 3 methodes \+:
+
+
+\begin{DoxyItemize}
+\item void add\+Component(entity\+::\+Entity $<$em$>$entity); Add entity to world
+\item \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}} $\ast$get\+Entity(size\+\_\+t id) const; Get the Entity of the given id
+\item std\+::vector$<$\mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}}$>$ get\+Entities() const; Get the Entities vector with all entities
+\end{DoxyItemize}
+
+Example with simple world \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    rtype::ecs::world::World w;}
+\DoxyCodeLine{    rtype::ecs::entity::Entity *e = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);}
+\DoxyCodeLine{    rtype::ecs::entity::Entity *b;}
+\DoxyCodeLine{    rtype::ecs::entity::Entity *c;}
+\DoxyCodeLine{    e-\/>addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::compoType::ALIVE, true);}
+\DoxyCodeLine{    w.addComponent(e);}
+\DoxyCodeLine{    b = w.getEntity(0);}
+\DoxyCodeLine{    if (b-\/>hasCompoType(rtype::ecs::component::compoType::ALIVE))}
+\DoxyCodeLine{        std::cout << "{}B je suis vivant"{} << std::endl;}
+\DoxyCodeLine{    b-\/>remove(rtype::ecs::component::ALIVE);}
+\DoxyCodeLine{    c = w.getEntity(0);}
+\DoxyCodeLine{    if (!c-\/>hasCompoType(rtype::ecs::component::compoType::ALIVE))}
+\DoxyCodeLine{        std::cout << "{}C je suis mort"{} << std::endl;}
+\DoxyCodeLine{    std::cout << "{}L'univers est un espace infini où s'entrechoque tous les hasards."{} << std::endl;}
+\DoxyCodeLine{    return 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+result \+:
+
+B je suis vivant
+
+C je suis mort
+
+L\textquotesingle{}univers est un espace infini où s\textquotesingle{}entrechoque tous les hasards.\hypertarget{md_Docs_doc_Ecs_autotoc_md7}{}\doxysection{Next the Entity with her component}\label{md_Docs_doc_Ecs_autotoc_md7}
+Next you will need \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}} object. It will represent the object that contains all your componenent.
+
+A Entity have 5 methodes \+:
+
+
+\begin{DoxyItemize}
+\item bool has\+Compo\+Type(rtype\+::ecs\+::component\+::compo\+Type type); Check if the entity have a component of the given type.
+\item void add\+Component(component\+::compo\+Type type, Args... args); Add component to entity.
+\item void remove(rtype\+::ecs\+::component\+::compo\+Type type); Remove component to entity.
+\item T $\ast$get\+Component(rtype\+::ecs\+::component\+::compo\+Type type); Get the Component of the given type.
+\item rtype\+::ecs\+::entity\+::entity\+Type get\+Entity\+Type() const; Get the Entity Type
+\end{DoxyItemize}
+
+Components definition \+:
+
+A Component must inherite from IComponent and have a method rtype\+::ecs\+::component\+::compo\+Type get\+Type() const -\/$>$ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{class ExampleComponent : public IComponent \{}
+\DoxyCodeLine{    public:}
+\DoxyCodeLine{    ExampleComponent();}
+\DoxyCodeLine{    \string~ExampleComponent();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    rtype::ecs::component::compoType getType() const;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    protected:}
+\DoxyCodeLine{    private:}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ Example \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include <iostream>}
+\DoxyCodeLine{\#include "{}Entity.hpp"{}}
+\DoxyCodeLine{\#include "{}IComponent.hpp"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{int main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    rtype::ecs::entity::Entity Player;}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    Player.addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE, true);}
+\DoxyCodeLine{    if (Player.hasCompoType(rtype::ecs::component::ALIVE))}
+\DoxyCodeLine{        std::cout << "{}J'ai bien le composent alive"{} << std::endl;}
+\DoxyCodeLine{    std::cout << "{}Hp = "{} << Player.getComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE) -\/>getAlive() << std::endl;}
+\DoxyCodeLine{    std::cout << "{}Je passe Alive a false"{} << std::endl;}
+\DoxyCodeLine{    Player.getComponent<rtype::ecs::component::Alive>(rtype::ecs::component::compoType::ALIVE)-\/>setAlive(false);}
+\DoxyCodeLine{    std::cout << "{}Hp = "{} << Player.getComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE) -\/>getAlive() << std::endl;}
+\DoxyCodeLine{    std::cout << "{}J'essaye de rajouter un componeent Alive"{} << std::endl;}
+\DoxyCodeLine{    Player.addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE, true);}
+\DoxyCodeLine{    if (Player.hasCompoType(rtype::ecs::component::ALIVE))}
+\DoxyCodeLine{        std::cout << "{}J'ai toujours le composent alive"{} << std::endl;}
+\DoxyCodeLine{    Player.remove(rtype::ecs::component::compoType::ALIVE);}
+\DoxyCodeLine{    std::cout << "{}J'ai remove le composent alive"{} << std::endl;}
+\DoxyCodeLine{    if (Player.hasCompoType(rtype::ecs::component::ALIVE))}
+\DoxyCodeLine{        std::cout << "{}J'ai toujours le composent alive"{} << std::endl;}
+\DoxyCodeLine{    else}
+\DoxyCodeLine{        std::cout << "{}J'ai plus le composent alive"{} << std::endl;}
+\DoxyCodeLine{    std::cout << "{}J'ajouter un componeent Alive"{} << std::endl;}
+\DoxyCodeLine{    Player.addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE, true);}
+\DoxyCodeLine{    if (Player.hasCompoType(rtype::ecs::component::ALIVE))}
+\DoxyCodeLine{        std::cout << "{}J'ai bien le composent alive"{} << std::endl;}
+\DoxyCodeLine{    return 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ result \+:
+
+J\textquotesingle{}ai bien le composent alive
+
+Hp = 1
+
+Je passe Alive a false
+
+Hp = 0
+
+J\textquotesingle{}essaye de rajouter un componeent Alive
+
+Component already exist
+
+J\textquotesingle{}ai toujours le composent alive
+
+J\textquotesingle{}ai remove le composent alive
+
+J\textquotesingle{}ai plus le composent alive
+
+J\textquotesingle{}ajouter un componeent Alive
+
+J\textquotesingle{}ai bien le composent alive 
