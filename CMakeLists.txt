@@ -69,7 +69,7 @@ target_compile_definitions(asio
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.70 REQUIRED)
+find_package(Boost 1.70 COMPONENTS thread system REQUIRED)
 message(STATUS "Boost version: ${Boost_VERSION}")
 
 # This is needed if your Boost version is newer than your CMake version
