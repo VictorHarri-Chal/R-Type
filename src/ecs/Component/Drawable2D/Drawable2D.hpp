@@ -20,14 +20,13 @@ namespace rtype
             class Drawable2D : public IComponent {
               public:
                 Drawable2D();
-                // Drawable2D(float radius, Color color);
-                // Drawable2D(std::string text, float fontSize, Color color);
-                // Drawable2D(std::string texturePath, float height, float width, Color color);
+                Drawable2D(float radius);
+                Drawable2D(std::string text, float fontSize);
+                Drawable2D(std::string texturePath, float height, float width);
                 ~Drawable2D();
 
                 rtype::ecs::component::compoType getType() const;
                 rtype::ecs::component::drawableType getDrawType();
-                // Color getColor();
                 float getRadius();
                 float getHeight();
                 float getWidth();
@@ -40,8 +39,7 @@ namespace rtype
                 void setText(std::string text);
                 std::string getTexturePath() const;
                 void setTexturePath(std::string texturePath);
-                // Texture2D getTexture() const;
-                void setTexture(std::string texturePath);
+                sf::Sprite getSprite() const;
 
               private:
                 float _radius;
@@ -49,9 +47,9 @@ namespace rtype
                 float _width;
                 std::string _text;
                 float _fontSize;
-                // Color _color;
                 std::string _texturePath;
-                // Texture2D _texture;
+                sf::Texture _texture;
+                sf::Sprite _sprite;
                 rtype::ecs::component::compoType _compoType;
                 rtype::ecs::component::drawableType _drawableType;
             };
