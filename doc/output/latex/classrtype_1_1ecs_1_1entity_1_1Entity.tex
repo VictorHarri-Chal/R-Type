@@ -1,0 +1,198 @@
+\hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity}{}\doxysection{rtype\+::ecs\+::entity\+::Entity Class Reference}
+\label{classrtype_1_1ecs_1_1entity_1_1Entity}\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+
+
+\mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} class.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_a72e1d96eabebe44a591451bfc1bf25e5}{Entity}} (entity\+Type type)
+\begin{DoxyCompactList}\small\item\em Create new entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_a24d2e75fd11576958203a57ab94582e1}\label{classrtype_1_1ecs_1_1entity_1_1Entity_a24d2e75fd11576958203a57ab94582e1}} 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_a24d2e75fd11576958203a57ab94582e1}{Entity}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_a299168ed6bf9ae24d5bc09b3b73f42f2}\label{classrtype_1_1ecs_1_1entity_1_1Entity_a299168ed6bf9ae24d5bc09b3b73f42f2}} 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_a299168ed6bf9ae24d5bc09b3b73f42f2}{$\sim$\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Destroy entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_ab5e258d8de372bf05553ab4a3873df4d}{has\+Compo\+Type}} (rtype\+::ecs\+::component\+::compo\+Type type)
+\begin{DoxyCompactList}\small\item\em Check if the entity have a component of the given type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename... Args$>$ }\\void \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_aadc9cd68d5d5a1558e0c5fae06a3dfa5}{add\+Component}} (component\+::compo\+Type type, Args... args)
+\begin{DoxyCompactList}\small\item\em Add component to entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_a2de44f6359097539733e59a2ba20e8f7}{remove}} (rtype\+::ecs\+::component\+::compo\+Type type)
+\begin{DoxyCompactList}\small\item\em Remove component to entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_ad919978f016553bb9a328fe40cf3328a}{get\+Component}} (rtype\+::ecs\+::component\+::compo\+Type type)
+\begin{DoxyCompactList}\small\item\em Get the Component of the given type. \end{DoxyCompactList}\item 
+rtype\+::ecs\+::entity\+::entity\+Type \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_a03ba24d2829c79fc8f385ce9da819fa9}{get\+Entity\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} Type. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_a9baf63665a38c86757e6e7f55b8be758}{get\+Id}} (void) const
+\begin{DoxyCompactList}\small\item\em Get the id of \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity_af4ce95618ec06982a931627fdadba964}{set\+Id}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em set the id of \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_a72e1d96eabebe44a591451bfc1bf25e5}\label{classrtype_1_1ecs_1_1entity_1_1Entity_a72e1d96eabebe44a591451bfc1bf25e5}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily rtype\+::ecs\+::entity\+::\+Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{entity\+Type}]{type }\end{DoxyParamCaption})}
+
+
+
+Create new entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} type \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_aadc9cd68d5d5a1558e0c5fae06a3dfa5}\label{classrtype_1_1ecs_1_1entity_1_1Entity_aadc9cd68d5d5a1558e0c5fae06a3dfa5}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily template$<$typename T , typename... Args$>$ \\
+void rtype\+::ecs\+::entity\+::\+Entity\+::add\+Component (\begin{DoxyParamCaption}\item[{component\+::compo\+Type}]{type,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add component to entity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & the component to add \\
+\hline
+{\em Type} & The type of component \\
+\hline
+{\em Args} & The necessary params to create the component \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of component to check if he already exist \\
+\hline
+{\em args} & The necessary params to create the component \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_ad919978f016553bb9a328fe40cf3328a}\label{classrtype_1_1ecs_1_1entity_1_1Entity_ad919978f016553bb9a328fe40cf3328a}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T$\ast$ rtype\+::ecs\+::entity\+::\+Entity\+::get\+Component (\begin{DoxyParamCaption}\item[{rtype\+::ecs\+::component\+::compo\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Component of the given type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of component to get \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The compo\+Type value of the component to get\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T$\ast$ Pointer to the wanted component 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_a03ba24d2829c79fc8f385ce9da819fa9}\label{classrtype_1_1ecs_1_1entity_1_1Entity_a03ba24d2829c79fc8f385ce9da819fa9}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!getEntityType@{getEntityType}}
+\index{getEntityType@{getEntityType}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{getEntityType()}{getEntityType()}}
+{\footnotesize\ttfamily rtype\+::ecs\+::entity\+::entity\+Type rtype\+::ecs\+::entity\+::\+Entity\+::get\+Entity\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} Type. 
+
+\begin{DoxyReturn}{Returns}
+rtype\+::ecs\+::entity\+::entity\+Type The entity type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_a9baf63665a38c86757e6e7f55b8be758}\label{classrtype_1_1ecs_1_1entity_1_1Entity_a9baf63665a38c86757e6e7f55b8be758}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!getId@{getId}}
+\index{getId@{getId}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily size\+\_\+t rtype\+::ecs\+::entity\+::\+Entity\+::get\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the id of \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}}. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The entity id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_ab5e258d8de372bf05553ab4a3873df4d}\label{classrtype_1_1ecs_1_1entity_1_1Entity_ab5e258d8de372bf05553ab4a3873df4d}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!hasCompoType@{hasCompoType}}
+\index{hasCompoType@{hasCompoType}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{hasCompoType()}{hasCompoType()}}
+{\footnotesize\ttfamily bool rtype\+::ecs\+::entity\+::\+Entity\+::has\+Compo\+Type (\begin{DoxyParamCaption}\item[{rtype\+::ecs\+::component\+::compo\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the entity have a component of the given type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & the compo\+Type value to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true The component is present 
+
+false The component isn\textquotesingle{}t present 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_a2de44f6359097539733e59a2ba20e8f7}\label{classrtype_1_1ecs_1_1entity_1_1Entity_a2de44f6359097539733e59a2ba20e8f7}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!remove@{remove}}
+\index{remove@{remove}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::entity\+::\+Entity\+::remove (\begin{DoxyParamCaption}\item[{rtype\+::ecs\+::component\+::compo\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove component to entity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Type} & The type of component \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of component who want remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1entity_1_1Entity_af4ce95618ec06982a931627fdadba964}\label{classrtype_1_1ecs_1_1entity_1_1Entity_af4ce95618ec06982a931627fdadba964}} 
+\index{rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}!setId@{setId}}
+\index{setId@{setId}!rtype::ecs::entity::Entity@{rtype::ecs::entity::Entity}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::entity\+::\+Entity\+::set\+Id (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})}
+
+
+
+set the id of \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & id of entity to set \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/ecs/\+Entity/Entity.\+hpp\item 
+src/ecs/\+Entity/Entity.\+cpp\end{DoxyCompactItemize}

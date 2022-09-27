@@ -8,6 +8,10 @@
 # Executable
 /r-type_server
 /r-type_client
-
+src/client/client
+src/server/server
 # Shame on you!
 vgcore.*
+
+# Libs
+asio/
