@@ -24,9 +24,6 @@ add_executable(r-type_server ${SRC_SERVER})
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIRS})
 
-target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
-target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
-
 if(NOT DEFINED ASIO_SRC)
     set(ASIO_SRC ${CMAKE_CURRENT_LIST_DIR})
 endif()
@@ -81,3 +78,6 @@ if(NOT TARGET Boost::filesystem)
     set_property(TARGET Boost::filesystem PROPERTY
         INTERFACE_LINK_LIBRARIES ${Boost_LIBRARIES})
 endif()
+
+target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
+target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
