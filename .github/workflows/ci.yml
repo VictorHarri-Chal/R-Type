@@ -28,10 +28,12 @@ jobs:
   build-on-windows:
     runs-on: windows-latest
     steps:
+      - name: Check NuGet version
+        run: |
+          which nuget
       - uses: actions/checkout@v1
       - name: build on Windows
         run: |
-          nuget --version
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
