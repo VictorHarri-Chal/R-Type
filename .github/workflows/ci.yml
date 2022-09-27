@@ -70,7 +70,7 @@ jobs:
   mirror:
     needs:
       - build-on-ubuntu
-      - build-on-windows
+      #- build-on-windows
       - clean-repo
     runs-on: ubuntu-latest
     steps:
