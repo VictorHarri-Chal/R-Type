@@ -6,6 +6,7 @@
 */
 
 #include "Drawable2D.hpp"
+#include <iostream>
 
 rtype::ecs::component::Drawable2D::Drawable2D()
 {
@@ -25,7 +26,7 @@ rtype::ecs::component::Drawable2D::Drawable2D(float width, float height, sf::Col
     this->_drawableType = rtype::ecs::component::drawableType::RECTANGLE;
 }
 
-rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, sf::IntRect rect)
+rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect)
 {
     this->_rect = rect;
     this->_texturePath = texturePath;
@@ -42,6 +43,7 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, 
     this->_width = 0.0;
     this->_text = text;
     this->_fontSize = fontSize;
+    this->_font = "assets/Maybe Next.ttf";
     this->_color = color;
     this->_spe = bold;
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
@@ -58,7 +60,7 @@ float rtype::ecs::component::Drawable2D::getFontSize()
     return (this->_fontSize);
 }
 
-sf::Font rtype::ecs::component::Drawable2D::getFont()
+std::string rtype::ecs::component::Drawable2D::getFont()
 {
     return (this->_font);
 }
@@ -134,7 +136,7 @@ void rtype::ecs::component::Drawable2D::setWidth(float width)
 
 void rtype::ecs::component::Drawable2D::setFont(std::string fontPath)
 {
-    this->_font.loadFromFile("arial.ttf");
+    this->_font = fontPath;
 }
 
 void rtype::ecs::component::Drawable2D::setColor(sf::Color color)

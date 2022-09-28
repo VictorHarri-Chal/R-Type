@@ -43,7 +43,7 @@ namespace rtype
                  *
                  * @param entities vector of entites to update
                  */
-                virtual void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities) = 0;
+                virtual void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) = 0;
 
                 /**
                  * @brief Get the type of system.

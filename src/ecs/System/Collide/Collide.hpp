@@ -38,7 +38,7 @@ namespace rtype
                  *
                  * @param entities vector of entites to update
                  */
-                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities);
+                void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
                 /**
                  * @brief Check collisions between cubes
                  *

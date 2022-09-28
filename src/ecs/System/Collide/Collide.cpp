@@ -142,7 +142,7 @@ bool rtype::ecs::system::Collide::checkCollision(std::unique_ptr<rtype::ecs::ent
     return (false);
 }
 
-void rtype::ecs::system::Collide::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities)
+void rtype::ecs::system::Collide::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
     int count = 0;
     std::vector<int> compoToRemove;

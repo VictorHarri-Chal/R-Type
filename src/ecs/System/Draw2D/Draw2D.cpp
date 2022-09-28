@@ -11,20 +11,23 @@
 
 #include "Draw2D.hpp"
 
-void rtype::ecs::system::Draw2DSystem::drawText(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo)
+void rtype::ecs::system::Draw2DSystem::drawText(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine)
 {
     sf::Text text;
+    sf::Font font;
 
-    text.setFont(drawableCompo.getFont());
+    font.loadFromFile(drawableCompo.getFont());
+    text.setFont(font);
     text.setString(drawableCompo.getText());
     text.setCharacterSize(drawableCompo.getFontSize());
     text.setPosition(sf::Vector2f(transformCompo.getX(), transformCompo.getY()));
     text.setFillColor(drawableCompo.getColor());
     if (drawableCompo.getSpe())
         text.setStyle(sf::Text::Bold);
+    gameEngine->_window.draw(text);
 }
 
-void rtype::ecs::system::Draw2DSystem::drawRectangle(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo)
+void rtype::ecs::system::Draw2DSystem::drawRectangle(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine)
 {
     sf::RectangleShape rectangle(sf::Vector2f(drawableCompo.getWidth(), drawableCompo.getHeight()));
 
@@ -33,12 +36,14 @@ void rtype::ecs::system::Draw2DSystem::drawRectangle(rtype::ecs::component::Draw
         rectangle.setOutlineColor(drawableCompo.getColor());
     else
         rectangle.setFillColor(drawableCompo.getColor());
-
+    gameEngine->_window.draw(rectangle);
 }
 
-void rtype::ecs::system::Draw2DSystem::drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo)
+void rtype::ecs::system::Draw2DSystem::drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine)
 {
-    drawableCompo.getSprite().setPosition(sf::Vector2f(transformCompo.getX(), transformCompo.getY()));
+    sf::Sprite sprite = drawableCompo.getSprite();
+    sprite.setPosition(sf::Vector2f(transformCompo.getX(), transformCompo.getY()));
+    gameEngine->_window.draw(sprite);
 }
 
 rtype::ecs::system::SystemType rtype::ecs::system::Draw2DSystem::getSystemType() const
@@ -46,7 +51,7 @@ rtype::ecs::system::SystemType rtype::ecs::system::Draw2DSystem::getSystemType()
     return (rtype::ecs::system::SystemType::DRAWABLE2DSYSTEM);
 }
 
-void rtype::ecs::system::Draw2DSystem::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities)
+void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
     for (auto &entity : entities) {
         std::vector<rtype::ecs::component::Drawable2D *> compoVector = entity->getDrawableVector();
@@ -60,9 +65,9 @@ void rtype::ecs::system::Draw2DSystem::update(std::vector<std::unique_ptr<rtype:
                 rtype::ecs::component::Transform *transformCompo =
                     entity->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
                 switch (compo->getDrawType()) {
-                    case rtype::ecs::component::drawableType::RECTANGLE: drawRectangle(*compo, *transformCompo); break;
-                    case rtype::ecs::component::drawableType::TEXT: drawText(*compo, *transformCompo); break;
-                    case rtype::ecs::component::drawableType::SPRITE: drawSprite(*compo, *transformCompo); break;
+                    case rtype::ecs::component::drawableType::RECTANGLE: drawRectangle(*compo, *transformCompo, gameEngine); break;
+                    case rtype::ecs::component::drawableType::TEXT: drawText(*compo, *transformCompo, gameEngine); break;
+                    case rtype::ecs::component::drawableType::SPRITE: drawSprite(*compo, *transformCompo, gameEngine); break;
                     default: continue;
                 }
             }

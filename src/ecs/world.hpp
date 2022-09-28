@@ -39,7 +39,7 @@ namespace rtype
                  * @tparam entity the Entity to add
                  * @param entity Entity who want to add to world
                  */
-                void addComponent(entity::Entity *entity);
+                void addEntity(entity::Entity *entity);
 
                 /**
                  * @brief Get the Entity of the given id

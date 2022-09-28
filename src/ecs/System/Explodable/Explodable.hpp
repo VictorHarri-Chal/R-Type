@@ -39,7 +39,7 @@ namespace rtype
                  *
                  * @param entities Entity to update
                  */
-                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities);
+                void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
                 /**
                  * @brief Destroy the boxes on the map
                  *

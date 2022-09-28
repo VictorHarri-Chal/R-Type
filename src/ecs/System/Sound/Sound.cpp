@@ -24,7 +24,7 @@ rtype::ecs::system::SystemType rtype::ecs::system::Sound::getSystemType() const
     return (rtype::ecs::system::SystemType::SOUNDSYSTEM);
 }
 
-void rtype::ecs::system::Sound::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities)
+void rtype::ecs::system::Sound::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
     for (auto &entity : entities) {
         if (entity->hasCompoType(rtype::ecs::component::compoType::SOUND)) {
@@ -32,7 +32,7 @@ void rtype::ecs::system::Sound::update(std::vector<std::unique_ptr<rtype::ecs::e
             if (soundComponent->getPlay() == true) {
                 float volume = soundComponent->getVolume();
 
-                rtype::raylib::Sound sound(soundComponent->getSoundPath());
+                // rtype::raylib::Sound sound(soundComponent->getSoundPath());
                 // sound.setVolume(sound.getVolume());
                 sound.setVolume(volume);
                 sound.play();

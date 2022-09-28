@@ -34,7 +34,7 @@ rtype::ecs::entity::Entity *rtype::ecs::world::World::getEntity(size_t id) const
     return (this->_entitiesVector[id]);
 }
 
-void rtype::ecs::world::World::addComponent(entity::Entity *entity)
+void rtype::ecs::world::World::addEntity(entity::Entity *entity)
 {
     entity->setId(this->nbEntities);
     this->_entitiesVector.push_back(entity);

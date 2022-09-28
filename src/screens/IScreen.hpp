@@ -12,7 +12,6 @@
 #include "../../include/EventCode.hpp"
 #include "../sfml/Sfml.hpp"
 #include "../ecs/Entity/Entity.hpp"
-#include "../ecs/System/Draw2D/Draw2D.hpp"
 
 namespace rtype
 {
@@ -33,7 +32,7 @@ namespace rtype
          * @brief Draw the screen
          * 
          */
-        virtual void draw() = 0;
+        virtual void draw(rtype::Game *gameEngine) = 0;
         /**
          * @brief Update the screen
          * 
@@ -46,12 +45,6 @@ namespace rtype
          * @return int The scene number
          */
         virtual int handleEvent(rtype::Event &event) = 0;
-        /**
-       * @brief Add entity to the screen
-         * 
-         * @param entity Entity to add to the screen
-         */
-        virtual void addEntity(std::unique_ptr<rtype::ecs::entity::Entity> entity) = 0;
         /**
          * @brief Add system to the screen
          * 

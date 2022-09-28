@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "../IScreen.hpp"
+#include "../../ecs/world.hpp"
 
 namespace rtype
 {
@@ -47,7 +48,7 @@ namespace rtype
              * @brief Draw the Menu Screen
              * 
              */
-            void draw() override;
+            void draw(rtype::Game *gameEngine) override;
             /**
              * @brief Update the Menu Screen
              * 
@@ -60,12 +61,6 @@ namespace rtype
              * @return int The Scene Number
              */
             int handleEvent(rtype::Event &event) override;
-            /**
-             * @brief Add entity for the Menu Screen
-             * 
-             * @param entity Entity to add for the Menu Screen
-             */
-            void addEntity(std::unique_ptr<rtype::ecs::entity::Entity> entity) override;
             /**
              * @brief Add system for the Menu Screen
              * 
@@ -89,11 +84,8 @@ namespace rtype
             int checkCursorPosition(bool direction);
 
           private:
-            /**
-             * @brief Vector of entities for the Menu Screen
-             * 
-             */
-            std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> _entities;
+            
+            rtype::ecs::world::World _world;
             /**
              * @brief Vector of systems for the Menu Screen
              * 
@@ -109,6 +101,7 @@ namespace rtype
              * 
              */
             int _cursorPosition;
+
         };
     }
 }

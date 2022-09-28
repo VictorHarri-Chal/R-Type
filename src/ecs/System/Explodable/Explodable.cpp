@@ -256,7 +256,7 @@ void rtype::ecs::system::Explodable::destroyBoxes(std::vector<int> &compoToRemov
     compoToRemove.clear();
 }
 
-void rtype::ecs::system::Explodable::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities)
+void rtype::ecs::system::Explodable::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
     std::vector<int> compoToRemove;
     std::vector<rtype::ecs::entity::Entity *> bombVector;

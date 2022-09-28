@@ -6,6 +6,7 @@
 */
 
 #include "MenuScreen.hpp"
+#include "../../ecs/System/Draw2D/Draw2D.hpp"
 
 rtype::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
 {
@@ -13,21 +14,32 @@ rtype::menu::MenuScreen::MenuScreen() : _cursorPosition(NEW_GAME)
 
 void rtype::menu::MenuScreen::init()
 {
+    std::string textString = "Hello World !";
+
     std::unique_ptr<rtype::ecs::system::ISystem> draw2DSystemMenu =
         std::make_unique<rtype::ecs::system::Draw2DSystem>();
     addSystem(std::move(draw2DSystemMenu));
-    std::unique_ptr<ecs::entity::Entity> rectangle = std::make_unique<ecs::entity::Entity>(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *rectangle = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
     rectangle->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 200.f, 200.f, 0.0f, 0.0f);
-    addEntity(std::move(rectangle));
+    rectangle->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 250.f, 50.f, sf::Color::White, false);
+    this->_world.addEntity(rectangle);
+    rtype::ecs::entity::Entity *text = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    text->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 250.f, 210.f, 0.0f, 0.0f);
+    text->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, textString, 24.f, sf::Color::Blue, true);
+    this->_world.addEntity(text);
+    rtype::ecs::entity::Entity *poke = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    poke->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+    poke->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/poke.png", true);
+    this->_world.addEntity(poke);
     // this->_positionsCursor[NEW_GAME] = tools::Tools::getPercentage(27.f, false);
     // this->_positionsCursor[LOAD_GAME] = tools::Tools::getPercentage(47.f, false);
     // this->_positionsCursor[EXIT] = tools::Tools::getPercentage(67.f, false);
 }
 
-void rtype::menu::MenuScreen::draw()
+void rtype::menu::MenuScreen::draw(rtype::Game *gameEngine)
 {
     for (auto &system : this->_systems) {
-        system->update(this->_entities);
+        system->update(this->_world.getEntities(), gameEngine);
     }
 }
 
@@ -40,11 +52,6 @@ int rtype::menu::MenuScreen::handleEvent(rtype::Event &event)
 void rtype::menu::MenuScreen::update()
 {
     
-}
-
-void rtype::menu::MenuScreen::addEntity(std::unique_ptr<rtype::ecs::entity::Entity> entity)
-{
-    this->_entities.push_back(std::move(entity));
 }
 
 int rtype::menu::MenuScreen::checkCursorPosition(bool direction)

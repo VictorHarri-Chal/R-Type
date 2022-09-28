@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include "../screens/IScreen.hpp"
 #include "../events/Events.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 

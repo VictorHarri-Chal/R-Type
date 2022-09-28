@@ -22,7 +22,7 @@ namespace rtype
                 Drawable2D();
                 Drawable2D(float width, float height, sf::Color color, bool outline);
                 Drawable2D(std::string text, float fontSize, sf::Color color, bool bold);
-                Drawable2D(std::string texturePath, sf::IntRect rect);
+                Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect = (sf::IntRect){0, 0, 0, 0});
                 ~Drawable2D();
 
                 void setHeight(float height);
@@ -38,7 +38,7 @@ namespace rtype
                 float getHeight();
                 float getWidth();
                 float getFontSize();
-                sf::Font getFont();
+                std::string getFont();
                 sf::Color getColor();
                 std::string getText();
                 std::string getTexturePath() const;
@@ -51,7 +51,7 @@ namespace rtype
                 float _width;
                 std::string _text;
                 float _fontSize;
-                sf::Font _font;
+                std::string _font;
                 sf::Color _color;
                 std::string _texturePath;
                 sf::Texture _texture;
