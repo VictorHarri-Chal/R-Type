@@ -1,4 +1,0 @@
-/Users/simonlefourn/code/simlf/R-Type/CMakeFiles/r-type_client.dir
-/Users/simonlefourn/code/simlf/R-Type/CMakeFiles/r-type_server.dir
-/Users/simonlefourn/code/simlf/R-Type/CMakeFiles/edit_cache.dir
-/Users/simonlefourn/code/simlf/R-Type/CMakeFiles/rebuild_cache.dir
