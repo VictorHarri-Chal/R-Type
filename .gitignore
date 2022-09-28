@@ -13,5 +13,9 @@ src/server/server
 # Shame on you!
 vgcore.*
 
+# CMake
+CMakeCache.txt
+CMakeFiles/
+
 # Libs
 asio/
