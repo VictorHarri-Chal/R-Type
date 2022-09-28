@@ -1,4 +1,4 @@
-/*
+    /*
 ** EPITECH PROJECT, 2022
 ** Entity (ENTITY)
 ** File description:
@@ -20,7 +20,7 @@
 #include "../Component/Inventory/Inventory.hpp"
 #include "../Component/Sound/Sound.hpp"
 #include "../Component/Transform/Transform.hpp"
-
+#include "../../game/Game.hpp"
 
 namespace rtype
 {
@@ -110,21 +110,21 @@ namespace rtype
                     this->_componentVector.erase(it);
                 }
 
-                // /**
-                //  * @brief Get the Drawable Vector
-                //  *
-                //  * @return std::vector<rtype::ecs::component::Drawable2D *> Vector of Drawable2D component
-                //  */
-                // std::vector<rtype::ecs::component::Drawable2D *> getDrawableVector() const
-                // {
-                //     std::vector<rtype::ecs::component::Drawable2D *> vector;
-                //     for (auto &compo : _componentVector) {
-                //         if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D) {
-                //             vector.push_back(dynamic_cast<rtype::ecs::component::Drawable2D *>(compo.get()));
-                //         }
-                //     }
-                //     return (vector);
-                // }
+                /**
+                 * @brief Get the Drawable Vector
+                 *
+                 * @return std::vector<rtype::ecs::component::Drawable2D *> Vector of Drawable2D component
+                 */
+                std::vector<rtype::ecs::component::Drawable2D *> getDrawableVector() const
+                {
+                    std::vector<rtype::ecs::component::Drawable2D *> vector;
+                    for (auto &compo : _componentVector) {
+                        if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D) {
+                            vector.push_back(dynamic_cast<rtype::ecs::component::Drawable2D *>(compo.get()));
+                        }
+                    }
+                    return (vector);
+                }
 
                 /**
                  * @brief Get the Component of the given type

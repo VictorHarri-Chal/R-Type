@@ -5,7 +5,32 @@ set(EVENTSROOT ${SRCROOT}/events/)
 set(GAMEROOT ${SRCROOT}/game/)
 set(SCREENSROOT ${SRCROOT}/screens/)
 
+set(SRC_SCREENS
+    ${SCREENSROOT}IScreen.hpp
+    ${SCREENSROOT}menu/MenuScreen.cpp
+    ${SCREENSROOT}menu/MenuScreen.hpp
+)
+
+set(SRC_GAME
+    ${GAMEROOT}Game.cpp
+    ${GAMEROOT}Game.hpp
+)
+
+set(SRC_EVENTS
+    ${EVENTSROOT}Events.cpp
+    ${EVENTSROOT}Events.hpp
+)
+
+set(SRC
+    ${SRCROOT}main.cpp
+    ${SRC_ECS}
+    ${SRC_EVENTS}
+    ${SRC_GAME}
+    ${SRC_SCREENS}
+)
+
 set(SRC_ECS
+    ${ECSROOT}System/ISystem.hpp
     ${ECSROOT}Entity/Entity.cpp
     ${ECSROOT}Entity/Entity.hpp
     ${ECSROOT}world.cpp
@@ -27,33 +52,10 @@ set(SRC_ECS
     ${ECSROOT}Component/Transform/Transform.cpp
     ${ECSROOT}Component/Transform/Transform.hpp
     ${ECSROOT}Component/IComponent.hpp
-    ${ECSROOT}System/ISystem.hpp
+    ${ECSROOT}System/Draw2D/Draw2D.cpp
+    ${ECSROOT}System/Draw2D/Draw2D.hpp
 )
 
-set(SRC_EVENTS
-    ${EVENTSROOT}Events.cpp
-    ${EVENTSROOT}Events.hpp
-)
-
-set(SRC_GAME
-    ${GAMEROOT}Game.cpp
-    ${GAMEROOT}Game.hpp
-)
-
-set(SRC_SCREENS
-    ${SCREENSROOT}IScreen.hpp
-    ${SCREENSROOT}menu/MenuScreen.cpp
-    ${SCREENSROOT}menu/MenuScreen.hpp
-)
-
-set(SRC
-    ${SRCROOT}main.cpp
-    ${SRC_ECS}
-    ${SRC_EVENTS}
-    ${SRC_GAME}
-    ${SRC_SCREENS}
-)
-    
 set(INCDIRS
 )
 

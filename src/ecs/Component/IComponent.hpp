@@ -43,7 +43,7 @@ namespace rtype
              * @brief Enum for drawable type
              *
              */
-            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
+            enum drawableType { CIRCLE, SPRITE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
             /**
              * @brief Enum for bonus type
              *

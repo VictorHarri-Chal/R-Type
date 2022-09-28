@@ -24,7 +24,7 @@ rtype::Game::~Game()
 
 void rtype::Game::init()
 {
-    initScenes();
+    // initScenes();
 }
 
 void rtype::Game::initMusic()
@@ -61,15 +61,15 @@ bool rtype::Game::processEvents()
 void rtype::Game::update()
 {
     switch (_actualScreen) {
-        case Screens::Menu: _menu->update(); break;
+        case Screens::Menu: _menu->update(this); break;
         default: break;
     }
 }
 
-void rtype::Game::draw()
+void rtype::Game::draw(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
-        case Screens::Menu: _menu->draw(); break;
+        case Screens::Menu: _menu->draw(gameEngine); break;
         default: break;
     }
 }
@@ -86,11 +86,11 @@ int rtype::Game::handleEvent()
 void rtype::Game::run()
 {
     while (_window.isOpen()) {
-        
         if (!processEvents())
             break;
+        _window.clear(sf::Color::Black);
         update();
-        draw();
+        draw(this);
     }
 }
 

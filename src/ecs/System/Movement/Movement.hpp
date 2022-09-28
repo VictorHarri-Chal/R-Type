@@ -14,8 +14,9 @@
 
 #include "../ISystem.hpp"
 
-namespace indie
+namespace rtype
 {
+    class Game;
     namespace ecs
     {
         namespace system
@@ -41,19 +42,19 @@ namespace indie
                  *
                  * @param entities vector of entities.
                  */
-                void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities) override;
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, rtype::Game *gameEngine) override;
 
                 /**
                  * @brief Get the type of system.
                  *
                  * @return enum value correspond to the type of system
                  */
-                indie::ecs::system::SystemType getSystemType() const override;
+                rtype::ecs::system::SystemType getSystemType() const override;
 
               private:
             };
         } // namespace system
     }     // namespace ecs
-} // namespace indie
+} // namespace rtype
 
 #endif /* !MOVEMENT_HPP_ */

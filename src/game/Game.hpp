@@ -5,20 +5,11 @@
 ** Game.hpp
 */
 
-#ifndef GAME_HPP_
-#define GAME_HPP_
-
-#include "../ecs/System/Collide/Collide.hpp"
-#include "../ecs/System/Draw2D/Draw2D.hpp"
-#include "../ecs/System/Explodable/Explodable.hpp"
-#include "../ecs/System/Movement/Movement.hpp"
-#include "../ecs/System/Sound/Sound.hpp"
-#include "../events/Events.hpp"
-#include "../../include/EventCode.hpp"
+#pragma once
 
 #include "../screens/IScreen.hpp"
+#include "../events/Events.hpp"
 #include "../screens/menu/MenuScreen.hpp"
-#include "../sfml/Sfml.hpp"
 
 namespace rtype
 {
@@ -41,7 +32,7 @@ namespace rtype
         /// @brief Run the game class
         void run(void);
         /// @brief Draw game elements
-        void draw(void);
+        void draw(rtype::Game *gameEngine);
         /// @brief Update game elements
         void update(void);
         /// @brief Process events
@@ -110,15 +101,13 @@ namespace rtype
         //  * @param system System sound to add
         //  */
         // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
-
-      protected:
+        /// @brief Game window
+        sf::RenderWindow _window;
       private:
         /// @brief Actual screen
         Screens _actualScreen;
         /// @brief Game fps
         size_t _fps;
-        /// @brief Game window
-        sf::Window _window;
         /// @brief Players
         // std::vector<player::Player> _players;
         /// @brief Menu screen
@@ -134,5 +123,3 @@ namespace rtype
         // std::map<int, rtype::raylib::Sound> _musics;
     };
 }
-
-#endif /* !GAME_HPP_ */

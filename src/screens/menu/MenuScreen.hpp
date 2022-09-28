@@ -5,19 +5,16 @@
 ** MenuScreen.hpp
 */
 
-#ifndef MENUSCREEN_HPP_
-#define MENUSCREEN_HPP_
-
+#pragma once
 #include <map>
 #include <memory>
 #include <vector>
 
-#include "../../ecs/Entity/Entity.hpp"
 #include "../IScreen.hpp"
-// #include "../ecs/System/Draw2D/Draw2D.hpp"
 
 namespace rtype
 {
+    class Game;
     namespace menu
     {
         /**
@@ -50,12 +47,12 @@ namespace rtype
              * @brief Draw the Menu Screen
              * 
              */
-            void draw() override;
+            void draw(rtype::Game *gameEngine) override;
             /**
              * @brief Update the Menu Screen
              * 
              */
-            void update() override;
+            void update(rtype::Game *gameEngine) override;
             /**
              * @brief Handle event for the Menu Screen
              * 
@@ -115,5 +112,3 @@ namespace rtype
         };
     }
 }
-
-#endif /* !MENUSCREEN_HPP_ */

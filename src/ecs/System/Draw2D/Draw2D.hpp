@@ -9,12 +9,12 @@
  *
  */
 
-#ifndef DRAW2D_HPP_
-#define DRAW2D_HPP_
+#pragma once
 
+#include <SFML/Graphics.hpp>
 #include "../ISystem.hpp"
 
-namespace indie
+namespace rtype
 {
     namespace ecs
     {
@@ -37,7 +37,7 @@ namespace indie
                  * @param drawableCompo the drawable component of the entity with the text and color.
                  * @param transformCompo the transform component of the entity with his position.
                  */
-                void drawText(auto drawableCompo, auto transformCompo);
+                void drawText(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
 
                 /**
                  * @brief Draw rectangle with given properties.
@@ -45,26 +45,32 @@ namespace indie
                  * @param drawableCompo the drawable component of the entity with the size and color.
                  * @param transformCompo the transform component of the entity with his position.
                  */
-                void drawRectangle(auto drawableCompo, auto transformCompo);
+                void drawRectangle(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
+
+                /**
+                 * @brief Draw sprite with given properties.
+                 *
+                 * @param drawableCompo the drawable component of the entity with the size and color.
+                 * @param transformCompo the transform component of the entity with his position.
+                 */
+                void drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
 
                 /**
                  * @brief Draw all given entities with Drawable2D component.
                  *
                  * @param entities all entities to draw.
                  */
-                void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities) override;
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, rtype::Game *gameEngine) override;
 
                 /**
                  * @brief Get the type of system.
                  *
-                 * @return indie::ecs::system::SystemType SystemType
+                 * @return rtype::ecs::system::SystemType SystemType
                  */
-                indie::ecs::system::SystemType getSystemType() const override;
+                rtype::ecs::system::SystemType getSystemType() const override;
 
               private:
             };
         } // namespace system
     }     // namespace ecs
-} // namespace indie
-
-#endif /* !DRAW2D_HPP_ */
+} // namespace rtype

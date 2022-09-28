@@ -14,7 +14,7 @@
 
 #include "../ISystem.hpp"
 
-namespace indie
+namespace rtype
 {
     namespace ecs
     {
@@ -38,7 +38,7 @@ namespace indie
                  *
                  * @param entities vector of entites to update
                  */
-                void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities);
                 /**
                  * @brief Check collisions between cubes
                  *
@@ -49,9 +49,9 @@ namespace indie
                  * @param otherEntityDrawable The other drawable component
                  * @param otherTransform The other transform component
                  */
-                bool checkCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
-                    std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, indie::ecs::component::Collide *collide,
-                    indie::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count);
+                // bool checkCollision(std::unique_ptr<rtype::ecs::entity::Entity> &entity,
+                //     std::unique_ptr<rtype::ecs::entity::Entity> &otherEntity, rtype::ecs::component::Collide *collide,
+                //     rtype::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count);
                 /**
                  * @brief Check collisions between spheres
                  *
@@ -60,22 +60,22 @@ namespace indie
                  * @param compoToRemove Component to remove
                  * @param count Counter
                  */
-                void checkSphereCollision(std::unique_ptr<indie::ecs::entity::Entity> &entity,
-                    std::unique_ptr<indie::ecs::entity::Entity> &otherEntity, std::vector<int> &compoToRemove,
+                void checkSphereCollision(std::unique_ptr<rtype::ecs::entity::Entity> &entity,
+                    std::unique_ptr<rtype::ecs::entity::Entity> &otherEntity, std::vector<int> &compoToRemove,
                     int &count);
 
                 /**
                  * @brief Get the type of system.
                  *
-                 * @return indie::ecs::system::SystemType SystemType
+                 * @return rtype::ecs::system::SystemType SystemType
                  */
-                indie::ecs::system::SystemType getSystemType() const;
+                rtype::ecs::system::SystemType getSystemType() const;
 
               protected:
               private:
             };
         } // namespace system
     }     // namespace ecs
-} // namespace indie
+} // namespace rtype
 
 #endif /* !COLLIDE_HPP_ */

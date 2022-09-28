@@ -1,18 +1,18 @@
-/*
+  /*
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
 ** IScreen.hpp
 */
 
-#ifndef ISCREEN_HPP_
-#define ISCREEN_HPP_
+#pragma once
 
 #include <memory>
-#include "../ecs/Entity/Entity.hpp"
 #include "../ecs/System/ISystem.hpp"
 #include "../../include/EventCode.hpp"
 #include "../sfml/Sfml.hpp"
+#include "../ecs/Entity/Entity.hpp"
+#include "../ecs/System/Draw2D/Draw2D.hpp"
 
 namespace rtype
 {
@@ -33,12 +33,12 @@ namespace rtype
          * @brief Draw the screen
          * 
          */
-        virtual void draw() = 0;
+        virtual void draw(rtype::Game *gameEngine) = 0;
         /**
          * @brief Update the screen
          * 
          */
-        virtual void update() = 0;
+        virtual void update(rtype::Game *gameEngine) = 0;
         /**
          * @brief Handle events
          * 
@@ -60,5 +60,3 @@ namespace rtype
         virtual void addSystem(std::unique_ptr<rtype::ecs::system::ISystem> system) = 0;
     };
 }
-
-#endif /* !ISCREEN_HPP_ */

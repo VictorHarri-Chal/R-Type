@@ -11,14 +11,14 @@
 
 #include "Movement.hpp"
 
-void indie::ecs::system::MovementSystem::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
+void rtype::ecs::system::MovementSystem::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, rtype::Game *gameEngine)
 {
     for (auto &entity : entities) {
         if (entity->hasCompoType(ecs::component::compoType::TRANSFORM)) {
-            indie::ecs::component::Transform *transformCompo =
+            rtype::ecs::component::Transform *transformCompo =
                 entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-            if (entity->hasCompoType(indie::ecs::component::compoType::COLLIDE) == true) {
-                if (entity->getComponent<indie::ecs::component::Collide>(indie::ecs::component::compoType::COLLIDE)
+            if (entity->hasCompoType(rtype::ecs::component::compoType::COLLIDE) == true) {
+                if (entity->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)
                         ->getCollide()
                     == false) {
                     transformCompo->setX(transformCompo->getX() + transformCompo->getSpeedX());
@@ -29,7 +29,7 @@ void indie::ecs::system::MovementSystem::update(std::vector<std::unique_ptr<indi
     }
 }
 
-indie::ecs::system::SystemType indie::ecs::system::MovementSystem::getSystemType() const
+rtype::ecs::system::SystemType rtype::ecs::system::MovementSystem::getSystemType() const
 {
-    return (indie::ecs::system::SystemType::MOVEMENTSYSTEM);
+    return (rtype::ecs::system::SystemType::MOVEMENTSYSTEM);
 }

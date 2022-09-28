@@ -15,7 +15,7 @@
 #include <map>
 #include "../ISystem.hpp"
 
-namespace indie
+namespace rtype
 {
     namespace ecs
     {
@@ -39,7 +39,7 @@ namespace indie
                  *
                  * @param entities Entity to update
                  */
-                void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities);
                 /**
                  * @brief Destroy the boxes on the map
                  *
@@ -49,28 +49,28 @@ namespace indie
                  * @param transformCompo Transform component
                  */
                 void destroyBoxes(std::vector<int> &compoToRemove,
-                    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities,
-                    indie::ecs::component::Explodable *explodableCompo,
-                    indie::ecs::component::Transform *transformCompo);
+                    std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities,
+                    rtype::ecs::component::Explodable *explodableCompo,
+                    rtype::ecs::component::Transform *transformCompo);
 
                 float getValue(float position, float index, char operand);
                 float getNewValue(float bombPos);
 
-                std::map<size_t, indie::ecs::entity::Entity *> getEntityByPosition(
-                    std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities, float x, float y);
+                std::map<size_t, rtype::ecs::entity::Entity *> getEntityByPosition(
+                    std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, float x, float y);
 
                 /**
                  * @brief Get the System Type object
                  *
-                 * @return indie::ecs::system::SystemType SystemType
+                 * @return rtype::ecs::system::SystemType SystemType
                  */
-                indie::ecs::system::SystemType getSystemType() const;
+                rtype::ecs::system::SystemType getSystemType() const;
 
               protected:
               private:
             };
         } // namespace system
     }     // namespace ecs
-} // namespace indie
+} // namespace rtype
 
 #endif /* !EXPLODABLE_HPP_ */

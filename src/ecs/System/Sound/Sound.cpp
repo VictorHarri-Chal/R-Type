@@ -11,28 +11,28 @@
 
 #include "Sound.hpp"
 
-indie::ecs::system::Sound::Sound()
+rtype::ecs::system::Sound::Sound()
 {
 }
 
-indie::ecs::system::Sound::~Sound()
+rtype::ecs::system::Sound::~Sound()
 {
 }
 
-indie::ecs::system::SystemType indie::ecs::system::Sound::getSystemType() const
+rtype::ecs::system::SystemType rtype::ecs::system::Sound::getSystemType() const
 {
-    return (indie::ecs::system::SystemType::SOUNDSYSTEM);
+    return (rtype::ecs::system::SystemType::SOUNDSYSTEM);
 }
 
-void indie::ecs::system::Sound::update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities)
+void rtype::ecs::system::Sound::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities)
 {
     for (auto &entity : entities) {
-        if (entity->hasCompoType(indie::ecs::component::compoType::SOUND)) {
-            auto soundComponent = entity->getComponent<indie::ecs::component::Sound>(indie::ecs::component::SOUND);
+        if (entity->hasCompoType(rtype::ecs::component::compoType::SOUND)) {
+            auto soundComponent = entity->getComponent<rtype::ecs::component::Sound>(rtype::ecs::component::SOUND);
             if (soundComponent->getPlay() == true) {
                 float volume = soundComponent->getVolume();
 
-                indie::raylib::Sound sound(soundComponent->getSoundPath());
+                rtype::raylib::Sound sound(soundComponent->getSoundPath());
                 // sound.setVolume(sound.getVolume());
                 sound.setVolume(volume);
                 sound.play();

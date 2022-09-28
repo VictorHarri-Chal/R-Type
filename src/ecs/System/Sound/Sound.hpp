@@ -13,7 +13,7 @@
 
 #include "../ISystem.hpp"
 
-namespace indie
+namespace rtype
 {
     namespace ecs
     {
@@ -30,18 +30,18 @@ namespace indie
                  *
                  * @param entities vector of entites to update
                  */
-                void update(std::vector<std::unique_ptr<indie::ecs::entity::Entity>> &entities);
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities);
 
                 /**
                  * @brief Get the System Type object
                  * 
-                 * @return indie::ecs::system::SystemType SystemType
+                 * @return rtype::ecs::system::SystemType SystemType
                  */
-                indie::ecs::system::SystemType getSystemType() const;
+                rtype::ecs::system::SystemType getSystemType() const;
 
               protected:
               private:
             };
         } // namespace system
     }     // namespace ecs
-} // namespace indie
+} // namespace rtype
