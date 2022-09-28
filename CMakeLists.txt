@@ -17,6 +17,8 @@ set(SRC_SERVER
     src/server/main.cpp
     src/server/network/server.cpp
     src/server/network/server.hpp
+    src/server/network/game_data.cpp
+    src/server/network/game_data.hpp
 )
 
 add_executable(r-type_server ${SRC_SERVER})
@@ -66,7 +68,7 @@ target_compile_definitions(asio
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.70 COMPONENTS thread system REQUIRED)
+find_package(Boost 1.70 COMPONENTS thread system serialization REQUIRED)
 message(STATUS "Boost version: ${Boost_VERSION}")
 
 # This is needed if your Boost version is newer than your CMake version
@@ -79,8 +81,8 @@ if(NOT TARGET Boost::filesystem)
         INTERFACE_LINK_LIBRARIES ${Boost_LIBRARIES})
 endif()
 
-target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
-target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
+target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread Boost::serialization)
+target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread Boost::serialization)
 
 set_target_properties(r-type_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set_target_properties(r-type_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
