@@ -61,7 +61,7 @@ bool rtype::Game::processEvents()
 void rtype::Game::update()
 {
     switch (_actualScreen) {
-        case Screens::Menu: _menu->update(this); break;
+        case Screens::Menu: _menu->update(); break;
         default: break;
     }
 }
@@ -69,7 +69,7 @@ void rtype::Game::update()
 void rtype::Game::draw(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
-        case Screens::Menu: _menu->draw(gameEngine); break;
+        case Screens::Menu: _menu->draw(); break;
         default: break;
     }
 }

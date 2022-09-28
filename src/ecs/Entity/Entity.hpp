@@ -20,7 +20,6 @@
 #include "../Component/Inventory/Inventory.hpp"
 #include "../Component/Sound/Sound.hpp"
 #include "../Component/Transform/Transform.hpp"
-#include "../../game/Game.hpp"
 
 namespace rtype
 {

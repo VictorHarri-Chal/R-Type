@@ -11,7 +11,7 @@
 
 #include "Movement.hpp"
 
-void rtype::ecs::system::MovementSystem::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, rtype::Game *gameEngine)
+void rtype::ecs::system::MovementSystem::update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities)
 {
     for (auto &entity : entities) {
         if (entity->hasCompoType(ecs::component::compoType::TRANSFORM)) {

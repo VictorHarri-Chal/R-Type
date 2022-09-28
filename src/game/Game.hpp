@@ -32,7 +32,7 @@ namespace rtype
         /// @brief Run the game class
         void run(void);
         /// @brief Draw game elements
-        void draw(rtype::Game *gameEngine);
+        void draw(Game *gameEngine);
         /// @brief Update game elements
         void update(void);
         /// @brief Process events

@@ -37,7 +37,7 @@ namespace rtype
                  * @param drawableCompo the drawable component of the entity with the text and color.
                  * @param transformCompo the transform component of the entity with his position.
                  */
-                void drawText(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
+                void drawText(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo);
 
                 /**
                  * @brief Draw rectangle with given properties.
@@ -45,7 +45,7 @@ namespace rtype
                  * @param drawableCompo the drawable component of the entity with the size and color.
                  * @param transformCompo the transform component of the entity with his position.
                  */
-                void drawRectangle(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
+                void drawRectangle(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo);
 
                 /**
                  * @brief Draw sprite with given properties.
@@ -53,14 +53,14 @@ namespace rtype
                  * @param drawableCompo the drawable component of the entity with the size and color.
                  * @param transformCompo the transform component of the entity with his position.
                  */
-                void drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
+                void drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo);
 
                 /**
                  * @brief Draw all given entities with Drawable2D component.
                  *
                  * @param entities all entities to draw.
                  */
-                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, rtype::Game *gameEngine) override;
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities) override;
 
                 /**
                  * @brief Get the type of system.

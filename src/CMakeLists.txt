@@ -5,6 +5,33 @@ set(EVENTSROOT ${SRCROOT}/events/)
 set(GAMEROOT ${SRCROOT}/game/)
 set(SCREENSROOT ${SRCROOT}/screens/)
 
+set(SRC_ECS
+    ${ECSROOT}Entity/Entity.cpp
+    ${ECSROOT}Entity/Entity.hpp
+    ${ECSROOT}world.cpp
+    ${ECSROOT}world.hpp
+    ${ECSROOT}System/ISystem.hpp
+    ${ECSROOT}Component/Alive/Alive.cpp
+    ${ECSROOT}Component/Alive/Alive.hpp
+    ${ECSROOT}Component/Collide/Collide.cpp
+    ${ECSROOT}Component/Collide/Collide.hpp
+    ${ECSROOT}Component/Destroyable/Destroyable.cpp
+    ${ECSROOT}Component/Destroyable/Destroyable.hpp
+    ${ECSROOT}Component/Drawable2D/Drawable2D.cpp
+    ${ECSROOT}Component/Drawable2D/Drawable2D.hpp
+    ${ECSROOT}Component/Explodable/Explodable.cpp
+    ${ECSROOT}Component/Explodable/Explodable.hpp
+    ${ECSROOT}Component/Inventory/Inventory.cpp
+    ${ECSROOT}Component/Inventory/Inventory.hpp
+    ${ECSROOT}Component/Sound/Sound.cpp
+    ${ECSROOT}Component/Sound/Sound.hpp
+    ${ECSROOT}Component/Transform/Transform.cpp
+    ${ECSROOT}Component/Transform/Transform.hpp
+    ${ECSROOT}Component/IComponent.hpp
+    ${ECSROOT}System/Draw2D/Draw2D.cpp
+    ${ECSROOT}System/Draw2D/Draw2D.hpp
+)
+
 set(SRC_SCREENS
     ${SCREENSROOT}IScreen.hpp
     ${SCREENSROOT}menu/MenuScreen.cpp
@@ -27,33 +54,6 @@ set(SRC
     ${SRC_EVENTS}
     ${SRC_GAME}
     ${SRC_SCREENS}
-)
-
-set(SRC_ECS
-    ${ECSROOT}System/ISystem.hpp
-    ${ECSROOT}Entity/Entity.cpp
-    ${ECSROOT}Entity/Entity.hpp
-    ${ECSROOT}world.cpp
-    ${ECSROOT}world.hpp
-    ${ECSROOT}Component/Alive/Alive.cpp
-    ${ECSROOT}Component/Alive/Alive.hpp
-    ${ECSROOT}Component/Collide/Collide.cpp
-    ${ECSROOT}Component/Collide/Collide.hpp
-    ${ECSROOT}Component/Destroyable/Destroyable.cpp
-    ${ECSROOT}Component/Destroyable/Destroyable.hpp
-    ${ECSROOT}Component/Drawable2D/Drawable2D.cpp
-    ${ECSROOT}Component/Drawable2D/Drawable2D.hpp
-    ${ECSROOT}Component/Explodable/Explodable.cpp
-    ${ECSROOT}Component/Explodable/Explodable.hpp
-    ${ECSROOT}Component/Inventory/Inventory.cpp
-    ${ECSROOT}Component/Inventory/Inventory.hpp
-    ${ECSROOT}Component/Sound/Sound.cpp
-    ${ECSROOT}Component/Sound/Sound.hpp
-    ${ECSROOT}Component/Transform/Transform.cpp
-    ${ECSROOT}Component/Transform/Transform.hpp
-    ${ECSROOT}Component/IComponent.hpp
-    ${ECSROOT}System/Draw2D/Draw2D.cpp
-    ${ECSROOT}System/Draw2D/Draw2D.hpp
 )
 
 set(INCDIRS

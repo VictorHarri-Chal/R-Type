@@ -42,7 +42,7 @@ namespace rtype
                  *
                  * @param entities vector of entities.
                  */
-                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities, rtype::Game *gameEngine) override;
+                void update(std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> &entities) override;
 
                 /**
                  * @brief Get the type of system.

@@ -47,12 +47,12 @@ namespace rtype
              * @brief Draw the Menu Screen
              * 
              */
-            void draw(rtype::Game *gameEngine) override;
+            void draw() override;
             /**
              * @brief Update the Menu Screen
              * 
              */
-            void update(rtype::Game *gameEngine) override;
+            void update() override;
             /**
              * @brief Handle event for the Menu Screen
              * 
