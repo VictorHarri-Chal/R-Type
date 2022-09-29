@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** MenuScreen.hpp
+** OptionsScreen.hpp
 */
 
 #pragma once
@@ -22,23 +22,23 @@ namespace rtype
          * @brief Class for the Menu Screen
          * 
          */
-        class MenuScreen : public IScreen {
+        class OptionsScreen : public IScreen {
           public:
             /**
              * @brief Cursor enum for the option choice (New game, Load game or exit game)
              * 
              */
-            enum cursorPosition { SOLO = 0, MULTIPLAYER = 1, HTP = 2 , OPTIONS = 3, EXIT = 4 };
+            enum cursorPosition { FULLSCREEN = 0,  FPS = 1, SOUND = 2 , DEVICE = 3, SAVE = 4, BACK = 5 };
             /**
              * @brief Construct a new Menu Screen object
              * 
              */
-            MenuScreen();
+            OptionsScreen();
             /**
              * @brief Destroy the Menu Screen object
              * 
              */
-            ~MenuScreen() = default;
+            ~OptionsScreen() = default;
             /**
              * @brief Init the Menu Screen
              * 
@@ -61,7 +61,7 @@ namespace rtype
              * @return int The Scene Number
              */
             int handleEvent(rtype::Event &event, rtype::Game *gameEngine) override;
-
+            
             bool isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event);
 
           private:

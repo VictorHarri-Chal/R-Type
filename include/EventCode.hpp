@@ -12,7 +12,7 @@
 #ifndef RTYPE_EVENT_HPP_
 #define RTYPE_EVENT_HPP_
 
-// #include "Vec2.hpp"
+#include "../src/sfml/Sfml.hpp"
 
 namespace rtype
 {
@@ -130,6 +130,7 @@ namespace rtype
             bool connected;
         };
 
+        sf::Vector2f position;
         // Member data
         union {
             /// Is the window resized?

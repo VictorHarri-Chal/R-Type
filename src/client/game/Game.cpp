@@ -11,20 +11,19 @@
 rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _actualScreen = Screens::Menu;
-    _menu = new rtype::menu::MenuScreen;
-    
-    _window.create(sf::VideoMode{1080, 720, 16}, "R-Type", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+    _window.create(sf::VideoMode{1720, 1080, 16}, "R-Type", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 }
 
 rtype::Game::~Game()
 {
-    delete _menu;
 }
 
 void rtype::Game::init()
 {
-    initScenes();
+    _actualScreen = Screens::Menu;
+    _menu = new rtype::menu::MenuScreen;
+    _lastScene = Screens::Menu;
+    _menu->init();
 }
 
 void rtype::Game::initMusic()
@@ -37,12 +36,7 @@ void rtype::Game::initSounds()
 
 }
 
-void rtype::Game::initScenes()
-{
-    _menu->init();
-}
-
-bool rtype::Game::processEvents()
+bool rtype::Game::processEvents(rtype::Game *gameEngine)
 {
     Events Event;
     bool ret = true;
@@ -52,7 +46,7 @@ bool rtype::Game::processEvents()
         ret = Event.inputUpdate(_event, _sfmlEvent);
         if (_sfmlEvent.type == sf::Event::Closed || !ret)
             _window.close();
-        swap = handleEvent();
+        swap = handleEvent(gameEngine);
         if (swap == 10)
             return false;
         handleScreensSwap(swap);
@@ -64,6 +58,7 @@ void rtype::Game::update()
 {
     switch (_actualScreen) {
         case Screens::Menu: _menu->update(); break;
+        case Screens::Options: _options->update(); break;
         default: break;
     }
 }
@@ -72,14 +67,16 @@ void rtype::Game::draw(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
         case Screens::Menu: _menu->draw(gameEngine); break;
+        case Screens::Options: _options->draw(gameEngine); break;
         default: break;
     }
 }
 
-int rtype::Game::handleEvent()
+int rtype::Game::handleEvent(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
-        case Screens::Menu: return (_menu->handleEvent(_event));
+        case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
+        case Screens::Options: return (_options->handleEvent(_event, gameEngine));
         default: break;
     }
     return true;
@@ -89,7 +86,7 @@ void rtype::Game::run()
 {
 
     while (_window.isOpen()) {
-        if(!processEvents())
+        if(!processEvents(this))
             break;
         _window.clear(sf::Color::Black);
         update();
@@ -101,32 +98,47 @@ void rtype::Game::run()
 void rtype::Game::handleScreensSwap(int ret)
 {
     if (ret == 2) {
-        reinitGame();
+        destroyLastScene();
+        _menu = new rtype::menu::MenuScreen;
+        _lastScene = Screens::Menu;
+        _menu->init();
         setActualScreen(Screens::Menu);
     }
+    if (ret == 3) {
+        destroyLastScene();
+        setActualScreen(Screens::Htp);
+    }
+    if (ret == 4) {
+        destroyLastScene();
+        _options = new rtype::menu::OptionsScreen;
+        _lastScene = Screens::Options;
+        _options->init();
+        setActualScreen(Screens::Options);
+    }
     if (ret == 5) {
+        destroyLastScene();
+        setActualScreen(Screens::Multiplayer);
+    }
+    if (ret == 6) {
+        destroyLastScene();
         setActualScreen(Screens::Game);
     }
 }
+
 void rtype::Game::setActualScreen(Screens newScreen)
 {
     _actualScreen = newScreen;
 }
 
-void rtype::Game::reinitGame()
+void rtype::Game::destroyLastScene()
 {
+    if (_lastScene == Screens::Menu)
+        delete _menu;
+    if (_lastScene == Screens::Options)
+        delete _options;
 }
 
 void rtype::Game::destroy()
 {
-
-}
-
-float rtype::Game::getPercentage(float percent, bool isWidth)
-{
-    sf::Vector2u size = _window.getSize();
-    float windowDim = isWidth ? static_cast<float>(size.x)
-                              : static_cast<float>(size.y);
-
-    return (windowDim * percent / 100.f);
+    destroyLastScene();
 }

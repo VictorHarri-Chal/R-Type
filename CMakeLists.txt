@@ -25,6 +25,7 @@ set(ECSROOT ${SRCROOT}/ecs/)
 set(EVENTSROOT ${SRCCLIENT}/events/)
 set(GAMEROOT ${SRCCLIENT}/game/)
 set(SCREENSROOT ${SRCCLIENT}/screens/)
+set(TOOLSROOT ${SRCCLIENT}/tools/)
 
 set(SRC_ECS
     ${ECSROOT}Entity/Entity.cpp
@@ -57,6 +58,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}IScreen.hpp
     ${SCREENSROOT}menu/MenuScreen.cpp
     ${SCREENSROOT}menu/MenuScreen.hpp
+    ${SCREENSROOT}options/OptionsScreen.cpp
+    ${SCREENSROOT}options/OptionsScreen.hpp
 )
 
 set(SRC_GAME
@@ -69,6 +72,11 @@ set(SRC_EVENTS
     ${EVENTSROOT}Events.hpp
 )
 
+set(SRC_TOOLS
+    ${TOOLSROOT}Tools.cpp
+    ${TOOLSROOT}Tools.hpp
+)
+
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
     ${SRCCLIENT}network/client.cpp
@@ -77,6 +85,7 @@ set(SRC_CLIENT
     ${SRC_EVENTS}
     ${SRC_GAME}
     ${SRC_SCREENS}
+    ${SRC_TOOLS}
 )
 
 add_executable(r-type_client ${SRC_CLIENT})

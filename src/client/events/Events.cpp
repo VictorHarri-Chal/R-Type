@@ -189,12 +189,20 @@ namespace rtype
             event.controller[controllerId].connected = false;
     }
 
+    void Events::getMouseButtons(rtype::Event &event, sf::Event sfmlEvent)
+    {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            sf::Vector2i pos = sf::Mouse::getPosition();
+            event.position = sf::Vector2f(pos);
+        }
+    }
+
     bool Events::inputUpdate(rtype::Event &event, sf::Event sfmlEvent)
     {
-
         // event.resized = rtype::raylib::Window::isWindowResized();
         this->getCharKeys(event, sfmlEvent);
         this->getSystemKeys(event, sfmlEvent);
+        this->getMouseButtons(event, sfmlEvent);
         // this->getControllerEvents(event, 0);
         // this->getControllerEvents(event, 1);
         // this->getControllerEvents(event, 2);

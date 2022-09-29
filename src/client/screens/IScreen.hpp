@@ -44,6 +44,6 @@ namespace rtype
          * @param event Event to be handled
          * @return int The scene number
          */
-        virtual int handleEvent(rtype::Event &event) = 0;
+        virtual int handleEvent(rtype::Event &event, rtype::Game *gameEngine) = 0;
     };
 }

@@ -49,6 +49,8 @@ namespace rtype
          * @param controllerId id of the controller
          */
         void getControllerEvents(rtype::Event &event, int controllerId, sf::Event _sfmlEvent);
+
+        void getMouseButtons(rtype::Event &event, sf::Event sfmlEvent);
     };
 } // namespace rtype
 
