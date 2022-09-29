@@ -16,9 +16,8 @@ void rtype::menu::MenuScreen::init()
 {
     std::string textString = "Hello World !";
 
-    std::unique_ptr<rtype::ecs::system::ISystem> draw2DSystemMenu =
-        std::make_unique<rtype::ecs::system::Draw2DSystem>();
-    addSystem(std::move(draw2DSystemMenu));
+    rtype::ecs::system::ISystem *draw2DSystemMenu = new rtype::ecs::system::Draw2DSystem();
+    this->_world.addSystem(draw2DSystemMenu);
     rtype::ecs::entity::Entity *rectangle = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
     rectangle->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 200.f, 200.f, 0.0f, 0.0f);
     rectangle->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 250.f, 50.f, sf::Color::White, false);
@@ -31,16 +30,12 @@ void rtype::menu::MenuScreen::init()
     poke->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
     poke->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/poke.png", true);
     this->_world.addEntity(poke);
-    // this->_positionsCursor[NEW_GAME] = tools::Tools::getPercentage(27.f, false);
-    // this->_positionsCursor[LOAD_GAME] = tools::Tools::getPercentage(47.f, false);
-    // this->_positionsCursor[EXIT] = tools::Tools::getPercentage(67.f, false);
 }
 
 void rtype::menu::MenuScreen::draw(rtype::Game *gameEngine)
 {
-    for (auto &system : this->_systems) {
+    for (auto &system : this->_world.getSystems())
         system->update(this->_world.getEntities(), gameEngine);
-    }
 }
 
 int rtype::menu::MenuScreen::handleEvent(rtype::Event &event)
@@ -80,9 +75,4 @@ int rtype::menu::MenuScreen::checkCursorPosition(bool direction)
     //     }
     // }
     return 0;
-}
-
-void rtype::menu::MenuScreen::addSystem(std::unique_ptr<rtype::ecs::system::ISystem> system)
-{
-    this->_systems.push_back(std::move(system));
 }
