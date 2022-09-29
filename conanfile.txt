@@ -1,0 +1,8 @@
+[generators]
+cmake
+
+[requires]
+sfml/2.5.1
+
+[options]
+libstd:compiler.libcxx=libstdc++20
