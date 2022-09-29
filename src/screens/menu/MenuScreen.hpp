@@ -62,12 +62,6 @@ namespace rtype
              */
             int handleEvent(rtype::Event &event) override;
             /**
-             * @brief Add system for the Menu Screen
-             * 
-             * @param system System to add for the Menu Screen
-             */
-            void addSystem(std::unique_ptr<rtype::ecs::system::ISystem> system) override;
-            /**
              * @brief Set the size of the Menu Screen
              * 
              * @param where Position
@@ -84,13 +78,11 @@ namespace rtype
             int checkCursorPosition(bool direction);
 
           private:
-            
-            rtype::ecs::world::World _world;
             /**
-             * @brief Vector of systems for the Menu Screen
+             * @brief World object will contain all the entities and system
              * 
              */
-            std::vector<std::unique_ptr<rtype::ecs::system::ISystem>> _systems;
+            rtype::ecs::world::World _world;
             /**
              * @brief Map of positions of the cursor
              * 

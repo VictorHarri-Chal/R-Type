@@ -23,6 +23,11 @@ rtype::ecs::world::World::~World()
         rtype::ecs::entity::Entity *tmp = this->_entitiesVector[i];
         delete tmp;
     }
+    size = this->_systemsVector.size();
+    for (size_t i = 0; i < size; i++){
+        rtype::ecs::system::ISystem *tmp = this->_systemsVector[i];
+        delete tmp;
+    }
 }
 
 rtype::ecs::entity::Entity *rtype::ecs::world::World::getEntity(size_t id) const
@@ -41,7 +46,17 @@ void rtype::ecs::world::World::addEntity(entity::Entity *entity)
     nbEntities++;
 }
 
+void rtype::ecs::world::World::addSystem(system::ISystem *system)
+{
+    this->_systemsVector.push_back(system);
+}
+
 std::vector<rtype::ecs::entity::Entity*> rtype::ecs::world::World::getEntities() const
 {
     return (this->_entitiesVector);
+}
+
+std::vector<rtype::ecs::system::ISystem*> rtype::ecs::world::World::getSystems() const
+{
+    return (this->_systemsVector);
 }

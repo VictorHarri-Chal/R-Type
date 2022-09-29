@@ -45,15 +45,17 @@ void rtype::Game::initScenes()
 bool rtype::Game::processEvents()
 {
     Events Event;
+    bool ret = true;
+    int swap = 0;
+
     while (_window.pollEvent(_sfmlEvent)) {
-        if (_sfmlEvent.type == sf::Event::Closed)
+        ret = Event.inputUpdate(_event, _sfmlEvent);
+        if (_sfmlEvent.type == sf::Event::Closed || !ret)
             _window.close();
-        bool ret = Event.inputUpdate(_event, _sfmlEvent);
-        int swap = handleEvent();
+        swap = handleEvent();
         if (swap == 10)
             return false;
         handleScreensSwap(swap);
-        return ret;
     }
     return true;
 }
@@ -85,8 +87,9 @@ int rtype::Game::handleEvent()
 
 void rtype::Game::run()
 {
+
     while (_window.isOpen()) {
-        if (!processEvents())
+        if(!processEvents())
             break;
         _window.clear(sf::Color::Black);
         update();

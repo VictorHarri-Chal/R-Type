@@ -45,11 +45,5 @@ namespace rtype
          * @return int The scene number
          */
         virtual int handleEvent(rtype::Event &event) = 0;
-        /**
-         * @brief Add system to the screen
-         * 
-         * @param system System to add to the screen
-         */
-        virtual void addSystem(std::unique_ptr<rtype::ecs::system::ISystem> system) = 0;
     };
 }

@@ -11,7 +11,7 @@
 #include <memory>
 #include <iostream>
 #include "Entity/Entity.hpp"
-
+#include "System/ISystem.hpp"
 
 namespace rtype
 {
@@ -42,6 +42,14 @@ namespace rtype
                 void addEntity(entity::Entity *entity);
 
                 /**
+                 * @brief Add System to world
+                 *
+                 * @tparam System the system to add
+                 * @param System system who want to add to world
+                 */
+                void addSystem(system::ISystem *system);
+
+                /**
                  * @brief Get the Entity of the given id
                  *
                  * @param id The id of the entity to get
@@ -57,12 +65,24 @@ namespace rtype
                  */
                 std::vector<rtype::ecs::entity::Entity*> getEntities() const;
 
+                /**
+                 * @brief Get the System vector with all system in the world²
+                 *
+                 * @return std::vector<rtype::ecs::system::ISystem*> with all System contain in this world
+                 */
+                std::vector<rtype::ecs::system::ISystem*> getSystems() const;
+
               private:
                 /**
                  * @brief Vector of component
                  *
                  */
                 std::vector<rtype::ecs::entity::Entity*> _entitiesVector;
+                /**
+                 * @brief Vector of component
+                 *
+                 */
+                std::vector<rtype::ecs::system::ISystem*> _systemsVector;
                 /**
                  * @brief Entity type object
                  *
