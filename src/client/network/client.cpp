@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** client
+** Client
 */
 
-#include "client.hpp"
+#include "Client.hpp"
 
 UDPClient::~UDPClient()
 {
