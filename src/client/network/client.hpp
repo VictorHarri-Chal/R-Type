@@ -17,10 +17,10 @@
 
 using boost::asio::ip::udp;
 
-class UDPClient
+class Client
 {
   public:
-    UDPClient(
+    Client(
       boost::asio::io_service& io_service,
       const std::string& host,
       const std::string& port
@@ -32,7 +32,7 @@ class UDPClient
       start_receive();
     }
 
-    ~UDPClient();
+    ~Client();
 
     void send(const std::string& msg);
 

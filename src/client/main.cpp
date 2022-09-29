@@ -8,13 +8,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-// #include "network/ClientBuffer.hpp"
+#include "network/ClientBuffer.hpp"
 #include "network/Client.hpp"
 
 int main()
 {
   boost::asio::io_service io_service;
-  UDPClient client(io_service, "localhost", "4242");
+  Client client(io_service, "localhost", "4242");
   std::string message;
 
   // ClientPayload data = {
