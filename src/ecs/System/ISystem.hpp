@@ -5,24 +5,55 @@
 ** System (ECS)
 */
 
-#ifndef SYSTEM_HPP_
-#define SYSTEM_HPP_
+#pragma once
+
+#include <memory>
+#include <vector>
+#include "../Entity/Entity.hpp"
 
 namespace rtype
 {
+    class Game;
+    /// \file Docs/doc-Ecs
     namespace ecs
     {
         namespace system
         {
+            /**
+             * @brief Enum for system types
+             * 
+             */
+            enum SystemType {
+                DRAWABLE2DSYSTEM,
+                MOVEMENTSYSTEM,
+                COLLIDESYSTEM,
+                SOUNDSYSTEM,
+                EXPLODABLESYSTEM
+            };
+            /// @brief System
             class ISystem {
-                public:
-                    virtual ~ISystem() = default;
+              public:
+                /**
+                 * @brief Destroy system.
+                 */
+                virtual ~ISystem() = default;
 
-                protected:
-                private:
+                /**
+                 * @brief Update all the entities with the system properties.
+                 *
+                 * @param entities vector of entites to update
+                 */
+                virtual void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) = 0;
+
+                /**
+                 * @brief Get the type of system.
+                 *
+                 * @return enum value correspond to the type of system
+                 */
+                virtual rtype::ecs::system::SystemType getSystemType() const = 0;
+
+              private:
             };
         }
     }
 }
-
-#endif /* !ISYSTEM_HPP_ */

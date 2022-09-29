@@ -6,37 +6,18 @@
 */
 
 #include <iostream>
-
-/**
- * @brief Programme de tests.
- * @author Matthou
- * @version 0.1
- * @date 19 septembre 2022
- *
- * Programme de test
- *
- */
-
-/**
- * @fn void printQuoit (void)
- * @brief affiche une citation.
- *
- */
-
-void printQuoit()
-{
-    std::cout << "L'univers est un espace infini où s'entrechoque tous les hasards." << std::endl;
-}
-
-/**
- * @fn int main (void)
- * @brief Entrée du programme.
- *
- * @return EXIT_SUCCESS - Arrêt normal du programme.
- */
+#include "game/Game.hpp"
 
 int main()
 {
-    printQuoit();
+    try {
+        rtype::Game Game(60);
+
+        Game.init();
+        Game.run();
+        Game.destroy();
+    } catch (std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
     return 0;
 }

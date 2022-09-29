@@ -20,40 +20,45 @@ namespace rtype
             class Drawable2D : public IComponent {
               public:
                 Drawable2D();
-                // Drawable2D(float radius, Color color);
-                // Drawable2D(std::string text, float fontSize, Color color);
-                // Drawable2D(std::string texturePath, float height, float width, Color color);
+                Drawable2D(float width, float height, sf::Color color, bool outline);
+                Drawable2D(std::string text, float fontSize, sf::Color color, bool bold);
+                Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect = (sf::IntRect){0, 0, 0, 0});
                 ~Drawable2D();
 
-                rtype::ecs::component::compoType getType() const;
-                rtype::ecs::component::drawableType getDrawType();
-                // Color getColor();
-                float getRadius();
-                float getHeight();
-                float getWidth();
-                void setRadius(float radius);
                 void setHeight(float height);
                 void setWidth(float width);
-                float getFontSize();
                 void setFontSize(float fontSize);
-                std::string getText();
                 void setText(std::string text);
-                std::string getTexturePath() const;
                 void setTexturePath(std::string texturePath);
-                // Texture2D getTexture() const;
-                void setTexture(std::string texturePath);
+                void setFont(std::string fontPath);
+                void setColor(sf::Color color);
+                void setSpe(bool spe);
+                rtype::ecs::component::compoType getType() const;
+                rtype::ecs::component::drawableType getDrawType();
+                float getHeight();
+                float getWidth();
+                float getFontSize();
+                std::string getFont();
+                sf::Color getColor();
+                std::string getText();
+                std::string getTexturePath() const;
+                sf::Sprite getSprite() const;
+                bool getSpe() const;
 
               private:
-                float _radius;
+                sf::IntRect _rect;
                 float _height;
                 float _width;
                 std::string _text;
                 float _fontSize;
-                // Color _color;
+                std::string _font;
+                sf::Color _color;
                 std::string _texturePath;
-                // Texture2D _texture;
+                sf::Texture _texture;
+                sf::Sprite _sprite;
                 rtype::ecs::component::compoType _compoType;
                 rtype::ecs::component::drawableType _drawableType;
+                bool _spe;
             };
         }
     }

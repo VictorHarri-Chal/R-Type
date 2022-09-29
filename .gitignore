@@ -10,6 +10,8 @@
 /r-type_client
 src/client/client
 src/server/server
+/r-type
+
 # Shame on you!
 vgcore.*
 
