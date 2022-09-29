@@ -7,11 +7,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
 
 set(CMAKE_CXX_STANDARD 20)
 
-if(CMAKE_COMPILER_IS_GNUCXX)
-set(CMAKE_CXX_FLAGS
-"${CMAKE_CXX_FLAGS} -std=c++20 -Wextra -Wshadow -lsfml-system -lsfml-window -lsfml-graphics")
-endif(CMAKE_COMPILER_IS_GNUCXX)
-
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 
 set(SRC_INTERFACE
