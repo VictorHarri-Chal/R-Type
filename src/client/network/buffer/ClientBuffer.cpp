@@ -23,3 +23,8 @@ void ClientBuffer::write(struct ClientPayload &data)
     write(data.data_length);
     write(data.data);
 }
+
+boost::asio::streambuf &ClientBuffer::getStreamBuffer()
+{
+    return _streamBuffer;
+}

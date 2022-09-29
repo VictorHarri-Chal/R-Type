@@ -12,9 +12,16 @@ Client::~Client()
   _socket.close();
 }
 
-void Client::send(const std::string& msg) {
-  _socket.send_to(boost::asio::buffer(msg, msg.size()), _endpoint);
+void Client::send(struct ClientPayload data) {
+  _clientBuffer.write(data);
+  _socket.send_to(boost::asio::buffer(_clientBuffer.getStreamBuffer().data()), _endpoint);
+  std::cout << "send" << _clientBuffer.getStreamBuffer().max_size() << std::endl;
+  _clientBuffer.getStreamBuffer().consume(1024);
+  // _clientBuffer.getStreamBuffer.consume(_clientBuffer.getStreamBuffer.size());
 }
+// void Client::send(const std::string& msg) {
+//   _socket.send_to(boost::asio::buffer(msg, msg.size()), _endpoint);
+// }
 
 void Client::start_receive()
 {

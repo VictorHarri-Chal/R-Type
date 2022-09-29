@@ -7,8 +7,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
 
 set(SRC_CLIENT
     src/client/main.cpp
-    src/client/network/ClientBuffer.hpp
-    src/client/network/ClientBuffer.cpp
+    src/client/network/buffer/ClientBuffer.hpp
+    src/client/network/buffer/ClientBuffer.cpp
     src/client/network/Client.hpp
     src/client/network/Client.cpp
 )

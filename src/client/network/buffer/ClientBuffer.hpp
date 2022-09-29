@@ -20,12 +20,14 @@ struct ClientPayload {
 
 class ClientBuffer {
     public:
-        ClientBuffer();
+        ClientBuffer() : _oStream(&_streamBuffer), _iStream(&_streamBuffer) {}
         ~ClientBuffer() = default;
 
         void write(struct ClientPayload &);
         void write(const std::string &data);
         void write(int i);
+
+        boost::asio::streambuf &getStreamBuffer();
     private:
         std::ostream _oStream;
         std::istream _iStream;

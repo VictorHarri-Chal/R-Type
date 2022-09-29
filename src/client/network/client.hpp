@@ -13,7 +13,7 @@
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
 
-#include "ClientBuffer.hpp"
+#include "buffer/ClientBuffer.hpp"
 
 using boost::asio::ip::udp;
 
@@ -34,12 +34,11 @@ class Client
 
     ~Client();
 
-    void send(const std::string& msg);
+    void send(struct ClientPayload data);
 
     private:
 
-      // ClientBuffer _buffer;
-
+      ClientBuffer _clientBuffer;
       boost::asio::io_service& _io_service;
       udp::socket _socket;
       udp::endpoint _endpoint;
