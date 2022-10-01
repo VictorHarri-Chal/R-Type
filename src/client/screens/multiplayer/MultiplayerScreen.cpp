@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** OptionsScreen.cpp
+** MultiplayerScreen.cpp
 */
 
-#include "OptionsScreen.hpp"
+#include "MultiplayerScreen.hpp"
 #include "../../../ecs/System/Draw2D/Draw2D.hpp"
 
-rtype::menu::OptionsScreen::OptionsScreen()
+rtype::menu::MultiplayerScreen::MultiplayerScreen()
 {
 }
 
-void rtype::menu::OptionsScreen::init()
+void rtype::menu::MultiplayerScreen::init()
 {
     rtype::ecs::system::ISystem *draw2DSystemMenu = new rtype::ecs::system::Draw2DSystem();
     this->_world.addSystem(draw2DSystemMenu);
@@ -22,7 +22,7 @@ void rtype::menu::OptionsScreen::init()
     this->_world.addEntity(rectangle);
     rtype::ecs::entity::Entity *text = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
     text->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 250.f, 210.f, 0.0f, 0.0f);
-    text->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Menu", 24.f, sf::Color::Blue, true);
+    text->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Multiplayer", 24.f, sf::Color::Blue, true);
     this->_world.addEntity(text);
     rtype::ecs::entity::Entity *poke = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
     poke->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
@@ -30,13 +30,13 @@ void rtype::menu::OptionsScreen::init()
     this->_world.addEntity(poke);
 }
 
-void rtype::menu::OptionsScreen::draw(rtype::Game *gameEngine)
+void rtype::menu::MultiplayerScreen::draw(rtype::Game *gameEngine)
 {
     for (auto &system : this->_world.getSystems())
         system->update(this->_world.getEntities(), gameEngine);
 }
 
-int rtype::menu::OptionsScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
+int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (isButtonPressed(0, gameEngine, event)) {
         return 2;
@@ -44,12 +44,12 @@ int rtype::menu::OptionsScreen::handleEvent(rtype::Event &event, rtype::Game *ga
     return 0;
 }
 
-void rtype::menu::OptionsScreen::update()
+void rtype::menu::MultiplayerScreen::update()
 {
     
 }
 
-bool rtype::menu::OptionsScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)
+bool rtype::menu::MultiplayerScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)
 {
     ecs::component::Drawable2D *rectangleCompo = _world.getEntity(index)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
     ecs::component::Transform *transformCompo = _world.getEntity(index)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);

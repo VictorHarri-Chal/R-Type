@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** OptionsScreen.hpp
+** MultiplayerScreen.hpp
 */
 
 #pragma once
@@ -22,23 +22,18 @@ namespace rtype
          * @brief Class for the Menu Screen
          * 
          */
-        class OptionsScreen : public IScreen {
+        class MultiplayerScreen : public IScreen {
           public:
-            /**
-             * @brief Cursor enum for the option choice (New game, Load game or exit game)
-             * 
-             */
-            enum cursorPosition { FULLSCREEN = 0,  FPS = 1, SOUND = 2 , DEVICE = 3, SAVE = 4, BACK = 5 };
             /**
              * @brief Construct a new Menu Screen object
              * 
              */
-            OptionsScreen();
+            MultiplayerScreen();
             /**
              * @brief Destroy the Menu Screen object
              * 
              */
-            ~OptionsScreen() = default;
+            ~MultiplayerScreen() = default;
             /**
              * @brief Init the Menu Screen
              * 

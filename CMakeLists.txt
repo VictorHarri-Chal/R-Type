@@ -60,6 +60,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}options/OptionsScreen.cpp
     ${SCREENSROOT}options/OptionsScreen.hpp
+    ${SCREENSROOT}multiplayer/MultiplayerScreen.cpp
+    ${SCREENSROOT}multiplayer/MultiplayerScreen.hpp
 )
 
 set(SRC_GAME

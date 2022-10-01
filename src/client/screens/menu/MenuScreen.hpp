@@ -25,11 +25,6 @@ namespace rtype
         class MenuScreen : public IScreen {
           public:
             /**
-             * @brief Cursor enum for the option choice (New game, Load game or exit game)
-             * 
-             */
-            enum cursorPosition { SOLO = 0, MULTIPLAYER = 1, HTP = 2 , OPTIONS = 3, EXIT = 4 };
-            /**
              * @brief Construct a new Menu Screen object
              * 
              */
@@ -70,17 +65,6 @@ namespace rtype
              * 
              */
             rtype::ecs::world::World _world;
-            /**
-             * @brief Map of positions of the cursor
-             * 
-             */
-            std::map<int, float> _positionsCursor;
-            /**
-             * @brief Index of the cursor position
-             * 
-             */
-            int _cursorPosition;
-
         };
     }
 }

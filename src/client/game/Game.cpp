@@ -59,6 +59,7 @@ void rtype::Game::update()
     switch (_actualScreen) {
         case Screens::Menu: _menu->update(); break;
         case Screens::Options: _options->update(); break;
+        case Screens::Multiplayer: _multiplayer->update(); break;
         default: break;
     }
 }
@@ -68,6 +69,7 @@ void rtype::Game::draw(rtype::Game *gameEngine)
     switch (_actualScreen) {
         case Screens::Menu: _menu->draw(gameEngine); break;
         case Screens::Options: _options->draw(gameEngine); break;
+        case Screens::Multiplayer: _multiplayer->draw(gameEngine); break;
         default: break;
     }
 }
@@ -77,6 +79,7 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
     switch (_actualScreen) {
         case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
+        case Screens::Multiplayer: return (_multiplayer->handleEvent(_event, gameEngine));
         default: break;
     }
     return true;
@@ -97,31 +100,38 @@ void rtype::Game::run()
 
 void rtype::Game::handleScreensSwap(int ret)
 {
-    if (ret == 2) {
-        destroyLastScene();
-        _menu = new rtype::menu::MenuScreen;
-        _lastScene = Screens::Menu;
-        _menu->init();
-        setActualScreen(Screens::Menu);
-    }
-    if (ret == 3) {
-        destroyLastScene();
-        setActualScreen(Screens::Htp);
-    }
-    if (ret == 4) {
-        destroyLastScene();
-        _options = new rtype::menu::OptionsScreen;
-        _lastScene = Screens::Options;
-        _options->init();
-        setActualScreen(Screens::Options);
-    }
-    if (ret == 5) {
-        destroyLastScene();
-        setActualScreen(Screens::Multiplayer);
-    }
-    if (ret == 6) {
-        destroyLastScene();
-        setActualScreen(Screens::Game);
+    switch (ret) {
+        case 2:
+            destroyLastScene();
+            _menu = new rtype::menu::MenuScreen;
+            _lastScene = Screens::Menu;
+            _menu->init();
+            setActualScreen(Screens::Menu);
+            break;
+        case 3:
+            destroyLastScene();
+            setActualScreen(Screens::Htp);
+            break;
+        case 4:
+            destroyLastScene();
+            _options = new rtype::menu::OptionsScreen;
+            _lastScene = Screens::Options;
+            _options->init();
+            setActualScreen(Screens::Options);
+            break;
+        case 5:
+            destroyLastScene();
+            _multiplayer = new rtype::menu::MultiplayerScreen;
+            _lastScene = Screens::Multiplayer;
+            _multiplayer->init();
+            setActualScreen(Screens::Multiplayer);
+            break;
+        case 6:
+            destroyLastScene();
+            setActualScreen(Screens::Game);
+            break;
+        default:
+            break;
     }
 }
 
@@ -136,6 +146,8 @@ void rtype::Game::destroyLastScene()
         delete _menu;
     if (_lastScene == Screens::Options)
         delete _options;
+    if (_lastScene == Screens::Multiplayer)
+        delete _multiplayer;
 }
 
 void rtype::Game::destroy()

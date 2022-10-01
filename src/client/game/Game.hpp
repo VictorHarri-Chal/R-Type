@@ -10,6 +10,7 @@
 #include "../events/Events.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
+#include "../screens/multiplayer/MultiplayerScreen.hpp"
 
 namespace rtype
 {
@@ -108,6 +109,8 @@ namespace rtype
         rtype::menu::MenuScreen *_menu;
         /// @brief Options screen
         rtype::menu::OptionsScreen *_options;
+        /// @brief Multiplayer screen
+        rtype::menu::MultiplayerScreen *_multiplayer;
         /// @brief Last sfml event caught
         sf::Event _sfmlEvent;
         /// @brief Event class
