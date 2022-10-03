@@ -77,7 +77,8 @@ set(SRC_CLIENT
 add_executable(r-type_client ${SRC_CLIENT})
 
 target_link_libraries(r-type_client
-			${CONAN_LIBS}
+			CONAN_PKG::boost
+			CONAN_PKG::sfml
 			)
 
 target_include_directories(r-type_client PUBLIC
@@ -96,7 +97,8 @@ set(SRC_SERVER
 add_executable(r-type_server ${SRC_SERVER})
 
 target_link_libraries(r-type_server
-            ${CONAN_LIBS}
+			CONAN_PKG::boost
+			CONAN_PKG::sfml
 			)
 
 target_include_directories(r-type_server PUBLIC
