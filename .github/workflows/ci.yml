@@ -17,9 +17,7 @@ jobs:
       #    sudo apt install libsfml-dev libboost-all-dev
       - name: install conan
         run: |
-          # sudo apt install -y libudev-dev libgl-dev
           sudo pip3 install conan
-          conan list-required-system-packages conanfile.txt
       - name: build on Ubuntu
         run: bash install.sh
       - name: check build
