@@ -70,9 +70,9 @@ jobs:
       #  run: |
       #    vcpkg install sfml
       - uses: actions/checkout@v3
-      - name: get bash path
+      - name: build on Windows
         run: |
-          which bash
+          bash install.sh
       #- name: build on Windows
       #  run: |
       #    mkdir build && cd build
