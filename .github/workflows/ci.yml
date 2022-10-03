@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: install SFML
-        run: |
-          sudo apt install libsfml-dev libboost-all-dev
+      #- name: install SFML
+      #  run: |
+      #    sudo apt install libsfml-dev libboost-all-dev
       - name: build on Ubuntu
         run: |
-          mkdir build
-          cd build && cmake ..
-          cmake --build .
+          pip3 install conan
+          which conan
+          bash install.sh
       - name: check build
         run: |
           test -f r-type_client
