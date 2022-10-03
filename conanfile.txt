@@ -1,5 +1,5 @@
 [requires]
-boost/1.70.0
+boost/1.76.0
 sfml/2.5.1
 
 [options]
