@@ -15,6 +15,9 @@ jobs:
       #- name: install SFML
       #  run: |
       #    sudo apt install libsfml-dev libboost-all-dev
+      - name: install dependencies
+        run: |
+          sudo apt install -y libudev-dev
       - name: install conan
         run: |
           sudo pip3 install conan
