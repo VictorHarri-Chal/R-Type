@@ -195,6 +195,8 @@ namespace rtype
             sf::Vector2i pos = sf::Mouse::getPosition();
             event.position = sf::Vector2f(pos);
         }
+        sf::Vector2i global_pos = sf::Mouse::getPosition();
+        event.global_position = sf::Vector2f(global_pos);
     }
 
     bool Events::inputUpdate(rtype::Event &event, sf::Event sfmlEvent)

@@ -20,7 +20,8 @@ namespace rtype
             class Drawable2D : public IComponent {
               public:
                 Drawable2D();
-                Drawable2D(float width, float height, sf::Color color, bool outline);
+                Drawable2D(float width, float height, sf::Color color, bool outline, float thickness = (float){0.0f},
+                  sf::Color outline_color = (sf::Color){sf::Color::Transparent});
                 Drawable2D(std::string text, float fontSize, sf::Color color, bool bold);
                 Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect = (sf::IntRect){0, 0, 0, 0});
                 ~Drawable2D();
@@ -33,6 +34,8 @@ namespace rtype
                 void setFont(std::string fontPath);
                 void setColor(sf::Color color);
                 void setSpe(bool spe);
+                void setThickness(float thickness);
+                void setOutlineColor(sf::Color color);
                 rtype::ecs::component::compoType getType() const;
                 rtype::ecs::component::drawableType getDrawType();
                 float getHeight();
@@ -40,6 +43,8 @@ namespace rtype
                 float getFontSize();
                 std::string getFont();
                 sf::Color getColor();
+                float getOutlineThickness();
+                sf::Color getOutlineColor();
                 std::string getText();
                 std::string getTexturePath() const;
                 sf::Sprite getSprite() const;
@@ -53,12 +58,14 @@ namespace rtype
                 float _fontSize;
                 std::string _font;
                 sf::Color _color;
+                bool _spe;
+                float _thickness;
+                sf::Color _outline_color;
                 std::string _texturePath;
                 sf::Texture _texture;
                 sf::Sprite _sprite;
                 rtype::ecs::component::compoType _compoType;
                 rtype::ecs::component::drawableType _drawableType;
-                bool _spe;
             };
         }
     }

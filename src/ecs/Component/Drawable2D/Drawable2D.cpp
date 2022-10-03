@@ -16,12 +16,14 @@ rtype::ecs::component::Drawable2D::Drawable2D()
     this->_drawableType = rtype::ecs::component::drawableType::UNKNOWNDRAWABLE;
 }
 
-rtype::ecs::component::Drawable2D::Drawable2D(float width, float height, sf::Color color, bool outline)
+rtype::ecs::component::Drawable2D::Drawable2D(float width, float height, sf::Color color, bool outline, float thickness, sf::Color outline_color)
 {
     this->_height = height;
     this->_width = width;
     this->_color = color;
     this->_spe = outline;
+    this->_thickness = thickness;
+    this->_outline_color = outline_color;
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = rtype::ecs::component::drawableType::RECTANGLE;
 }
@@ -50,6 +52,10 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, 
     this->_drawableType = rtype::ecs::component::drawableType::TEXT;
 }
 
+rtype::ecs::component::Drawable2D::~Drawable2D()
+{
+}
+
 std::string rtype::ecs::component::Drawable2D::getText()
 {
     return (this->_text);
@@ -69,9 +75,14 @@ sf::Color rtype::ecs::component::Drawable2D::getColor()
 {
     return (this->_color);
 }
-
-rtype::ecs::component::Drawable2D::~Drawable2D()
+float rtype::ecs::component::Drawable2D::getOutlineThickness()
 {
+    return (this->_thickness);
+}
+
+sf::Color rtype::ecs::component::Drawable2D::getOutlineColor()
+{
+    return (this->_outline_color);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Drawable2D::getType() const
@@ -147,4 +158,14 @@ void rtype::ecs::component::Drawable2D::setColor(sf::Color color)
 void rtype::ecs::component::Drawable2D::setSpe(bool bold)
 {
     this->_spe = bold;
+}
+
+void rtype::ecs::component::Drawable2D::setThickness(float thickness)
+{
+    this->_thickness = thickness;
+}
+
+void rtype::ecs::component::Drawable2D::setOutlineColor(sf::Color color)
+{
+    this->_outline_color = color;
 }

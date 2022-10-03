@@ -24,6 +24,12 @@ namespace rtype
          */
         class MultiplayerScreen : public IScreen {
           public:
+            struct room_t {
+                int id;
+                std::string name;
+                unsigned int currPlayers;
+                bool isOpen;
+            };
             /**
              * @brief Construct a new Menu Screen object
              * 
@@ -59,13 +65,24 @@ namespace rtype
             
             bool isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event);
 
+            bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event);
+
           private:
             /**
              * @brief World object will contain all the entities and system
              * 
              */
             rtype::ecs::world::World _world;
-
+            /**
+             * @brief Vector to store all rooms infos
+             * 
+             */
+            std::vector<room_t> _rooms;
+            /**
+             * @brief Vector to check if the mouse is on a button
+             * 
+             */
+            std::vector<bool> _buttons;
         };
     }
 }

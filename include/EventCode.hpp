@@ -129,8 +129,11 @@ namespace rtype
             /// Is controller connected?
             bool connected;
         };
-
+        // Mouse position on click
         sf::Vector2f position;
+        // Mouse position global
+        sf::Vector2f global_position;
+
         // Member data
         union {
             /// Is the window resized?
