@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** Entity (ECS)
+** Entity (ENTITY)
 ** File description:
-** Entity (ECS)
+** Entity (ENTITY)
 */
 
 #pragma once
@@ -21,9 +21,9 @@
 #include "../Component/Sound/Sound.hpp"
 #include "../Component/Transform/Transform.hpp"
 
-
 namespace rtype
 {
+    /// \file Docs/doc-Ecs
     namespace ecs
     {
         namespace entity
@@ -32,7 +32,7 @@ namespace rtype
              * @brief Entity Type for entity object creation
              *
              */
-            enum entityType { PLAYER_1, PLAYER_2, PLAYER_3, PLAYER_4, WALL, BOXES, TEXT, BOMB, UNKNOWN };
+            enum entityType { PLAYER, ENNEMY, MISSILE, BOSS, BUILDING, UNKNOWN };
             /// @brief Entity class
             class Entity {
               public:
@@ -109,21 +109,21 @@ namespace rtype
                     this->_componentVector.erase(it);
                 }
 
-                // /**
-                //  * @brief Get the Drawable Vector
-                //  *
-                //  * @return std::vector<rtype::ecs::component::Drawable2D *> Vector of Drawable2D component
-                //  */
-                // std::vector<rtype::ecs::component::Drawable2D *> getDrawableVector() const
-                // {
-                //     std::vector<rtype::ecs::component::Drawable2D *> vector;
-                //     for (auto &compo : _componentVector) {
-                //         if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D) {
-                //             vector.push_back(dynamic_cast<rtype::ecs::component::Drawable2D *>(compo.get()));
-                //         }
-                //     }
-                //     return (vector);
-                // }
+                /**
+                 * @brief Get the Drawable Vector
+                 *
+                 * @return std::vector<rtype::ecs::component::Drawable2D *> Vector of Drawable2D component
+                 */
+                std::vector<rtype::ecs::component::Drawable2D *> getDrawableVector() const
+                {
+                    std::vector<rtype::ecs::component::Drawable2D *> vector;
+                    for (auto &compo : _componentVector) {
+                        if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D) {
+                            vector.push_back(dynamic_cast<rtype::ecs::component::Drawable2D *>(compo.get()));
+                        }
+                    }
+                    return (vector);
+                }
 
                 /**
                  * @brief Get the Component of the given type
@@ -150,6 +150,18 @@ namespace rtype
                  * @return rtype::ecs::entity::entityType The entity type
                  */
                 rtype::ecs::entity::entityType getEntityType() const;
+                /**
+                 * @brief Get the id of Entity
+                 *
+                 * @return size_t The entity id
+                 */
+                size_t getId(void) const;
+                /**
+                 * @brief set the id of Entity
+                 *
+                 * @param id id of entity to set
+                 */
+                void setId(size_t id);
 
               private:
                 /**
@@ -162,6 +174,11 @@ namespace rtype
                  *
                  */
                 entity::entityType _type;
+                /**
+                 * @brief Entity id
+                 *
+                 */
+                size_t _id;
             };
         }
     }

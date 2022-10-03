@@ -5,32 +5,34 @@
 ** main
 */
 
-#include <iostream>
-#include <fstream>
-#include <string>
-// #include "network/buffer/ClientBuffer.hpp"
 #include "network/Client.hpp"
+#include "game/Game.hpp"
+
+// int main()
+// {
+//     boost::asio::io_service io_service;
+//     UDPClient client(io_service, "localhost", "4242");
+//     std::string message;
+
+//   while (message != "quit") {
+//     message.clear();
+//     std::cout << "message = ";
+// 	  std::getline(std::cin >> std::ws, message);
+//     client.send(message);
+//     io_service.run_one();
+//   }
+// }
 
 int main()
 {
-  boost::asio::io_service io_service;
-  Client client(io_service, "localhost", "4242");
-  std::string message;
+  try {
+        rtype::Game Game(60);
 
-  ClientPayload data = {
-    1,
-    11,
-    "helloWorld",
-  };
-  // ClientBuffer gameData(data);
-
-  while (message != "quit") {
-    message.clear();
-    std::cout << "message = ";
-	  std::getline(std::cin >> std::ws, message);
-    client.send(data);
-    // client.send(message);
-    io_service.run_one();
-  }
-  return 0;
+        Game.init();
+        Game.run();
+        Game.destroy();
+    } catch (std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+    return 0;
 }

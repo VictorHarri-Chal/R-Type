@@ -5,10 +5,15 @@
 ** Component (ECS)
 */
 
-#pragma once
+
+#ifndef ICOMPONENT_HPP_
+#define ICOMPONENT_HPP_
+
+#include "../../sfml/Sfml.hpp"
 
 namespace rtype
 {
+    /// \file Docs/doc-Ecs
     namespace ecs
     {
         namespace component
@@ -38,7 +43,7 @@ namespace rtype
              * @brief Enum for drawable type
              *
              */
-            enum drawableType { CIRCLE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
+            enum drawableType { CIRCLE, SPRITE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
             /**
              * @brief Enum for bonus type
              *
@@ -65,3 +70,5 @@ namespace rtype
         }
     }
 }
+
+#endif /* !ICOMPONENT_HPP_ */

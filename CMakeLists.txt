@@ -5,20 +5,85 @@ project(r-type_server)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
 
+set(CMAKE_CXX_STANDARD 20)
+
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
+
+set(SRC_INTERFACE
+    ${INCROOT}events.hpp
+)
+
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
+set(SRCCLIENT ${PROJECT_SOURCE_DIR}/src/client/)
+set(SRCSERVER ${PROJECT_SOURCE_DIR}/src/server/)
+set(ECSROOT ${SRCROOT}/ecs/)
+set(EVENTSROOT ${SRCCLIENT}/events/)
+set(GAMEROOT ${SRCCLIENT}/game/)
+set(SCREENSROOT ${SRCCLIENT}/screens/)
+
+set(SRC_ECS
+    ${ECSROOT}Entity/Entity.cpp
+    ${ECSROOT}Entity/Entity.hpp
+    ${ECSROOT}world.cpp
+    ${ECSROOT}world.hpp
+    ${ECSROOT}System/ISystem.hpp
+    ${ECSROOT}Component/Alive/Alive.cpp
+    ${ECSROOT}Component/Alive/Alive.hpp
+    ${ECSROOT}Component/Collide/Collide.cpp
+    ${ECSROOT}Component/Collide/Collide.hpp
+    ${ECSROOT}Component/Destroyable/Destroyable.cpp
+    ${ECSROOT}Component/Destroyable/Destroyable.hpp
+    ${ECSROOT}Component/Drawable2D/Drawable2D.cpp
+    ${ECSROOT}Component/Drawable2D/Drawable2D.hpp
+    ${ECSROOT}Component/Explodable/Explodable.cpp
+    ${ECSROOT}Component/Explodable/Explodable.hpp
+    ${ECSROOT}Component/Inventory/Inventory.cpp
+    ${ECSROOT}Component/Inventory/Inventory.hpp
+    ${ECSROOT}Component/Sound/Sound.cpp
+    ${ECSROOT}Component/Sound/Sound.hpp
+    ${ECSROOT}Component/Transform/Transform.cpp
+    ${ECSROOT}Component/Transform/Transform.hpp
+    ${ECSROOT}Component/IComponent.hpp
+    ${ECSROOT}System/Draw2D/Draw2D.cpp
+    ${ECSROOT}System/Draw2D/Draw2D.hpp
+)
+
+set(SRC_SCREENS
+    ${SCREENSROOT}IScreen.hpp
+    ${SCREENSROOT}menu/MenuScreen.cpp
+    ${SCREENSROOT}menu/MenuScreen.hpp
+)
+
+set(SRC_GAME
+    ${GAMEROOT}Game.cpp
+    ${GAMEROOT}Game.hpp
+)
+
+set(SRC_EVENTS
+    ${EVENTSROOT}Events.cpp
+    ${EVENTSROOT}Events.hpp
+)
+
 set(SRC_CLIENT
-    src/client/main.cpp
-    src/client/network/buffer/ClientBuffer.hpp
-    src/client/network/buffer/ClientBuffer.cpp
-    src/client/network/Client.hpp
-    src/client/network/Client.cpp
+    ${SRCCLIENT}main.cpp
+    ${SRCCLIENT}network/Client.cpp
+    ${SRCCLIENT}network/Client.hpp
+    ${SRCCLIENT}network/buffer/ClientBuffer.cpp
+    ${SRCCLIENT}network/buffer/ClientBuffer.hpp
+    ${SRC_ECS}
+    ${SRC_EVENTS}
+    ${SRC_GAME}
+    ${SRC_SCREENS}
 )
 
 add_executable(r-type_client ${SRC_CLIENT})
 
 set(SRC_SERVER
-    src/server/main.cpp
-    src/server/network/Server.cpp
-    src/server/network/Server.hpp
+    ${SRCSERVER}main.cpp
+    ${SRCSERVER}network/Server.cpp
+    ${SRCSERVER}network/Server.hpp
+    ${SRC_ECS}
+
 )
 
 add_executable(r-type_server ${SRC_SERVER})
