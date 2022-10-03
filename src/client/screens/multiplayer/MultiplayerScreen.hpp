@@ -85,6 +85,8 @@ namespace rtype
              * 
              */
             std::vector<bool> _buttons;
+
+            bool _needUpdate;
         };
     }
 }

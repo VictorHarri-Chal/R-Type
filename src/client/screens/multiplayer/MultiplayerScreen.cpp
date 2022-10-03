@@ -8,7 +8,7 @@
 #include "MultiplayerScreen.hpp"
 #include "../../../ecs/System/Draw2D/Draw2D.hpp"
 
-rtype::menu::MultiplayerScreen::MultiplayerScreen()
+rtype::menu::MultiplayerScreen::MultiplayerScreen(): _needUpdate(false)
 {
 }
 
@@ -57,6 +57,14 @@ void rtype::menu::MultiplayerScreen::draw(rtype::Game *gameEngine)
 
 int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
+    if (_rooms.size() != 0) {
+        if (isButtonPressed(6, gameEngine, event)) {
+            _rooms.erase(_rooms.begin());
+            
+        }
+        // if (_rooms.size())
+
+    }
     if (isButtonPressed(2, gameEngine, event)) {
         return 2;
     }
@@ -70,12 +78,16 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
 
 void rtype::menu::MultiplayerScreen::update()
 {
-    for (size_t i = 0; i < _rooms.size(); i++) {
-        rtype::ecs::entity::Entity *room_test = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
-        room_test->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);
-        room_test->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
-        this->_world.addEntity(room_test);
+    if (_needUpdate) {
+        for (size_t i = 0; i < _rooms.size(); i++) {
+            rtype::ecs::entity::Entity *room_test = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+            room_test->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);
+            room_test->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
+            this->_world.addEntity(room_test);
+        }
+        _needUpdate = false;
     }
+    
     if (_buttons.at(0) == true) {
         ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(2)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         disconnectButtonCompo->setOutlineColor(sf::Color::Yellow);
@@ -127,4 +139,5 @@ void rtype::menu::MultiplayerScreen::addRoom()
     room.currPlayers = 0;
     room.isOpen = true;
     _rooms.push_back(room);
+    _needUpdate = true;
 }
