@@ -61,3 +61,14 @@ bool rtype::menu::OptionsScreen::isButtonPressed(size_t index, rtype::Game *game
     }
     return false;
 }
+
+bool rtype::menu::OptionsScreen::isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event)
+{
+    ecs::component::Drawable2D *rectangleCompo = _world.getEntity(index)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+    ecs::component::Transform *transformCompo = _world.getEntity(index)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    if (event.global_position.x >= (transformCompo->getX() + gameEngine->_window.getPosition().x) && event.global_position.x <= (transformCompo->getX() + gameEngine->_window.getPosition().x) + rectangleCompo->getWidth() &&
+    event.global_position.y >= (transformCompo->getY() + gameEngine->_window.getPosition().y + 30) && event.global_position.y <= (transformCompo->getY() + gameEngine->_window.getPosition().y + 30) + rectangleCompo->getHeight()) {
+        return true;
+    }
+    return false;
+}

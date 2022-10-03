@@ -59,12 +59,19 @@ namespace rtype
 
             bool isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event);
 
+            bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event);
+
           private:
             /**
              * @brief World object will contain all the entities and system
              * 
              */
             rtype::ecs::world::World _world;
+            /**
+             * @brief Vector to check if the mouse is on a button
+             * 
+             */
+            std::vector<bool> _buttons;
         };
     }
 }

@@ -67,6 +67,8 @@ namespace rtype
 
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event);
 
+            void addRoom();
+
           private:
             /**
              * @brief World object will contain all the entities and system
