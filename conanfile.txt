@@ -1,8 +1,14 @@
-[generators]
-cmake
-
 [requires]
+boost/1.70.0
 sfml/2.5.1
 
 [options]
-libstd:compiler.libcxx=libstdc++20
+boost:shared=True
+sfml:graphics=True
+sfml:window=True
+sfml:audio=True
+sfml:network=True
+#sfml:shared=True
+
+[generators]
+cmake
