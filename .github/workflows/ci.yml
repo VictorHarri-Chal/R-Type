@@ -63,22 +63,25 @@ jobs:
           test -f r-type_client
           test -f r-type_server
   
-#  build-on-windows:
-#    runs-on: windows-latest
-#    steps:
-#      - name: install sfml
-#        run: |
-#          vcpkg install sfml
-#      - uses: actions/checkout@v1
-#      - name: build on Windows
-#        run: |
-#          mkdir build && cd build
-#          cmake .. -DCMAKE_BUILD_TYPE=Debug
-#          cmake --build .
-#      - name: check build
-#        run: |
-#          Test-Path r-type_client
-#          Test-Path r-type_server
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      #- name: install sfml
+      #  run: |
+      #    vcpkg install sfml
+      - uses: actions/checkout@v3
+      - name: get bash path
+        run: |
+          which bash
+      #- name: build on Windows
+      #  run: |
+      #    mkdir build && cd build
+      #    cmake .. -DCMAKE_BUILD_TYPE=Debug
+      #    cmake --build .
+      - name: check build
+        run: |
+          Test-Path r-type_client
+          Test-Path r-type_server
 
   clean-repo:
     runs-on: ubuntu-latest
