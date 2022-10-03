@@ -15,11 +15,14 @@ jobs:
       #- name: install SFML
       #  run: |
       #    sudo apt install libsfml-dev libboost-all-dev
-      - name: build on Ubuntu
+      - name: install conan
         run: |
-          pip3 install conan
-          which conan
-          bash install.sh
+          sudo apt install -y libudev-dev
+          sudo pip3 install conan
+      - name: is conan installed ?
+        run: which conan
+      - name: build on Ubuntu
+        run: bash install.sh
       - name: check build
         run: |
           test -f r-type_client
