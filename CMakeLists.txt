@@ -98,6 +98,7 @@ add_executable(r-type_server ${SRC_SERVER})
 
 target_link_libraries(r-type_server
 			CONAN_PKG::boost
+			CONAN_PKG::sfml
 			)
 
 target_include_directories(r-type_server PUBLIC
