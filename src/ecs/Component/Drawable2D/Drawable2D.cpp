@@ -45,7 +45,7 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, 
     this->_width = 0.0;
     this->_text = text;
     this->_fontSize = fontSize;
-    this->_font = "assets/Maybe Next.ttf";
+    this->_font = "assets/font.ttf";
     this->_color = color;
     this->_spe = bold;
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
