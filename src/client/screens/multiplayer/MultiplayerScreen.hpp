@@ -26,6 +26,7 @@ namespace rtype
           public:
             struct room_t {
                 int id;
+                int slot;
                 std::string name;
                 unsigned int currPlayers;
                 bool isOpen;
@@ -67,7 +68,13 @@ namespace rtype
 
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event);
 
-            void addRoom();
+            bool isSurfaceClicked(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
+
+            int addRoom(float slot);
+            
+            float checkForFreeSlot();
+
+            void deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
 
           private:
             /**
@@ -86,7 +93,10 @@ namespace rtype
              */
             std::vector<bool> _buttons;
 
-            bool _needUpdate;
+            std::vector<bool> _slots;
+
+            int _room_id;
+
         };
     }
 }
