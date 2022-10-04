@@ -70,11 +70,17 @@ namespace rtype
 
             bool isSurfaceClicked(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
 
+            bool isMouseOnSurface(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
+
             int addRoom(float slot);
             
             float checkForFreeSlot();
 
+            void createRoom(rtype::Event &event, rtype::Game *gameEngine);
+
             void deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
+
+            void hooverOnButton(rtype::Event &event, rtype::Game *gameEngine);
 
           private:
             /**
@@ -92,9 +98,15 @@ namespace rtype
              * 
              */
             std::vector<bool> _buttons;
-
+            /**
+             * @brief Vector to check if rooms slots are empty or not
+             * 
+             */
             std::vector<bool> _slots;
-
+            /**
+             * @brief Int who is being incremented everytime a room is created
+             * 
+             */
             int _room_id;
 
         };
