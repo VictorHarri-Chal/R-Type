@@ -59,9 +59,6 @@ void rtype::ecs::world::World::removeEntity(size_t id)
     if (id > this->_entitiesVector.size())
         return;
     this->_entitiesVector.erase(_entitiesVector.begin() + id);
-    // rtype::ecs::entity::Entity *tmp = this->_entitiesVector[id];
-    // delete tmp;
-    // this->_entitiesVector[id] = nullptr;
 }
 
 void rtype::ecs::world::World::addSystem(system::ISystem *system)
