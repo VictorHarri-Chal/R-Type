@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "network/Client.hpp"
+#include "network/client.hpp"
 #include "game/Game.hpp"
 
 // int main()

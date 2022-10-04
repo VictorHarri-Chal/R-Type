@@ -66,8 +66,8 @@ set(SRC_EVENTS
 
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
-    ${SRCCLIENT}network/Client.cpp
-    ${SRCCLIENT}network/Client.hpp
+    ${SRCCLIENT}network/client.cpp
+    ${SRCCLIENT}network/client.hpp
     ${SRCCLIENT}network/buffer/ClientBuffer.cpp
     ${SRCCLIENT}network/buffer/ClientBuffer.hpp
     ${SRC_ECS}
@@ -80,8 +80,8 @@ add_executable(r-type_client ${SRC_CLIENT})
 
 set(SRC_SERVER
     ${SRCSERVER}main.cpp
-    ${SRCSERVER}network/Server.cpp
-    ${SRCSERVER}network/Server.hpp
+    ${SRCSERVER}network/server.cpp
+    ${SRCSERVER}network/server.hpp
     ${SRC_ECS}
 
 )
@@ -147,7 +147,7 @@ if(NOT TARGET Boost::filesystem)
 endif()
 
 target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
-target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
+target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
 
 set_target_properties(r-type_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set_target_properties(r-type_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
