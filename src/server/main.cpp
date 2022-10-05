@@ -50,9 +50,6 @@ namespace boost{
     }
 }
 
-
-
-/*driver function: program execution begins from here*/
 int main() {
 
     /*filename to work with*/
@@ -76,7 +73,6 @@ int main() {
 
     /*disconnect the file*/
     out.close();
-
 
     /*create an ifstream object for reading from file*/
     std::ifstream in(filename);
