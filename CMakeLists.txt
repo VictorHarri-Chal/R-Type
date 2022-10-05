@@ -51,6 +51,8 @@ set(SRC_ECS
 
 set(SRC_SCREENS
     ${SCREENSROOT}IScreen.hpp
+    ${SCREENSROOT}intro/IntroScreen.cpp
+    ${SCREENSROOT}intro/IntroScreen.hpp
     ${SCREENSROOT}menu/MenuScreen.cpp
     ${SCREENSROOT}menu/MenuScreen.hpp
     ${SCREENSROOT}options/OptionsScreen.cpp

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "../events/Events.hpp"
+#include "../screens/intro/IntroScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
@@ -103,8 +104,8 @@ namespace rtype
         Screens _actualScreen;
         /// @brief Game fps
         size_t _fps;
-        /// @brief Players
-        // std::vector<player::Player> _players;
+        /// @brief Intro screen
+        rtype::menu::IntroScreen *_intro;        
         /// @brief Menu screen
         rtype::menu::MenuScreen *_menu;
         /// @brief Options screen
