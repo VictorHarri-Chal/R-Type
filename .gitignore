@@ -4,6 +4,7 @@
 # Build Data
 *.o
 /build
+Makefile
 
 # Executable
 /r-type_server
