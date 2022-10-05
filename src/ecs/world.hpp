@@ -50,6 +50,14 @@ namespace rtype
                 void addSystem(system::ISystem *system);
 
                 /**
+                 * @brief Remove entity of world
+                 *
+                 * @tparam id is the id of entity who want to delete
+                 * @param id id of entity who want to delete
+                 */
+                void removeEntity(size_t id);
+
+                /**
                  * @brief Get the Entity of the given id
                  *
                  * @param id The id of the entity to get
@@ -74,12 +82,12 @@ namespace rtype
 
               private:
                 /**
-                 * @brief Vector of component
+                 * @brief Vector of entities
                  *
                  */
                 std::vector<rtype::ecs::entity::Entity*> _entitiesVector;
                 /**
-                 * @brief Vector of component
+                 * @brief Vector of systems
                  *
                  */
                 std::vector<rtype::ecs::system::ISystem*> _systemsVector;

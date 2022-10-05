@@ -28,9 +28,11 @@ void rtype::ecs::system::Draw2DSystem::drawRectangle(rtype::ecs::component::Draw
     sf::RectangleShape rectangle(sf::Vector2f(drawableCompo.getWidth(), drawableCompo.getHeight()));
 
     rectangle.setPosition(sf::Vector2f(transformCompo.getX(), transformCompo.getY()));
-    if (drawableCompo.getSpe())
-        rectangle.setOutlineColor(drawableCompo.getColor());
-    else
+    if (drawableCompo.getSpe()) {        
+        rectangle.setOutlineThickness(drawableCompo.getOutlineThickness());
+        rectangle.setOutlineColor(drawableCompo.getOutlineColor());
+        rectangle.setFillColor(drawableCompo.getColor());
+    } else
         rectangle.setFillColor(drawableCompo.getColor());
     gameEngine->_window.draw(rectangle);
 }

@@ -66,13 +66,5 @@ void rtype::ecs::component::Inventory::setWallPass(bool bonus)
 
 void rtype::ecs::component::Inventory::setBonus(rtype::ecs::component::bonusType type)
 {
-    if (type == rtype::ecs::component::bonusType::BOMBUP) {
-        this->_bombUp = true;
-    } else if (type == rtype::ecs::component::bonusType::FIREUP) {
-        this->_fireUp = true;
-    } else if (type == rtype::ecs::component::bonusType::SPEEDUP) {
-        this->_speedUp = true;
-    } else if (type == rtype::ecs::component::bonusType::WALLPASS) {
-        this->_wallPass = true;
-    }
+
 }

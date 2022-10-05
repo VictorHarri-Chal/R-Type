@@ -27,16 +27,12 @@ namespace rtype
             enum compoType {
                 TRANSFORM,
                 DRAWABLE2D,
-                DRAWABLE3D,
                 ALIVE,
-                COLLECTABLE,
                 INVENTORY,
                 EXPLODABLE,
                 COLLIDE,
                 SOUND,
                 DESTROYABLE,
-                MODEL,
-                ANIMATED,
                 UNKNOWNCOMPO
             };
             /**
@@ -48,7 +44,7 @@ namespace rtype
              * @brief Enum for bonus type
              *
              */
-            enum bonusType { BOMBUP, SPEEDUP, FIREUP, WALLPASS, UNKNOWNBONUS };
+            enum bonusType { UNKNOWNBONUS };
 
             /// @brief Component interface
             class IComponent {
