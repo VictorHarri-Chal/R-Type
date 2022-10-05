@@ -36,7 +36,6 @@ class Client
 
     private:
 
-      ClientBuffer _clientBuffer;
       boost::asio::io_service& _io_service;
       udp::socket _socket;
       udp::endpoint _endpoint;
