@@ -75,7 +75,7 @@ jobs:
           Test-Path r-type_client
           Test-Path r-type_server
 
-  build-on-arm:
+  build-on-arm64:
     runs-on: self-hosted
     steps:
       - name: install dependencies
@@ -117,12 +117,12 @@ jobs:
           libxcb-util0-dev \
           cmake
           sudo apt install -f
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: install conan
         run: |
           sudo apt install -y python3-pip
           sudo pip3 install conan
-      - name: build on Ubuntu
+      - name: build on Debian arm64
         run: bash install.sh
       - name: check build
         run: |
