@@ -20,10 +20,10 @@ namespace rtype
             class Drawable2D : public IComponent {
               public:
                 Drawable2D();
-                Drawable2D(float width, float height, sf::Color color, bool outline, float thickness = (float){0.0f},
-                  sf::Color outline_color = (sf::Color){sf::Color::Transparent});
+                Drawable2D(float width, float height, sf::Color color, bool outline, float thickness = float(0.0f),
+                  sf::Color outline_color = sf::Color(sf::Color::Transparent));
                 Drawable2D(std::string text, float fontSize, sf::Color color, bool bold);
-                Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect = (sf::IntRect){0, 0, 0, 0});
+                Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect = sf::IntRect(0, 0, 0, 0));
                 ~Drawable2D();
 
                 void setHeight(float height);
