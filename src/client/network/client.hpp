@@ -13,8 +13,6 @@
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
 
-#include "buffer/ClientBuffer.hpp"
-
 using boost::asio::ip::udp;
 
 class Client
@@ -34,7 +32,7 @@ class Client
 
     ~Client();
 
-    void send(struct ClientPayload data);
+    void send(const std::string& msg);
 
     private:
 
