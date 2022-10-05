@@ -8,7 +8,7 @@
 #include "MultiplayerScreen.hpp"
 #include "../../../ecs/System/Draw2D/Draw2D.hpp"
 
-rtype::menu::MultiplayerScreen::MultiplayerScreen(): _room_id(0)
+rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0)
 {
     _slots.push_back(true);
     _slots.push_back(true);
@@ -161,8 +161,8 @@ int rtype::menu::MultiplayerScreen::addRoom(float slot)
         default:
             break;
     };
-    room.id = _room_id;
-    _room_id++;
+    room.id = _roomId;
+    _roomId++;
     room.name = "Room " + std::to_string(room.id);
     room.currPlayers = 0;
     room.isOpen = true;

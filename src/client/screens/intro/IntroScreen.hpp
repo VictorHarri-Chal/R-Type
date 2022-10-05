@@ -67,6 +67,8 @@ namespace rtype
 
             void hooverOnButton(rtype::Event &event, rtype::Game *gameEngine);
 
+            bool isAlpha(rtype::Event &event);
+
           private:
             /**
              * @brief World object will contain all the entities and system
@@ -78,6 +80,10 @@ namespace rtype
              * 
              */
             std::vector<bool> _buttons;
+
+            std::string _pseudo;
+
+            bool _onWritingFrame;
         };
     }
 }

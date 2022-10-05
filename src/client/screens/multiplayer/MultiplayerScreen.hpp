@@ -107,7 +107,7 @@ namespace rtype
              * @brief Int who is being incremented everytime a room is created
              * 
              */
-            int _room_id;
+            int _roomId;
 
         };
     }
