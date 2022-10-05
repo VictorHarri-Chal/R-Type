@@ -68,8 +68,6 @@ set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
     ${SRCCLIENT}network/client.cpp
     ${SRCCLIENT}network/client.hpp
-    ${SRCCLIENT}network/buffer/ClientBuffer.cpp
-    ${SRCCLIENT}network/buffer/ClientBuffer.hpp
     ${SRC_ECS}
     ${SRC_EVENTS}
     ${SRC_GAME}
