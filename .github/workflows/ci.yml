@@ -72,7 +72,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install conan
         run: |
-          sudo pip3 install conan
+          pip3 install conan
       - name: build on Windows
         run: |
           bash install.sh
