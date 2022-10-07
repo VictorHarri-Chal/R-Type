@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 [ -f build ] && rm -fr build
 mkdir -p build
 cd build
