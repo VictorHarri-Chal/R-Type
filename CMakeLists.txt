@@ -5,6 +5,12 @@ project(r-type_server)
 
 set(CMAKE_CXX_STANDARD 20)
 
+if(MSVC)
+    add_compile_options(/W2)
+else()
+    add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith")
+endif()
+
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 
 set(SRC_INTERFACE
@@ -71,6 +77,8 @@ set(SRC_CLIENT
     ${SRC_GAME}
     ${SRC_SCREENS}
 )
+
+
 
 add_executable(r-type_client ${SRC_CLIENT})
 
