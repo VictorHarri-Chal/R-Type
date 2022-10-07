@@ -12,10 +12,8 @@ if [ "$os_name" = "Linux" ]; then
   arch=$(dpkg --print-architecture)
   sudo apt update
   sudo apt upgrade -y
-
   sudo apt install python3-pip -y
   sudo pip3 install conan
-
   sudo apt install -y \
   libudev-dev \
   libgl-dev \
