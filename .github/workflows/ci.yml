@@ -3,170 +3,178 @@ name: CI
 on:
   [ workflow_dispatch, push, pull_request]
 
-env:
-  BINARY: "R-Type"
-
 jobs:
 
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - name: install dependencies
+      - name: uname
         run: |
-          sudo apt install -y \
-          libudev-dev \
-          libgl-dev \
-          libx11-xcb-dev \
-          libfontenc-dev \
-          libxaw7-dev \
-          libxcomposite-dev \
-          libxcursor-dev \
-          libxdamage-dev \
-          libxfixes-dev \
-          libxi-dev \
-          libxinerama-dev \
-          libxmu-dev \
-          libxmuu-dev \
-          libxpm-dev \
-          libxrandr-dev \
-          libxres-dev \
-          libxss-dev \
-          libxtst-dev \
-          libxv-dev \
-          libxvmc-dev \
-          libxxf86vm-dev \
-          libxcb-render-util0-dev \
-          libxcb-xkb-dev \
-          libxcb-icccm4-dev \
-          libxcb-image0-dev \
-          libxcb-keysyms1-dev \
-          libxcb-randr0-dev \
-          libxcb-shape0-dev \
-          libxcb-sync-dev \
-          libxcb-xfixes0-dev \
-          libxcb-xinerama0-dev \
-          libxcb-dri3-dev \
-          libxcb-util-dev \
-          libxcb-util0-dev
-          sudo apt install -f
-      - uses: actions/checkout@v3
-      - name: install conan
-        run: |
-          sudo pip3 install conan
-      - name: build on Ubuntu
-        run: bash install.sh
-      - name: check build
-        run: |
-          test -f r-type_client
-          test -f r-type_server
-  
+          uname
+#          sudo apt install -y \
+#          libudev-dev \
+#          libgl-dev \
+#          libx11-xcb-dev \
+#          libfontenc-dev \
+#          libxaw7-dev \
+#          libxcomposite-dev \
+#          libxcursor-dev \
+#          libxdamage-dev \
+#          libxfixes-dev \
+#          libxi-dev \
+#          libxinerama-dev \
+#          libxmu-dev \
+#          libxmuu-dev \
+#          libxpm-dev \
+#          libxrandr-dev \
+#          libxres-dev \
+#          libxss-dev \
+#          libxtst-dev \
+#          libxv-dev \
+#          libxvmc-dev \
+#          libxxf86vm-dev \
+#          libxcb-render-util0-dev \
+#          libxcb-xkb-dev \
+#          libxcb-icccm4-dev \
+#          libxcb-image0-dev \
+#          libxcb-keysyms1-dev \
+#          libxcb-randr0-dev \
+#          libxcb-shape0-dev \
+#          libxcb-sync-dev \
+#          libxcb-xfixes0-dev \
+#          libxcb-xinerama0-dev \
+#          libxcb-dri3-dev \
+#          libxcb-util-dev \
+#          libxcb-util0-dev
+#          sudo apt install -f
+#      - uses: actions/checkout@v3
+#      - name: install conan
+#        run: |
+#          sudo pip3 install conan
+#      - name: build on Ubuntu
+#        run: bash install.sh
+#      - name: check build
+#        run: |
+#          test -f r-type_client
+#          test -f r-type_server
+
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - name: Install conan
+      - name: uname
         run: |
-          pip3 install conan
-      - uses: actions/checkout@v3
-      - name: build on Windows
-        run: |
-          bash install.sh
-      - name: check build
-        run: |
-          Test-Path r-type_client
-          Test-Path r-type_server
+          uname
+#    runs-on: windows-latest
+#    steps:
+#      - name: Install conan
+#        run: |
+#          pip3 install conan
+#      - uses: actions/checkout@v3
+#      - name: build on Windows
+#        run: |
+#          bash install.sh
+#      - name: check build
+#        run: |
+#          Test-Path r-type_client
+#          Test-Path r-type_server
 
   build-on-arm64:
     runs-on: self-hosted
     steps:
-      - name: install dependencies
+      - name: uname
         run: |
-          sudo apt install -y \
-          libudev-dev \
-          libgl-dev \
-          libx11-xcb-dev \
-          libfontenc-dev \
-          libxaw7-dev \
-          libxcomposite-dev \
-          libxcursor-dev \
-          libxdamage-dev \
-          libxfixes-dev \
-          libxi-dev \
-          libxinerama-dev \
-          libxmu-dev \
-          libxmuu-dev \
-          libxpm-dev \
-          libxrandr-dev \
-          libxres-dev \
-          libxss-dev \
-          libxtst-dev \
-          libxv-dev \
-          libxvmc-dev \
-          libxxf86vm-dev \
-          libxcb-render-util0-dev \
-          libxcb-xkb-dev \
-          libxcb-icccm4-dev \
-          libxcb-image0-dev \
-          libxcb-keysyms1-dev \
-          libxcb-randr0-dev \
-          libxcb-shape0-dev \
-          libxcb-sync-dev \
-          libxcb-xfixes0-dev \
-          libxcb-xinerama0-dev \
-          libxcb-dri3-dev \
-          libxcb-util-dev \
-          libxcb-util0-dev \
-          cmake
-          sudo apt install -f
-      - uses: actions/checkout@v3
-      - name: install conan
-        run: |
-          sudo apt install -y python3-pip
-          sudo pip3 install conan
-      - name: build on Debian arm64
-        run: bash install.sh
-      - name: check build
-        run: |
-          test -f r-type_client
-          test -f r-type_server
+          uname
+#    runs-on: self-hosted
+#    steps:
+#      - name: install dependencies
+#        run: |
+#          sudo apt install -y \
+#          libudev-dev \
+#          libgl-dev \
+#          libx11-xcb-dev \
+#          libfontenc-dev \
+#          libxaw7-dev \
+#          libxcomposite-dev \
+#          libxcursor-dev \
+#          libxdamage-dev \
+#          libxfixes-dev \
+#          libxi-dev \
+#          libxinerama-dev \
+#          libxmu-dev \
+#          libxmuu-dev \
+#          libxpm-dev \
+#          libxrandr-dev \
+#          libxres-dev \
+#          libxss-dev \
+#          libxtst-dev \
+#          libxv-dev \
+#          libxvmc-dev \
+#          libxxf86vm-dev \
+#          libxcb-render-util0-dev \
+#          libxcb-xkb-dev \
+#          libxcb-icccm4-dev \
+#          libxcb-image0-dev \
+#          libxcb-keysyms1-dev \
+#          libxcb-randr0-dev \
+#          libxcb-shape0-dev \
+#          libxcb-sync-dev \
+#          libxcb-xfixes0-dev \
+#          libxcb-xinerama0-dev \
+#          libxcb-dri3-dev \
+#          libxcb-util-dev \
+#          libxcb-util0-dev \
+#          cmake
+#          sudo apt install -f
+#      - uses: actions/checkout@v3
+#      - name: install conan
+#        run: |
+#          sudo apt install -y python3-pip
+#          sudo pip3 install conan
+#      - name: build on Debian arm64
+#        run: bash install.sh
+#      - name: check build
+#        run: |
+#          test -f r-type_client
+#          test -f r-type_server
 
-  clean-repo:
-    runs-on: ubuntu-latest
-    env:
-      USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|^tmp\/.*|.*\/tmp\/.*
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Find useless files recursively
-        run: |
-          USELESS_FILES=$(find . -type f -printf '%P\n' | { grep -P "${{ env.USELESS_FILES_REGEX }}" || true; })
-          if [ "$USELESS_FILES" != "" ]; then
-              IFS=$'\n'$'\r'
-              for LINE in $USELESS_FILES; do
-                  echo "::error file=${LINE},line=1,col=1,title=Useless file detected::${LINE}"
-              done
-              echo "FAIL_TASK=true" >> "$GITHUB_ENV"
-          else
-              echo "FAIL_TASK=false" >> "$GITHUB_ENV"
-          fi
-      - name: Check if task failed
-        if: env.FAIL_TASK == 'true'
-        run: exit 1
+#  clean-repo:
+#    runs-on: ubuntu-latest
+#    env:
+#      USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|^tmp\/.*|.*\/tmp\/.*
+#    steps:
+#      - name: Checkout repo
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0
+#      - name: Find useless files recursively
+#        run: |
+#          USELESS_FILES=$(find . -type f -printf '%P\n' | { grep -P "${{ env.USELESS_FILES_REGEX }}" || true; })
+#          if [ "$USELESS_FILES" != "" ]; then
+#              IFS=$'\n'$'\r'
+#              for LINE in $USELESS_FILES; do
+#                  echo "::error file=${LINE},line=1,col=1,title=Useless file detected::${LINE}"
+#              done
+#              echo "FAIL_TASK=true" >> "$GITHUB_ENV"
+#          else
+#              echo "FAIL_TASK=false" >> "$GITHUB_ENV"
+#          fi
+#      - name: Check if task failed
+#        if: env.FAIL_TASK == 'true'
+#        run: exit 1
 
-  mirror:
-    needs:
-      - build-on-ubuntu
-      #- build-on-windows
-      - clean-repo
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url:
-            ${{ secrets.REPO_URL }}
-          ssh_private_key:
-            ${{ secrets.SSH_KEY }}
+#  mirror:
+#    needs:
+#      - build-on-ubuntu
+#      #- build-on-windows
+#      - clean-repo
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0
+#      - uses: pixta-dev/repository-mirroring-action@v1
+#        with:
+#          target_repo_url:
+#            ${{ secrets.REPO_URL }}
+#          ssh_private_key:
+#            ${{ secrets.SSH_KEY }}
