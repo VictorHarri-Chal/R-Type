@@ -110,12 +110,6 @@ set(SRC_SERVER
 
 add_executable(r-type_server ${SRC_SERVER})
 
-
-target_link_libraries(r-type_server
-    CONAN_PKG::boost
-    CONAN_PKG::sfml
-)
-
 target_include_directories(r-type_server PUBLIC
     ${CONAN_INCLUDE_DIRS_BOOST}
 )
@@ -123,12 +117,16 @@ target_include_directories(r-type_server PUBLIC
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
+target_link_libraries(r-type_server
+    CONAN_PKG::boost
+    CONAN_PKG::sfml
+)
 
-set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
+#list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
+#set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
-target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
-target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
+#target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
+#target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
 
 set_target_properties(r-type_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set_target_properties(r-type_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
