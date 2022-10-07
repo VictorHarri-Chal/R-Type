@@ -9,7 +9,7 @@ os_name=$(uname)
 if [ "$os_name" = "Linux" ]; then
   arch=$(dpkg --print-architecture)
   sudo apt update
-  sudo apt uprade -y
+  sudo apt upgrade -y
   sudo apt install python3-pip -y
   sudo pip3 install conan
   if [ "$arch" = "amd64" ]; then
