@@ -14,7 +14,7 @@ if [ "$os_name" = "Linux" ]; then
   sudo apt upgrade -y
   sudo apt install python3-pip -y
   sudo pip3 install conan
-  sudo apt install -f
+  sudo apt install libudev-dev -y
   if [ "$arch" = "amd64" ]; then
     echo ubuntu
   elif [ "$arch" = "arm64" ]; then
