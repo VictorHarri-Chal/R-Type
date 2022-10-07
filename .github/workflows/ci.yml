@@ -42,7 +42,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - name: build on Debian arm64
+      - name: build on macOS
         run: bash install.sh
       - name: check build
         run: |
