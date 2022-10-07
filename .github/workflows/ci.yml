@@ -11,6 +11,9 @@ jobs:
       - name: uname
         run: |
           uname
+      - name: arch
+        run: |
+          dpkg --print-architecture
 #          sudo apt install -y \
 #          libudev-dev \
 #          libgl-dev \
@@ -84,6 +87,9 @@ jobs:
       - name: uname
         run: |
           uname
+      - name: arch
+        run: |
+          dpkg --print-architecture
 #    runs-on: self-hosted
 #    steps:
 #      - name: install dependencies
