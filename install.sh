@@ -6,7 +6,7 @@ cd build
 
 os_name=$(uname)
 
-if [ "$(os_name)" = "Linux" ]; then
+if [ "$os_name" = "Linux" ]; then
   arch=$(dpkg --print-architecture)
   sudo apt update
   sudo apt uprade -y
