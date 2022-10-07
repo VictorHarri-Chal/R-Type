@@ -64,7 +64,9 @@ if [ "$os_name" = "Linux" ]; then
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
 elif [ "$os_name" = "Darwin" ]; then
-  echo macos
+  echo darwin
+  pip3 install conan
+  conan install .. --build=missing
 else
   echo windows
   pip3 install conan
