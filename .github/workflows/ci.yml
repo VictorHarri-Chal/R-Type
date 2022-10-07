@@ -38,6 +38,17 @@ jobs:
           test -f r-type_client
           test -f r-type_server
 
+  build-on-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build on Debian arm64
+        run: bash install.sh
+      - name: check build
+        run: |
+          test -f r-type_client
+          test -f r-type_server
+
   clean-repo:
     runs-on: ubuntu-latest
     env:
