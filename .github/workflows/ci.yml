@@ -3,44 +3,51 @@ name: CI
 on:
   [ workflow_dispatch, push, pull_request]
 
-env:
-  BINARY: "R-Type"
-
 jobs:
 
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: install SFML
-        run: |
-          sudo apt install libsfml-dev libboost-all-dev
-      - name: build on Ubuntu
-        run: |
-          mkdir build
-          cd build && cmake ..
-          cmake --build .
+      - uses: actions/checkout@v3
+      - name: build on Ubuntu amd64
+        run: bash install.sh
       - name: check build
         run: |
           test -f r-type_client
           test -f r-type_server
-  
-#  build-on-windows:
-#    runs-on: windows-latest
-#    steps:
-#      - name: install sfml
-#        run: |
-#          vcpkg install sfml
-#      - uses: actions/checkout@v1
-#      - name: build on Windows
-#        run: |
-#          mkdir build && cd build
-#          cmake .. -DCMAKE_BUILD_TYPE=Debug
-#          cmake --build .
-#      - name: check build
-#        run: |
-#          Test-Path r-type_client
-#          Test-Path r-type_server
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build on Windows
+        run: bash install.sh
+      - name: check build
+        run: |
+          Test-Path r-type_client
+          Test-Path r-type_server
+
+  build-on-arm64:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: build on Debian arm64
+        run: bash install.sh
+      - name: check build
+        run: |
+          test -f r-type_client
+          test -f r-type_server
+
+  build-on-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build on macOS
+        run: bash install.sh
+      - name: check build
+        run: |
+          test -f r-type_client
+          test -f r-type_server
 
   clean-repo:
     runs-on: ubuntu-latest
@@ -69,8 +76,6 @@ jobs:
 
   mirror:
     needs:
-      - build-on-ubuntu
-      #- build-on-windows
       - clean-repo
     runs-on: ubuntu-latest
     steps:

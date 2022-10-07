@@ -1,4 +1,5 @@
 [![Build](https://img.shields.io/github/workflow/status/JohanCDev/Bomberman/Build)](https://github.com/JohanCDev/Bomberman/actions/workflows/build_and_mirror.yml)
+[![License](https://img.shields.io/github/license/VictorHarri-Chal/R-Type)](https://github.com/VictorHarri-Chal/R-Type)
 # :rocket:  What is R-Type ?
 Our project R-Type is an ersatz of the famous [R-Type](https://www.youtube.com/watch?v=2xAX6XTzpg0) arcade game, the purpose of the game is to control a ship and navigate throught the space while shooting and destroying ennemy ships.
 However, the specifity of our game is that we implemented a multiplayer mode that allow you to play in coop from 2 to 4 players.
