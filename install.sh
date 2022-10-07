@@ -6,6 +6,10 @@ cd build
 
 if [ "$(uname)" = "Linux" ]; then
   arch=$(dpkg --print-architecture)
+  sudo apt update
+  sudo apt uprade -y
+  sudo apt install python3-pip
+  sudo pip3 install conan
   if [ "$arch" = "amd64" ]; then
     echo ubuntu
   elif [ "$arch" = "arm64" ]; then
@@ -13,7 +17,9 @@ if [ "$(uname)" = "Linux" ]; then
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
 else
+  echo windows
+  pip3 install conan
   conan install .. --build=missing
 fi
-  cmake -DCMAKE_BUILD_TYPE=Debug ..
-  cmake --build .
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build .
