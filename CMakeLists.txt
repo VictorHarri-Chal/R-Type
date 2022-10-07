@@ -3,9 +3,13 @@ cmake_minimum_required(VERSION 3.17)
 project(r-type_client)
 project(r-type_server)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
-
 set(CMAKE_CXX_STANDARD 20)
+
+if(MSVC)
+    add_compile_options(/W2)
+else()
+    add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith")
+endif()
 
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/)
 
@@ -87,73 +91,41 @@ set(SRC_CLIENT
 
 add_executable(r-type_client ${SRC_CLIENT})
 
+target_link_libraries(r-type_client
+    CONAN_PKG::boost
+    CONAN_PKG::sfml
+)
+
+target_include_directories(r-type_client PUBLIC
+    ${CONAN_INCLUDE_DIRS_BOOST}
+    ${CONAN_INCLUDE_DIRS_SFML}
+)
+
 set(SRC_SERVER
     ${SRCSERVER}main.cpp
     ${SRCSERVER}network/server.cpp
     ${SRCSERVER}network/server.hpp
     ${SRC_ECS}
-
 )
 
 add_executable(r-type_server ${SRC_SERVER})
 
-find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
-include_directories(${SFML_INCLUDE_DIRS})
 
-if(NOT DEFINED ASIO_SRC)
-    set(ASIO_SRC ${CMAKE_CURRENT_LIST_DIR})
-endif()
-
-set(ASIO_SRC_DEP "${ASIO_SRC}/asio")
-
-include(FetchContent)
-
-FetchContent_Declare(asio
-    GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
-    GIT_SHALLOW TRUE
-    SOURCE_DIR ${ASIO_SRC_DEP}
+target_link_libraries(r-type_server
+    CONAN_PKG::boost
+    CONAN_PKG::sfml
 )
 
-FetchContent_GetProperties(asio)
-
-if(NOT asio_POPULATED)
-    if(EXISTS "${ASIO_SRC_DEP}/asio")
-        set(FETCHCONTENT_SOURCE_DIR_ASIO ${ASIO_SRC_DEP})
-    endif()
-    FetchContent_Populate(asio)
-endif()
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
-
-set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
-
-add_library(asio INTERFACE)
-
-target_include_directories(asio
-    INTERFACE ${asio_SOURCE_DIR}/asio/include
+target_include_directories(r-type_server PUBLIC
+    ${CONAN_INCLUDE_DIRS_BOOST}
 )
 
-target_compile_definitions(asio
-    INTERFACE
-    ASIO_STANDALONE
-    ASIO_NO_DEPRECATED
-)
+include(build/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
 
-set(Boost_USE_STATIC_LIBS OFF)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.70 COMPONENTS thread system REQUIRED)
-message(STATUS "Boost version: ${Boost_VERSION}")
+# list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
-# This is needed if your Boost version is newer than your CMake version
-# or if you have an old version of CMake (<3.5)
-if(NOT TARGET Boost::filesystem)
-    add_library(Boost::filesystem IMPORTED INTERFACE)
-    set_property(TARGET Boost::filesystem PROPERTY
-        INTERFACE_INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR})
-    set_property(TARGET Boost::filesystem PROPERTY
-        INTERFACE_LINK_LIBRARIES ${Boost_LIBRARIES})
-endif()
+# set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
 target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
 target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
