@@ -41,9 +41,24 @@ rtype::ecs::entity::Entity *rtype::ecs::world::World::getEntity(size_t id) const
 
 void rtype::ecs::world::World::addEntity(entity::Entity *entity)
 {
+    for (size_t i = 0; i < this->_entitiesVector.size(); i++)
+    {
+        if(this->_entitiesVector[i] == nullptr) {
+            entity->setId(i);
+            this->_entitiesVector[i] = entity;
+            return;
+        }
+    }
     entity->setId(this->nbEntities);
     this->_entitiesVector.push_back(entity);
     nbEntities++;
+}
+
+void rtype::ecs::world::World::removeEntity(size_t id)
+{
+    if (id > this->_entitiesVector.size())
+        return;
+    this->_entitiesVector.erase(_entitiesVector.begin() + id);
 }
 
 void rtype::ecs::world::World::addSystem(system::ISystem *system)

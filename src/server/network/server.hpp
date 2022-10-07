@@ -17,10 +17,10 @@
 
 using boost::asio::ip::udp;
 
-class udp_server
+class Server
 {
   public:
-    udp_server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
+    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
       start_receive();
   }
 

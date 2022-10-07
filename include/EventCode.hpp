@@ -12,7 +12,7 @@
 #ifndef RTYPE_EVENT_HPP_
 #define RTYPE_EVENT_HPP_
 
-// #include "Vec2.hpp"
+#include "../src/sfml/Sfml.hpp"
 
 namespace rtype
 {
@@ -129,6 +129,10 @@ namespace rtype
             /// Is controller connected?
             bool connected;
         };
+        // Mouse position on click
+        sf::Vector2f position;
+        // Mouse position global
+        sf::Vector2f global_position;
 
         // Member data
         union {

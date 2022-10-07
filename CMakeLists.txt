@@ -78,19 +78,17 @@ set(SRC_CLIENT
     ${SRC_SCREENS}
 )
 
-
-
 add_executable(r-type_client ${SRC_CLIENT})
 
 target_link_libraries(r-type_client
-			CONAN_PKG::boost
-			CONAN_PKG::sfml
-			)
+    CONAN_PKG::boost
+    CONAN_PKG::sfml
+)
 
 target_include_directories(r-type_client PUBLIC
-			${CONAN_INCLUDE_DIRS_BOOST}
-			${CONAN_INCLUDE_DIRS_SFML}
-			)
+    ${CONAN_INCLUDE_DIRS_BOOST}
+    ${CONAN_INCLUDE_DIRS_SFML}
+)
 
 set(SRC_SERVER
     ${SRCSERVER}main.cpp
@@ -103,13 +101,13 @@ set(SRC_SERVER
 add_executable(r-type_server ${SRC_SERVER})
 
 target_link_libraries(r-type_server
-			CONAN_PKG::boost
-			CONAN_PKG::sfml
-			)
+    CONAN_PKG::boost
+    CONAN_PKG::sfml
+)
 
 target_include_directories(r-type_server PUBLIC
-			${CONAN_INCLUDE_DIRS_BOOST}
-			)
+    ${CONAN_INCLUDE_DIRS_BOOST}
+)
 
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
