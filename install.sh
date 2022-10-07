@@ -18,7 +18,7 @@ if [ "$os_name" = "Linux" ]; then
     echo rpi
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
-elif [ "$(os_name)" = "Darwin" ]; then
+elif [ "$os_name" = "Darwin" ]; then
   echo macos
 else
   echo windows
