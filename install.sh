@@ -56,7 +56,11 @@ if [ "$os_name" = "Linux" ]; then
     echo ubuntu
   elif [ "$arch" = "arm64" ]; then
     echo rpi
-    sudo apt install -y pkg-config
+    sudo apt install -y \
+    pkg-config \
+    libxkbfile-dev \
+    xkb-data \
+    uuid-dev
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
 elif [ "$os_name" = "Darwin" ]; then
