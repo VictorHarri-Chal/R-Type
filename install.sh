@@ -4,7 +4,9 @@
 mkdir -p build
 cd build
 
-if [ "$(uname)" = "Linux" ]; then
+os_name=$(uname)
+
+if [ "$(os_name)" = "Linux" ]; then
   arch=$(dpkg --print-architecture)
   sudo apt update
   sudo apt uprade -y
@@ -16,6 +18,8 @@ if [ "$(uname)" = "Linux" ]; then
     echo rpi
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
+elif [ "$(os_name)" = "Linux" ]; then
+  echo macos
 else
   echo windows
   pip3 install conan
