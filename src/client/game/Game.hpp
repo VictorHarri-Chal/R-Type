@@ -8,7 +8,10 @@
 #pragma once
 
 #include "../events/Events.hpp"
+#include "../screens/intro/IntroScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
+#include "../screens/options/OptionsScreen.hpp"
+#include "../screens/multiplayer/MultiplayerScreen.hpp"
 
 namespace rtype
 {
@@ -16,7 +19,7 @@ namespace rtype
     class Game {
       public:
         /// @brief enum containing all navigable screens
-        enum class Screens { Intro = 1, Menu, Options, Multiplayer, Game, Count };
+        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Game, Count };
         /// @brief enum containing all type of sounds
         enum Sounds {};
         /// @brief enum containing all musics
@@ -35,12 +38,10 @@ namespace rtype
         /// @brief Process events
         /// @return true Event has been executed
         /// @return false Event hasn't been executed
-        bool processEvents(void);
+        bool processEvents(rtype::Game *gameEngine);
         /// @brief Handle the events
         /// @return int The scene number
-        int handleEvent();
-        /// @brief Init all scenes
-        void initScenes();
+        int handleEvent(rtype::Game *gameEngine);
         /**
          * @brief Init all sounds
          *
@@ -70,15 +71,11 @@ namespace rtype
         /// @brief Swap between screens
         /// @param ret Scene number
         void handleScreensSwap(int ret);
-        /// @brief Reinitialize the game class elements
-        void reinitGame();
+        /// @brief Destroy last active scene
+        void destroyLastScene();
         /// @brief Set the actual screen
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
-        /// @brief Tool for responsive
-        /// @param percent The percent of the screen
-        /// @param isWidth If true, the percent is for the width, else for the height
-        float getPercentage(float percent, bool isWidth);
         
         // /**
         //  * @brief Set the Sound Event
@@ -105,18 +102,19 @@ namespace rtype
         Screens _actualScreen;
         /// @brief Game fps
         size_t _fps;
-        /// @brief Players
-        // std::vector<player::Player> _players;
+        /// @brief Intro screen
+        rtype::menu::IntroScreen *_intro;        
         /// @brief Menu screen
         rtype::menu::MenuScreen *_menu;
-        /// @brief Game screen
-        // rtype::menu::GameScreen *_game;
+        /// @brief Options screen
+        rtype::menu::OptionsScreen *_options;
+        /// @brief Multiplayer screen
+        rtype::menu::MultiplayerScreen *_multiplayer;
         /// @brief Last sfml event caught
         sf::Event _sfmlEvent;
         /// @brief Event class
         rtype::Event _event;
-        // std::vector<std::unique_ptr<rtype::ecs::entity::Entity>> _sound_entities;
-        // std::vector<std::unique_ptr<rtype::ecs::system::ISystem>> _sound_systems;
-        // std::map<int, rtype::raylib::Sound> _musics;
+        /// @brief Last active scene
+        Screens _lastScene;
     };
 }

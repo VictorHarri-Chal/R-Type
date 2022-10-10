@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** client
+** Client
 */
 
 #ifndef CLIENT_HPP_
@@ -15,10 +15,10 @@
 
 using boost::asio::ip::udp;
 
-class UDPClient
+class Client
 {
   public:
-    UDPClient(
+    Client(
       boost::asio::io_service& io_service,
       const std::string& host,
       const std::string& port
@@ -30,19 +30,20 @@ class UDPClient
       start_receive();
     }
 
-    ~UDPClient();
+    ~Client();
 
     void send(const std::string& msg);
 
-private:
-    boost::asio::io_service& _io_service;
-    udp::socket _socket;
-    udp::endpoint _endpoint;
-    boost::array<char, 64> _recv_buffer;
+    private:
 
-    void start_receive();
-    void handle_receive(const boost::system::error_code& error,
-        std::size_t /*bytes_transferred*/);
+      boost::asio::io_service& _io_service;
+      udp::socket _socket;
+      udp::endpoint _endpoint;
+      boost::array<char, 64> _recv_buffer;
+
+      void start_receive();
+      void handle_receive(const boost::system::error_code& error,
+          std::size_t /*bytes_transferred*/);
 };
 
 #endif /* !CLIENT_HPP_ */
