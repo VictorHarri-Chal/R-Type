@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** R-Type
+** File description:
+** main
+*/
+
 /*include iostream for console I/O*/
 #include <iostream>
 

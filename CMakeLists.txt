@@ -107,6 +107,8 @@ set(SRC_SERVER
     ${SRCSERVER}main.cpp
     ${SRCSERVER}network/server.cpp
     ${SRCSERVER}network/server.hpp
+    ${SRCSERVER}network/SafeQueue.cpp
+    ${SRCSERVER}network/SafeQueue.hpp
     ${SRC_ECS}
 )
 
