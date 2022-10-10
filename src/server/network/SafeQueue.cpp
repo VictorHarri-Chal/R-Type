@@ -42,7 +42,7 @@ SafeQueue<T>::~SafeQueue() noexcept(false) {
 }
 
 template<typename T>
-unsigned long SafeQueue<T>::size() const
+unsigned long SafeQueue<T>::getSize() const
 {
     std::lock_guard<std::mutex> lock(_mutex);
     return _queue.size();
@@ -52,7 +52,7 @@ template<typename T>
 std::optional<T> SafeQueue<T>::pop() {
     std::lock_guard<std::mutex> lock(_mutex);
     if (_queue.empty()) {
-        return {};
+        return;
     }
     T tmp = _queue.front();
     _queue.pop();
