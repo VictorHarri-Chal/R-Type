@@ -13,8 +13,8 @@ mkdir -p build
 cd build
 
 if [ "$os_name" = "Linux" ]; then
-  arch=$(dpkg --print-architecture)
   if command_found apt; then
+    arch=$(dpkg --print-architecture)
     sudo apt update
     sudo apt upgrade -y
     sudo apt install python3-pip -y
@@ -67,6 +67,10 @@ if [ "$os_name" = "Linux" ]; then
     fi
   elif command_found dnf; then
     echo dnf
+    sudo dnf update -y
+    sudo dnf install -y cmake
+    sudo dnf install -y python3-pip
+    sudo pip3 install conan
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
 elif [ "$os_name" = "Darwin" ]; then
