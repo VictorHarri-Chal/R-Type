@@ -52,7 +52,7 @@ template<typename T>
 std::optional<T> SafeQueue<T>::pop() {
     std::lock_guard<std::mutex> lock(_mutex);
     if (_queue.empty()) {
-        return;
+        return {};
     }
     T tmp = _queue.front();
     _queue.pop();
