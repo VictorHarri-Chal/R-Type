@@ -60,18 +60,10 @@ bool rtype::Game::processEvents()
     return true;
 }
 
-void rtype::Game::update()
+void rtype::Game::update(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
-        case Screens::Menu: _menu->update(); break;
-        default: break;
-    }
-}
-
-void rtype::Game::draw(rtype::Game *gameEngine)
-{
-    switch (_actualScreen) {
-        case Screens::Menu: _menu->draw(gameEngine); break;
+        case Screens::Menu: _menu->update(gameEngine); break;
         default: break;
     }
 }
@@ -92,8 +84,7 @@ void rtype::Game::run()
         if(!processEvents())
             break;
         _window.clear(sf::Color::Black);
-        update();
-        draw(this);
+        update(this);
         _window.display();
     }
 }

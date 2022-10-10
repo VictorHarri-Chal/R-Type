@@ -77,3 +77,23 @@ std::vector<rtype::ecs::system::ISystem*> rtype::ecs::world::World::getSystems()
 {
     return (this->_systemsVector);
 }
+
+void rtype::ecs::world::World::draw(rtype::Game *gameEngine)
+{
+    for (auto &system : this->_systemsVector) {
+        if (system->getSystemType() == rtype::ecs::system::SystemType::DRAWABLE2DSYSTEM) {
+            system->update(this->_entitiesVector, gameEngine);
+            break;
+        }
+    }
+}
+
+void rtype::ecs::world::World::update(rtype::Game *gameEngine)
+{
+    for (auto &system : this->_systemsVector) {
+        if (system->getSystemType() != rtype::ecs::system::SystemType::DRAWABLE2DSYSTEM) {
+            system->update(this->_entitiesVector, gameEngine);
+            break;
+        }
+    }
+}

@@ -29,15 +29,10 @@ namespace rtype
          */
         virtual void init() = 0;
         /**
-         * @brief Draw the screen
-         * 
-         */
-        virtual void draw(rtype::Game *gameEngine) = 0;
-        /**
          * @brief Update the screen
          * 
          */
-        virtual void update() = 0;
+        virtual void update(rtype::Game *gameEngine) = 0;
         /**
          * @brief Handle events
          * 

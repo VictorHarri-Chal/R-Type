@@ -32,21 +32,15 @@ void rtype::menu::MenuScreen::init()
     this->_world.addEntity(poke);
 }
 
-void rtype::menu::MenuScreen::draw(rtype::Game *gameEngine)
-{
-    for (auto &system : this->_world.getSystems())
-        system->update(this->_world.getEntities(), gameEngine);
-}
-
 int rtype::menu::MenuScreen::handleEvent(rtype::Event &event)
 {
     
     return 0;
 }
 
-void rtype::menu::MenuScreen::update()
+void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
 {
-    
+    this->_world.draw(gameEngine);
 }
 
 int rtype::menu::MenuScreen::checkCursorPosition(bool direction)

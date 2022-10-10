@@ -30,10 +30,8 @@ namespace rtype
         void init(void);
         /// @brief Run the game class
         void run(void);
-        /// @brief Draw game elements
-        void draw(Game *gameEngine);
         /// @brief Update game elements
-        void update(void);
+        void update(rtype::Game *gameEngine);
         /// @brief Process events
         /// @return true Event has been executed
         /// @return false Event hasn't been executed
