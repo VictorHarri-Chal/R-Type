@@ -68,7 +68,7 @@ void rtype::menu::MenuScreen::init()
     this->_world.addEntity(quit);
 }
 
-int rtype::menu::MenuScreen::handleEvent(rtype::Event &event)
+int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (isButtonPressed(2, gameEngine, event)) {
         return 5;
