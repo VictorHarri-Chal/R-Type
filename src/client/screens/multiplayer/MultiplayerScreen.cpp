@@ -57,12 +57,6 @@ void rtype::menu::MultiplayerScreen::init()
     }
 }
 
-void rtype::menu::MultiplayerScreen::draw(rtype::Game *gameEngine)
-{
-    for (auto &system : this->_world.getSystems())
-        system->update(this->_world.getEntities(), gameEngine);
-}
-
 int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     for (size_t i = 0; i < _slots.size(); i++)
@@ -75,7 +69,7 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
     return 0;
 }
 
-void rtype::menu::MultiplayerScreen::update()
+void rtype::menu::MultiplayerScreen::update(rtype::Game *gameEngine)
 {   
     if (_buttons.at(0) == true) {
         ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(2)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
@@ -93,7 +87,7 @@ void rtype::menu::MultiplayerScreen::update()
         ecs::component::Drawable2D *createButtonCompo = _world.getEntity(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         createButtonCompo->setOutlineColor(sf::Color::Blue);
     }
-    
+    this->_world.draw(gameEngine);
 }
 
 bool rtype::menu::MultiplayerScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)

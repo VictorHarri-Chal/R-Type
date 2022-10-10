@@ -48,12 +48,6 @@ void rtype::menu::IntroScreen::init()
 
 }
 
-void rtype::menu::IntroScreen::draw(rtype::Game *gameEngine)
-{
-    for (auto &system : this->_world.getSystems())
-        system->update(this->_world.getEntities(), gameEngine);
-}
-
 int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (_onWritingFrame) {
@@ -78,7 +72,7 @@ int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *game
     return 0;
 }
 
-void rtype::menu::IntroScreen::update()
+void rtype::menu::IntroScreen::update(rtype::Game *gameEngine)
 {   
     if (_buttons.at(0) == true) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(1)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
@@ -97,6 +91,7 @@ void rtype::menu::IntroScreen::update()
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Green);
     }
+    this->_world.draw(gameEngine);
 }
 
 bool rtype::menu::IntroScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)

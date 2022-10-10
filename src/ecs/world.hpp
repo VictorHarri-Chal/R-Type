@@ -79,7 +79,16 @@ namespace rtype
                  * @return std::vector<rtype::ecs::system::ISystem*> with all System contain in this world
                  */
                 std::vector<rtype::ecs::system::ISystem*> getSystems() const;
-
+                /**
+                 * @brief Draw the screen
+                 * 
+                 */
+                void draw(rtype::Game *gameEngine);
+                /**
+                 * @brief Update the screen
+                 * 
+                 */
+                void update(rtype::Game *gameEngine);
               private:
                 /**
                  * @brief Vector of entities

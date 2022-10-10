@@ -53,45 +53,45 @@ namespace boost{
 int main() {
 
     /*filename to work with*/
-    std::string filename = "binary.txt";
+    // std::string filename = "binary.txt";
 
-    /*create an ofstream object for writing to file*/
-    std::ofstream out(filename);
+    // /*create an ofstream object for writing to file*/
+    // std::ofstream out(filename);
 
-    /*create a binary_oarchive object to archive an array to a binary file*/
-    boost::archive::binary_oarchive binary_output_archive(out, boost::archive::no_header);
+    // /*create a binary_oarchive object to archive an array to a binary file*/
+    // boost::archive::binary_oarchive binary_output_archive(out, boost::archive::no_header);
 
-    /*create an object of class*/
-    message object1(message::DELETE, "hello world");
+    // /*create an object of class*/
+    // message object1(message::DELETE, "hello world");
 
-    /*archive a class object using & */
-    binary_output_archive & BOOST_SERIALIZATION_NVP(object1);
+    // /*archive a class object using & */
+    // binary_output_archive & BOOST_SERIALIZATION_NVP(object1);
 
-    /*display the content of archived object to console*/
-    std::cout << "Archived to " << filename << std::endl;
-    object1.print();
+    // /*display the content of archived object to console*/
+    // std::cout << "Archived to " << filename << std::endl;
+    // object1.print();
 
-    /*disconnect the file*/
-    out.close();
+    // /*disconnect the file*/
+    // out.close();
 
-    /*create an ifstream object for reading from file*/
-    std::ifstream in(filename);
+    // /*create an ifstream object for reading from file*/
+    // std::ifstream in(filename);
 
-    /*create a binary_iarchive object to restore the archieved content*/
-    boost::archive::binary_iarchive binary_input_archive(in, boost::archive::no_header);
+    // /*create a binary_iarchive object to restore the archieved content*/
+    // boost::archive::binary_iarchive binary_input_archive(in, boost::archive::no_header);
 
-    /*create an object to store the restored data*/
-    message object2;
+    // /*create an object to store the restored data*/
+    // message object2;
 
-    /*restore the archived content using &*/
-    binary_input_archive & BOOST_SERIALIZATION_NVP(object2);
+    // /*restore the archived content using &*/
+    // binary_input_archive & BOOST_SERIALIZATION_NVP(object2);
 
-    /*disconnect the file*/
-    in.close();
+    // /*disconnect the file*/
+    // in.close();
 
-    /*display the restored content to console*/
-    std::cout << "Restored archived content from " << filename << " : " << std::endl;
-    object2.print();
+    // /*display the restored content to console*/
+    // std::cout << "Restored archived content from " << filename << " : " << std::endl;
+    // object2.print();
 
     /*return 0 to caller*/
     return 0;

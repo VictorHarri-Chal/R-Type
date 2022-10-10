@@ -54,24 +54,13 @@ bool rtype::Game::processEvents(rtype::Game *gameEngine)
     return true;
 }
 
-void rtype::Game::update()
+void rtype::Game::update(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
-        case Screens::Intro: _intro->update(); break;
-        case Screens::Menu: _menu->update(); break;
-        case Screens::Options: _options->update(); break;
-        case Screens::Multiplayer: _multiplayer->update(); break;
-        default: break;
-    }
-}
-
-void rtype::Game::draw(rtype::Game *gameEngine)
-{
-    switch (_actualScreen) {
-        case Screens::Intro: _intro->draw(gameEngine); break;
-        case Screens::Menu: _menu->draw(gameEngine); break;
-        case Screens::Options: _options->draw(gameEngine); break;
-        case Screens::Multiplayer: _multiplayer->draw(gameEngine); break;
+        case Screens::Intro: _intro->update(gameEngine); break;
+        case Screens::Menu: _menu->update(gameEngine); break;
+        case Screens::Options: _options->update(gameEngine); break;
+        case Screens::Multiplayer: _multiplayer->update(gameEngine); break;
         default: break;
     }
 }
@@ -95,8 +84,7 @@ void rtype::Game::run()
         if(!processEvents(this))
             break;
         _window.clear(sf::Color::Black);
-        update();
-        draw(this);
+        update(this);
         _window.display();
     }
 }

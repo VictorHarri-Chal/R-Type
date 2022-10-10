@@ -68,12 +68,6 @@ void rtype::menu::MenuScreen::init()
     this->_world.addEntity(quit);
 }
 
-void rtype::menu::MenuScreen::draw(rtype::Game *gameEngine)
-{
-    for (auto &system : this->_world.getSystems())
-        system->update(this->_world.getEntities(), gameEngine);
-}
-
 int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (isButtonPressed(2, gameEngine, event)) {
@@ -93,7 +87,7 @@ int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
     return 0;
 }
 
-void rtype::menu::MenuScreen::update()
+void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
 {
     if (_buttons.at(0) == true) {
         ecs::component::Drawable2D *soloButtonCompo = _world.getEntity(0)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
@@ -135,6 +129,7 @@ void rtype::menu::MenuScreen::update()
         ecs::component::Drawable2D *quitButtonCompo = _world.getEntity(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         quitButtonCompo->setOutlineColor(sf::Color::Transparent);
     }
+    this->_world.draw(gameEngine);
 }
 
 bool rtype::menu::MenuScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)
