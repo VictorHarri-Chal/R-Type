@@ -57,10 +57,10 @@ bool rtype::Game::processEvents(rtype::Game *gameEngine)
 void rtype::Game::update(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
-        case Screens::Intro: _intro->update(); break;
-        case Screens::Menu: _menu->update(); break;
-        case Screens::Options: _options->update(); break;
-        case Screens::Multiplayer: _multiplayer->update(); break;
+        case Screens::Intro: _intro->update(gameEngine); break;
+        case Screens::Menu: _menu->update(gameEngine); break;
+        case Screens::Options: _options->update(gameEngine); break;
+        case Screens::Multiplayer: _multiplayer->update(gameEngine); break;
         default: break;
     }
 }

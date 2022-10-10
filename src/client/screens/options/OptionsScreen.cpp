@@ -30,12 +30,6 @@ void rtype::menu::OptionsScreen::init()
     this->_world.addEntity(poke);
 }
 
-void rtype::menu::OptionsScreen::draw(rtype::Game *gameEngine)
-{
-    for (auto &system : this->_world.getSystems())
-        system->update(this->_world.getEntities(), gameEngine);
-}
-
 int rtype::menu::OptionsScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (isButtonPressed(0, gameEngine, event)) {
@@ -44,9 +38,9 @@ int rtype::menu::OptionsScreen::handleEvent(rtype::Event &event, rtype::Game *ga
     return 0;
 }
 
-void rtype::menu::OptionsScreen::update()
+void rtype::menu::OptionsScreen::update(rtype::Game *gameEngine)
 {
-    
+    this->_world.draw(gameEngine);
 }
 
 bool rtype::menu::OptionsScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)

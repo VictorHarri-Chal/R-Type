@@ -129,6 +129,7 @@ void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
         ecs::component::Drawable2D *quitButtonCompo = _world.getEntity(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         quitButtonCompo->setOutlineColor(sf::Color::Transparent);
     }
+    this->_world.draw(gameEngine);
 }
 
 bool rtype::menu::MenuScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)
