@@ -12,7 +12,3 @@ sfml:network=True
 
 [generators]
 cmake
-
-[settings]
-compiler.libcxx=libstdc++11
-compiler=gcc
