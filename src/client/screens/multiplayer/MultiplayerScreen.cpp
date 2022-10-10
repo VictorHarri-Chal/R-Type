@@ -8,7 +8,7 @@
 #include "MultiplayerScreen.hpp"
 #include "../../../ecs/System/Draw2D/Draw2D.hpp"
 
-rtype::menu::MultiplayerScreen::MultiplayerScreen(): _room_id(0)
+rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0)
 {
     _slots.push_back(true);
     _slots.push_back(true);
@@ -101,7 +101,7 @@ bool rtype::menu::MultiplayerScreen::isButtonPressed(size_t index, rtype::Game *
     ecs::component::Drawable2D *rectangleCompo = _world.getEntity(index)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
     ecs::component::Transform *transformCompo = _world.getEntity(index)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
     if (event.position.x >= (transformCompo->getX() + gameEngine->_window.getPosition().x) && event.position.x <= (transformCompo->getX() + gameEngine->_window.getPosition().x) + rectangleCompo->getWidth() &&
-    event.position.y >= (transformCompo->getY() + gameEngine->_window.getPosition().y + 30) && event.position.y <= (transformCompo->getY() + gameEngine->_window.getPosition().y + 30) + rectangleCompo->getHeight()) {
+    event.position.y >= (transformCompo->getY() + gameEngine->_window.getPosition().y) && event.position.y <= (transformCompo->getY() + gameEngine->_window.getPosition().y) + rectangleCompo->getHeight()) {
         event.position.x = 0;
         event.position.y = 0;
         return true;
@@ -114,7 +114,7 @@ bool rtype::menu::MultiplayerScreen::isMouseOnButton(size_t index, rtype::Game *
     ecs::component::Drawable2D *rectangleCompo = _world.getEntity(index)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
     ecs::component::Transform *transformCompo = _world.getEntity(index)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
     if (event.global_position.x >= (transformCompo->getX() + gameEngine->_window.getPosition().x) && event.global_position.x <= (transformCompo->getX() + gameEngine->_window.getPosition().x) + rectangleCompo->getWidth() &&
-    event.global_position.y >= (transformCompo->getY() + gameEngine->_window.getPosition().y + 30) && event.global_position.y <= (transformCompo->getY() + gameEngine->_window.getPosition().y + 30) + rectangleCompo->getHeight()) {
+    event.global_position.y >= (transformCompo->getY() + gameEngine->_window.getPosition().y) && event.global_position.y <= (transformCompo->getY() + gameEngine->_window.getPosition().y) + rectangleCompo->getHeight()) {
         return true;
     }
     return false;
@@ -123,13 +123,13 @@ bool rtype::menu::MultiplayerScreen::isMouseOnButton(size_t index, rtype::Game *
 bool rtype::menu::MultiplayerScreen::isSurfaceClicked(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine)
 {
     return (event.position.x >= (x + gameEngine->_window.getPosition().x) && event.position.x <= (x + gameEngine->_window.getPosition().x) + width &&
-    event.position.y >= (y + gameEngine->_window.getPosition().y + 30) && event.position.y <= (y + gameEngine->_window.getPosition().y + 30) + height);
+    event.position.y >= (y + gameEngine->_window.getPosition().y) && event.position.y <= (y + gameEngine->_window.getPosition().y) + height);
 }
 
 bool rtype::menu::MultiplayerScreen::isMouseOnSurface(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine)
 {
     return (event.global_position.x >= (x + gameEngine->_window.getPosition().x) && event.global_position.x <= (x + gameEngine->_window.getPosition().x) + width &&
-    event.global_position.y >= (y + gameEngine->_window.getPosition().y + 30) && event.global_position.y <= (y + gameEngine->_window.getPosition().y + 30) + height);
+    event.global_position.y >= (y + gameEngine->_window.getPosition().y) && event.global_position.y <= (y + gameEngine->_window.getPosition().y) + height);
 }
 
 int rtype::menu::MultiplayerScreen::addRoom(float slot)
@@ -161,8 +161,8 @@ int rtype::menu::MultiplayerScreen::addRoom(float slot)
         default:
             break;
     };
-    room.id = _room_id;
-    _room_id++;
+    room.id = _roomId;
+    _roomId++;
     room.name = "Room " + std::to_string(room.id);
     room.currPlayers = 0;
     room.isOpen = true;

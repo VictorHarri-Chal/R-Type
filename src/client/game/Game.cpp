@@ -11,7 +11,7 @@
 rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _window.create(sf::VideoMode{1720, 1080, 16}, "R-Type", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
+    _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
 }
 
 rtype::Game::~Game()
@@ -20,10 +20,10 @@ rtype::Game::~Game()
 
 void rtype::Game::init()
 {
-    _actualScreen = Screens::Menu;
-    _menu = new rtype::menu::MenuScreen;
-    _lastScene = Screens::Menu;
-    _menu->init();
+    _actualScreen = Screens::Intro;
+    _intro = new rtype::menu::IntroScreen;
+    _lastScene = Screens::Intro;
+    _intro->init();
 }
 
 void rtype::Game::initMusic()
@@ -57,6 +57,7 @@ bool rtype::Game::processEvents(rtype::Game *gameEngine)
 void rtype::Game::update()
 {
     switch (_actualScreen) {
+        case Screens::Intro: _intro->update(); break;
         case Screens::Menu: _menu->update(); break;
         case Screens::Options: _options->update(); break;
         case Screens::Multiplayer: _multiplayer->update(); break;
@@ -67,6 +68,7 @@ void rtype::Game::update()
 void rtype::Game::draw(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
+        case Screens::Intro: _intro->draw(gameEngine); break;
         case Screens::Menu: _menu->draw(gameEngine); break;
         case Screens::Options: _options->draw(gameEngine); break;
         case Screens::Multiplayer: _multiplayer->draw(gameEngine); break;
@@ -77,6 +79,7 @@ void rtype::Game::draw(rtype::Game *gameEngine)
 int rtype::Game::handleEvent(rtype::Game *gameEngine)
 {
     switch (_actualScreen) {
+        case Screens::Intro: return (_intro->handleEvent(_event, gameEngine));
         case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
         case Screens::Multiplayer: return (_multiplayer->handleEvent(_event, gameEngine));
@@ -142,6 +145,8 @@ void rtype::Game::setActualScreen(Screens newScreen)
 
 void rtype::Game::destroyLastScene()
 {
+    if (_lastScene == Screens::Intro)
+        delete _intro;
     if (_lastScene == Screens::Menu)
         delete _menu;
     if (_lastScene == Screens::Options)
