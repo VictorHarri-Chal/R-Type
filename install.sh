@@ -13,7 +13,7 @@ mkdir -p build
 cd build
 
 if [ "$os_name" = "Linux" ]; then
-  if command_found apt; then
+  if grep ^NAME= /etc/os-release | grep -iq Ubuntu; then
     arch=$(dpkg --print-architecture)
     sudo apt update
     sudo apt upgrade -y
@@ -65,7 +65,7 @@ if [ "$os_name" = "Linux" ]; then
         xkb-data \
         uuid-dev
     fi
-  elif command_found dnf; then
+  elif grep ^NAME= /etc/os-release | grep -iq Fedora; then
     echo dnf
     sudo dnf update -y
     sudo dnf install -y cmake
