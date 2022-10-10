@@ -91,6 +91,8 @@ set(SRC_SERVER
     ${SRCSERVER}main.cpp
     ${SRCSERVER}network/server.cpp
     ${SRCSERVER}network/server.hpp
+    ${SRCSERVER}network/SafeQueue.cpp
+    ${SRCSERVER}network/SafeQueue.hpp
     ${SRC_ECS}
 
 )
@@ -156,7 +158,8 @@ if(NOT TARGET Boost::filesystem)
 endif()
 
 target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
-target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
+# target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
+target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
 
 set_target_properties(r-type_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set_target_properties(r-type_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
