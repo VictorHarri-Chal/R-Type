@@ -12,10 +12,10 @@ using boost::asio::ip::udp;
 // message decryptMessage(boost::array<char, 64> _recv_buffer)
 message decryptMessage(std::string _recv_buffer)
 {
-    std::ofstream out("filename");
+    boost::asio::streambuf b;
 
     /*create a binary_oarchive object to archive an array to a binary file*/
-    boost::archive::binary_oarchive binary_output_archive(out, boost::archive::no_header);
+    boost::archive::binary_oarchive binary_output_archive(b, boost::archive::no_header);
 
     /*create an object of class*/
     message object1(message::DELETE, "hello world");
@@ -28,7 +28,6 @@ message decryptMessage(std::string _recv_buffer)
     object1.print();
 
     /*disconnect the file*/
-    out.close();
     // std::ifstream in("filename");
     // std::string tmp;
 
@@ -41,12 +40,10 @@ message decryptMessage(std::string _recv_buffer)
     // // out2 << _recv_buffer;
     // out2.close();
     // std::cout << "reecriture" << std::endl;
-    std::ifstream in2("filename");
     /*create a binary_iarchive object to restore the archieved content*/
-    boost::archive::binary_iarchive binary_input_archive(in2, boost::archive::no_header);
+    boost::archive::binary_iarchive binary_input_archive(b, boost::archive::no_header);
     message recv(message::request::CREATE, "Room 1");
     binary_input_archive & BOOST_SERIALIZATION_NVP(recv);
-    in2.close();
     std::cout << "reLecture" << std::endl;
     recv.print();
     std::cout << "Apres print" << std::endl;
