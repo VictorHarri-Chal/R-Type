@@ -109,6 +109,8 @@ set(SRC_SERVER
     ${SRCSERVER}network/server.hpp
     ${SRCSERVER}network/SafeQueue.cpp
     ${SRCSERVER}network/SafeQueue.hpp
+    ${SRCSERVER}network/message.hpp
+
     ${SRC_ECS}
 )
 
