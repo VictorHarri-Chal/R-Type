@@ -73,40 +73,24 @@ if [ "$os_name" = "Linux" ]; then
     sudo pip3 install conan
     sudo dnf install -y \
     libudev-devel \
-    libgl-devel \
-    libx11-xcb-devel \
     libfontenc-devel \
-    libxaw7-devel \
-    libxcomposite-devel \
-    libxcursor-devel \
-    libxdamage-devel \
-    libxfixes-devel \
-    libxi-devel \
-    libxinerama-devel \
-    libxmu-devel \
-    libxmuu-devel \
-    libxpm-devel \
-    libxrandr-devel \
-    libxres-devel \
-    libxss-devel \
-    libxtst-devel \
-    libxv-devel \
-    libxvmc-devel \
-    libxxf86vm-devel \
-    libxcb-render-util0-devel \
-    libxcb-xkb-devel \
-    libxcb-icccm4-devel \
-    libxcb-image0-devel \
-    libxcb-keysyms1-devel \
-    libxcb-randr0-devel \
-    libxcb-shape0-devel \
-    libxcb-sync-devel \
-    libxcb-xfixes0-devel \
-    libxcb-xinerama0-devel \
-    libxcb-dri3-devel \
-    libxcb-util-devel \
-    libxcb-util0-devel \
-    systemd-devel
+    libXaw-devel \
+    libXcomposite-devel \
+    libXdmcp-devel \
+    libXtst-devel \
+    libxkbfile-devel \
+    libXres-devel \
+    libXScrnSaver-devel \
+    libXvMC-devel \
+    xorg-x11-xtrans-devel \
+    xcb-util-wm-devel \
+    xcb-util-keysyms-devel \
+    xcb-util-renderutil-devel \
+    libXdamage-devel \
+    xcb-util-devel \
+    xkeyboard-config-devel \
+    systemd-devel \
+    libuuid-devel
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
 elif [ "$os_name" = "Darwin" ]; then
