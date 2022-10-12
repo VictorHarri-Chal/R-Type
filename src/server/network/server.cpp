@@ -16,7 +16,7 @@ static message decryptMessage(boost::array<char, 64> _recv_buffer)
     std::ostream os(&b);
     os << _recv_buffer.data();
   
-    boost::archive::binary_iarchive binary_input_archive(_recv_buffer.);
+    boost::archive::binary_iarchive binary_input_archive(b);
     message recv;
     binary_input_archive & BOOST_SERIALIZATION_NVP(recv);
     std::cout << "reLecture" << std::endl;
@@ -44,7 +44,7 @@ void Server::handle_receive(const boost::system::error_code& error,
     {
       // message message = decryptMessage(_recv_buffer);
 
-      decryptMessage(_recv_buffer);
+      // decryptMessage(_recv_buffer);
 
         std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
         _queue.pop();
