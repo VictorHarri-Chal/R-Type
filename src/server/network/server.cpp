@@ -68,18 +68,23 @@ void Server::handle_receive(const boost::system::error_code& error,
   {
     if (!error || error == boost::asio::error::message_size)
     {
-      decryptMessage(_recv_buffer);
-      // queue.push(); 
+        message message = decryptMessage(_recv_buffer);
+        std::cout << "Queue size b4 the push:" << _queue.getSize() << std::endl;
+        _queue.push(message);
 
-      // boost::shared_ptr<std::string> message(
-      //     new std::string("hello world"));
+        std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
+        _queue.pop();
+        std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
 
-      // _socket.async_send_to(boost::asio::buffer(*message), _remote_endpoint,
-      //     boost::bind(&Server::handle_send, this, message,
-      //       boost::asio::placeholders::error,
-      //       boost::asio::placeholders::bytes_transferred));
-      // _recv_buffer.assign(0);
-      start_receive();
+        // boost::shared_ptr<std::string> message(
+        //     new std::string("hello world"));
+
+        // _socket.async_send_to(boost::asio::buffer(*message), _remote_endpoint,
+        //     boost::bind(&Server::handle_send, this, message,
+        //       boost::asio::placeholders::error,
+        //       boost::asio::placeholders::bytes_transferred));
+        // _recv_buffer.assign(0);
+        start_receive();
     }
 }
 
