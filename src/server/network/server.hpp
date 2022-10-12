@@ -46,7 +46,7 @@ class Server
     udp::endpoint _remote_endpoint;
     std::string _recv_buffer;
     int _port;
-    // SafeQueue<message> queue;
+    SafeQueue<message> _queue;
 };
 
 
