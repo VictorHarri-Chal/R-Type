@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(r-type_client)
 project(r-type_server)
+project(r-type_client)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -131,7 +131,7 @@ target_link_libraries(r-type_server
 #list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 #set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
-#target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
+#target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
 #target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread -lboost_serialization)
 
 set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")

@@ -8,10 +8,15 @@
 #ifndef CLIENT_HPP_
 #define CLIENT_HPP_
 
-#include <iostream>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
+#include "message.hpp"
+// /*include binary_oarchive.hpp for binary_oacrhive*/
+#include <boost/archive/binary_oarchive.hpp>
+
+// /*include binary_iarchive.hpp for binary_iacrhive*/
+#include <boost/archive/binary_iarchive.hpp>
 
 using boost::asio::ip::udp;
 
@@ -44,6 +49,8 @@ class Client
       void start_receive();
       void handle_receive(const boost::system::error_code& error,
           std::size_t /*bytes_transferred*/);
+      void handle_send(const boost::system::error_code& error,
+        std::size_t /*bytes_transferred*/);
 };
 
 #endif /* !CLIENT_HPP_ */
