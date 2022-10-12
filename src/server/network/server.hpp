@@ -22,7 +22,7 @@
 #include <boost/archive/binary_iarchive.hpp>
 
 #include "SafeQueue.hpp"
-#include "message.hpp"
+#include "HandleCommand.hpp"
 
 using boost::asio::ip::udp;
 

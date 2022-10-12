@@ -42,10 +42,11 @@ void Server::handle_receive(const boost::system::error_code& error,
   {
     if (!error || error == boost::asio::error::message_size)
     {
-      // message message = decryptMessage(_recv_buffer);
-
+      message message(message::JOIN, "hello world");
+      HandleCommand commandHandler;
       // decryptMessage(_recv_buffer);
 
+        commandHandler.findCmd(message);
         std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
         _queue.pop();
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
