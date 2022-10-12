@@ -16,11 +16,25 @@ namespace rtype
     {
         namespace component
         {
+            /**
+             * @brief Destroyable component
+             */
             class Destroyable : public IComponent {
               public:
+                /**
+                 * @brief Construct a new Destroyable object
+                 *
+                 */
                 Destroyable();
+                /**
+                 * @brief Destroy the Destroyable object
+                 *
+                 */
                 ~Destroyable();
-
+                /**
+                 * @brief Get the Destroyable object
+                 *
+                 */
                 rtype::ecs::component::compoType getType() const;
 
               protected:
