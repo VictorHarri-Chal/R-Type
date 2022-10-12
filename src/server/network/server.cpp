@@ -9,44 +9,18 @@
 #include <istream>
 using boost::asio::ip::udp;
 
-// message decryptMessage(boost::array<char, 64> _recv_buffer)
-message decryptMessage(std::string _recv_buffer)
+static message decryptMessage(boost::array<char, 64> _recv_buffer)
 {
+    std::cout << _recv_buffer.data() << std::endl;
     boost::asio::streambuf b;
-
-    /*create a binary_oarchive object to archive an array to a binary file*/
-    boost::archive::binary_oarchive binary_output_archive(b, boost::archive::no_header);
-
-    /*create an object of class*/
-    message object1(message::DELETE, "hello world");
-
-    /*archive a class object using & */
-    binary_output_archive & BOOST_SERIALIZATION_NVP(object1);
-
-    /*display the content of archived object to console*/
-    std::cout << "Ecriture" << std::endl;
-    object1.print();
-
-    /*disconnect the file*/
-    // std::ifstream in("filename");
-    // std::string tmp;
-
-    // in >> _recv_buffer;
-    // in.close();
-
-    // std::cout << "Lecture" << std::endl;
-    // std::ofstream out2("filename");
-
-    // // out2 << _recv_buffer;
-    // out2.close();
-    // std::cout << "reecriture" << std::endl;
-    /*create a binary_iarchive object to restore the archieved content*/
-    boost::archive::binary_iarchive binary_input_archive(b, boost::archive::no_header);
-    message recv(message::request::CREATE, "Room 1");
+    std::ostream os(&b);
+    os << _recv_buffer.data();
+  
+    boost::archive::binary_iarchive binary_input_archive(_recv_buffer.);
+    message recv;
     binary_input_archive & BOOST_SERIALIZATION_NVP(recv);
     std::cout << "reLecture" << std::endl;
     recv.print();
-    std::cout << "Apres print" << std::endl;
 
     return (recv);
 }
@@ -68,9 +42,9 @@ void Server::handle_receive(const boost::system::error_code& error,
   {
     if (!error || error == boost::asio::error::message_size)
     {
-        message message = decryptMessage(_recv_buffer);
-        std::cout << "Queue size b4 the push:" << _queue.getSize() << std::endl;
-        _queue.push(message);
+      // message message = decryptMessage(_recv_buffer);
+
+      decryptMessage(_recv_buffer);
 
         std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
         _queue.pop();

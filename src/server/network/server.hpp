@@ -44,7 +44,7 @@ class Server
 
     udp::socket _socket;
     udp::endpoint _remote_endpoint;
-    std::string _recv_buffer;
+    boost::array<char, 64> _recv_buffer;
     int _port;
     SafeQueue<message> _queue;
 };
