@@ -18,13 +18,20 @@ namespace rtype
             /// @brief Sound system
             class Sound : public ISystem {
               public:
+                /**
+                 * @brief Create new sound system.
+                 */
                 Sound();
+                /**
+                 * @brief Destroy sound system.
+                 */
                 ~Sound();
 
                 /**
                  * @brief Update all the entities with the system properties.
                  *
                  * @param entities vector of entites to update
+                 * @param gameEngine the game engine.
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
 
