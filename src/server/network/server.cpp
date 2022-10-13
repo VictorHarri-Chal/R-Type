@@ -9,21 +9,21 @@
 #include <istream>
 using boost::asio::ip::udp;
 
-static message decryptMessage(boost::array<char, 64> _recv_buffer)
-{
-    std::cout << _recv_buffer.data() << std::endl;
-    boost::asio::streambuf b;
-    std::ostream os(&b);
-    os << _recv_buffer.data();
-  
-    boost::archive::binary_iarchive binary_input_archive(b);
-    message recv;
-    binary_input_archive & BOOST_SERIALIZATION_NVP(recv);
-    std::cout << "reLecture" << std::endl;
-    recv.print();
+// static message decryptMessage(boost::array<char, 64> _recv_buffer)
+// {
+//     std::cout << _recv_buffer.data() << std::endl;
+//     boost::asio::streambuf b;
+//     std::ostream os(&b);
+//     os << _recv_buffer.data();
 
-    return (recv);
-}
+//     boost::archive::binary_iarchive binary_input_archive(b);
+//     message recv;
+//     binary_input_archive & BOOST_SERIALIZATION_NVP(recv);
+//     std::cout << "reLecture" << std::endl;
+//     recv.print();
+
+//     return (recv);
+// }
 
 // TODO: Add class constructor here
 

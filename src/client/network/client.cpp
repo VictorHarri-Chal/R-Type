@@ -12,23 +12,23 @@ Client::~Client()
   _socket.close();
 }
 
-static inline boost::asio::const_buffers_1 cryptMessage(message command)
-{
-    boost::asio::streambuf b;
-    std::ostream os(&b);
-  
-    boost::archive::binary_oarchive binary_input_archive(b);
-    binary_input_archive & BOOST_SERIALIZATION_NVP(command);
-    return (b.data());
-}
+// static inline boost::asio::const_buffers_1 cryptMessage(message command)
+// {
+//     boost::asio::streambuf b;
+//     std::ostream os(&b);
+
+//     boost::archive::binary_oarchive binary_input_archive(b);
+//     binary_input_archive & BOOST_SERIALIZATION_NVP(command);
+//     return (b.data());
+// }
 
 void Client::send(const std::string& msg) {
-    message test(message::CREATE, "hello world");
-    boost::asio::const_buffers_1 command = cryptMessage(test);
-    (void)msg;
+  //   message test(message::CREATE, "hello world");
+  //   boost::asio::const_buffers_1 command = cryptMessage(test);
+  //   (void)msg;
 
-  _socket.send_to(boost::asio::buffer(command, command.size()), _endpoint);
-  test.print();
+  // _socket.send_to(boost::asio::buffer(command, command.size()), _endpoint);
+  // test.print();
 }
 
 void Client::start_receive()
