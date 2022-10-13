@@ -20,10 +20,10 @@ namespace rtype
             class Drawable2D : public IComponent {
               public:
                 Drawable2D();
+                Drawable2D(std::string text, float fontSize, sf::Color color, bool bold);
+                Drawable2D(std::string texturePath, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect = sf::IntRect(0, 0, 0, 0));
                 Drawable2D(float width, float height, sf::Color color, bool outline, float thickness = float(0.0f),
                   sf::Color outline_color = sf::Color(sf::Color::Transparent));
-                Drawable2D(std::string text, float fontSize, sf::Color color, bool bold);
-                Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect = sf::IntRect(0, 0, 0, 0));
                 ~Drawable2D();
 
                 void setHeight(float height);
@@ -49,9 +49,16 @@ namespace rtype
                 std::string getTexturePath() const;
                 sf::Sprite getSprite() const;
                 bool getSpe() const;
+                bool getIsRect() const;
+                sf::IntRect getRect() const;
+                sf::Vector2f getScale() const;
+                int getRotation() const;
 
               private:
+                bool _isRect;
                 sf::IntRect _rect;
+                sf::Vector2f _scale;
+                int _rotation;
                 float _height;
                 float _width;
                 std::string _text;

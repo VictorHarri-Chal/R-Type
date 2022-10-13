@@ -51,6 +51,10 @@ set(SRC_ECS
     ${ECSROOT}Component/IComponent.hpp
     ${ECSROOT}System/Draw2D/Draw2D.cpp
     ${ECSROOT}System/Draw2D/Draw2D.hpp
+    ${ECSROOT}System/Movement/Movement.cpp
+    ${ECSROOT}System/Movement/Movement.hpp
+    ${ECSROOT}System/Collide/Collide.cpp
+    ${ECSROOT}System/Collide/Collide.hpp
 )
 
 set(SRC_SCREENS
@@ -63,6 +67,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}options/OptionsScreen.hpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.cpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.hpp
+    ${SCREENSROOT}core/CoreScreen.cpp
+    ${SCREENSROOT}core/CoreScreen.hpp
 )
 
 set(SRC_GAME

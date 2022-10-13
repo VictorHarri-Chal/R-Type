@@ -56,8 +56,6 @@ void rtype::ecs::world::World::addEntity(entity::Entity *entity)
 
 void rtype::ecs::world::World::removeEntity(size_t id)
 {
-    if (id > this->_entitiesVector.size())
-        return;
     this->_entitiesVector.erase(_entitiesVector.begin() + id);
 }
 

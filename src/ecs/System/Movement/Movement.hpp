@@ -5,9 +5,6 @@
 ** Movement.hpp
 */
 
-#ifndef MOVEMENT_HPP_
-#define MOVEMENT_HPP_
-
 #include "../ISystem.hpp"
 
 namespace rtype
@@ -23,15 +20,11 @@ namespace rtype
                 /**
                  * @brief Create new movement system.
                  */
-                MovementSystem()
-                {
-                }
+                MovementSystem() {}
                 /**
                  * @brief Destroy movement system.
                  */
-                ~MovementSystem()
-                {
-                }
+                ~MovementSystem() {}
 
                 /**
                  * @brief Update all position of given entities.
@@ -52,5 +45,3 @@ namespace rtype
         } // namespace system
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !MOVEMENT_HPP_ */

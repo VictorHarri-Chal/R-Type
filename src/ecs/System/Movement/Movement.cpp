@@ -13,10 +13,9 @@ void rtype::ecs::system::MovementSystem::update(std::vector<rtype::ecs::entity::
         if (entity->hasCompoType(ecs::component::compoType::TRANSFORM)) {
             rtype::ecs::component::Transform *transformCompo =
                 entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-            if (entity->hasCompoType(rtype::ecs::component::compoType::COLLIDE) == true) {
+            if (entity->hasCompoType(rtype::ecs::component::compoType::COLLIDE)) {
                 if (entity->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)
-                        ->getCollide()
-                    == false) {
+                        ->getCollide() == false) {
                     transformCompo->setX(transformCompo->getX() + transformCompo->getSpeedX());
                     transformCompo->setY(transformCompo->getY() + transformCompo->getSpeedY());
                 }

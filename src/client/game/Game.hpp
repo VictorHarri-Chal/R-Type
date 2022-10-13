@@ -12,6 +12,7 @@
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
+#include "../screens/core/CoreScreen.hpp"
 
 namespace rtype
 {
@@ -19,7 +20,7 @@ namespace rtype
     class Game {
       public:
         /// @brief enum containing all navigable screens
-        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Game, Count };
+        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Core, Count };
         /// @brief enum containing all type of sounds
         enum Sounds {};
         /// @brief enum containing all musics
@@ -57,16 +58,6 @@ namespace rtype
          *
          */
         void destroy();
-        /**
-         * @brief Destroy all entities
-         *
-         */
-        // void destroyEntities();
-        // /**
-        //  * @brief Destroy systems
-        //  *
-        //  */
-        // void destroySystems();
 
         /// @brief Swap between screens
         /// @param ret Scene number
@@ -77,26 +68,10 @@ namespace rtype
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
         
-        // /**
-        //  * @brief Set the Sound Event
-        //  *
-        //  * @param entititesIndex Index for entity
-        //  */
-        // void setSoundEvent(int entititesIndex);
-        // /**
-        //  * @brief Add sound entity
-        //  *
-        //  * @param entity Entity sound to add
-        //  */
-        // void addSoundEntity(std::unique_ptr<rtype::ecs::entity::Entity> entity);
-        // /**
-        //  * @brief Add sound system
-        //  *
-        //  * @param system System sound to add
-        //  */
-        // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
         /// @brief Game window
         sf::RenderWindow _window;
+        /// @brief Clock
+        sf::Clock _clock;
       private:
         /// @brief Actual screen
         Screens _actualScreen;
@@ -110,6 +85,8 @@ namespace rtype
         rtype::menu::OptionsScreen *_options;
         /// @brief Multiplayer screen
         rtype::menu::MultiplayerScreen *_multiplayer;
+        /// @brief Core screen
+        rtype::menu::CoreScreen *_core;
         /// @brief Last sfml event caught
         sf::Event _sfmlEvent;
         /// @brief Event class

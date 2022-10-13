@@ -40,6 +40,10 @@ void rtype::ecs::system::Draw2DSystem::drawRectangle(rtype::ecs::component::Draw
 void rtype::ecs::system::Draw2DSystem::drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine)
 {
     sf::Sprite sprite = drawableCompo.getSprite();
+    if (drawableCompo.getIsRect())
+        sprite.setTextureRect(drawableCompo.getRect());
+    sprite.scale(drawableCompo.getScale());
+    sprite.setRotation(drawableCompo.getRotation());
     sprite.setPosition(sf::Vector2f(transformCompo.getX(), transformCompo.getY()));
     gameEngine->_window.draw(sprite);
 }

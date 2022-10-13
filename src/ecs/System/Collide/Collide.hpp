@@ -5,8 +5,6 @@
 ** Collide.hpp
 */
 
-#ifndef COLLIDE_HPP_
-#define COLLIDE_HPP_
 
 #include "../ISystem.hpp"
 
@@ -17,49 +15,40 @@ namespace rtype
         namespace system
         {
             /// @brief Collide system
-            class Collide : public ISystem {
+            class CollideSystem : public ISystem {
               public:
                 /**
                  * @brief Construct a new Collide object
                  *
                  */
-                Collide();
+                CollideSystem() {}
                 /**
                  * @brief Destroy the Collide object
                  *
                  */
-                ~Collide();
+                ~CollideSystem() {}
                 /**
                  * @brief Update all the entities with the system properties.
                  *
-                 * @param entities vector of entites to update
+                 * @param entities Vector of entites to update
+                 * @param gameEngine Game engine
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
                 /**
-                 * @brief Check collisions between cubes
-                 *
-                 * @param drawable The drawable component
-                 * @param collide The collide component
-                 * @param transform The transform component
-                 * @param otherEntityCollide The other collide component
-                 * @param otherEntityDrawable The other drawable component
-                 * @param otherTransform The other transform component
+                 * @brief Check collisions bewteen two entities
+                 * 
+                 * @param entity First entity
+                 * @param otherEntity Second entity
+                 * @param collide Collide component of the first entity
+                 * @param otherEntityCollide Collide component of the second entity
+                 * @param compoToRemove Vector of components to remove
+                 * @param count Count of the entity
+                 * 
+                 * @return true if there is a collision
                  */
                 // bool checkCollision(std::unique_ptr<rtype::ecs::entity::Entity> &entity,
                 //     std::unique_ptr<rtype::ecs::entity::Entity> &otherEntity, rtype::ecs::component::Collide *collide,
                 //     rtype::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count);
-                /**
-                 * @brief Check collisions between spheres
-                 *
-                 * @param entity Sphere entity
-                 * @param otherEntity Other entity
-                 * @param compoToRemove Component to remove
-                 * @param count Counter
-                 */
-                void checkSphereCollision(std::unique_ptr<rtype::ecs::entity::Entity> &entity,
-                    std::unique_ptr<rtype::ecs::entity::Entity> &otherEntity, std::vector<int> &compoToRemove,
-                    int &count);
-
                 /**
                  * @brief Get the type of system.
                  *
@@ -73,5 +62,3 @@ namespace rtype
         } // namespace system
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !COLLIDE_HPP_ */

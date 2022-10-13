@@ -16,29 +16,6 @@ rtype::ecs::component::Drawable2D::Drawable2D()
     this->_drawableType = rtype::ecs::component::drawableType::UNKNOWNDRAWABLE;
 }
 
-rtype::ecs::component::Drawable2D::Drawable2D(float width, float height, sf::Color color, bool outline, float thickness, sf::Color outline_color)
-{
-    this->_height = height;
-    this->_width = width;
-    this->_color = color;
-    this->_spe = outline;
-    this->_thickness = thickness;
-    this->_outline_color = outline_color;
-    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
-    this->_drawableType = rtype::ecs::component::drawableType::RECTANGLE;
-}
-
-rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool intRect, sf::IntRect rect)
-{
-    this->_rect = rect;
-    this->_texturePath = texturePath;
-    if (!texturePath.empty())
-        _texture.loadFromFile(texturePath.c_str());
-    _sprite = sf::Sprite(_texture);
-    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
-    this->_drawableType = rtype::ecs::component::drawableType::SPRITE;
-}
-
 rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, sf::Color color, bool bold)
 {
     this->_height = 0.0;
@@ -50,6 +27,32 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, 
     this->_spe = bold;
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = rtype::ecs::component::drawableType::TEXT;
+}
+
+rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect)
+{
+    this->_texturePath = texturePath;
+    this->_isRect = isRect;
+    this->_rect = rect;
+    this->_scale = scale;
+    this->_rotation = rotation;
+    if (!texturePath.empty())
+        _texture.loadFromFile(texturePath.c_str());
+    _sprite = sf::Sprite(_texture);
+    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
+    this->_drawableType = rtype::ecs::component::drawableType::SPRITE;
+}
+
+rtype::ecs::component::Drawable2D::Drawable2D(float width, float height, sf::Color color, bool outline, float thickness, sf::Color outline_color)
+{
+    this->_height = height;
+    this->_width = width;
+    this->_color = color;
+    this->_spe = outline;
+    this->_thickness = thickness;
+    this->_outline_color = outline_color;
+    this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
+    this->_drawableType = rtype::ecs::component::drawableType::RECTANGLE;
 }
 
 rtype::ecs::component::Drawable2D::~Drawable2D()
@@ -123,6 +126,26 @@ void rtype::ecs::component::Drawable2D::setTexturePath(std::string texturePath)
 sf::Sprite rtype::ecs::component::Drawable2D::getSprite() const
 {
     return (this->_sprite);
+}
+
+bool rtype::ecs::component::Drawable2D::getIsRect() const
+{
+    return (this->_isRect);
+}
+
+sf::IntRect rtype::ecs::component::Drawable2D::getRect() const
+{
+    return (this->_rect);
+}
+
+sf::Vector2f rtype::ecs::component::Drawable2D::getScale() const
+{
+    return (this->_scale);
+}
+
+int rtype::ecs::component::Drawable2D::getRotation() const
+{
+    return (this->_rotation);
 }
 
 void rtype::ecs::component::Drawable2D::setText(std::string text)

@@ -25,7 +25,7 @@ void rtype::menu::MultiplayerScreen::init()
     this->_world.addSystem(draw2DSystemMenu);
     rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
     bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.f, 0.f, 0.0f, 0.0f);
-    bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", true);
+    bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 300.f, 100.f, 0.0f, 0.0f);
@@ -61,6 +61,9 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
 {
     for (size_t i = 0; i < _slots.size(); i++)
         deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
+    for (size_t j = 0; j < _slots.size(); j++)
+        if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine))
+            return 6;
     createRoom(event, gameEngine);
     hooverOnButton(event, gameEngine);
     if (isButtonPressed(2, gameEngine, event)) {
@@ -226,6 +229,16 @@ void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game
             this->_world.addEntity(name);
         }
     }
+}
+
+bool rtype::menu::MultiplayerScreen::joinRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)
+{
+    if (!_slots.at(slotPos) && isSurfaceClicked(320.f, offset, 1260.f, 80.f, event, gameEngine) && !isSurfaceClicked(1400.f, offset + 20.f, 150.f, 40.f, event, gameEngine)) {
+        return true;
+        event.position.x = 0;
+        event.position.y = 0;
+    }
+    return false;
 }
 
 void rtype::menu::MultiplayerScreen::deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)

@@ -73,6 +73,8 @@ namespace rtype
 
             void createRoom(rtype::Event &event, rtype::Game *gameEngine);
 
+            bool joinRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
+
             void deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
 
             void hooverOnButton(rtype::Event &event, rtype::Game *gameEngine);

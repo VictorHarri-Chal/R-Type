@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "../../../sfml/Sfml.hpp"
 #include "../../../client/game/Game.hpp"
 #include "../ISystem.hpp"
 

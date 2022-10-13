@@ -60,6 +60,8 @@ namespace rtype
             bool enter;
             /// Is the backspace key pressed?
             bool backspace;
+            /// Is the space key pressed?
+            bool space;
             /// Code of the key that has been pressed.
             Key code;
         };
