@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  Build:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+          - self-hosted
+    runs-on: ${{matrix.os}}
+    name: Build ${{matrix.os}}
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: bash install.sh
