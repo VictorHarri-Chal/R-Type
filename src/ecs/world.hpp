@@ -45,7 +45,7 @@ namespace rtype
                  * @brief Add System to world
                  *
                  * @tparam System the system to add
-                 * @param System system who want to add to world
+                 * @param system system who want to add to world
                  */
                 void addSystem(system::ISystem *system);
 
@@ -82,11 +82,13 @@ namespace rtype
                 std::vector<rtype::ecs::system::ISystem *> getSystems() const;
                 /**
                  * @brief Draw the screen
+                 * @param gameEngine the gameEngine
                  *
                  */
                 void draw(rtype::Game *gameEngine);
                 /**
                  * @brief Update the screen
+                 * @param gameEngine the gameEngine
                  *
                  */
                 void update(rtype::Game *gameEngine);
