@@ -1,4 +1,4 @@
-name: Build and create releases
+name: Build and create release
 
 on: [workflow_dispatch]
 jobs:
@@ -11,7 +11,7 @@ jobs:
           - windows-latest
           - self-hosted
     runs-on: ${{matrix.os}}
-    name: Build on ${{matrix.os}}
+    name: Build and release ${{matrix.os}}
     steps:
 
       - name: Set build name
@@ -50,19 +50,19 @@ jobs:
       - name: Build
         run: bash install.sh
 
-      - name: Check builds
+      - name: Check build
         shell: bash
         run: |
           test -f r-type_client-${{env.build_name}}
           test -f r-type_server-${{env.build_name}}
 
-      - name: Rename builds
+      - name: Rename build
         shell: bash
         run: |
           mv r-type_client r-type_client-${{env.build_name}}
           mv r-type_server r-type_server-${{env.build_name}}
 
-      - name: Archive builds
+      - name: Archive build
         shell: bash
         run: |
           7z a r-type-${{env.build_name}}.7z r-type_{client,server}-${{env.build_name}}
