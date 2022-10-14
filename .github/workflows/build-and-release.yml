@@ -23,11 +23,11 @@ jobs:
           {
             if [ "${{matrix.os}}" = "ubuntu-latest" ]; then
               echo build_name=linux-amd64
-              echo archive_name=r-type-$build_name.7z
+              echo archive_name=r-type-linux-amd64.7z
 
             elif [ "${{matrix.os}}" = "macos-latest" ]; then
               echo build_name=darwin-amd64
-              echo archive_name=r-type-$build_name.7z
+              echo archive_name=r-type-darwin-amd64.7z
 
             elif [ "${{matrix.os}}" = "windows-latest" ]; then
               # do not remove the file extension,
@@ -39,7 +39,7 @@ jobs:
             elif [ "${{matrix.os}}" = "self-hosted" ]; then
               # change this, repo's self-hosted runner is Debian arm64
               echo build_name=linux-arm64
-              echo archive_name=r-type-$build_name.7z
+              echo archive_name=r-type-linux-arm64.7z
 
             else
               exit 1
