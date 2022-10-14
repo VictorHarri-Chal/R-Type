@@ -1,8 +1,6 @@
-name: Actions
+name: Build and create releases
 
-on:
-  workflow_dispatch:
-
+on: [workflow_dispatch]
 jobs:
   Build-And-Release:
     strategy:
@@ -12,7 +10,6 @@ jobs:
           - macos-latest
           - windows-latest
           - self-hosted
-
     runs-on: ${{matrix.os}}
     name: Build on ${{matrix.os}}
     steps:
@@ -30,7 +27,7 @@ jobs:
             elif [ "${{matrix.os}}" = "windows-latest" ]; then
               # do not remove the file extension,
               # softprops/action-gh-release action will fail
-              # "Pattern 'R-Type-*-windows-amd64' does not match any files."
+              # "Pattern 'r-type_*-windows-amd64' does not match any files."
               echo build_name=windows-amd64.exe
 
             elif [ "${{matrix.os}}" = "self-hosted" ]; then
@@ -56,23 +53,23 @@ jobs:
       - name: Check builds
         shell: bash
         run: |
-          test -f R-Type-client-${{env.build_name}}
-          test -f R-Type-server-${{env.build_name}}
+          test -f r-type_client-${{env.build_name}}
+          test -f r-type_server-${{env.build_name}}
 
       - name: Rename builds
         shell: bash
         run: |
-          mv R-Type-client R-Type-client-${{env.build_name}}
-          mv R-Type-server R-Type-server-${{env.build_name}}
+          mv r-type_client r-type_client-${{env.build_name}}
+          mv r-type_server r-type_server-${{env.build_name}}
 
       - name: Archive builds
         shell: bash
         run: |
-          7z a R-Type-${{env.build_name}}.7z R-Type-{client,server}-${{env.build_name}}
+          7z a r-type-${{env.build_name}}.7z r-type_{client,server}-${{env.build_name}}
 
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{env.release_name}}
-          files: R-Type-${{env.build_name}}.7z
+          files: r-type-${{env.build_name}}.7z
           fail_on_unmatched_files: true
