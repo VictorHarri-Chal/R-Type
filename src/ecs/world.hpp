@@ -104,7 +104,9 @@ namespace rtype
                  * @brief Entity type object
                  *
                  */
-                size_t nbEntities;
+                size_t _nbEntities;
+
+                size_t _maxEntities;
             };
         }
     }

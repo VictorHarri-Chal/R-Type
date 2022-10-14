@@ -66,6 +66,11 @@ namespace rtype
              * 
              */
             std::vector<bool> _buttons;
+            /**
+            *  @brief Clock for shot delay
+            *
+            */
+            sf::Clock _clock;
 
         };
     }

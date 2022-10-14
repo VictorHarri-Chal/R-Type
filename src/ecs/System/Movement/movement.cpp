@@ -7,7 +7,7 @@
 
 #include "movement.hpp"
 
-void rtype::ecs::system::MovementSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
+void rtype::ecs::system::MovementSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game *gameEngine)
 {
     (void) gameEngine;
     for (auto &entity : entities) {

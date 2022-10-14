@@ -53,7 +53,7 @@ rtype::ecs::system::SystemType rtype::ecs::system::Draw2DSystem::getSystemType()
     return (rtype::ecs::system::SystemType::DRAWABLE2DSYSTEM);
 }
 
-void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
+void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game *gameEngine)
 {
     for (auto &entity : entities) {
         std::vector<rtype::ecs::component::Drawable2D *> compoVector = entity->getDrawableVector();

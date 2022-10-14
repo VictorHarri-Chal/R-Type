@@ -47,6 +47,7 @@ namespace rtype
                 sf::Color getOutlineColor();
                 std::string getText();
                 std::string getTexturePath() const;
+                sf::Texture getTexture() const;
                 sf::Sprite getSprite() const;
                 bool getSpe() const;
                 bool getIsRect() const;

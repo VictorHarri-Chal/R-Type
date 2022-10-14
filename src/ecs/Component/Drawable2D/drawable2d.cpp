@@ -123,6 +123,11 @@ void rtype::ecs::component::Drawable2D::setTexturePath(std::string texturePath)
     this->_texturePath = texturePath;
 }
 
+sf::Texture rtype::ecs::component::Drawable2D::getTexture() const
+{
+    return (this->_texture);
+}
+
 sf::Sprite rtype::ecs::component::Drawable2D::getSprite() const
 {
     return (this->_sprite);

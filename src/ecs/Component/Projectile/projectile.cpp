@@ -7,9 +7,9 @@
 
 #include "projectile.hpp"
 
-rtype::ecs::component::Projectile::Projectile(bool type)
+rtype::ecs::component::Projectile::Projectile(rtype::ecs::component::projectileType type)
 {
-    _type = type;
+    _projectileType = type;
 }   
 
 rtype::ecs::component::Projectile::~Projectile()
@@ -21,7 +21,7 @@ rtype::ecs::component::compoType rtype::ecs::component::Projectile::getType() co
     return (rtype::ecs::component::compoType::PROJECTILE);
 }
 
-bool rtype::ecs::component::Projectile::getProjectileType() const
+rtype::ecs::component::projectileType rtype::ecs::component::Projectile::getProjectileType() const
 {
-    return this->_type;
+    return this->_projectileType;
 }

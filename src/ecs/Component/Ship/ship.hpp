@@ -18,16 +18,16 @@ namespace rtype
         {
             class Ship : public IComponent {
               public:
-                Ship(bool type);
+                Ship(rtype::ecs::component::shipType type);
                 ~Ship();
 
                 rtype::ecs::component::compoType getType() const;
 
-                bool getShipType() const;
+                rtype::ecs::component::shipType getShipType() const;
               protected:
               private:
                 /// @brief True if allies, false if enemies
-                bool _type;
+                rtype::ecs::component::shipType _shipType;
             };
         } // namespace component
     }     // namespace ecs

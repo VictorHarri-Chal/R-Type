@@ -9,7 +9,7 @@
 
 rtype::ecs::component::Alive::Alive()
 {
-    this->_alive = false;
+    this->_alive = true;
 }
 
 rtype::ecs::component::Alive::Alive(bool isAlive)

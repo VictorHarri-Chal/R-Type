@@ -7,9 +7,9 @@
 
 #include "ship.hpp"
 
-rtype::ecs::component::Ship::Ship(bool type)
+rtype::ecs::component::Ship::Ship(rtype::ecs::component::shipType type)
 {
-    this->_type = type;
+    this->_shipType = type;
 }
 
 rtype::ecs::component::Ship::~Ship()
@@ -21,7 +21,7 @@ rtype::ecs::component::compoType rtype::ecs::component::Ship::getType() const
     return (rtype::ecs::component::compoType::SHIP);
 }
 
-bool rtype::ecs::component::Ship::getShipType() const
+rtype::ecs::component::shipType rtype::ecs::component::Ship::getShipType() const
 {
-    return this->_type;
+    return (this->_shipType);
 }

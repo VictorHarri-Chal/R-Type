@@ -21,16 +21,16 @@ namespace rtype
         {
             class Projectile : public IComponent {
               public:
-                Projectile(bool origin);
+                Projectile(rtype::ecs::component::projectileType type);
                 ~Projectile();
 
                 rtype::ecs::component::compoType getType() const;
-                bool getProjectileType() const;
 
+                rtype::ecs::component::projectileType getProjectileType() const;
 
               private:
                 /// @brief True if allies, false if enemies
-                bool _type;
+                rtype::ecs::component::projectileType _projectileType;
             };
         } // namespace component
     }     // namespace ecs
