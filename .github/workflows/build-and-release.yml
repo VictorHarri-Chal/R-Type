@@ -23,11 +23,11 @@ jobs:
           {
             if [ "${{matrix.os}}" = "ubuntu-latest" ]; then
               echo build_name=linux-amd64
-              echo arhive_name=r-type-$build_name.7z
+              echo archive_name=r-type-$build_name.7z
 
             elif [ "${{matrix.os}}" = "macos-latest" ]; then
               echo build_name=darwin-amd64
-              echo arhive_name=r-type-$build_name.7z
+              echo archive_name=r-type-$build_name.7z
 
             elif [ "${{matrix.os}}" = "windows-latest" ]; then
               # do not remove the file extension,
@@ -54,13 +54,13 @@ jobs:
         shell: bash
         run: echo release_name=release-$(git rev-parse --short $GITHUB_SHA) >> $GITHUB_ENV
 
-      - name: DEBUG
+      - name: Get env variables (debug)
         shell: bash
         run: |
           echo ${{env.release_name}}
           echo ${{env.build_name}}
           echo ${{env.archive_name}}
-          exit 1
+          #exit 1
 
       - name: Build
         run: bash install.sh
