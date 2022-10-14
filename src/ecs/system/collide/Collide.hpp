@@ -33,18 +33,9 @@ namespace rtype
                  * @brief Update all the entities with the system properties.
                  *
                  * @param entities vector of entites to update
+                 * @param gameEngine Game engine
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
-                /**
-                 * @brief Check collisions between cubes
-                 *
-                 * @param drawable The drawable component
-                 * @param collide The collide component
-                 * @param transform The transform component
-                 * @param otherEntityCollide The other collide component
-                 * @param otherEntityDrawable The other drawable component
-                 * @param otherTransform The other transform component
-                 */
                 // bool checkCollision(std::unique_ptr<rtype::ecs::entity::Entity> &entity,
                 //     std::unique_ptr<rtype::ecs::entity::Entity> &otherEntity, rtype::ecs::component::Collide *collide,
                 //     rtype::ecs::component::Collide *otherEntityCollide, std::vector<int> &compoToRemove, int &count);
