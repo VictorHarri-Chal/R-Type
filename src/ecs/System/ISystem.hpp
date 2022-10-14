@@ -14,7 +14,7 @@
 namespace rtype
 {
     class Game;
-    /// \file Docs/doc-Ecs
+    /// \file Docs/doc_Ecs.md
     namespace ecs
     {
         namespace system
@@ -43,6 +43,7 @@ namespace rtype
                  * @brief Update all the entities with the system properties.
                  *
                  * @param entities vector of entites to update
+                 * @param gameEngine the game engine.
                  */
                 virtual void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) = 0;
 

@@ -23,6 +23,7 @@ rtype::ecs::component::compoType rtype::ecs::component::Collide::getType() const
 
 bool rtype::ecs::component::Collide::checkCollision(rtype::ecs::component::Collide *otherEntityCollide)
 {
+    (void) otherEntityCollide;
     return (true);
 }
 

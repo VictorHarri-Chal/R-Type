@@ -7,15 +7,13 @@
 
 #pragma once
 
-#include <vector>
-#include <memory>
 #include <iostream>
 #include "Entity/entity.hpp"
 #include "System/ISystem.hpp"
 
 namespace rtype
 {
-    /// \file Docs/doc-Ecs
+    /// \file Docs/doc_Ecs.md
     namespace ecs
     {
         namespace world
@@ -29,7 +27,7 @@ namespace rtype
                  */
                 World();
                 /**
-                 * @brief Destroy entity pointer.
+                 * @brief Destroy World Object
                  */
                 ~World();
 
@@ -45,7 +43,7 @@ namespace rtype
                  * @brief Add System to world
                  *
                  * @tparam System the system to add
-                 * @param System system who want to add to world
+                 * @param system system who want to add to world
                  */
                 void addSystem(system::ISystem *system);
 
@@ -62,7 +60,8 @@ namespace rtype
                  *
                  * @param id The id of the entity to get
                  *
-                 * @return rtype::ecs::entity::Entity* Pointer to the wanted Entity if entity exist | nullptr if entity doesn't exist
+                 * @return rtype::ecs::entity::Entity* Pointer to the wanted Entity if entity exist | nullptr if entity
+                 * doesn't exist
                  */
                 rtype::ecs::entity::Entity *getEntity(size_t id) const;
 
@@ -71,35 +70,38 @@ namespace rtype
                  *
                  * @return std::vector<rtype::ecs::entity::Entity*> with all entities contain in this world
                  */
-                std::vector<rtype::ecs::entity::Entity*> getEntities() const;
+                std::vector<rtype::ecs::entity::Entity *> getEntities() const;
 
                 /**
                  * @brief Get the System vector with all system in the world²
                  *
                  * @return std::vector<rtype::ecs::system::ISystem*> with all System contain in this world
                  */
-                std::vector<rtype::ecs::system::ISystem*> getSystems() const;
+                std::vector<rtype::ecs::system::ISystem *> getSystems() const;
                 /**
                  * @brief Draw the screen
-                 * 
+                 * @param gameEngine the gameEngine
+                 *
                  */
                 void draw(rtype::Game *gameEngine);
                 /**
                  * @brief Update the screen
-                 * 
+                 * @param gameEngine the gameEngine
+                 *
                  */
                 void update(rtype::Game *gameEngine);
+
               private:
                 /**
                  * @brief Vector of entities
                  *
                  */
-                std::vector<rtype::ecs::entity::Entity*> _entitiesVector;
+                std::vector<rtype::ecs::entity::Entity *> _entitiesVector;
                 /**
                  * @brief Vector of systems
                  *
                  */
-                std::vector<rtype::ecs::system::ISystem*> _systemsVector;
+                std::vector<rtype::ecs::system::ISystem *> _systemsVector;
                 /**
                  * @brief Entity type object
                  *
@@ -108,6 +110,6 @@ namespace rtype
 
                 size_t _maxEntities;
             };
-        }
-    }
-}
+        } // namespace world
+    }     // namespace ecs
+} // namespace rtype

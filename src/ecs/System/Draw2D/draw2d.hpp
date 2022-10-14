@@ -33,6 +33,7 @@ namespace rtype
                  *
                  * @param drawableCompo the drawable component of the entity with the text and color.
                  * @param transformCompo the transform component of the entity with his position.
+                 * @param gameEngine the game engine.
                  */
                 void drawText(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
 
@@ -41,6 +42,7 @@ namespace rtype
                  *
                  * @param drawableCompo the drawable component of the entity with the size and color.
                  * @param transformCompo the transform component of the entity with his position.
+                 * @param gameEngine the game engine.
                  */
                 void drawRectangle(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
 
@@ -49,6 +51,7 @@ namespace rtype
                  *
                  * @param drawableCompo the drawable component of the entity with the size and color.
                  * @param transformCompo the transform component of the entity with his position.
+                 * @param gameEngine the game engine.
                  */
                 void drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine);
 
@@ -56,13 +59,14 @@ namespace rtype
                  * @brief Draw all given entities with Drawable2D component.
                  *
                  * @param entities all entities to draw.
+                 * @param gameEngine the game engine.
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) override;
 
                 /**
                  * @brief Get the type of system.
                  *
-                 * @return rtype::ecs::system::SystemType SystemType
+                 * @return rtype::ecs::system::SystemType the type of system.
                  */
                 rtype::ecs::system::SystemType getSystemType() const override;
 

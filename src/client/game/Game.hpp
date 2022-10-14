@@ -35,12 +35,15 @@ namespace rtype
         /// @brief Run the game class
         void run(void);
         /// @brief Update game elements
+        /// @param gameEngine Game engine
         void update(rtype::Game *gameEngine);
         /// @brief Process events
+        /// @param gameEngine Game engine
         /// @return true Event has been executed
         /// @return false Event hasn't been executed
         bool processEvents(rtype::Game *gameEngine);
         /// @brief Handle the events
+        /// @param gameEngine Game engine
         /// @return int The scene number
         int handleEvent(rtype::Game *gameEngine);
         /**

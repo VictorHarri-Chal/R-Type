@@ -14,6 +14,7 @@ rtype::ecs::system::SystemType rtype::ecs::system::CollideSystem::getSystemType(
 
 void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game *gameEngine)
 {
+    (void) gameEngine;
     for (size_t x = 0; x < entities.size(); x++) {
         if (entities[x]->hasCompoType(ecs::component::compoType::COLLIDE)) {
             auto transformCompo1 = entities[x]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);

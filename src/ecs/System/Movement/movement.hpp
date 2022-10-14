@@ -30,6 +30,7 @@ namespace rtype
                  * @brief Update all position of given entities.
                  *
                  * @param entities vector of entities.
+                 * @param gameEngine the game engine.
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) override;
 

@@ -11,7 +11,8 @@
 
 void rtype::ecs::system::Particles::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
-
+    (void) entities;
+    (void) gameEngine;
 }
 
 rtype::ecs::system::SystemType rtype::ecs::system::Particles::getSystemType() const

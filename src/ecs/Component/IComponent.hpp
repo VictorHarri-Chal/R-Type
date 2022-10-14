@@ -13,7 +13,7 @@
 
 namespace rtype
 {
-    /// \file Docs/doc-Ecs
+    /// \file Docs/doc_Ecs.md
     namespace ecs
     {
         namespace component

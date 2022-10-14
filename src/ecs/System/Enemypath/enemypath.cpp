@@ -10,6 +10,7 @@
 
 void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
+    (void) gameEngine;
     for (size_t x = 0; x < entities.size(); x++) {
         if (entities[x]->hasCompoType(ecs::component::compoType::SHIP)) {
             auto shipCompo = entities[x]->getComponent<ecs::component::Ship>(ecs::component::compoType::SHIP);
