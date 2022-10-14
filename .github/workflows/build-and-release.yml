@@ -53,6 +53,7 @@ jobs:
       - name: Check build
         shell: bash
         run: |
+          ls -1
           test -f r-type_client-${{env.build_name}}
           test -f r-type_server-${{env.build_name}}
 
