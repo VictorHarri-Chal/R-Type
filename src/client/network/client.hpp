@@ -15,6 +15,10 @@
 
 using boost::asio::ip::udp;
 
+/**
+ * @brief Client class
+ * 
+ */
 class Client {
   public:
     /**

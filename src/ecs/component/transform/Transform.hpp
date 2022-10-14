@@ -46,7 +46,16 @@ namespace rtype
                  *
                  * @return rtype::ecs::component::compoType Type of the component
                  */
-                rtype::ecs::component::compoType getType(void) const override;                
+                rtype::ecs::component::compoType getType(void) const override;
+                /**
+                 * @brief Update the component
+                 * 
+                 * @param posX X position
+                 * @param posY Y position
+                 * @param speedX X speed
+                 * @param speedY Y speed
+                 *
+                 */
                 void update(float posX, float posY, float speedX, float speedY);
                 /**
                  * @brief Get the X position

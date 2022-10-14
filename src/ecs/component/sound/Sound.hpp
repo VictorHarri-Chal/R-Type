@@ -77,8 +77,7 @@ namespace rtype
                 /**
                  * @brief Set if the sound must be played or not
                  *
-                 * @param play true if the sound must be played
-                 * @param play false if the sound must not be played
+                 * @param play Boolean to set if the sound must be played or not
                  */
                 void setPlay(bool play);
                 /**

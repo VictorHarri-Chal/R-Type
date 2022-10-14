@@ -129,9 +129,9 @@ namespace rtype
             /// Is controller connected?
             bool connected;
         };
-        // Mouse position on click
+        /// Mouse position on click
         sf::Vector2f position;
-        // Mouse position global
+        /// Mouse position global
         sf::Vector2f global_position;
 
         // Member data

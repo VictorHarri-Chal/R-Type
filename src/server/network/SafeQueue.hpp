@@ -41,15 +41,15 @@ class SafeQueue {
     SafeQueue() = default;
 
     /// @brief Copy constructor deleted
-    /// @param SafeQueue to copy
-    SafeQueue(const SafeQueue<T> &) = delete;
+    /// @param other to copy
+    SafeQueue(const SafeQueue<T> &other) = delete;
 
     /// @brief Assignement constructor deleted
-    /// @param SafeQueue to assign
-    SafeQueue &operator=(const SafeQueue<T> &) = delete;
+    /// @param other to assign
+    SafeQueue &operator=(const SafeQueue<T> &other) = delete;
 
     /// @brief Move constructor
-    /// @param Other SafeQueue
+    /// @param other SafeQueue
     SafeQueue(SafeQueue<T> &&other) noexcept(false);
 
     /// @brief Destructor

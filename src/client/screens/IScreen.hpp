@@ -30,6 +30,7 @@ namespace rtype
         virtual void init() = 0;
         /**
          * @brief Update the screen
+         * @param gameEngine Game engine
          * 
          */
         virtual void update(rtype::Game *gameEngine) = 0;

@@ -14,7 +14,7 @@
 namespace rtype
 {
     class Game;
-    /// \file Docs/doc-Ecs
+    /// \file Docs/doc_Ecs.md
     namespace ecs
     {
         namespace system

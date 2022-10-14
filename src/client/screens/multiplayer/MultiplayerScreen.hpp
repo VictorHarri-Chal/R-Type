@@ -35,10 +35,30 @@ namespace rtype
              * 
              */
             struct room_t {
+                /**
+                 * @brief Room id
+                 * 
+                 */
                 int id;
+                /**
+                 * @brief Room slot
+                 * 
+                 */
                 int slot;
+                /**
+                 * @brief Room name
+                 * 
+                 */
                 std::string name;
+                /**
+                 * @brief Room current players
+                 * 
+                 */
                 unsigned int currPlayers;
+                /**
+                 * @brief Boolean if room is open
+                 * 
+                 */
                 bool isOpen;
             };
             /**

@@ -34,6 +34,7 @@ namespace rtype
                 /**
                  * @brief Get the Destroyable object
                  *
+                 * @return rtype::ecs::component::compoType Type of the component
                  */
                 rtype::ecs::component::compoType getType() const;
 
