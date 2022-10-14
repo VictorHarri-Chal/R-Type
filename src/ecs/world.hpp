@@ -8,10 +8,8 @@
 #pragma once
 
 #include <iostream>
-#include <memory>
-#include <vector>
-#include "entity/Entity.hpp"
-#include "system/ISystem.hpp"
+#include "Entity/entity.hpp"
+#include "System/ISystem.hpp"
 
 namespace rtype
 {
@@ -108,7 +106,9 @@ namespace rtype
                  * @brief Entity type object
                  *
                  */
-                size_t nbEntities;
+                size_t _nbEntities;
+
+                size_t _maxEntities;
             };
         } // namespace world
     }     // namespace ecs

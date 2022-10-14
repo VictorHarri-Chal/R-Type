@@ -6,7 +6,7 @@
 */
 
 #include "IntroScreen.hpp"
-#include "../../../ecs/system/draw2d/Draw2D.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
 
 rtype::menu::IntroScreen::IntroScreen(): _onWritingFrame(false)
 {
@@ -63,7 +63,7 @@ int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *game
             event.key.backspace = false;
         }
         _pseudo = pseudoCompo->getText();
-    } else if (!_onWritingFrame && (_pseudo.size() > 0)) {
+    } else if (!_onWritingFrame && (_pseudo.size() > 2)) {
         if (isButtonPressed(1, gameEngine, event)) {
             return 2;
         }
@@ -84,10 +84,10 @@ void rtype::menu::IntroScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(1) == true) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Yellow);
-    } else if (_buttons.at(1) == false && (_pseudo.size() == 0)) {
+    } else if (_buttons.at(1) == false && (_pseudo.size() < 3)) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Red);
-    } else if (_buttons.at(1) == false && (_pseudo.size() > 0)) {
+    } else if (_buttons.at(1) == false && (_pseudo.size() > 2)) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Green);
     }
