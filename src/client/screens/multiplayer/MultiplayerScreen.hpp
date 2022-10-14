@@ -24,6 +24,16 @@ namespace rtype
          */
         class MultiplayerScreen : public IScreen {
           public:
+            /**
+             * @brief Room struct
+             * 
+             * @param id Room id
+             * @param slot Room slot
+             * @param name Room name
+             * @param currPlayers Room current players
+             * @param isOpen Boolean if room is open
+             * 
+             */
             struct room_t {
                 int id;
                 int slot;
