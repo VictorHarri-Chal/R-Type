@@ -1,90 +1,78 @@
-name: CI
+name: Actions
 
 on:
-  [ workflow_dispatch, push, pull_request]
+  workflow_dispatch:
 
 jobs:
+  Build-And-Release:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+          - self-hosted
 
-  build-on-ubuntu:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+    name: Build on ${{matrix.os}}
     steps:
-      - uses: actions/checkout@v3
-      - name: build on Ubuntu amd64
-        run: bash install.sh
-      - name: check build
+
+      - name: Set build name
+        shell: bash
         run: |
-          test -f r-type_client
-          test -f r-type_server
+          {
+            if [ "${{matrix.os}}" = "ubuntu-latest" ]; then
+              echo build_name=linux-amd64
 
-  build-on-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: build on Windows
-        run: bash install.sh
-      - name: check build
-        run: |
-          Test-Path r-type_client
-          Test-Path r-type_server
+            elif [ "${{matrix.os}}" = "macos-latest" ]; then
+              echo build_name=darwin-amd64
 
-  build-on-arm64:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - name: build on Debian arm64
-        run: bash install.sh
-      - name: check build
-        run: |
-          test -f r-type_client
-          test -f r-type_server
+            elif [ "${{matrix.os}}" = "windows-latest" ]; then
+              # do not remove the file extension,
+              # softprops/action-gh-release action will fail
+              # "Pattern 'R-Type-*-windows-amd64' does not match any files."
+              echo build_name=windows-amd64.exe
 
-  build-on-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: build on macOS
-        run: bash install.sh
-      - name: check build
-        run: |
-          test -f r-type_client
-          test -f r-type_server
+            elif [ "${{matrix.os}}" = "self-hosted" ]; then
+              # change this, repo's self-hosted runner is Debian arm64
+              echo build_name=linux-arm64
 
-  clean-repo:
-    runs-on: ubuntu-latest
-    env:
-      USELESS_FILES_REGEX: (.*\.gc(no|da|ov))$|(.*\.(a|o))$|(.*~)$|^(#.*#)$|^tmp\/.*|.*\/tmp\/.*
-    steps:
+            else
+              exit 1
+            fi
+          } >> $GITHUB_ENV
+          exit 0
+
       - name: Checkout repo
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Find useless files recursively
-        run: |
-          USELESS_FILES=$(find . -type f -printf '%P\n' | { grep -P "${{ env.USELESS_FILES_REGEX }}" || true; })
-          if [ "$USELESS_FILES" != "" ]; then
-              IFS=$'\n'$'\r'
-              for LINE in $USELESS_FILES; do
-                  echo "::error file=${LINE},line=1,col=1,title=Useless file detected::${LINE}"
-              done
-              echo "FAIL_TASK=true" >> "$GITHUB_ENV"
-          else
-              echo "FAIL_TASK=false" >> "$GITHUB_ENV"
-          fi
-      - name: Check if task failed
-        if: env.FAIL_TASK == 'true'
-        run: exit 1
+        uses: actions/checkout@v3
 
-  mirror:
-    needs:
-      - clean-repo
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+      - name: Set release name
+        shell: bash
+        run: echo release_name=release-$(git rev-parse --short $GITHUB_SHA) >> $GITHUB_ENV
+
+      - name: Build
+        run: bash install.sh
+
+      - name: Check builds
+        shell: bash
+        run: |
+          test -f R-Type-client
+          test -f R-Type-server
+
+      - name: Rename builds
+        shell: bash
+        run: |
+          mv R-Type-client R-Type-client-${{env.build_name}}
+          mv R-Type-server R-Type-server-${{env.build_name}}
+
+      - name: Archive builds
+        shell: bash
+        run: |
+          7z a R-Type-${{env.build_name}}.7z R-Type-{client,server}-${{env.build_name}}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
         with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url:
-            ${{ secrets.REPO_URL }}
-          ssh_private_key:
-            ${{ secrets.SSH_KEY }}
+          tag_name: ${{env.release_name}}
+          files: R-Type-${{env.build_name}}.7z
+          fail_on_unmatched_files: true
