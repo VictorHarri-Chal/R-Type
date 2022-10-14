@@ -30,7 +30,7 @@ jobs:
           test -f Debug/r-type_client.exe
           test -f Debug/r-type_server.exe
 
-      - name: Check build (!Windows)
+      - name: Check build
         if: matrix.os != 'windows-latest'
         shell: bash
         run: |
