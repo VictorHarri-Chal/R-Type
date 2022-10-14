@@ -56,9 +56,8 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: bash
         run: |
-          ls -l
-          test -f r-type_client.exe
-          test -f r-type_server.exe
+          test -f Debug/r-type_client.exe
+          test -f Debug/r-type_server.exe
 
       - name: Check build (!Windows)
         if: matrix.os != 'windows-latest'
@@ -71,8 +70,8 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: bash
         run: |
-          mv r-type_client.exe r-type_client-${{env.build_name}}
-          mv r-type_server.exe r-type_server-${{env.build_name}}
+          mv Debug/r-type_client.exe r-type_client-${{env.build_name}}
+          mv Debug/r-type_server.exe r-type_server-${{env.build_name}}
 
       - name: Rename build (!Windows)
         if: matrix.os != 'windows-latest'
