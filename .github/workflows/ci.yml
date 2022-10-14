@@ -56,8 +56,8 @@ jobs:
       - name: Check builds
         shell: bash
         run: |
-          test -f R-Type-client
-          test -f R-Type-server
+          test -f R-Type-client-${{env.build_name}}
+          test -f R-Type-server-${{env.build_name}}
 
       - name: Rename builds
         shell: bash
