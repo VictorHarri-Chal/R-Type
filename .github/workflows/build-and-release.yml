@@ -49,10 +49,6 @@ jobs:
         shell: bash
         run: echo release_name=release-$(git rev-parse --short $GITHUB_SHA) >> $GITHUB_ENV
 
-      - name: Get release name (debug)
-        shell: bash
-        run: echo ${{env.release_name}}
-
       - name: Build
         run: bash install.sh
 
