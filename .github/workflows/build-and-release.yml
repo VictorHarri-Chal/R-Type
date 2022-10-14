@@ -56,6 +56,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: bash
         run: |
+          ls -l
           test -f r-type_client.exe
           test -f r-type_server.exe
 
