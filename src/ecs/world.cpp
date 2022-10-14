@@ -7,8 +7,6 @@
 
 #include "world.hpp"
 
-
-
 rtype::ecs::world::World::World()
 {
     this->nbEntities = 0;

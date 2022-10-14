@@ -10,7 +10,7 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "Entity/Entity.hpp"
+#include "Entity/entity.hpp"
 #include "System/ISystem.hpp"
 
 namespace rtype

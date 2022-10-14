@@ -6,7 +6,7 @@
 */
 
 #include "MenuScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
 
 rtype::menu::MenuScreen::MenuScreen()
 {

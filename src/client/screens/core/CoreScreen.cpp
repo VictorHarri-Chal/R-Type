@@ -6,13 +6,12 @@
 */
 
 #include "CoreScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
-#include "../../../ecs/System/Movement/Movement.hpp"
-#include "../../../ecs/System/Collide/Collide.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
+#include "../../../ecs/System/Movement/movement.hpp"
+#include "../../../ecs/System/Collide/collide.hpp"
 
 rtype::menu::CoreScreen::CoreScreen()
 {
-
 }
 
 void rtype::menu::CoreScreen::init()
@@ -29,26 +28,19 @@ void rtype::menu::CoreScreen::init()
     ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
+    rtype::ecs::entity::Entity *ennemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    ennemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1000.f, 200.f, 0.0f, 0.0f);
+    ennemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    ennemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(32, 0, 35, 33));
+    this->_world.addEntity(ennemy);
+
 }
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     managePlayerMovement(event, gameEngine);
-    for (size_t i = 0; i < _world.getEntities().size(); i++) {
-        ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        if (transformCompo->getX() > 1920) {
-            _world.removeEntity(i);
-        }
-    }
-    if (event.key.code == ' ') {
-        ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-        rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
-        shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
-        shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-        shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(2.f, 2.f), 0, sf::IntRect(165, 133, 50, 17));
-        this->_world.addEntity(shot);
-        event.key.code = '\0';
-    }
+    managePlayerShot(event, gameEngine);
+    destroySprites(event, gameEngine);
     return 0;
 }
 
@@ -84,15 +76,42 @@ bool rtype::menu::CoreScreen::isMouseOnButton(size_t index, rtype::Game *gameEng
 
 void rtype::menu::CoreScreen::managePlayerMovement(rtype::Event &event, rtype::Game *gameEngine)
 {
+    (void) gameEngine;
     ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
     transformCompo->setSpeedX(0.0f);
     transformCompo->setSpeedY(0.0f);
-    if (event.key.right && !event.key.left && ((transformCompo->getX() + 8.0f) < 1920.f))
+    if (((transformCompo->getX() + 8.0f) < 1920.f) && event.key.right && !event.key.left )
         transformCompo->setSpeedX(8.0f);
-    if (event.key.left && !event.key.right && ((transformCompo->getX() - 8.0f) > 0.f))
+    if (((transformCompo->getX() - 8.0f) > 0.f) && event.key.left && !event.key.right)
         transformCompo->setSpeedX(-8.0f);
-    if (event.key.up && !event.key.down && ((transformCompo->getY() - 8.0f) > 0.f))
+    if (((transformCompo->getY() - 8.0f) > 0.f) && event.key.up && !event.key.down)
         transformCompo->setSpeedY(-8.0f);
-    if (event.key.down && !event.key.up && ((transformCompo->getY() + 8.0f) < 1080.f))
+    if (((transformCompo->getY() + 8.0f) < 1080.f) && event.key.down && !event.key.up)
         transformCompo->setSpeedY(8.0f);
+}
+
+void rtype::menu::CoreScreen::managePlayerShot(rtype::Event &event, rtype::Game *gameEngine)
+{
+    (void) gameEngine;
+    if (event.key.code == ' ') {
+        ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+        shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
+        shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(2.f, 2.f), 0, sf::IntRect(165, 133, 50, 17));
+        this->_world.addEntity(shot);
+        event.key.code = '\0';
+    }
+}
+
+void rtype::menu::CoreScreen::destroySprites(rtype::Event &event, rtype::Game *gameEngine)
+{
+    (void) gameEngine;
+    (void) event;
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        if (transformCompo->getX() > 1920) {
+            _world.removeEntity(i);
+        }
+    }
 }

@@ -9,7 +9,7 @@
 
 #include <memory>
 #include <vector>
-#include "../Entity/Entity.hpp"
+#include "../Entity/entity.hpp"
 
 namespace rtype
 {

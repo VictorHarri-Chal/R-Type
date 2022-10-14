@@ -6,7 +6,7 @@
 */
 
 #include "MultiplayerScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
 
 rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0)
 {

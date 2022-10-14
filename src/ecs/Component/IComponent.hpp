@@ -29,17 +29,18 @@ namespace rtype
                 DRAWABLE2D,
                 ALIVE,
                 INVENTORY,
-                EXPLODABLE,
+                PROJECTILE,
                 COLLIDE,
                 SOUND,
-                DESTROYABLE,
+                SHIP,
+                HEALTH,
                 UNKNOWNCOMPO
             };
             /**
              * @brief Enum for drawable type
              *
              */
-            enum drawableType { CIRCLE, SPRITE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
+            enum drawableType { SPRITE, TEXT, RECTANGLE, UNKNOWNDRAWABLE };
             /**
              * @brief Enum for bonus type
              *

@@ -6,7 +6,7 @@
 */
 
 #include "IntroScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
 
 rtype::menu::IntroScreen::IntroScreen(): _onWritingFrame(false)
 {

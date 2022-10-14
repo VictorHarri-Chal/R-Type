@@ -86,7 +86,7 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
 void rtype::Game::run()
 {
     while (_window.isOpen()) {
-        if (_clock.getElapsedTime() >= sf::seconds(1.0f/200.0f)) {
+        if (_clock.getElapsedTime() >= sf::seconds(1.0f/120.0f)) {
             if(!processEvents(this))
                 break;
             _window.clear(sf::Color::Black);

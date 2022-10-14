@@ -51,6 +51,10 @@ namespace rtype
 
             void managePlayerMovement(rtype::Event &event, rtype::Game *gameEngine);
 
+            void managePlayerShot(rtype::Event &event, rtype::Game *gameEngine);
+
+            void destroySprites(rtype::Event &event, rtype::Game *gameEngine);
+
           private:
             /**
              * @brief World object will contain all the entities and system
