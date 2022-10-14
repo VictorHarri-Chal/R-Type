@@ -22,19 +22,23 @@ jobs:
           {
             if [ "${{matrix.os}}" = "ubuntu-latest" ]; then
               echo build_name=linux-amd64
+              echo arhive_name=r-type-$build_name.7z
 
             elif [ "${{matrix.os}}" = "macos-latest" ]; then
               echo build_name=darwin-amd64
+              echo arhive_name=r-type-$build_name.7z
 
             elif [ "${{matrix.os}}" = "windows-latest" ]; then
               # do not remove the file extension,
               # softprops/action-gh-release action will fail
               # "Pattern 'r-type_*-windows-amd64' does not match any files."
               echo build_name=windows-amd64.exe
+              echo archive_name=r-type-windows-amd64.7z
 
             elif [ "${{matrix.os}}" = "self-hosted" ]; then
               # change this, repo's self-hosted runner is Debian arm64
               echo build_name=linux-arm64
+              echo archive_name=r-type-$build_name.7z
 
             else
               exit 1
@@ -59,7 +63,7 @@ jobs:
           test -f Debug/r-type_client.exe
           test -f Debug/r-type_server.exe
 
-      - name: Check build (!Windows)
+      - name: Check build
         if: matrix.os != 'windows-latest'
         shell: bash
         run: |
@@ -73,7 +77,7 @@ jobs:
           mv Debug/r-type_client.exe r-type_client-${{env.build_name}}
           mv Debug/r-type_server.exe r-type_server-${{env.build_name}}
 
-      - name: Rename build (!Windows)
+      - name: Rename build
         if: matrix.os != 'windows-latest'
         shell: bash
         run: |
@@ -82,12 +86,11 @@ jobs:
 
       - name: Archive build
         shell: bash
-        run: |
-          7z a r-type-${{env.build_name}}.7z r-type_{client,server}-${{env.build_name}}
+        run: 7z a ${{env.archive_name}} r-type_{client,server}-${{env.build_name}}
 
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{env.release_name}}
-          files: r-type-${{env.build_name}}.7z
+          files: ${{env.archive_name}}
           fail_on_unmatched_files: true
