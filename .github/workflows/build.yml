@@ -27,8 +27,8 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: bash
         run: |
-          test -f r-type_client.exe
-          test -f r-type_server.exe
+          test -f Debug/r-type_client.exe
+          test -f Debug/r-type_server.exe
 
       - name: Check build (!Windows)
         if: matrix.os != 'windows-latest'
