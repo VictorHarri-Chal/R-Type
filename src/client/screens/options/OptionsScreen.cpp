@@ -6,7 +6,7 @@
 */
 
 #include "OptionsScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
+#include "../../../ecs/system/draw2d/Draw2D.hpp"
 
 rtype::menu::OptionsScreen::OptionsScreen()
 {

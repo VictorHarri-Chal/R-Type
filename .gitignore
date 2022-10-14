@@ -6,6 +6,9 @@
 /build
 Makefile
 
+# Doc
+/doc
+
 # Executable
 /r-type_server
 /r-type_client

@@ -27,30 +27,30 @@ set(SCREENSROOT ${SRCCLIENT}/screens/)
 set(TOOLSROOT ${SRCCLIENT}/tools/)
 
 set(SRC_ECS
-    ${ECSROOT}Entity/Entity.cpp
-    ${ECSROOT}Entity/Entity.hpp
+    ${ECSROOT}entity/Entity.cpp
+    ${ECSROOT}entity/Entity.hpp
     ${ECSROOT}world.cpp
     ${ECSROOT}world.hpp
-    ${ECSROOT}System/ISystem.hpp
-    ${ECSROOT}Component/Alive/Alive.cpp
-    ${ECSROOT}Component/Alive/Alive.hpp
-    ${ECSROOT}Component/Collide/Collide.cpp
-    ${ECSROOT}Component/Collide/Collide.hpp
-    ${ECSROOT}Component/Destroyable/Destroyable.cpp
-    ${ECSROOT}Component/Destroyable/Destroyable.hpp
-    ${ECSROOT}Component/Drawable2D/Drawable2D.cpp
-    ${ECSROOT}Component/Drawable2D/Drawable2D.hpp
-    ${ECSROOT}Component/Explodable/Explodable.cpp
-    ${ECSROOT}Component/Explodable/Explodable.hpp
-    ${ECSROOT}Component/Inventory/Inventory.cpp
-    ${ECSROOT}Component/Inventory/Inventory.hpp
-    ${ECSROOT}Component/Sound/Sound.cpp
-    ${ECSROOT}Component/Sound/Sound.hpp
-    ${ECSROOT}Component/Transform/Transform.cpp
-    ${ECSROOT}Component/Transform/Transform.hpp
-    ${ECSROOT}Component/IComponent.hpp
-    ${ECSROOT}System/Draw2D/Draw2D.cpp
-    ${ECSROOT}System/Draw2D/Draw2D.hpp
+    ${ECSROOT}system/ISystem.hpp
+    ${ECSROOT}component/alive/Alive.cpp
+    ${ECSROOT}component/alive/Alive.hpp
+    ${ECSROOT}component/collide/Collide.cpp
+    ${ECSROOT}component/collide/Collide.hpp
+    ${ECSROOT}component/destroyable/Destroyable.cpp
+    ${ECSROOT}component/destroyable/Destroyable.hpp
+    ${ECSROOT}component/drawable2d/Drawable2D.cpp
+    ${ECSROOT}component/drawable2d/Drawable2D.hpp
+    ${ECSROOT}component/explodable/Explodable.cpp
+    ${ECSROOT}component/explodable/Explodable.hpp
+    ${ECSROOT}component/inventory/Inventory.cpp
+    ${ECSROOT}component/inventory/Inventory.hpp
+    ${ECSROOT}component/sound/Sound.cpp
+    ${ECSROOT}component/sound/Sound.hpp
+    ${ECSROOT}component/transform/Transform.cpp
+    ${ECSROOT}component/transform/Transform.hpp
+    ${ECSROOT}component/IComponent.hpp
+    ${ECSROOT}system/draw2d/Draw2D.cpp
+    ${ECSROOT}system/draw2d/Draw2D.hpp
 )
 
 set(SRC_SCREENS

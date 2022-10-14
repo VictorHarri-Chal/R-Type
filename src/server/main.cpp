@@ -17,48 +17,73 @@
 /*include binary_iarchive.hpp for binary_iacrhive*/
 #include <boost/archive/binary_iarchive.hpp>
 
-
-
 /*declaration of class to be archived*/
-class message{
-public:
-    enum request {
-        CREATE,
-        JOIN,
-        DELETE,
-        LAUNCH,
-        DISCONNECT
-    };
+/**
+ * @brief Class to be archived
+ * 
+ */
+class message {
+  public:
+    /**
+     * @brief Enum for request type
+     * 
+     */
+    enum request { CREATE, JOIN, DELETE, LAUNCH, DISCONNECT };
     /*public access is required for the class member which are to be saved/loaded*/
+    /**
+     * @brief Request type
+     * 
+     */
     request type;
+    /**
+     * @brief Body of the message
+     * 
+     */
     std::string body;
 
     /*default constructor for class*/
+    /**
+     * @brief Construct a new message object
+     * 
+     */
     message(){};
     /*parameterized constructor for class*/
-    message(request t, std::string b) : type(t), body(b){}
+    /**
+     * @brief Construct a new message object
+     * 
+     * @param t Type of the request
+     * @param b Body of the message
+     */
+    message(request t, std::string b) : type(t), body(b)
+    {
+    }
 
     /*this function prints the details of class object*/
-    void print(){
-        std::cout << "(" << type << ", " << body.size() << ", " << body  << ")" <<  std::endl;
+    /**
+     * @brief Print the details of the class object
+     * 
+     */
+    void print()
+    {
+        std::cout << "(" << type << ", " << body.size() << ", " << body << ")" << std::endl;
     }
-
 };
 
-
 /*override serialize function to serialize class Class*/
-namespace boost{
-    namespace serialization{
-        template<class Archive>
-        void serialize(Archive &archive, message &object, const unsigned int version){
-            archive & object.type;
-            archive & object.body;
+namespace boost
+{
+    namespace serialization
+    {
+        template <class Archive> void serialize(Archive &archive, message &object, const unsigned int version)
+        {
+            archive &object.type;
+            archive &object.body;
         }
-    }
-}
+    } // namespace serialization
+} // namespace boost
 
-int main() {
-
+int main()
+{
     /*filename to work with*/
     // std::string filename = "binary.txt";
 
