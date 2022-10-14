@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** explodable.hpp
+** enemypath.hpp
 */
 
-#ifndef EXPLODABLE_HPP_
-#define EXPLODABLE_HPP_
+#ifndef ENEMYPATH_HPP_
+#define ENEMYPATH_HPP_
 
 #include <map>
 #include "../ISystem.hpp"
@@ -17,21 +17,21 @@ namespace rtype
     {
         namespace system
         {
-            /// @brief Explodable system
-            class Explodable : public ISystem {
+            /// @brief Enemypath system
+            class EnemypathSystem : public ISystem {
               public:
                 /**
-                 * @brief Construct a new Explodable object
+                 * @brief Construct a new Enemypath object
                  *
                  */
-                Explodable();
+                EnemypathSystem() {}
                 /**
-                 * @brief Destroy the Explodable object
+                 * @brief Destroy the Enemypath object
                  *
                  */
-                ~Explodable();
+                ~EnemypathSystem() {}
                 /**
-                 * @brief Update explodable entities
+                 * @brief Update Enemypath entities
                  *
                  * @param entities Entity to update
                  */
@@ -50,4 +50,5 @@ namespace rtype
     }     // namespace ecs
 } // namespace rtype
 
-#endif /* !EXPLODABLE_HPP_ */
+#endif /* !ENEMYPATH_HPP_ */
+

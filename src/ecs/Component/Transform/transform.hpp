@@ -26,10 +26,8 @@ namespace rtype
                 void update(float posX, float posY, float speedX, float speedY);
                 float getX() const;
                 float getY() const;
-                float getZ() const;
                 void setX(float posX);
                 void setY(float posY);
-                void setZ(float posZ);
                 float getSpeedX() const;
                 float getSpeedY() const;
                 void setSpeedY(float speed);
@@ -38,7 +36,6 @@ namespace rtype
               private:
                 float _posX;
                 float _posY;
-                float _posZ;
                 float _speedX;
                 float _speedY;
             };

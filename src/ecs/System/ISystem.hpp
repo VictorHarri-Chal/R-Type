@@ -24,11 +24,12 @@ namespace rtype
              * 
              */
             enum SystemType {
-                DRAWABLE2DSYSTEM,
-                MOVEMENTSYSTEM,
                 COLLIDESYSTEM,
-                SOUNDSYSTEM,
-                EXPLODABLESYSTEM
+                DRAWABLE2DSYSTEM,
+                ENEMYPATHSYSTEM,
+                MOVEMENTSYSTEM,
+                PARTICLESSYSTEM,
+                SOUNDSYSTEM
             };
             /// @brief System
             class ISystem {

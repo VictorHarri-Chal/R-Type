@@ -56,6 +56,10 @@ set(SRC_ECS
     ${ECSROOT}System/Movement/movement.hpp
     ${ECSROOT}System/Collide/collide.cpp
     ${ECSROOT}System/Collide/collide.hpp
+    ${ECSROOT}System/Particles/particles.cpp
+    ${ECSROOT}System/Particles/particles.hpp
+    ${ECSROOT}System/Enemypath/enemypath.cpp
+    ${ECSROOT}System/Enemypath/enemypath.hpp
     ${ECSROOT}System/ISystem.hpp
 )
 
