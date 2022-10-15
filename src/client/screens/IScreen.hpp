@@ -8,10 +8,10 @@
 #pragma once
 
 #include <memory>
-#include "../../ecs/system/ISystem.hpp"
+#include "../../ecs/System/ISystem.hpp"
 #include "../../../include/EventCode.hpp"
 #include "../../sfml/Sfml.hpp"
-#include "../../ecs/entity/Entity.hpp"
+#include "../../ecs/Entity/entity.hpp"
 
 namespace rtype
 {

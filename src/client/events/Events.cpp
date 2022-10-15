@@ -132,65 +132,66 @@ namespace rtype
         }
     }
 
-    void Events::getControllerEvents(rtype::Event &event, int controllerId, sf::Event sfmlEvent)
-    {
-        if (sf::Joystick::isConnected(controllerId)) {
-            if (sf::Joystick::isButtonPressed(controllerId, rtype::Event::ControllerCode::X_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::X_BUTTON;
-            else if (sf::Joystick::isButtonPressed(controllerId, rtype::Event::ControllerCode::O_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::O_BUTTON;
-            else if (sf::Joystick::isButtonPressed(controllerId, rtype::Event::ControllerCode::T_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::T_BUTTON;
-            else if (sf::Joystick::isButtonPressed(
-                         controllerId, rtype::Event::ControllerCode::OPTION_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::OPTION_BUTTON;
-            else if (sf::Joystick::isButtonPressed(
-                         controllerId, rtype::Event::ControllerCode::UP_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::UP_BUTTON;
-            else if (sf::Joystick::isButtonPressed(
-                         controllerId, rtype::Event::ControllerCode::DOWN_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::DOWN_BUTTON;
-            else if (sf::Joystick::isButtonPressed(
-                         controllerId, rtype::Event::ControllerCode::LEFT_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::LEFT_BUTTON;
-            else if (sf::Joystick::isButtonPressed(
-                         controllerId, rtype::Event::ControllerCode::RIGHT_BUTTON))
-                event.controller[controllerId].code = rtype::Event::ControllerCode::RIGHT_BUTTON;
-            else
-                event.controller[controllerId].code = rtype::Event::ControllerCode::CONTROLLER_NONE;
+    // void Events::getControllerEvents(rtype::Event &event, int controllerId, sf::Event sfmlEvent)
+    // {
+    //     if (sf::Joystick::isConnected(controllerId)) {
+    //         if (sf::Joystick::isButtonPressed(controllerId, rtype::Event::ControllerCode::X_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::X_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(controllerId, rtype::Event::ControllerCode::O_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::O_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(controllerId, rtype::Event::ControllerCode::T_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::T_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(
+    //                      controllerId, rtype::Event::ControllerCode::OPTION_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::OPTION_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(
+    //                      controllerId, rtype::Event::ControllerCode::UP_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::UP_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(
+    //                      controllerId, rtype::Event::ControllerCode::DOWN_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::DOWN_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(
+    //                      controllerId, rtype::Event::ControllerCode::LEFT_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::LEFT_BUTTON;
+    //         else if (sf::Joystick::isButtonPressed(
+    //                      controllerId, rtype::Event::ControllerCode::RIGHT_BUTTON))
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::RIGHT_BUTTON;
+    //         else
+    //             event.controller[controllerId].code = rtype::Event::ControllerCode::CONTROLLER_NONE;
 
-            float xAxisLeft = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::X);
-            float yAxisLeft = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::Y);
-            float xAxisRight = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::U);
-            float yAxisRight = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::R);
+    //         float xAxisLeft = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::X);
+    //         float yAxisLeft = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::Y);
+    //         float xAxisRight = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::U);
+    //         float yAxisRight = sf::Joystick::getAxisPosition(controllerId, sf::Joystick::R);
 
-            if (xAxisLeft >= -1 && xAxisLeft <= -0.75)
-                event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::LEFT;
-            else if (xAxisLeft >= 0.75 && xAxisLeft <= 1)
-                event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::RIGHT;
-            else if (yAxisLeft >= -1 && yAxisLeft <= -0.75)
-                event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::UP;
-            else if (yAxisLeft >= 0.75 && yAxisLeft <= 1)
-                event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::DOWN;
-            else
-                event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::JOYSTICK_NONE;
-            if (xAxisRight >= -1 && xAxisRight <= -0.75)
-                event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::LEFT;
-            else if (xAxisRight >= 0.75 && xAxisRight <= 1)
-                event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::RIGHT;
-            else if (yAxisRight >= -1 && yAxisRight <= -0.75)
-                event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::UP;
-            else if (yAxisRight >= 0.75 && yAxisRight <= 1)
-                event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::DOWN;
-            else
-                event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::JOYSTICK_NONE;
-            event.controller[controllerId].connected = true;
-        } else
-            event.controller[controllerId].connected = false;
-    }
+    //         if (xAxisLeft >= -1 && xAxisLeft <= -0.75)
+    //             event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::LEFT;
+    //         else if (xAxisLeft >= 0.75 && xAxisLeft <= 1)
+    //             event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::RIGHT;
+    //         else if (yAxisLeft >= -1 && yAxisLeft <= -0.75)
+    //             event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::UP;
+    //         else if (yAxisLeft >= 0.75 && yAxisLeft <= 1)
+    //             event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::DOWN;
+    //         else
+    //             event.controller[controllerId].leftJoystick = rtype::Event::JoystickDirection::JOYSTICK_NONE;
+    //         if (xAxisRight >= -1 && xAxisRight <= -0.75)
+    //             event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::LEFT;
+    //         else if (xAxisRight >= 0.75 && xAxisRight <= 1)
+    //             event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::RIGHT;
+    //         else if (yAxisRight >= -1 && yAxisRight <= -0.75)
+    //             event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::UP;
+    //         else if (yAxisRight >= 0.75 && yAxisRight <= 1)
+    //             event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::DOWN;
+    //         else
+    //             event.controller[controllerId].rightJoystick = rtype::Event::JoystickDirection::JOYSTICK_NONE;
+    //         event.controller[controllerId].connected = true;
+    //     } else
+    //         event.controller[controllerId].connected = false;
+    // }
 
     void Events::getMouseButtons(rtype::Event &event, sf::Event sfmlEvent)
     {
+        (void) sfmlEvent;
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             sf::Vector2i pos = sf::Mouse::getPosition();
             event.position = sf::Vector2f(pos);
