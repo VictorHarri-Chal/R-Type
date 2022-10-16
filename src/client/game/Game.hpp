@@ -96,5 +96,7 @@ namespace rtype
         rtype::Event _event;
         /// @brief Last active scene
         Screens _lastScene;
+        /// @brief Event class
+        Events _eventClass;
     };
 }

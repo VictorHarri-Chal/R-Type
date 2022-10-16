@@ -44,14 +44,14 @@ namespace rtype
          */
         void getSystemKeys(rtype::Event &event, sf::Event sfmlEvent);
 
-        /**
-         * @brief Get a controller event
-         *
-         * @param event event class to modify
-         * @param controllerId id of the controller
-         * @param sfmlEvent Sfml event
-         */
-        void getControllerEvents(rtype::Event &event, int controllerId, sf::Event sfmlEvent);
+        // /**
+        //  * @brief Get a controller event
+        //  *
+        //  * @param event event class to modify
+        //  * @param controllerId id of the controller
+        //  * @param sfmlEvent Sfml event
+        //  */
+        // void getControllerEvents(rtype::Event &event, int controllerId, sf::Event sfmlEvent);
         /**
          * @brief Get the Mouse Buttons 
          * 
@@ -59,6 +59,12 @@ namespace rtype
          * @param sfmlEvent Sfml event
          */
         void getMouseButtons(rtype::Event &event, sf::Event sfmlEvent);
+        /**
+         * @brief Init the event variables values
+         * 
+         * @param event Event class to modify
+         */
+        void initEvents(rtype::Event &event);
     };
 } // namespace rtype
 

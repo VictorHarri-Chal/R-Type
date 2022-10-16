@@ -62,7 +62,12 @@ namespace rtype
                  * @param gameEngine the game engine.
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) override;
-
+                /**
+                 * @brief Handle and modify sprites rect to manage animations.
+                 *
+                 * @param entity current entity.
+                 */
+                void animations(rtype::ecs::entity::Entity* entity);
                 /**
                  * @brief Get the type of system.
                  *
@@ -71,6 +76,9 @@ namespace rtype
                 rtype::ecs::system::SystemType getSystemType() const override;
 
               private:
+
+                sf::Clock _allyClock;
+                sf::Clock _enemyClock;
             };
         } // namespace system
     }     // namespace ecs

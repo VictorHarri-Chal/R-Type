@@ -197,3 +197,8 @@ void rtype::ecs::component::Drawable2D::setOutlineColor(sf::Color color)
 {
     this->_outline_color = color;
 }
+
+void rtype::ecs::component::Drawable2D::setRect(sf::IntRect rect)
+{
+    this->_rect = rect;
+}
