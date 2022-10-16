@@ -5,30 +5,20 @@
 ** main
 */
 
-// #include "network/server.hpp"
-// #include "network/SafeQueue.hpp"
-
-#include <string>
-#include <bitset>
-#include <iostream>
+#include "network/server.hpp"
+#include "network/SafeQueue.hpp"
 
 int main() {
-    std::string myString = "Hello World";
-
-    for (std::size_t i = 0; i < myString.size(); ++i)
+    try
     {
-      std::cout << std::bitset<8>(myString.c_str()[i]) << std::endl;
+        boost::asio::io_context io_context;
+        Server server(io_context, 4242);
+        io_context.run();
     }
-    // try
-    // {
-    //     boost::asio::io_context io_context;
-    //     Server server(io_context, 4242);
-    //     io_context.run();
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
+    catch (std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 
-    // return 0;
+    return 0;
 }

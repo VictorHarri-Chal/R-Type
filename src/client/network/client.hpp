@@ -12,6 +12,8 @@
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
 #include "message.hpp"
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
 // /*include binary_oarchive.hpp for binary_oacrhive*/
 // #include <boost/archive/binary_oarchive.hpp>
 

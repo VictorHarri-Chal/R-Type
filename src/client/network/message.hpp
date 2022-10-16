@@ -21,16 +21,16 @@ public:
     };
     /*public access is required for the class member which are to be saved/loaded*/
     request type;
-    std::string body;
+    int value;
 
     /*default constructor for class*/
     message(){};
     /*parameterized constructor for class*/
-    message(request t, std::string b) : type(t), body(b){}
+    message(request t, int v) : type(t), value(v){}
 
     /*this function prints the details of class object*/
     void print(){
-        std::cout << "(" << type << ", " << body.size() << ", " << body  << ")" <<  std::endl;
+        std::cout << "(" << type << ", " << value << ")" <<  std::endl;
     }
 };
 
@@ -39,7 +39,7 @@ namespace boost{
         template<class Archive>
         void serialize(Archive &archive, message &object, const unsigned int version){
             archive & object.type;
-            archive & object.body;
+            archive & object.value;
             (void)version;
         }
     }

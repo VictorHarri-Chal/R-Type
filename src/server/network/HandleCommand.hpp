@@ -14,7 +14,7 @@
 class HandleCommand
 {
 private:
-    std::vector<std::function<void(std::string)>> _allCommand;
+    std::vector<std::function<void(int)>> _allCommand;
 public:
     HandleCommand();
     ~HandleCommand() = default;

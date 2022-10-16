@@ -7,29 +7,29 @@
 
 #include "HandleCommand.hpp"
 
-static void CreateCommand(std::string Body)
+static void CreateCommand(int Value)
 {
-    std::cout << "Create Command Body = " << Body << std::endl; 
+    std::cout << "Create Command Value = " << Value << std::endl; 
 }
 
-static void JoinCommand(std::string Body)
+static void JoinCommand(int Value)
 {
-    std::cout << "Join Command Body = " << Body << std::endl; 
+    std::cout << "Join Command Value = " << Value << std::endl; 
 }
 
-static void DeleteCommand(std::string Body)
+static void DeleteCommand(int Value)
 {
-    std::cout << "Delete Command Body = " << Body << std::endl; 
+    std::cout << "Delete Command Value = " << Value << std::endl; 
 }
 
-static void LaunchCommand(std::string Body)
+static void LaunchCommand(int Value)
 {
-    std::cout << "Launch Command Body = " << Body << std::endl; 
+    std::cout << "Launch Command Value = " << Value << std::endl; 
 }
 
-static void DisconectCommand(std::string Body)
+static void DisconectCommand(int Value)
 {
-    std::cout << "Disconect Command Body = " << Body << std::endl; 
+    std::cout << "Disconect Command Value = " << Value << std::endl; 
 }
 
 HandleCommand::HandleCommand() {
@@ -42,7 +42,5 @@ HandleCommand::HandleCommand() {
 
 void HandleCommand::findCmd(message command)
 {
-    if (command.body.size() <= 0)
-        return;
-    this->_allCommand[command.type](command.body);
+    this->_allCommand[command.type](command.value);
 }

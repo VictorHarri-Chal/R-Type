@@ -7,6 +7,8 @@
 
 #include "client.hpp"
 
+
+
 Client::~Client()
 {
   _socket.close();
@@ -23,12 +25,11 @@ Client::~Client()
 // }
 
 void Client::send(const std::string& msg) {
-  //   message test(message::CREATE, "hello world");
-  //   boost::asio::const_buffers_1 command = cryptMessage(test);
-  //   (void)msg;
-
-  // _socket.send_to(boost::asio::buffer(command, command.size()), _endpoint);
-  // test.print();
+    std::stringstream os;
+    boost::archive::text_oarchive oa(os);
+    message test(message::DELETE, 1);
+    oa << test;
+    _socket.send_to(boost::asio::buffer(os.str()), _endpoint);
 }
 
 void Client::start_receive()

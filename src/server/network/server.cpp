@@ -6,7 +6,7 @@
 */
 
 #include "server.hpp"
-#include <istream>
+#include <fstream>
 using boost::asio::ip::udp;
 
 // static message decryptMessage(boost::array<char, 64> _recv_buffer)
@@ -42,14 +42,22 @@ void Server::handle_receive(const boost::system::error_code& error,
   {
     if (!error || error == boost::asio::error::message_size)
     {
-      message message(message::JOIN, "hello world");
+      message test1(message::JOIN, 11);
       HandleCommand commandHandler;
       // decryptMessage(_recv_buffer);
 
-        commandHandler.findCmd(message);
+        commandHandler.findCmd(test1);
         std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
         _queue.pop();
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
+
+        std::stringstream outfile;
+        outfile << _recv_buffer.data();
+        boost::archive::text_iarchive oa(outfile);
+        message test;
+        oa >> test;
+        test.print();
+        start_receive();
 
         // boost::shared_ptr<std::string> message(
         //     new std::string("hello world"));
