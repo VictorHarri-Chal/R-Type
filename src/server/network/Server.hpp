@@ -33,20 +33,39 @@ class Server
         listen();
     }
 
+
+  private:
+    /**
+     * @brief Listen to clients
+     */
+    void listen();
+
+    /**
+     * @brief Get data from stream
+     * @return message
+     */
+    message getStreamData();
+
     /**
      * @brief Handle data sent from the clients to the server
      * @param error
      * @param bytes_transferred
      */
-
-    void send(message msg);
-  private:
-    message getStreamData();
-
-    void handleSend(const boost::system::error_code& /*error*/,
-        std::size_t /*bytes_transferred*/);
-    void listen();
     void handleListen(const boost::system::error_code& error,
+        std::size_t /*bytes_transferred*/);
+
+    /**
+     * @brief Send message to clients
+     * @param message
+     */
+    void send(message msg);
+
+    /**
+     * @brief Handle data sent from the server to the clients
+     * @param error
+     * @param bytes_transferred
+     */
+    void handleSend(const boost::system::error_code& /*error*/,
         std::size_t /*bytes_transferred*/);
 
     udp::socket _socket;
@@ -57,6 +76,9 @@ class Server
     std::vector<int> _rooms;
 };
 
+/*
+** HandleCommand
+*/
 class HandleCommand {
   private:
     std::vector<std::function<void(int, Server*)>> _allCommand;

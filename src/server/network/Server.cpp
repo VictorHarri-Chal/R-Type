@@ -20,19 +20,6 @@ void Server::listen()
         boost::asio::placeholders::bytes_transferred));
 }
 
-message Server::getStreamData()
-{
-    std::stringstream ss;
-    message msg;
-
-    ss << _recvBuffer.data();
-    boost::archive::text_iarchive ia(ss);
-    ia >> msg;
-    std::cout << "Server received a message: " << std::endl;
-    msg.print();
-    return msg;
-}
-
 void Server::handleListen(const boost::system::error_code& error,
     std::size_t /*bytes_transferred*/)
   {
@@ -49,6 +36,20 @@ void Server::handleListen(const boost::system::error_code& error,
         listen();
     }
 }
+
+message Server::getStreamData()
+{
+    std::stringstream ss;
+    message msg;
+
+    ss << _recvBuffer.data();
+    boost::archive::text_iarchive ia(ss);
+    ia >> msg;
+    std::cout << "Server received a message: " << std::endl;
+    msg.print();
+    return msg;
+}
+
 
 void Server::send(message msg)
 {
@@ -70,6 +71,9 @@ void Server::handleSend(
 {
 }
 
+/*
+** HandleCommand
+*/
 static void CreateCommand(int value, Server *server)
 {
     std::cout << "Create Command value = " << value << std::endl;
