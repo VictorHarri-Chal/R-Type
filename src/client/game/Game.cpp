@@ -6,8 +6,6 @@
 */
 
 #include "Game.hpp"
-#include "../network/client.hpp"
-#include <iostream>
 
 rtype::Game::Game(size_t baseFps)
 {

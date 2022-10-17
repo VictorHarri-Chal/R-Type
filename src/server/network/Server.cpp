@@ -5,8 +5,8 @@
 ** Server
 */
 
-#include "server.hpp"
-#include <fstream>
+#include "Server.hpp"
+
 using boost::asio::ip::udp;
 
 static void CreateCommand(int value, Server *server)

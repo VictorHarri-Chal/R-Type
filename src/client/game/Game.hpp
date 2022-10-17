@@ -12,7 +12,7 @@
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
-#include "../network/client.hpp"
+#include "../network/Client.hpp"
 
 namespace rtype
 {
