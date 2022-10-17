@@ -24,7 +24,7 @@ Client::~Client()
 //     return (b.data());
 // }
 
-void Client::send(const std::string& msg) {
+void Client::send() {
     std::stringstream os;
     boost::archive::text_oarchive oa(os);
     message test(message::LAUNCH, 123);

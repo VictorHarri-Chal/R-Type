@@ -39,7 +39,7 @@ class Client
 
     ~Client();
 
-    void send(const std::string& msg);
+    void send();
 
     private:
 

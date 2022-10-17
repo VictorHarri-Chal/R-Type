@@ -5,7 +5,6 @@
 ** main
 */
 
-#include "network/client.hpp"
 #include "game/Game.hpp"
 
 int main()
@@ -14,21 +13,7 @@ int main()
         rtype::Game Game(60);
 
         Game.init();
-
-        boost::asio::io_service io_service;
-        Client client(io_service, "localhost", "4242");
-        std::string message;
-
-        while (message != "quit") {
-            message.clear();
-            std::cout << "message = ";
-            std::getline(std::cin >> std::ws, message);
-            client.send(message);
-            io_service.run();
-
-            Game.run();
-        }
-
+        Game.run();
         Game.destroy();
     } catch (std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;

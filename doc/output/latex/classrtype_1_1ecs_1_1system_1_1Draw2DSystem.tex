@@ -1,0 +1,143 @@
+\hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem}{}\doxysection{rtype\+::ecs\+::system\+::Draw2\+DSystem Class Reference}
+\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem}\index{rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}}
+
+
+Draw2D system.  
+
+
+
+
+{\ttfamily \#include $<$draw2d.\+hpp$>$}
+
+Inheritance diagram for rtype\+::ecs\+::system\+::Draw2\+DSystem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrtype_1_1ecs_1_1system_1_1Draw2DSystem}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a5839a13f6ec3d6fb3b761e3bb5b7ef25}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a5839a13f6ec3d6fb3b761e3bb5b7ef25}} 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a5839a13f6ec3d6fb3b761e3bb5b7ef25}{Draw2\+DSystem}} ()
+\begin{DoxyCompactList}\small\item\em Create new draw 2d system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a6db036a7550135e830c68261a1cdaa3c}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a6db036a7550135e830c68261a1cdaa3c}} 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a6db036a7550135e830c68261a1cdaa3c}{$\sim$\+Draw2\+DSystem}} ()
+\begin{DoxyCompactList}\small\item\em Destroy draw 2d system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a3eed2c70292ae394bafe8335a7f5e372}{draw\+Text}} (\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Drawable2D}{rtype\+::ecs\+::component\+::\+Drawable2D}} drawable\+Compo, \mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Transform}{rtype\+::ecs\+::component\+::\+Transform}} transform\+Compo, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Draw text with given properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_af6c59f05bf340f8bc411bf919883ae9f}{draw\+Rectangle}} (\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Drawable2D}{rtype\+::ecs\+::component\+::\+Drawable2D}} drawable\+Compo, \mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Transform}{rtype\+::ecs\+::component\+::\+Transform}} transform\+Compo, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Draw rectangle with given properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_abbedb9826051ce4871128b74155bf5e2}{draw\+Sprite}} (\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Drawable2D}{rtype\+::ecs\+::component\+::\+Drawable2D}} drawable\+Compo, \mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Transform}{rtype\+::ecs\+::component\+::\+Transform}} transform\+Compo, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Draw sprite with given properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a343f11ea9d327ca51b5ff9888579d99b}{update}} (std\+::vector$<$ \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}} $\ast$ $>$ entities, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine) override
+\begin{DoxyCompactList}\small\item\em Draw all given entities with Drawable2D component. \end{DoxyCompactList}\item 
+rtype\+::ecs\+::system\+::\+System\+Type \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_ab8683edd6e4251d6be25fa5645156c1c}{get\+System\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Draw2D system. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_af6c59f05bf340f8bc411bf919883ae9f}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_af6c59f05bf340f8bc411bf919883ae9f}} 
+\index{rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}!drawRectangle@{drawRectangle}}
+\index{drawRectangle@{drawRectangle}!rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}}
+\doxysubsubsection{\texorpdfstring{drawRectangle()}{drawRectangle()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::system\+::\+Draw2\+DSystem\+::draw\+Rectangle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Drawable2D}{rtype\+::ecs\+::component\+::\+Drawable2D}}}]{drawable\+Compo,  }\item[{\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Transform}{rtype\+::ecs\+::component\+::\+Transform}}}]{transform\+Compo,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Draw rectangle with given properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drawable\+Compo} & the drawable component of the entity with the size and color. \\
+\hline
+{\em transform\+Compo} & the transform component of the entity with his position. \\
+\hline
+{\em game\+Engine} & the game engine. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_abbedb9826051ce4871128b74155bf5e2}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_abbedb9826051ce4871128b74155bf5e2}} 
+\index{rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}!drawSprite@{drawSprite}}
+\index{drawSprite@{drawSprite}!rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}}
+\doxysubsubsection{\texorpdfstring{drawSprite()}{drawSprite()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::system\+::\+Draw2\+DSystem\+::draw\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Drawable2D}{rtype\+::ecs\+::component\+::\+Drawable2D}}}]{drawable\+Compo,  }\item[{\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Transform}{rtype\+::ecs\+::component\+::\+Transform}}}]{transform\+Compo,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Draw sprite with given properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drawable\+Compo} & the drawable component of the entity with the size and color. \\
+\hline
+{\em transform\+Compo} & the transform component of the entity with his position. \\
+\hline
+{\em game\+Engine} & the game engine. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a3eed2c70292ae394bafe8335a7f5e372}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a3eed2c70292ae394bafe8335a7f5e372}} 
+\index{rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}!drawText@{drawText}}
+\index{drawText@{drawText}!rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}}
+\doxysubsubsection{\texorpdfstring{drawText()}{drawText()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::system\+::\+Draw2\+DSystem\+::draw\+Text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Drawable2D}{rtype\+::ecs\+::component\+::\+Drawable2D}}}]{drawable\+Compo,  }\item[{\mbox{\hyperlink{classrtype_1_1ecs_1_1component_1_1Transform}{rtype\+::ecs\+::component\+::\+Transform}}}]{transform\+Compo,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Draw text with given properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drawable\+Compo} & the drawable component of the entity with the text and color. \\
+\hline
+{\em transform\+Compo} & the transform component of the entity with his position. \\
+\hline
+{\em game\+Engine} & the game engine. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_ab8683edd6e4251d6be25fa5645156c1c}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_ab8683edd6e4251d6be25fa5645156c1c}} 
+\index{rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}!getSystemType@{getSystemType}}
+\index{getSystemType@{getSystemType}!rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}}
+\doxysubsubsection{\texorpdfstring{getSystemType()}{getSystemType()}}
+{\footnotesize\ttfamily rtype\+::ecs\+::system\+::\+System\+Type rtype\+::ecs\+::system\+::\+Draw2\+DSystem\+::get\+System\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the type of system. 
+
+\begin{DoxyReturn}{Returns}
+rtype\+::ecs\+::system\+::\+System\+Type the type of system. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1ISystem_ae6fff77020448f217a0b0ede62a1f45a}{rtype\+::ecs\+::system\+::\+ISystem}}.
+
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a343f11ea9d327ca51b5ff9888579d99b}\label{classrtype_1_1ecs_1_1system_1_1Draw2DSystem_a343f11ea9d327ca51b5ff9888579d99b}} 
+\index{rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}!update@{update}}
+\index{update@{update}!rtype::ecs::system::Draw2DSystem@{rtype::ecs::system::Draw2DSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::system\+::\+Draw2\+DSystem\+::update (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}} $\ast$ $>$}]{entities,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Draw all given entities with Drawable2D component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & all entities to draw. \\
+\hline
+{\em game\+Engine} & the game engine. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1ISystem_a7bc940bd4062a0f1986b098299ab8023}{rtype\+::ecs\+::system\+::\+ISystem}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/ecs/\+System/\+Draw2\+D/draw2d.\+hpp\item 
+src/ecs/\+System/\+Draw2\+D/draw2d.\+cpp\end{DoxyCompactItemize}

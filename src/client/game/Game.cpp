@@ -6,6 +6,7 @@
 */
 
 #include "Game.hpp"
+#include "../network/client.hpp"
 #include <iostream>
 
 rtype::Game::Game(size_t baseFps)
@@ -79,8 +80,13 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
 
 void rtype::Game::run()
 {
+    boost::asio::io_service io_service;
+    Client client(io_service, "localhost", "4242");
 
     while (_window.isOpen()) {
+        client.send();
+        // io_service.run_one();
+
         if(!processEvents(this))
             break;
         _window.clear(sf::Color::Black);
