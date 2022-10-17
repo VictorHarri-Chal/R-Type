@@ -16,7 +16,6 @@
 #include <fstream>
 
 #include "../../utils/Message.hpp"
-#include "HandleCommand.hpp"
 #include "SafeQueue.hpp"
 
 using boost::asio::ip::udp;
@@ -41,6 +40,14 @@ class Server
     void start_receive();
     void handle_receive(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/);
+};
 
+class HandleCommand {
+  private:
+    std::vector<std::function<void(int, Server*)>> _allCommand;
 
+  public:
+    HandleCommand();
+    ~HandleCommand() = default;
+    void findCmd(message command, Server *server);
 };
