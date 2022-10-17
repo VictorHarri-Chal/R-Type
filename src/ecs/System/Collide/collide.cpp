@@ -21,7 +21,6 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
             auto drawableCompo1 = entities[x]->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
             sf::Sprite sprite;
             sprite.setPosition(transformCompo1->getX(), transformCompo1->getY());
-            sprite.setTexture(drawableCompo1->getTexture());
             sprite.setScale(drawableCompo1->getScale());
             sprite.setRotation(drawableCompo1->getRotation());
             if (drawableCompo1->getIsRect())
@@ -32,11 +31,10 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                     auto drawableCompo2 = entities[y]->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
                     sf::Sprite otherSprite;
                     otherSprite.setPosition(transformCompo2->getX(), transformCompo2->getY());
-                    otherSprite.setTexture(drawableCompo2->getTexture());
-                    if (drawableCompo2->getIsRect())
-                        otherSprite.setTextureRect(drawableCompo2->getRect());
                     otherSprite.setScale(drawableCompo2->getScale());
                     otherSprite.setRotation(drawableCompo2->getRotation());
+                    if (drawableCompo2->getIsRect())
+                        otherSprite.setTextureRect(drawableCompo2->getRect());
                     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
                         if ((entities[x]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::ENEMY) || 
                         (entities[y]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::ENEMY)) {
