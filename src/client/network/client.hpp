@@ -30,6 +30,7 @@ class Client
       udp::resolver::query query(udp::v4(), host, port);
       udp::resolver::iterator iter = resolver.resolve(query);
       _endpoint = *iter;
+      _actualNbRooms = 0;
       start_receive();
     }
 
@@ -50,6 +51,7 @@ class Client
           std::size_t /*bytes_transferred*/);
       void handle_send(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/);
+      size_t _actualNbRooms;
 };
 
 #endif /* !CLIENT_HPP_ */

@@ -62,6 +62,9 @@ void Client::handle_receive(const boost::system::error_code& error,
       oa >> test;
       std::cout << "Client received: " << std::endl;
       test.print();
+      if (test.type == message::ROOM) {
+        this->_actualNbRooms = test.value;
+      }
 
       start_receive();
   }

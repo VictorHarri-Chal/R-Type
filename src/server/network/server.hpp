@@ -23,23 +23,27 @@ using boost::asio::ip::udp;
 class Server
 {
   public:
-    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
+    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _nbRooms(0) {
       start_receive();
   }
     void handle_send(const boost::system::error_code& /*error*/,
         std::size_t /*bytes_transferred*/);
 
-    udp::socket _socket;
-    udp::endpoint _remote_endpoint;
-    boost::array<char, 64> _recv_buffer;
-    int _port;
-    SafeQueue<message> _queue;
-    std::vector<int> _rooms;
+    void sendMessage(message::request type, int value = 0);
+    boost::array<char, 64> getBuffer() const;
+    size_t getnbRoom() const;
+    void setnbRoom(size_t nbRooms);
 
   private:
     void start_receive();
     void handle_receive(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/);
+    udp::socket _socket;
+    udp::endpoint _remote_endpoint;
+    boost::array<char, 64> _recv_buffer;
+    int _port;
+    SafeQueue<message> _queue;
+    size_t _nbRooms;
 };
 
 class HandleCommand {
@@ -49,5 +53,5 @@ class HandleCommand {
   public:
     HandleCommand();
     ~HandleCommand() = default;
-    void findCmd(message command, Server *server);
+    void findCmd(Server *server);
 };
