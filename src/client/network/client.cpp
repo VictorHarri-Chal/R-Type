@@ -27,7 +27,7 @@ Client::~Client()
 void Client::send(const std::string& msg) {
     std::stringstream os;
     boost::archive::text_oarchive oa(os);
-    message test(message::DELETE, 1);
+    message test(message::LAUNCH, 123);
     oa << test;
     _socket.send_to(boost::asio::buffer(os.str()), _endpoint);
 }

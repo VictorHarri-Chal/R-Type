@@ -56,6 +56,7 @@ void Server::handle_receive(const boost::system::error_code& error,
         boost::archive::text_iarchive oa(outfile);
         message test;
         oa >> test;
+        std::cout << "Server received: " << std::endl;
         test.print();
         start_receive();
 
