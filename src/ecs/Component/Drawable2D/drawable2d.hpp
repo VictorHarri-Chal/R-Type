@@ -36,6 +36,7 @@ namespace rtype
                 void setSpe(bool spe);
                 void setThickness(float thickness);
                 void setOutlineColor(sf::Color color);
+                void setRect(sf::IntRect rect);
                 rtype::ecs::component::compoType getType() const;
                 rtype::ecs::component::drawableType getDrawType();
                 float getHeight();

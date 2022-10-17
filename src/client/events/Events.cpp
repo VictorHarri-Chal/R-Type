@@ -200,9 +200,27 @@ namespace rtype
         event.global_position = sf::Vector2f(global_pos);
     }
 
+    void Events::initEvents(rtype::Event &event)
+    {
+        event.key.code = '\0';
+        event.key.enter = false;
+        event.key.backspace = false;
+        event.key.left = false;
+        event.key.right = false;
+        event.key.up = false;
+        event.key.down = false;
+        event.key.l_control = false;
+        event.key.r_control = false;
+        event.key.l_shift = false;
+        event.key.r_shift = false;
+        event.key.l_alt = false;
+        event.key.r_alt = false;
+        event.position = sf::Vector2f(0, 0);
+        event.global_position = sf::Vector2f(0, 0);
+    }
+
     bool Events::inputUpdate(rtype::Event &event, sf::Event sfmlEvent)
     {
-        // event.resized = rtype::raylib::Window::isWindowResized();
         this->getCharKeys(event, sfmlEvent);
         this->getSystemKeys(event, sfmlEvent);
         this->getMouseButtons(event, sfmlEvent);

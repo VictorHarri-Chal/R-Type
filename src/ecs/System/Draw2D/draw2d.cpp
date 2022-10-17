@@ -74,5 +74,31 @@ void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::En
                 }
             }
         }
+        animations(entity);
+    }
+}
+
+void rtype::ecs::system::Draw2DSystem::animations(rtype::ecs::entity::Entity* entity)
+{
+    if (entity->getEntityType() == rtype::ecs::entity::PLAYER && _allyClock.getElapsedTime() >= sf::seconds(1.0/8.0f)) {
+        rtype::ecs::component::Drawable2D *drawable2dCompo =
+        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+        sf::IntRect rect = drawable2dCompo->getRect();
+        if (rect.left == 33)
+            rect.left = 0;
+        else
+            rect.left += 33;
+        drawable2dCompo->setRect(rect);
+        _allyClock.restart();
+    } else if (entity->getEntityType() == rtype::ecs::entity::ENEMY && _enemyClock.getElapsedTime() >= sf::seconds(1.0/6.0f)) {
+        rtype::ecs::component::Drawable2D *drawable2dCompo =
+        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+        sf::IntRect rect = drawable2dCompo->getRect();
+        if (rect.left == 66)
+            rect.left = 34;
+        else
+            rect.left += 32;
+        drawable2dCompo->setRect(rect);
+        _enemyClock.restart();
     }
 }

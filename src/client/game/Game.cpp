@@ -20,14 +20,15 @@ rtype::Game::~Game()
 
 void rtype::Game::init()
 {
-    // _actualScreen = Screens::Core;
-    // _core = new rtype::menu::CoreScreen;
-    // _lastScene = Screens::Core;
-    // _core->init();
-    _actualScreen = Screens::Intro;
-    _intro = new rtype::menu::IntroScreen;
-    _lastScene = Screens::Intro;
-    _intro->init();
+    _eventClass.initEvents(_event);
+    _actualScreen = Screens::Core;
+    _core = new rtype::menu::CoreScreen;
+    _lastScene = Screens::Core;
+    _core->init();
+    // _actualScreen = Screens::Intro;
+    // _intro = new rtype::menu::IntroScreen;
+    // _lastScene = Screens::Intro;
+    // _intro->init();
 }
 
 void rtype::Game::initMusic()
@@ -42,12 +43,11 @@ void rtype::Game::initSounds()
 
 bool rtype::Game::processEvents(rtype::Game *gameEngine)
 {
-    Events Event;
     bool ret = true;
     int swap = 0;
 
     while (_window.pollEvent(_sfmlEvent)) {
-        ret = Event.inputUpdate(_event, _sfmlEvent);
+        ret = _eventClass.inputUpdate(_event, _sfmlEvent);
         if (_sfmlEvent.type == sf::Event::Closed || !ret)
             _window.close();
         swap = handleEvent(gameEngine);
