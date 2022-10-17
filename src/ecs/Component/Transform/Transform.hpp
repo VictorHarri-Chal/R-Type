@@ -5,8 +5,7 @@
 ** Transform (COMPONENT)
 */
 
-#ifndef TRANSFORM_HPP_
-#define TRANSFORM_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -45,5 +44,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !TRANSFORM_HPP_ */

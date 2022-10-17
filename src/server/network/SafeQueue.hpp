@@ -5,8 +5,7 @@
 ** SafeQueue
 */
 
-#ifndef SAFEQUEUE_HPP
-#define SAFEQUEUE_HPP
+#pragma once
 
 #include <queue>
 #include <optional>
@@ -119,5 +118,3 @@ class SafeQueue
             return _queue.empty();
         }
 };
-
-#endif //SAFEQUEUE_HPP

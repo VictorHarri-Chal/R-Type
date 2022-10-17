@@ -5,9 +5,6 @@
 ** Explodable (COMPONENT)
 */
 
-#ifndef EXPLODABLE_HPP_
-#define EXPLODABLE_HPP_
-
 #pragma once
 
 #include <chrono>
@@ -51,5 +48,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !EXPLODABLE_HPP_ */

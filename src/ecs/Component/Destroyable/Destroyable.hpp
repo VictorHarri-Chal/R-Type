@@ -5,8 +5,7 @@
 ** Destroyable (COMPONENT)
 */
 
-#ifndef DESTROYABLE_HPP_
-#define DESTROYABLE_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -29,5 +28,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !DESTROYABLE_HPP_ */

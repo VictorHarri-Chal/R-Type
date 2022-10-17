@@ -5,8 +5,7 @@
 ** Sound (COMPONENT)
 */
 
-#ifndef SOUND_HPP_
-#define SOUND_HPP_
+#pragma once
 
 #include <string>
 #include "../IComponent.hpp"
@@ -40,5 +39,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !SOUND_HPP_ */

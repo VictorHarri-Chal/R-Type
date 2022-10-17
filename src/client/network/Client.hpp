@@ -5,8 +5,7 @@
 ** Client
 */
 
-#ifndef CLIENT_HPP_
-#define CLIENT_HPP_
+#pragma once
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
@@ -52,5 +51,3 @@ class Client
       void handleSend(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/);
 };
-
-#endif /* !CLIENT_HPP_ */

@@ -5,8 +5,7 @@
 ** Events.hpp
 */
 
-#ifndef EVENTS_HPP_
-#define EVENTS_HPP_
+#pragma once
 
 #include "../../../include/EventCode.hpp"
 #include "../../sfml/Sfml.hpp"
@@ -21,9 +20,9 @@ namespace rtype
       public:
         /**
          * @brief Get input events and update game
-         * 
+         *
          * @param event Event to be handled
-         * 
+         *
          * @return true escape not pressed
          * @return false escape is pressed
          */
@@ -53,5 +52,3 @@ namespace rtype
         void getMouseButtons(rtype::Event &event, sf::Event sfmlEvent);
     };
 } // namespace rtype
-
-#endif /* !EVENTS_HPP_ */

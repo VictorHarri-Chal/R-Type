@@ -5,8 +5,7 @@
 ** Movement.hpp
 */
 
-#ifndef MOVEMENT_HPP_
-#define MOVEMENT_HPP_
+#pragma once
 
 #include "../ISystem.hpp"
 
@@ -52,5 +51,3 @@ namespace rtype
         } // namespace system
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !MOVEMENT_HPP_ */

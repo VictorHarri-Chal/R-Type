@@ -5,8 +5,7 @@
 ** Explodable.hpp
 */
 
-#ifndef EXPLODABLE_HPP_
-#define EXPLODABLE_HPP_
+#pragma once
 
 #include <map>
 #include "../ISystem.hpp"
@@ -68,5 +67,3 @@ namespace rtype
         } // namespace system
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !EXPLODABLE_HPP_ */

@@ -5,8 +5,7 @@
 ** Inventory (COMPONENT)
 */
 
-#ifndef INVENTORY_HPP_
-#define INVENTORY_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -42,5 +41,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !INVENTORY_HPP_ */

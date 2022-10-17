@@ -9,8 +9,7 @@
 ///
 /// The Event data structure.
 
-#ifndef RTYPE_EVENT_HPP_
-#define RTYPE_EVENT_HPP_
+#pragma once
 
 #include "../src/sfml/Sfml.hpp"
 
@@ -145,5 +144,3 @@ namespace rtype
         };
     };
 }
-
-#endif //RTYPE_EVENT_HPP_
