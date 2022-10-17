@@ -42,11 +42,8 @@ void Server::handle_receive(const boost::system::error_code& error,
   {
     if (!error || error == boost::asio::error::message_size)
     {
-      message test1(message::JOIN, 11);
       HandleCommand commandHandler;
-      // decryptMessage(_recv_buffer);
 
-        commandHandler.findCmd(test1);
         std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
         _queue.pop();
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
@@ -54,25 +51,28 @@ void Server::handle_receive(const boost::system::error_code& error,
         std::stringstream outfile;
         outfile << _recv_buffer.data();
         boost::archive::text_iarchive oa(outfile);
-        message test;
-        oa >> test;
+        message test1;
+        oa >> test1;
         std::cout << "Server received: " << std::endl;
-        test.print();
-        start_receive();
+        test1.print();
 
-        // boost::shared_ptr<std::string> message(
-        //     new std::string("hello world"));
+        commandHandler.findCmd(test1);
 
-        // _socket.async_send_to(boost::asio::buffer(*message), _remote_endpoint,
-        //     boost::bind(&Server::handle_send, this, message,
-        //       boost::asio::placeholders::error,
-        //       boost::asio::placeholders::bytes_transferred));
-        // _recv_buffer.assign(0);
+        std::stringstream os;
+        message test2(message::ROOM, 1);
+        // message test2(message::ROOM, _rooms.size());
+        boost::archive::text_oarchive oa2(os);
+        oa2 << test2;
+
+        _recv_buffer.assign(0);
+        _socket.async_send_to(boost::asio::buffer(os.str()), _remote_endpoint,
+            boost::bind(&Server::handle_send, this, boost::asio::placeholders::error,
+                boost::asio::placeholders::bytes_transferred));
         start_receive();
     }
 }
 
-void Server::handle_send(boost::shared_ptr<std::string> /*message*/,
+void Server::handle_send(
     const boost::system::error_code& /*error*/,
     std::size_t /*bytes_transferred*/)
 {

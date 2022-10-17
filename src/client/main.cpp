@@ -6,6 +6,7 @@
 */
 
 #include "game/Game.hpp"
+#include "network/client.hpp"
 
 int main()
 {

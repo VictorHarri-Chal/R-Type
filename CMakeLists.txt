@@ -21,6 +21,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(SRCCLIENT ${PROJECT_SOURCE_DIR}/src/client/)
 set(SRCSERVER ${PROJECT_SOURCE_DIR}/src/server/)
 set(ECSROOT ${SRCROOT}/ecs/)
+set(UTILSROOT ${SRCROOT}/utils/)
 set(EVENTSROOT ${SRCCLIENT}/events/)
 set(GAMEROOT ${SRCCLIENT}/game/)
 set(SCREENSROOT ${SRCCLIENT}/screens/)
@@ -70,6 +71,10 @@ set(SRC_GAME
     ${GAMEROOT}Game.hpp
 )
 
+set(SRC_UTILS
+    ${UTILSROOT}Message.hpp
+)
+
 set(SRC_EVENTS
     ${EVENTSROOT}Events.cpp
     ${EVENTSROOT}Events.hpp
@@ -84,6 +89,7 @@ set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
     ${SRCCLIENT}network/client.cpp
     ${SRCCLIENT}network/client.hpp
+    ${SRC_UTILS}
     ${SRC_ECS}
     ${SRC_EVENTS}
     ${SRC_GAME}
@@ -110,8 +116,7 @@ set(SRC_SERVER
     ${SRCSERVER}network/HandleCommand.cpp
     ${SRCSERVER}network/HandleCommand.hpp
     ${SRCSERVER}network/SafeQueue.hpp
-    ${SRCSERVER}network/message.hpp
-
+    ${SRC_UTILS}
     ${SRC_ECS}
 )
 
@@ -128,12 +133,6 @@ target_link_libraries(r-type_server
     CONAN_PKG::boost
     CONAN_PKG::sfml
 )
-
-#list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
-#set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
-
-# target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
-# target_link_libraries(r-type_server sfml-system sfml-window sfml-graphics sfml-audio sfml-network -pthread)
 
 set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")
 set_property(TARGET r-type_server PROPERTY MSVC_RUNTIME_LIBRARY "")

@@ -10,15 +10,11 @@
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
+#include <boost/thread.hpp>
 #include <boost/bind/bind.hpp>
-#include "message.hpp"
+#include "../../utils/Message.hpp"
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
-// /*include binary_oarchive.hpp for binary_oacrhive*/
-// #include <boost/archive/binary_oarchive.hpp>
-
-// /*include binary_iarchive.hpp for binary_iacrhive*/
-// #include <boost/archive/binary_iarchive.hpp>
 
 using boost::asio::ip::udp;
 
@@ -40,6 +36,7 @@ class Client
     ~Client();
 
     void send();
+    void send(message::request request, int value = 0);
 
     private:
 

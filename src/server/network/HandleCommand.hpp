@@ -7,14 +7,15 @@
 
 #pragma once
 
-#include "message.hpp"
+#include "../../utils/Message.hpp"
 #include <vector>
 #include <functional>
 
 class HandleCommand
 {
 private:
-    std::vector<std::function<void(int)>> _allCommand;
+  std::vector<std::function<void(int)>> _allCommand;
+
 public:
     HandleCommand();
     ~HandleCommand() = default;

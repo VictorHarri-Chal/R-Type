@@ -12,6 +12,7 @@
 #include "../screens/menu/MenuScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
+#include "../network/client.hpp"
 
 namespace rtype
 {
@@ -76,7 +77,7 @@ namespace rtype
         /// @brief Set the actual screen
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
-        
+
         // /**
         //  * @brief Set the Sound Event
         //  *
@@ -97,13 +98,15 @@ namespace rtype
         // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
         /// @brief Game window
         sf::RenderWindow _window;
+        Client *_client;
+
       private:
         /// @brief Actual screen
         Screens _actualScreen;
         /// @brief Game fps
         size_t _fps;
         /// @brief Intro screen
-        rtype::menu::IntroScreen *_intro;        
+        rtype::menu::IntroScreen *_intro;
         /// @brief Menu screen
         rtype::menu::MenuScreen *_menu;
         /// @brief Options screen
@@ -116,5 +119,7 @@ namespace rtype
         rtype::Event _event;
         /// @brief Last active scene
         Screens _lastScene;
+
+        boost::asio::io_service _io_service;
     };
 }

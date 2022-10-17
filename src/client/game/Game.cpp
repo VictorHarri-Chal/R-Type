@@ -12,7 +12,7 @@
 rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+    _client = new Client(_io_service, "localhost", "4242");
 }
 
 rtype::Game::~Game()
@@ -21,6 +21,8 @@ rtype::Game::~Game()
 
 void rtype::Game::init()
 {
+    _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+    boost::thread t(boost::bind(&boost::asio::io_service::run, &_io_service));
     _actualScreen = Screens::Intro;
     _intro = new rtype::menu::IntroScreen;
     _lastScene = Screens::Intro;
@@ -80,12 +82,13 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
 
 void rtype::Game::run()
 {
-    boost::asio::io_service io_service;
-    Client client(io_service, "localhost", "4242");
+    // boost::asio::io_service io_service;
+    // Client client(io_service, "localhost", "4242");
+
+    // io_service.run();
 
     while (_window.isOpen()) {
-        client.send();
-        // io_service.run_one();
+        // client.send();
 
         if(!processEvents(this))
             break;
@@ -152,4 +155,5 @@ void rtype::Game::destroyLastScene()
 void rtype::Game::destroy()
 {
     destroyLastScene();
+    delete _client;
 }

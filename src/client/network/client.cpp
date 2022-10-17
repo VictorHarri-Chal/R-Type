@@ -24,10 +24,10 @@ Client::~Client()
 //     return (b.data());
 // }
 
-void Client::send() {
+void Client::send(message::request request, int value) {
     std::stringstream os;
     boost::archive::text_oarchive oa(os);
-    message test(message::LAUNCH, 123);
+    message test(request, value);
     oa << test;
     _socket.send_to(boost::asio::buffer(os.str()), _endpoint);
 }
@@ -54,12 +54,15 @@ void Client::handle_receive(const boost::system::error_code& error,
   std::cout << "handle receive" << std::endl;
   if (!error || error == boost::asio::error::message_size)
   {
-      // _socket.async_send_to(boost::asio::buffer(command.data(), command.size()), _endpoint,
-      //     boost::bind(&Client::handle_send, this,
-      //       boost::asio::placeholders::error,
-      //       boost::asio::placeholders::bytes_transferred));
-      // _recv_buffer.assign(0);
-      // test.print();
-    start_receive();
+    //   _recv_buffer.assign(0);
+      std::stringstream outfile;
+      outfile << _recv_buffer.data();
+      boost::archive::text_iarchive oa(outfile);
+      message test;
+      oa >> test;
+      std::cout << "Client received: " << std::endl;
+      test.print();
+
+      start_receive();
   }
 }
