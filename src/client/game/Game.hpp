@@ -98,7 +98,7 @@ namespace rtype
         // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
         /// @brief Game window
         sf::RenderWindow _window;
-        Client *_client;
+        rtype::network::Client *_client;
 
       private:
         /// @brief Actual screen

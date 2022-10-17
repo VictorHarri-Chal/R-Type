@@ -10,7 +10,7 @@
 rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _client = new Client(_io_service, "localhost", "4242");
+    _client = new rtype::network::Client(_io_service, "localhost", "4242");
 }
 
 rtype::Game::~Game()
