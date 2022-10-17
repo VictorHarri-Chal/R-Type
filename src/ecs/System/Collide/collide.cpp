@@ -44,6 +44,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             aliveCompo->setAlive(false);
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo2->setAlive(false);
+                            return;
                         }
                         else if ((entities[x]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::PLAYER) || 
                         (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::PLAYER)) {
@@ -51,6 +52,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             aliveCompo->setAlive(false);
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo2->setAlive(false);
+                            return;
                         }
                         else if ((entities[x]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) || 
                         (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE)) {
@@ -58,6 +60,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             aliveCompo->setAlive(false);
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo2->setAlive(false);
+                            return;
                         }
                        
                     }
