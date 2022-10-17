@@ -120,6 +120,6 @@ namespace rtype
         /// @brief Last active scene
         Screens _lastScene;
 
-        boost::asio::io_service _io_service;
+        boost::asio::io_service _ioService;
     };
 }

@@ -25,8 +25,8 @@ class Client
       boost::asio::io_service& io_service,
       const std::string& host,
       const std::string& port
-    ) : _io_service(io_service), _socket(io_service, udp::endpoint(udp::v4(), 0)) {
-      udp::resolver resolver(_io_service);
+    ) : _ioService(io_service), _socket(io_service, udp::endpoint(udp::v4(), 0)) {
+      udp::resolver resolver(_ioService);
       udp::resolver::query query(udp::v4(), host, port);
       udp::resolver::iterator iter = resolver.resolve(query);
       _endpoint = *iter;
@@ -40,7 +40,7 @@ class Client
 
     private:
 
-      boost::asio::io_service& _io_service;
+      boost::asio::io_service& _ioService;
       udp::socket _socket;
       udp::endpoint _endpoint;
       boost::array<char, 64> _recvBuffer;

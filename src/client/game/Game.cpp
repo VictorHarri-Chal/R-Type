@@ -10,7 +10,7 @@
 rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _client = new Client(_io_service, "localhost", "4242");
+    _client = new Client(_ioService, "localhost", "4242");
 }
 
 rtype::Game::~Game()
@@ -20,7 +20,7 @@ rtype::Game::~Game()
 void rtype::Game::init()
 {
     _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
-    boost::thread t(boost::bind(&boost::asio::io_service::run, &_io_service));
+    boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _actualScreen = Screens::Intro;
     _intro = new rtype::menu::IntroScreen;
     _lastScene = Screens::Intro;
