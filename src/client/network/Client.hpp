@@ -44,12 +44,12 @@ class Client
       boost::asio::io_service& _io_service;
       udp::socket _socket;
       udp::endpoint _endpoint;
-      boost::array<char, 64> _recv_buffer;
+      boost::array<char, 64> _recvBuffer;
 
       void start_receive();
       void handle_receive(const boost::system::error_code& error,
           std::size_t /*bytes_transferred*/);
-      void handle_send(const boost::system::error_code& error,
+      void handleSend(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/);
 };
 

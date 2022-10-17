@@ -36,13 +36,13 @@ void Client::start_receive()
 {
   std::cout << "start receive" << std::endl;
   _socket.async_receive_from(
-      boost::asio::buffer(_recv_buffer), _endpoint,
+      boost::asio::buffer(_recvBuffer), _endpoint,
       boost::bind(&Client::handle_receive, this,
         boost::asio::placeholders::error,
         boost::asio::placeholders::bytes_transferred));
 }
 
-void Client::handle_send(const boost::system::error_code& error,
+void Client::handleSend(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/)
 {
   (void)error;
@@ -54,9 +54,9 @@ void Client::handle_receive(const boost::system::error_code& error,
   std::cout << "handle receive" << std::endl;
   if (!error || error == boost::asio::error::message_size)
   {
-    //   _recv_buffer.assign(0);
+    //   _recvBuffer.assign(0);
       std::stringstream outfile;
-      outfile << _recv_buffer.data();
+      outfile << _recvBuffer.data();
       boost::archive::text_iarchive oa(outfile);
       message test;
       oa >> test;
