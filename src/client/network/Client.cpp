@@ -7,37 +7,50 @@
 
 #include "Client.hpp"
 
-
-
 Client::~Client()
 {
   _socket.close();
 }
 
-// static inline boost::asio::const_buffers_1 cryptMessage(message command)
-// {
-//     boost::asio::streambuf b;
-//     std::ostream os(&b);
+void Client::send(message msg) {
+    std::stringstream ss;
+    boost::archive::text_oarchive oa(ss);
 
-//     boost::archive::binary_oarchive binary_input_archive(b);
-//     binary_input_archive & BOOST_SERIALIZATION_NVP(command);
-//     return (b.data());
-// }
+    std::cout << "Send message to server..." << std::endl;
+    msg.print();
+    oa << msg;
+    _recvBuffer.assign(0);
+    _socket.async_send_to(boost::asio::buffer(ss.str()), _endpoint,
+        boost::bind(
+            &Client::handleSend, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 
-void Client::send(message::request request, int value) {
-    std::stringstream os;
-    boost::archive::text_oarchive oa(os);
-    message test(request, value);
-    oa << test;
-    _socket.send_to(boost::asio::buffer(os.str()), _endpoint);
 }
 
-void Client::start_receive()
+void Client::send(message::request request, int value) {
+    std::stringstream ss;
+    boost::archive::text_oarchive oa(ss);
+    message msg(request, value);
+
+    std::cout << "Send message to server..." << std::endl;
+    msg.print();
+    oa << msg;
+    _recvBuffer.assign(0);
+    _socket.async_send_to(boost::asio::buffer(ss.str()), _endpoint,
+        boost::bind(
+            &Client::handleSend, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+
+}
+
+    // std::stringstream ss;
+    // boost::archive::text_oarchive oa(ss);
+    // message test(request, value);
+    // oa << test;
+    // _socket.send_to(boost::asio::buffer(ss.str()), _endpoint);
+void Client::startReceive()
 {
-  std::cout << "start receive" << std::endl;
   _socket.async_receive_from(
       boost::asio::buffer(_recvBuffer), _endpoint,
-      boost::bind(&Client::handle_receive, this,
+      boost::bind(&Client::handleReceive, this,
         boost::asio::placeholders::error,
         boost::asio::placeholders::bytes_transferred));
 }
@@ -45,10 +58,10 @@ void Client::start_receive()
 void Client::handleSend(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/)
 {
-  (void)error;
+//   (void)error;
 }
 
-void Client::handle_receive(const boost::system::error_code& error,
+void Client::handleReceive(const boost::system::error_code& error,
     std::size_t /*bytes_transferred*/)
 {
   std::cout << "handle receive" << std::endl;
@@ -63,6 +76,6 @@ void Client::handle_receive(const boost::system::error_code& error,
       std::cout << "Client received: " << std::endl;
       test.print();
 
-      start_receive();
+      startReceive();
   }
 }

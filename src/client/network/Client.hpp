@@ -30,12 +30,13 @@ class Client
       udp::resolver::query query(udp::v4(), host, port);
       udp::resolver::iterator iter = resolver.resolve(query);
       _endpoint = *iter;
-      start_receive();
+      std::cout << "Start receiving..." << std::endl;
+      startReceive();
     }
 
     ~Client();
 
-    void send();
+    void send(message msg);
     void send(message::request request, int value = 0);
 
     private:
@@ -45,8 +46,8 @@ class Client
       udp::endpoint _endpoint;
       boost::array<char, 64> _recvBuffer;
 
-      void start_receive();
-      void handle_receive(const boost::system::error_code& error,
+      void startReceive();
+      void handleReceive(const boost::system::error_code& error,
           std::size_t /*bytes_transferred*/);
       void handleSend(const boost::system::error_code& error,
         std::size_t /*bytes_transferred*/);

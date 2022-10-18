@@ -53,14 +53,14 @@ message Server::getStreamData()
 
 void Server::send(message msg)
 {
-    std::stringstream sscanf;
-    boost::archive::text_oarchive oa(sscanf);
+    std::stringstream ss;
+    boost::archive::text_oarchive oa(ss);
 
     std::cout << "Send message to client..." << std::endl;
     msg.print();
     oa << msg;
     _recvBuffer.assign(0);
-    _socket.async_send_to(boost::asio::buffer(sscanf.str()), _remoteEndpoint,
+    _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
         boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
 }
