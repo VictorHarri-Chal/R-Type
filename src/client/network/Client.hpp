@@ -31,7 +31,6 @@ class Client
       udp::resolver::iterator iter = resolver.resolve(query);
 
       _endpoint = *iter;
-      std::cout << "Start receiving..." << std::endl;
       listen();
     }
 
@@ -57,5 +56,4 @@ class Client
       udp::socket _socket;
       udp::endpoint _endpoint;
       boost::array<char, 64> _recvBuffer;
-
 };

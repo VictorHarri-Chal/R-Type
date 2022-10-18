@@ -22,58 +22,63 @@ using boost::asio::ip::udp;
 
 class Server
 {
-  public:
-    /**
-     * @brief Server constructor
-     * @param io_service
-     * @param port
-     */
-    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
-        std::cout << "Start receiving..." << std::endl;
-        listen();
-    }
+    public:
+        /**
+        * @brief Server constructor
+        * @param io_service
+        * @param port
+        */
+        Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
+            std::cout << "Start receiving..." << std::endl;
+            listen();
+        }
 
+        /**
+         * @brief Send message to clients
+         * @param message
+         */
+        void send(message msg);
+        void send(message::request req, int value);
 
-  private:
-    /**
-     * @brief Listen to clients
-     */
-    void listen();
+        size_t getnbRoom() const;
+        void setnbRoom(size_t nbRooms);
+        boost::array<char, 64> getBuffer() const;
 
-    /**
-     * @brief Get data from stream
-     * @return message
-     */
-    message getStreamData();
+      private:
+        /**
+        * @brief Listen to clients
+        */
+        void listen();
 
-    /**
-     * @brief Handle data sent from the clients to the server
-     * @param error
-     * @param bytes_transferred
-     */
-    void handleListen(const boost::system::error_code& error,
-        std::size_t /*bytes_transferred*/);
+        /**
+        * @brief Get data from stream
+        * @return message
+        */
+        message getStreamData();
 
-    /**
-     * @brief Send message to clients
-     * @param message
-     */
-    void send(message msg);
+        /**
+        * @brief Handle data sent from the clients to the server
+        * @param error
+        * @param bytes_transferred
+        */
+        void handleListen(const boost::system::error_code& error,
+            std::size_t /*bytes_transferred*/);
 
-    /**
-     * @brief Handle data sent from the server to the clients
-     * @param error
-     * @param bytes_transferred
-     */
-    void handleSend(const boost::system::error_code& /*error*/,
-        std::size_t /*bytes_transferred*/);
+        /**
+        * @brief Handle data sent from the server to the clients
+        * @param error
+        * @param bytes_transferred
+        */
+        void handleSend(const boost::system::error_code& /*error*/,
+            std::size_t /*bytes_transferred*/);
 
-    udp::socket _socket;
-    int _port;
-    udp::endpoint _remoteEndpoint;
-    boost::array<char, 64> _recvBuffer;
-    SafeQueue<message> _queue;
-    std::vector<int> _rooms;
+        udp::socket _socket;
+        int _port;
+        udp::endpoint _remoteEndpoint;
+        boost::array<char, 64> _recvBuffer;
+        SafeQueue<message> _queue;
+        std::vector<int> _rooms;
+        size_t _nbRooms;
 };
 
 /*
@@ -86,5 +91,5 @@ class HandleCommand {
   public:
     HandleCommand();
     ~HandleCommand() = default;
-    void findCmd(message command, Server *server);
+    void findCmd(Server *server);
 };
