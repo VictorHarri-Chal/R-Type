@@ -52,9 +52,7 @@ if [ "$os_name" = "Linux" ]; then
       libxcb-xinerama0-dev \
       libxcb-dri3-dev \
       libxcb-util-dev \
-      libxcb-util0-dev \
-      xtrans-dev \
-      xkb-data
+      libxcb-util0-dev
       sudo apt install -f
       if [ "$arch" = "arm64" ]; then
           sudo apt install -y \
@@ -90,7 +88,7 @@ if [ "$os_name" = "Linux" ]; then
       libuuid-devel
     fi
   fi
-  conan install .. --build=missing -s compiler.libcxx=libstdc++11
+  conan install .. --build=missing  -s compiler.libcxx=libstdc++12 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 elif [ "$os_name" = "Darwin" ]; then
   pip3 install conan
   conan install .. --build=missing
