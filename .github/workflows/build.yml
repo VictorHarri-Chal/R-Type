@@ -23,6 +23,10 @@ jobs:
       - name: Build
         run: bash install.sh
 
+      - name: DEBUG
+        shell: bash
+        run: ls -l
+
       - name: Check build (Windows)
         if: matrix.os == 'windows-latest'
         shell: bash
