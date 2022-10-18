@@ -52,7 +52,9 @@ if [ "$os_name" = "Linux" ]; then
       libxcb-xinerama0-dev \
       libxcb-dri3-dev \
       libxcb-util-dev \
-      libxcb-util0-dev
+      libxcb-util0-dev \
+      xtrans-dev \
+      xkb-data
       sudo apt install -f
       if [ "$arch" = "arm64" ]; then
           sudo apt install -y \
