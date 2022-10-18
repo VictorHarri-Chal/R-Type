@@ -26,8 +26,8 @@ jobs:
       - name: DEBUG
         shell: bash
         run: |
-          ls -l
-          ls -l Debug
+          ls -l || true
+          ls -l Debug || true
 
       - name: Check build (Windows)
         if: matrix.os == 'windows-latest'
