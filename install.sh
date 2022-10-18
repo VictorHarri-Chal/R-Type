@@ -52,9 +52,7 @@ if [ "$os_name" = "Linux" ]; then
       libxcb-xinerama0-dev \
       libxcb-dri3-dev \
       libxcb-util-dev \
-      libxcb-util0-dev \
-      xkb-data \
-      xtrans-dev
+      libxcb-util0-dev
       sudo apt install -f
       if [ "$arch" = "arm64" ]; then
           sudo apt install -y \
@@ -87,7 +85,7 @@ if [ "$os_name" = "Linux" ]; then
       xcb-util-devel \
       xkeyboard-config-devel \
       systemd-devel \
-      libuuid-devel 
+      libuuid-devel
     fi
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
@@ -100,10 +98,3 @@ else
 fi
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build .
-
-echo "__________        ________________.___._____________________"
-echo "\______   \       \__    ___/\__  |   |\______   \_   _____/"
-echo " |       _/  ______ |    |    /   |   | |     ___/|    __)_ "
-echo " |    |   \ /_____/ |    |    \____   | |    |    |        \\"
-echo " |____|_  /         |____|    / ______| |____|   /_______  /"
-echo "        \/                    \/                         \/ "
