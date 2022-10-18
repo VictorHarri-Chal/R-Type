@@ -23,10 +23,14 @@ jobs:
       - name: Build
         run: bash install.sh
 
-      - name: DEBUG
+      - name: DEBUG1
         shell: bash
         run: |
           ls -l || true
+
+      - name: DEBUG2
+        shell: bash
+        run: |
           ls -l Debug || true
 
       - name: Check build (Windows)
