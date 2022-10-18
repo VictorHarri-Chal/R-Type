@@ -97,7 +97,7 @@ else
   conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 fi
 cmake -DCMAKE_BUILD_TYPE=Debug ..
-cmake --build .
+cmake --build . -j 4
 
 echo "__________        ________________.___._____________________"
 echo "\______   \       \__    ___/\__  |   |\______   \_   _____/"
