@@ -15,11 +15,15 @@
 #include "../../utils/Message.hpp"
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include <iostream>
 
 using boost::asio::ip::udp;
 
-class Client
-{
+/**
+ * @brief Client class
+ * 
+ */
+class Client {
   public:
     Client(
       boost::asio::io_service& io_service,
@@ -33,25 +37,53 @@ class Client
       _actualNbRooms = 0;
       start_receive();
     }
-
+    /**
+     * @brief Destroy the Client object
+     * 
+     */
     ~Client();
+    /**
+     * @brief Send a message to the server
+     * 
+     * @param msg Message to be sent
+     */
+    void send(const std::string &msg);
 
     void send();
     void send(message::request request, int value = 0);
-
-    private:
-
-      boost::asio::io_service& _io_service;
-      udp::socket _socket;
-      udp::endpoint _endpoint;
-      boost::array<char, 64> _recv_buffer;
-
-      void start_receive();
-      void handle_receive(const boost::system::error_code& error,
-          std::size_t /*bytes_transferred*/);
-      void handle_send(const boost::system::error_code& error,
-        std::size_t /*bytes_transferred*/);
-      size_t _actualNbRooms;
+  private:
+    /**
+     * @brief IO Service
+     * 
+     */
+    boost::asio::io_service &_io_service;
+    /**
+     * @brief Socket
+     * 
+     */
+    udp::socket _socket;
+    /**
+     * @brief Endpoint
+     * 
+     */
+    udp::endpoint _endpoint;
+    /**
+     * @brief Buffer for receiving
+     * 
+     */
+    boost::array<char, 64> _recv_buffer;
+    /**
+     * @brief Start receiving
+     * 
+     */
+    void start_receive();
+    /**
+     * @brief Handle receiving
+     * 
+     * @param error Error
+     * @param bytes_transferred Bytes transferred
+     */
+    void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
 };
 
 #endif /* !CLIENT_HPP_ */

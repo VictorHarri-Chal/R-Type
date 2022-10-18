@@ -13,7 +13,7 @@
 
 namespace rtype
 {
-    /// \file Docs/doc-Ecs
+    /// \file Docs/doc_Ecs.md
     namespace ecs
     {
         namespace component
@@ -29,17 +29,31 @@ namespace rtype
                 DRAWABLE2D,
                 ALIVE,
                 INVENTORY,
-                EXPLODABLE,
+                PROJECTILE,
                 COLLIDE,
                 SOUND,
-                DESTROYABLE,
+                SHIP,
+                HEALTH,
                 UNKNOWNCOMPO
             };
             /**
              * @brief Enum for drawable type
              *
              */
-            enum drawableType { CIRCLE, SPRITE, TEXT, RECTANGLE, SPHERE, CUBE, OBJECT, UNKNOWNDRAWABLE };
+            enum drawableType { SPRITE, TEXT, RECTANGLE, UNKNOWNDRAWABLE };
+            /**
+             * @brief Enum for ship type
+             * @param ALLY Allies ship
+             * @param ZIGZAG Enemy ship who have a zigzag movement
+             * @param RUSHER Enemy ship who goes straight on allies ship
+             */
+            enum shipType { ALLY_SHIP, ZIGZAG, RUSHER, UNKNOWNSHIP };
+            /**
+             * @brief Enum for projectile type
+             * @param ALLY Allies projectile
+             * @param ENEMY Enemy projectile
+             */
+            enum projectileType { ALLY_PROJECTILE, ENEMY_PROJECTILE, UNKNOWNPROJECTILE };
             /**
              * @brief Enum for bonus type
              *

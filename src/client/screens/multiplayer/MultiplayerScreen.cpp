@@ -6,7 +6,7 @@
 */
 
 #include "MultiplayerScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
 
 rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(3), _roomInit(false)
 {
@@ -31,34 +31,34 @@ void rtype::menu::MultiplayerScreen::init()
 {
     rtype::ecs::system::ISystem *draw2DSystemMenu = new rtype::ecs::system::Draw2DSystem();
     this->_world.addSystem(draw2DSystemMenu);
-    rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.f, 0.f, 0.0f, 0.0f);
-    bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", true);
+    bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
-    rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 300.f, 100.f, 0.0f, 0.0f);
     back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1300.f, 800.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(back);
-    rtype::ecs::entity::Entity *butt_disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *butt_disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     butt_disconnect->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 850.f, 0.0f, 0.0f);
     butt_disconnect->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 300.f, 100.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_disconnect);
     _buttons.push_back(false);
-    rtype::ecs::entity::Entity *disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
     disconnect->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 545.f, 870.f, 0.0f, 0.0f);
     disconnect->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Disconnect", 40.f, sf::Color::Blue, true);
     this->_world.addEntity(disconnect);
-    rtype::ecs::entity::Entity *butt_create = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *butt_create = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     butt_create->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1100.f, 850.f, 0.0f, 0.0f);
     butt_create->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 300.f, 100.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_create);
     _buttons.push_back(false);
-    rtype::ecs::entity::Entity *create = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *create = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
     create->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1170.f, 870.f, 0.0f, 0.0f);
     create->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Create", 40.f, sf::Color::Blue, true);
     this->_world.addEntity(create);
     for (int i = 0; i < 7; i++) {
-        rtype::ecs::entity::Entity *emplySlot = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+        rtype::ecs::entity::Entity *emplySlot = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
         emplySlot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 860.f, 140.f + (i * 100.f), 0.0f, 0.0f);
         emplySlot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Empty Slot", 30.f, sf::Color::White, false);
         this->_world.addEntity(emplySlot);
@@ -212,6 +212,7 @@ float rtype::menu::MultiplayerScreen::checkForFreeSlot()
 
 void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game *gameEngine)
 {
+<<<<<<< HEAD
     (void)event;
     float freeSpot = checkForFreeSlot();
     if (freeSpot != 0.f) {
@@ -221,6 +222,33 @@ void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game
         for (size_t i = 0; i < _rooms.size(); i++) {
             if (_rooms.at(i).slot == slot)
                 roomName = _rooms.at(i).name;
+=======
+    if (isButtonPressed(4, gameEngine, event)) {
+        float freeSpot = checkForFreeSlot();
+        if (freeSpot != 0.f) {    
+            int slot = addRoom(freeSpot);
+            std::string roomName;
+            for (size_t i = 0; i < _rooms.size(); i++) {
+                if (_rooms.at(i).slot == slot)
+                    roomName = _rooms.at(i).name;
+            }
+            rtype::ecs::entity::Entity *butt_room = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+            butt_room->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, freeSpot, 0.0f, 0.0f);
+            butt_room->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
+            this->_world.addEntity(butt_room);
+            rtype::ecs::entity::Entity *del_room = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+            del_room->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1400.f, freeSpot + 20.f, 0.0f, 0.0f);
+            del_room->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 150.f, 40.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
+            this->_world.addEntity(del_room);
+            rtype::ecs::entity::Entity *del = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+            del->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1440.f, freeSpot + 25.f, 0.0f, 0.0f);
+            del->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Delete", 25.f, sf::Color::White, false);
+            this->_world.addEntity(del);
+            rtype::ecs::entity::Entity *name = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+            name->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 400.f, freeSpot + 25.f, 0.0f, 0.0f);
+            name->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, roomName, 40.f, sf::Color::White, false);
+            this->_world.addEntity(name);
+>>>>>>> main
         }
         rtype::ecs::entity::Entity *butt_room = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
         butt_room->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, freeSpot, 0.0f, 0.0f);
@@ -239,6 +267,16 @@ void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game
         name->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, roomName, 40.f, sf::Color::White, false);
         this->_world.addEntity(name);
     }
+}
+
+bool rtype::menu::MultiplayerScreen::joinRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)
+{
+    if (!_slots.at(slotPos) && isSurfaceClicked(320.f, offset, 1260.f, 80.f, event, gameEngine) && !isSurfaceClicked(1400.f, offset + 20.f, 150.f, 40.f, event, gameEngine)) {
+        return true;
+        event.position.x = 0;
+        event.position.y = 0;
+    }
+    return false;
 }
 
 void rtype::menu::MultiplayerScreen::deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)

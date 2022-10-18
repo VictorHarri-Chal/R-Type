@@ -26,14 +26,6 @@ namespace rtype
         /// representable using this format (such as the Enter key).
         using Key = char;
 
-        /// Size events parameters (Event::Type::Resized).
-        // struct SizeEvent {
-        //     /// Old size, in units.
-        //     vec2u oldSize;
-        //     /// New size, in units.
-        //     vec2i newSize;
-        // };
-
         /// @brief Keyboard event parameters (Event::Type::KeyPressed, Event::Type::KeyReleased).
         struct KeyEvent {
             /// Is the Left Alt key pressed?
@@ -60,6 +52,8 @@ namespace rtype
             bool enter;
             /// Is the backspace key pressed?
             bool backspace;
+            /// Is the space key pressed?
+            bool space;
             /// Code of the key that has been pressed.
             Key code;
         };
@@ -118,30 +112,28 @@ namespace rtype
             LEFT
         };
 
-        /// Event happening on the controller
-        struct ControllerEvent {
-            /// Controller button input
-            int code;
-            /// Left joystick events
-            JoystickDirection leftJoystick;
-            /// Right joystick events
-            JoystickDirection rightJoystick;
-            /// Is controller connected?
-            bool connected;
-        };
-        // Mouse position on click
+        // /// Event happening on the controller
+        // struct ControllerEvent {
+        //     /// Controller button input
+        //     int code;
+        //     /// Left joystick events
+        //     JoystickDirection leftJoystick;
+        //     /// Right joystick events
+        //     JoystickDirection rightJoystick;
+        //     /// Is controller connected?
+        //     bool connected;
+        // };
+        /// Mouse position on click
         sf::Vector2f position;
-        // Mouse position global
+        /// Mouse position global
         sf::Vector2f global_position;
 
         // Member data
         union {
-            /// Is the window resized?
-            bool resized;
             /// Key event parameters (Event::KeyPressed, Event::KeyReleased).
             KeyEvent key;
-            /// Controller events
-            ControllerEvent controller[4];
+            // /// Controller events
+            // ControllerEvent controller[4];
         };
     };
 }

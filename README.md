@@ -7,7 +7,7 @@ However, the specifity of our game is that we implemented a multiplayer mode tha
 # In game preview
 
 # :star:  Pre-compiled version for the impatient ones
-You can look on the right side of our repository, in the ```Releases``` section in order to download a pre-compiled version to play right away
+You can look on the right side of our repository, in the ```Releases``` section in order to download a pre-compiled version depending on your operating system to play right away
 
 # :computer:  Supported Platforms
 Our project can be played on both ```Linux``` and ```Windows``` OS as well as ```MacOS```
@@ -17,7 +17,7 @@ To build our project you need to execute a simple script a the root of our repos
 
 He will take care of dowloading the dependencies as well as compiling our code.
 
-```placeholder```
+```./install.sh```
 
 ### On Linux, Windows & Mac
 The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-dev.org/index-fr.php)
@@ -26,13 +26,15 @@ The dependencies are ![CMake](https://cmake.org/) and ![SFML](https://www.sfml-d
 Depending on your setup : (look to the settings in game)
 
   - No mouse -> Move with the ```PAD``` and shoot with ```SPACE```
- 
-  - Mouse -> Move with the ```MOUSE``` and shoot with ```LEFT CLICK```
 
   - Controller -> Move with the ```RIGHT JOYSTICK``` and shoot with ```X```
 
 # :page_with_curl:  Documentation
-To access our project documentation, you need to ...
+To access our project documentation, you need to execute a script in order to open a local web page. 
+
+```./run_documentation.sh```
+
+You can also look here ```placeholder```, to look out directly at our online documentation.
 
 # :dancers:  Authors
 [Henri Chauvet](https://github.com/H-chauvet) - [Nathan Le Bigot](https://github.com/nlbxyz) - [Matthis Lesur](https://github.com/tistech0) - [Simon Le Fourn](https://github.com/simlf) - [Victor Harri-Chal](https://github.com/VictorHarri-Chal)

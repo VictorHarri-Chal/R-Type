@@ -34,10 +34,10 @@ namespace rtype
         * 
         * @param percent Percentage for alignement
         * @param isWidth True for width, False for height
+        * @param gameEngine Game engine
         * @return float Position of the center alignement
         */
         static float getPercentage(float percent, bool isWidth, rtype::Game *gameEngine);
-        
     };
 }
 

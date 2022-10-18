@@ -8,11 +8,11 @@
 #ifndef SAFEQUEUE_HPP
 #define SAFEQUEUE_HPP
 
-#include <queue>
-#include <optional>
-#include <thread>
-#include <mutex>
 #include <iostream>
+#include <mutex>
+#include <optional>
+#include <queue>
+#include <thread>
 
 /// @brief Exception when SafeQueue is not empty.
 class NonEmptyQueue : public std::exception {
@@ -41,21 +41,24 @@ class NonEmptyQueue : public std::exception {
 template <typename T>
 /// @brief Thread-safe queue.
 /// @tparam T Type of the queue.
-class SafeQueue
-{
-    public:
-        /// @brief Default constructor
-        SafeQueue() = default;
+class SafeQueue {
+  public:
+    /// @brief Default constructor
+    SafeQueue() = default;
 
-        /// @brief Copy constructor deleted
-        /// @param SafeQueue to copy
-        SafeQueue(const SafeQueue<T> &) = delete;
+    /// @brief Copy constructor deleted
+    /// @param other to copy
+    SafeQueue(const SafeQueue<T> &other) = delete;
 
-        /// @brief Assignement constructor deleted
-        /// @param SafeQueue to assign
-        SafeQueue& operator=(const SafeQueue<T> &) = delete;
+    /// @brief Assignement constructor deleted
+    /// @param other to assign
+    SafeQueue &operator=(const SafeQueue<T> &other) = delete;
 
+    /// @brief Move constructor
+    /// @param other SafeQueue
+    SafeQueue(SafeQueue<T> &&other) noexcept(false);
 
+<<<<<<< HEAD
         /// @brief Move constructor
         /// @param Other SafeQueue
         SafeQueue(SafeQueue<T>&& other) noexcept(false)
@@ -118,6 +121,32 @@ class SafeQueue
         {
             return _queue.empty();
         }
+=======
+    /// @brief Destructor
+    virtual ~SafeQueue() noexcept(false);
+
+    /// @brief Getter for SafeQueue size
+    /// @return unsigned long SafeQueue size
+    unsigned long getSize() const;
+
+    /// @brief Removes the next element in the queue, effectively reducing its size by one.
+    /// @return std::optional<T> The value of the element that was removed from the queue.
+    std::optional<T> pop();
+
+    /// @brief Pushes the given element value onto the queue.
+    /// @param item The value of the element to push onto the queue.
+    void push(const T &item);
+
+  private:
+    /// @brief Private variable for the queue.
+    std::queue<T> _queue;
+    /// @brief Private variable for mutex.
+    mutable std::mutex _mutex;
+
+    /// @brief Private method to check if the queue is empty.
+    /// @return bool True if the queue is empty, false otherwise.
+    bool empty() const;
+>>>>>>> main
 };
 
-#endif //SAFEQUEUE_HPP
+#endif // SAFEQUEUE_HPP

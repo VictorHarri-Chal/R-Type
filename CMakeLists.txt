@@ -28,30 +28,40 @@ set(SCREENSROOT ${SRCCLIENT}/screens/)
 set(TOOLSROOT ${SRCCLIENT}/tools/)
 
 set(SRC_ECS
-    ${ECSROOT}Entity/Entity.cpp
-    ${ECSROOT}Entity/Entity.hpp
+    ${ECSROOT}Entity/entity.cpp
+    ${ECSROOT}Entity/entity.hpp
     ${ECSROOT}world.cpp
     ${ECSROOT}world.hpp
-    ${ECSROOT}System/ISystem.hpp
-    ${ECSROOT}Component/Alive/Alive.cpp
-    ${ECSROOT}Component/Alive/Alive.hpp
-    ${ECSROOT}Component/Collide/Collide.cpp
-    ${ECSROOT}Component/Collide/Collide.hpp
-    ${ECSROOT}Component/Destroyable/Destroyable.cpp
-    ${ECSROOT}Component/Destroyable/Destroyable.hpp
-    ${ECSROOT}Component/Drawable2D/Drawable2D.cpp
-    ${ECSROOT}Component/Drawable2D/Drawable2D.hpp
-    ${ECSROOT}Component/Explodable/Explodable.cpp
-    ${ECSROOT}Component/Explodable/Explodable.hpp
-    ${ECSROOT}Component/Inventory/Inventory.cpp
-    ${ECSROOT}Component/Inventory/Inventory.hpp
-    ${ECSROOT}Component/Sound/Sound.cpp
-    ${ECSROOT}Component/Sound/Sound.hpp
-    ${ECSROOT}Component/Transform/Transform.cpp
-    ${ECSROOT}Component/Transform/Transform.hpp
+    ${ECSROOT}Component/Alive/alive.cpp
+    ${ECSROOT}Component/Alive/alive.hpp
+    ${ECSROOT}Component/Collide/collide.cpp
+    ${ECSROOT}Component/Collide/collide.hpp
+    ${ECSROOT}Component/Ship/ship.cpp
+    ${ECSROOT}Component/Ship/ship.hpp
+    ${ECSROOT}Component/Drawable2D/drawable2d.cpp
+    ${ECSROOT}Component/Drawable2D/drawable2d.hpp
+    ${ECSROOT}Component/Projectile/projectile.cpp
+    ${ECSROOT}Component/Projectile/projectile.hpp
+    ${ECSROOT}Component/Inventory/inventory.cpp
+    ${ECSROOT}Component/Inventory/inventory.hpp
+    ${ECSROOT}Component/Sound/sound.cpp
+    ${ECSROOT}Component/Sound/sound.hpp
+    ${ECSROOT}Component/Transform/transform.cpp
+    ${ECSROOT}Component/Transform/transform.hpp
+    ${ECSROOT}Component/Health/health.cpp
+    ${ECSROOT}Component/Health/health.hpp
     ${ECSROOT}Component/IComponent.hpp
-    ${ECSROOT}System/Draw2D/Draw2D.cpp
-    ${ECSROOT}System/Draw2D/Draw2D.hpp
+    ${ECSROOT}System/Draw2D/draw2d.cpp
+    ${ECSROOT}System/Draw2D/draw2d.hpp
+    ${ECSROOT}System/Movement/movement.cpp
+    ${ECSROOT}System/Movement/movement.hpp
+    ${ECSROOT}System/Collide/collide.cpp
+    ${ECSROOT}System/Collide/collide.hpp
+    ${ECSROOT}System/Particles/particles.cpp
+    ${ECSROOT}System/Particles/particles.hpp
+    ${ECSROOT}System/Enemypath/enemypath.cpp
+    ${ECSROOT}System/Enemypath/enemypath.hpp
+    ${ECSROOT}System/ISystem.hpp
 )
 
 set(SRC_SCREENS
@@ -64,6 +74,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}options/OptionsScreen.hpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.cpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.hpp
+    ${SCREENSROOT}core/CoreScreen.cpp
+    ${SCREENSROOT}core/CoreScreen.hpp
 )
 
 set(SRC_GAME
