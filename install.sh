@@ -88,7 +88,7 @@ if [ "$os_name" = "Linux" ]; then
       libuuid-devel
     fi
   fi
-  conan install .. --build=missing  -s compiler.libcxx=libstdc++12 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+  conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 elif [ "$os_name" = "Darwin" ]; then
   pip3 install conan
   conan install .. --build=missing
