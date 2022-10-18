@@ -27,15 +27,15 @@ jobs:
         shell: bash
         run: ls -l
 
-      #- name: Check build (Windows)
-      #  if: matrix.os == 'windows-latest'
-      #  shell: bash
-      #  run: |
-      #    test -f Debug/r-type_client.exe
-      #    test -f Debug/r-type_server.exe
+      - name: Check build (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          test -f Debug/r-type_client
+          test -f Debug/r-type_server
 
       - name: Check build
-      #  if: matrix.os != 'windows-latest'
+        if: matrix.os != 'windows-latest'
         shell: bash
         run: |
           test -f r-type_client
