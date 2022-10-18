@@ -7,11 +7,9 @@
 
 #include "world.hpp"
 
-
-
-rtype::ecs::world::World::World()
+rtype::ecs::world::World::World(): _maxEntities(40)
 {
-    this->nbEntities = 0;
+    this->_nbEntities = 0;
     this->_entitiesVector.reserve(1);
 }
 
@@ -41,6 +39,8 @@ rtype::ecs::entity::Entity *rtype::ecs::world::World::getEntity(size_t id) const
 
 void rtype::ecs::world::World::addEntity(entity::Entity *entity)
 {
+    if (_nbEntities >= _maxEntities)
+        return;
     for (size_t i = 0; i < this->_entitiesVector.size(); i++)
     {
         if(this->_entitiesVector[i] == nullptr) {
@@ -49,16 +49,16 @@ void rtype::ecs::world::World::addEntity(entity::Entity *entity)
             return;
         }
     }
-    entity->setId(this->nbEntities);
+    entity->setId(this->_entitiesVector.size());
     this->_entitiesVector.push_back(entity);
-    nbEntities++;
+    _nbEntities++;
 }
 
 void rtype::ecs::world::World::removeEntity(size_t id)
 {
-    if (id > this->_entitiesVector.size())
-        return;
     this->_entitiesVector.erase(_entitiesVector.begin() + id);
+    // this->_entitiesVector[id] = nullptr;
+    _nbEntities--;
 }
 
 void rtype::ecs::world::World::addSystem(system::ISystem *system)
@@ -91,7 +91,6 @@ void rtype::ecs::world::World::update(rtype::Game *gameEngine)
     for (auto &system : this->_systemsVector) {
         if (system->getSystemType() != rtype::ecs::system::SystemType::DRAWABLE2DSYSTEM) {
             system->update(this->_entitiesVector, gameEngine);
-            break;
         }
     }
 }

@@ -9,12 +9,12 @@
 
 #include <memory>
 #include <vector>
-#include "../Entity/Entity.hpp"
+#include "../Entity/entity.hpp"
 
 namespace rtype
 {
     class Game;
-    /// \file Docs/doc-Ecs
+    /// \file Docs/doc_Ecs.md
     namespace ecs
     {
         namespace system
@@ -24,11 +24,12 @@ namespace rtype
              * 
              */
             enum SystemType {
-                DRAWABLE2DSYSTEM,
-                MOVEMENTSYSTEM,
                 COLLIDESYSTEM,
-                SOUNDSYSTEM,
-                EXPLODABLESYSTEM
+                DRAWABLE2DSYSTEM,
+                ENEMYPATHSYSTEM,
+                MOVEMENTSYSTEM,
+                PARTICLESSYSTEM,
+                SOUNDSYSTEM
             };
             /// @brief System
             class ISystem {
@@ -42,6 +43,7 @@ namespace rtype
                  * @brief Update all the entities with the system properties.
                  *
                  * @param entities vector of entites to update
+                 * @param gameEngine the game engine.
                  */
                 virtual void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine) = 0;
 

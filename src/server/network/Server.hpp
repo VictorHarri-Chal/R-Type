@@ -29,6 +29,7 @@ class Server
         * @param port
         */
         Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port) {
+            _nbRooms = 0;
             std::cout << "Start receiving..." << std::endl;
             listen();
         }
@@ -77,7 +78,6 @@ class Server
         udp::endpoint _remoteEndpoint;
         boost::array<char, 64> _recvBuffer;
         SafeQueue<message> _queue;
-        std::vector<int> _rooms;
         size_t _nbRooms;
 };
 

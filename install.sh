@@ -88,7 +88,7 @@ if [ "$os_name" = "Linux" ]; then
       libuuid-devel
     fi
   fi
-  conan install .. --build=missing -s compiler.libcxx=libstdc++11
+  conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 elif [ "$os_name" = "Darwin" ]; then
   pip3 install conan
   conan install .. --build=missing
@@ -98,3 +98,10 @@ else
 fi
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build .
+
+echo "__________        ________________.___._____________________"
+echo "\______   \       \__    ___/\__  |   |\______   \_   _____/"
+echo " |       _/  ______ |    |    /   |   | |     ___/|    __)_ "
+echo " |    |   \ /_____/ |    |    \____   | |    |    |        \\"
+echo " |____|_  /         |____|    / ______| |____|   /_______  /"
+echo "        \/                    \/                         \/ "

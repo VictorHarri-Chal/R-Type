@@ -25,6 +25,15 @@ void rtype::Game::init()
     _intro = new rtype::menu::IntroScreen;
     _lastScene = Screens::Intro;
     _intro->init();
+    _eventClass.initEvents(_event);
+    // _actualScreen = Screens::Core;
+    // _core = new rtype::menu::CoreScreen;
+    // _lastScene = Screens::Core;
+    // _core->init();
+    _actualScreen = Screens::Intro;
+    _intro = new rtype::menu::IntroScreen;
+    _lastScene = Screens::Intro;
+    _intro->init();
 }
 
 void rtype::Game::initMusic()
@@ -39,12 +48,11 @@ void rtype::Game::initSounds()
 
 bool rtype::Game::processEvents(rtype::Game *gameEngine)
 {
-    Events Event;
     bool ret = true;
     int swap = 0;
 
     while (_window.pollEvent(_sfmlEvent)) {
-        ret = Event.inputUpdate(_event, _sfmlEvent);
+        ret = _eventClass.inputUpdate(_event, _sfmlEvent);
         if (_sfmlEvent.type == sf::Event::Closed || !ret)
             _window.close();
         swap = handleEvent(gameEngine);
@@ -62,6 +70,7 @@ void rtype::Game::update(rtype::Game *gameEngine)
         case Screens::Menu: _menu->update(gameEngine); break;
         case Screens::Options: _options->update(gameEngine); break;
         case Screens::Multiplayer: _multiplayer->update(gameEngine); break;
+        case Screens::Core: _core->update(gameEngine); break;
         default: break;
     }
 }
@@ -73,6 +82,7 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
         case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
         case Screens::Multiplayer: return (_multiplayer->handleEvent(_event, gameEngine));
+        case Screens::Core: return (_core->handleEvent(_event, gameEngine));
         default: break;
     }
     return true;
@@ -80,19 +90,15 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
 
 void rtype::Game::run()
 {
-    // boost::asio::io_service io_service;
-    // Client client(io_service, "localhost", "4242");
-
-    // io_service.run();
-
     while (_window.isOpen()) {
-        // client.send();
-
-        if(!processEvents(this))
-            break;
-        _window.clear(sf::Color::Black);
-        update(this);
-        _window.display();
+        if (_clock.getElapsedTime() >= sf::seconds(1.0f/120.0f)) {
+            if(!processEvents(this))
+                break;
+            _window.clear(sf::Color::Black);
+            update(this);
+            _window.display();
+            _clock.restart();
+        }
     }
 }
 
@@ -126,7 +132,10 @@ void rtype::Game::handleScreensSwap(int ret)
             break;
         case 6:
             destroyLastScene();
-            setActualScreen(Screens::Game);
+            _core = new rtype::menu::CoreScreen;
+            _lastScene = Screens::Core;
+            _core->init();
+            setActualScreen(Screens::Core);
             break;
         default:
             break;
@@ -148,6 +157,8 @@ void rtype::Game::destroyLastScene()
         delete _options;
     if (_lastScene == Screens::Multiplayer)
         delete _multiplayer;
+    if (_lastScene == Screens::Core)
+        delete _core;
 }
 
 void rtype::Game::destroy()

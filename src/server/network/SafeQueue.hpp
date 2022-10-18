@@ -7,11 +7,11 @@
 
 #pragma once
 
-#include <queue>
-#include <optional>
-#include <thread>
-#include <mutex>
 #include <iostream>
+#include <mutex>
+#include <optional>
+#include <queue>
+#include <thread>
 
 /// @brief Exception when SafeQueue is not empty.
 class NonEmptyQueue : public std::exception {

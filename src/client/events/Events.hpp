@@ -21,34 +21,48 @@ namespace rtype
         /**
          * @brief Get input events and update game
          *
-         * @param event Event to be handled
+         * @param event Event class to modify
+         * @param sfmlEvent Sfml event
          *
-         * @return true escape not pressed
-         * @return false escape is pressed
+         * @return true If event is handled
+         * @return false If event is not handled
          */
-        bool inputUpdate(rtype::Event &event, sf::Event _sfmlEvent);
+        bool inputUpdate(rtype::Event &event, sf::Event sfmlEvent);
         /**
          * @brief Get a char input
-         *
          * @param event event class to modify
+         * @param sfmlEvent Sfml event
          */
-        void getCharKeys(rtype::Event &event, sf::Event _sfmlEvent);
+        void getCharKeys(rtype::Event &event, sf::Event sfmlEvent);
 
         /**
          * @brief Get a system input
          *
          * @param event event class to modify
+         * @param sfmlEvent Sfml event
          */
-        void getSystemKeys(rtype::Event &event, sf::Event _sfmlEvent);
+        void getSystemKeys(rtype::Event &event, sf::Event sfmlEvent);
 
+        // /**
+        //  * @brief Get a controller event
+        //  *
+        //  * @param event event class to modify
+        //  * @param controllerId id of the controller
+        //  * @param sfmlEvent Sfml event
+        //  */
+        // void getControllerEvents(rtype::Event &event, int controllerId, sf::Event sfmlEvent);
         /**
-         * @brief Get a controller event
+         * @brief Get the Mouse Buttons
          *
-         * @param event event class to modify
-         * @param controllerId id of the controller
+         * @param event Event class to modify
+         * @param sfmlEvent Sfml event
          */
-        void getControllerEvents(rtype::Event &event, int controllerId, sf::Event _sfmlEvent);
-
         void getMouseButtons(rtype::Event &event, sf::Event sfmlEvent);
+        /**
+         * @brief Init the event variables values
+         *
+         * @param event Event class to modify
+         */
+        void initEvents(rtype::Event &event);
     };
 } // namespace rtype

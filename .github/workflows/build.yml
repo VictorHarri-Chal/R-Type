@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  Build:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+          - self-hosted
+    runs-on: ${{matrix.os}}
+    name: Build ${{matrix.os}}
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: bash install.sh
+
+      - name: Check build (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          test -f Debug/r-type_client.exe
+          test -f Debug/r-type_server.exe
+
+      - name: Check build
+        if: matrix.os != 'windows-latest'
+        shell: bash
+        run: |
+          test -f r-type_client
+          test -f r-type_server

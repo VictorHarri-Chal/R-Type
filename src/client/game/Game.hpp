@@ -13,6 +13,7 @@
 #include "../screens/options/OptionsScreen.hpp"
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
 #include "../network/Client.hpp"
+#include "../screens/core/CoreScreen.hpp"
 
 namespace rtype
 {
@@ -20,7 +21,7 @@ namespace rtype
     class Game {
       public:
         /// @brief enum containing all navigable screens
-        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Game, Count };
+        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Core, Count };
         /// @brief enum containing all type of sounds
         enum Sounds {};
         /// @brief enum containing all musics
@@ -35,12 +36,15 @@ namespace rtype
         /// @brief Run the game class
         void run(void);
         /// @brief Update game elements
+        /// @param gameEngine Game engine
         void update(rtype::Game *gameEngine);
         /// @brief Process events
+        /// @param gameEngine Game engine
         /// @return true Event has been executed
         /// @return false Event hasn't been executed
         bool processEvents(rtype::Game *gameEngine);
         /// @brief Handle the events
+        /// @param gameEngine Game engine
         /// @return int The scene number
         int handleEvent(rtype::Game *gameEngine);
         /**
@@ -58,16 +62,6 @@ namespace rtype
          *
          */
         void destroy();
-        /**
-         * @brief Destroy all entities
-         *
-         */
-        // void destroyEntities();
-        // /**
-        //  * @brief Destroy systems
-        //  *
-        //  */
-        // void destroySystems();
 
         /// @brief Swap between screens
         /// @param ret Scene number
@@ -96,10 +90,12 @@ namespace rtype
         //  * @param system System sound to add
         //  */
         // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
-        /// @brief Game window
-        sf::RenderWindow _window;
         Client *_client;
 
+        /// @brief Game window
+        sf::RenderWindow _window;
+        /// @brief Clock
+        sf::Clock _clock;
       private:
         /// @brief Actual screen
         Screens _actualScreen;
@@ -113,13 +109,16 @@ namespace rtype
         rtype::menu::OptionsScreen *_options;
         /// @brief Multiplayer screen
         rtype::menu::MultiplayerScreen *_multiplayer;
-        /// @brief Last sfml event caught
+        /// @brief Core screen
+        rtype::menu::CoreScreen *_core;
+        /// @brief Last sfml evecaught
         sf::Event _sfmlEvent;
         /// @brief Event class
         rtype::Event _event;
         /// @brief Last active scene
         Screens _lastScene;
-
         boost::asio::io_service _ioService;
+        /// @brief Event class
+        Events _eventClass;
     };
 }

@@ -6,7 +6,7 @@
 */
 
 #include "IntroScreen.hpp"
-#include "../../../ecs/System/Draw2D/Draw2D.hpp"
+#include "../../../ecs/System/Draw2D/draw2d.hpp"
 
 rtype::menu::IntroScreen::IntroScreen(): _onWritingFrame(false)
 {
@@ -17,29 +17,29 @@ void rtype::menu::IntroScreen::init()
 {
     rtype::ecs::system::ISystem *draw2DSystemMenu = new rtype::ecs::system::Draw2DSystem();
     this->_world.addSystem(draw2DSystemMenu);
-    rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 100.f, 0.0f, 0.0f);
     back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 900.f, 800.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(back);
-    rtype::ecs::entity::Entity *butt_validate = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *butt_validate = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     butt_validate->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 840.f, 800.f, 0.0f, 0.0f);
     butt_validate->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 200.f, 50.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_validate);
     _buttons.push_back(false);
-    rtype::ecs::entity::Entity *validate = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *validate = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
     validate->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 880.f, 810.f, 0.0f, 0.0f);
     validate->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Validate", 30.f, sf::Color::Blue, true);
     this->_world.addEntity(validate);
-    rtype::ecs::entity::Entity *name_frame = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *name_frame = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     name_frame->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 600.f, 200.f, 0.0f, 0.0f);
     name_frame->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 700.f, 60.f, sf::Color::Black, true, 3.0f, sf::Color::Red);
     this->_world.addEntity(name_frame);
     _buttons.push_back(false);
-    rtype::ecs::entity::Entity *pseudo = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *pseudo = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
     pseudo->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 610.f, 215.f, 0.0f, 0.0f);
     pseudo->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "", 30.f, sf::Color::White, true);
     this->_world.addEntity(pseudo);
-    rtype::ecs::entity::Entity *choose = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
+    rtype::ecs::entity::Entity *choose = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
     choose->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 770.f, 140.f, 0.0f, 0.0f);
     choose->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Choose a nickname", 40.f, sf::Color::White, true);
     this->_world.addEntity(choose);
@@ -63,7 +63,7 @@ int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *game
             event.key.backspace = false;
         }
         _pseudo = pseudoCompo->getText();
-    } else if (!_onWritingFrame && (_pseudo.size() > 0)) {
+    } else if (!_onWritingFrame && (_pseudo.size() > 2)) {
         if (isButtonPressed(1, gameEngine, event)) {
             return 2;
         }
@@ -84,10 +84,10 @@ void rtype::menu::IntroScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(1) == true) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Yellow);
-    } else if (_buttons.at(1) == false && (_pseudo.size() == 0)) {
+    } else if (_buttons.at(1) == false && (_pseudo.size() < 3)) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Red);
-    } else if (_buttons.at(1) == false && (_pseudo.size() > 0)) {
+    } else if (_buttons.at(1) == false && (_pseudo.size() > 2)) {
         ecs::component::Drawable2D *writingFrameCompo = _world.getEntity(3)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         writingFrameCompo->setOutlineColor(sf::Color::Green);
     }
