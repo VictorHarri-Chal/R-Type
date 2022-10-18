@@ -75,32 +75,38 @@ void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::En
             }
         }
     }
+    animations(entities);
 }
 
-void rtype::ecs::system::Draw2DSystem::animations(rtype::ecs::entity::Entity* entity)
+void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity::Entity*> entities)
 {
-    entity->getEntityType() == rtype::ecs::entity::PLAYER && 
     if (_allyClock.getElapsedTime() >= sf::seconds(1.0/8.0f)) {
         for (auto &entity : entities) {
-        rtype::ecs::component::Drawable2D *drawable2dCompo =
-        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
-        sf::IntRect rect = drawable2dCompo->getRect();
-        if (rect.left == 33)
-            rect.left = 0;
-        else
-            rect.left += 33;
-        drawable2dCompo->setRect(rect);
-        _allyClock.restart();
+            if (entity->getEntityType() == rtype::ecs::entity::PLAYER) {
+                rtype::ecs::component::Drawable2D *drawable2dCompo =
+                entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                sf::IntRect rect = drawable2dCompo->getRect();
+                if (rect.left == 33)
+                    rect.left = 0;
+                else
+                    rect.left += 33;
+                drawable2dCompo->setRect(rect);
+            }
+            _allyClock.restart();
         }
-    } else if (entity->getEntityType() == rtype::ecs::entity::ENEMY && _enemyClock.getElapsedTime() >= sf::seconds(1.0/6.0f)) {
-        rtype::ecs::component::Drawable2D *drawable2dCompo =
-        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
-        sf::IntRect rect = drawable2dCompo->getRect();
-        if (rect.left == 66)
-            rect.left = 34;
-        else
-            rect.left += 32;
-        drawable2dCompo->setRect(rect);
-        _enemyClock.restart();
+    } else if (_enemyClock.getElapsedTime() >= sf::seconds(1.0/6.0f)) {
+        for (auto &entity : entities) {
+            if (entity->getEntityType() == rtype::ecs::entity::ENEMY) {
+                rtype::ecs::component::Drawable2D *drawable2dCompo =
+                entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                sf::IntRect rect = drawable2dCompo->getRect();
+                if (rect.left == 66)
+                    rect.left = 34;
+                else
+                    rect.left += 32;
+                drawable2dCompo->setRect(rect);
+            }
+            _enemyClock.restart();
+        }
     }
 }

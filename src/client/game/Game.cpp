@@ -21,14 +21,14 @@ rtype::Game::~Game()
 void rtype::Game::init()
 {
     _eventClass.initEvents(_event);
-    // _actualScreen = Screens::Core;
-    // _core = new rtype::menu::CoreScreen;
-    // _lastScene = Screens::Core;
-    // _core->init();
-    _actualScreen = Screens::Intro;
-    _intro = new rtype::menu::IntroScreen;
-    _lastScene = Screens::Intro;
-    _intro->init();
+    _actualScreen = Screens::Core;
+    _core = new rtype::menu::CoreScreen;
+    _lastScene = Screens::Core;
+    _core->init();
+    // _actualScreen = Screens::Intro;
+    // _intro = new rtype::menu::IntroScreen;
+    // _lastScene = Screens::Intro;
+    // _intro->init();
 }
 
 void rtype::Game::initMusic()

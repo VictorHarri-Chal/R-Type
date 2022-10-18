@@ -23,8 +23,8 @@ void rtype::menu::CoreScreen::init()
     this->_world.addSystem(movementSystemMenu);
     rtype::ecs::system::ISystem *collideSystemMenu = new rtype::ecs::system::CollideSystem();
     this->_world.addSystem(collideSystemMenu);
-    // rtype::ecs::system::ISystem *enemypathSystemMenu = new rtype::ecs::system::EnemypathSystem();
-    // this->_world.addSystem(enemypathSystemMenu);
+    rtype::ecs::system::ISystem *enemypathSystemMenu = new rtype::ecs::system::EnemypathSystem();
+    this->_world.addSystem(enemypathSystemMenu);
 
     rtype::ecs::entity::Entity *bg1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     bg1->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -2.0f, 0.0f);
@@ -45,13 +45,13 @@ void rtype::menu::CoreScreen::init()
     // bg2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     // bg2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     // this->_world.addEntity(bg2);
-    // rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
-    // enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1200.f, 1000.f, 0.15f, 0.15f);
-    // enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    // enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    // enemy->addComponent<ecs::component::Ship>(rtype::ecs::component::SHIP, rtype::ecs::component::shipType::ZIGZAG);
-    // enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    // this->_world.addEntity(enemy);
+    rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+    enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1200.f, 1000.f, 0.15f, 0.15f);
+    enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    enemy->addComponent<ecs::component::Ship>(rtype::ecs::component::SHIP, rtype::ecs::component::shipType::ZIGZAG);
+    enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
+    this->_world.addEntity(enemy);
     rtype::ecs::entity::Entity *enemy2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
     enemy2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1000.f, 200.f, 0.0f, 0.0f);
     enemy2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
