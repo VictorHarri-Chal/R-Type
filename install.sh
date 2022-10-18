@@ -52,7 +52,9 @@ if [ "$os_name" = "Linux" ]; then
       libxcb-xinerama0-dev \
       libxcb-dri3-dev \
       libxcb-util-dev \
-      libxcb-util0-dev
+      libxcb-util0-dev \
+      xkb-data \
+      xtrans-dev
       sudo apt install -f
       if [ "$arch" = "arm64" ]; then
           sudo apt install -y \
@@ -85,7 +87,7 @@ if [ "$os_name" = "Linux" ]; then
       xcb-util-devel \
       xkeyboard-config-devel \
       systemd-devel \
-      libuuid-devel
+      libuuid-devel 
     fi
   fi
   conan install .. --build=missing -s compiler.libcxx=libstdc++11
