@@ -71,6 +71,7 @@ void rtype::menu::MenuScreen::init()
 int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (isButtonPressed(2, gameEngine, event)) {
+        gameEngine->_client->send(message::ROOM);
         return 5;
     }
     if (isButtonPressed(6, gameEngine, event)) {
@@ -92,7 +93,7 @@ void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(0) == true) {
         ecs::component::Drawable2D *soloButtonCompo = _world.getEntity(0)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         soloButtonCompo->setOutlineColor(sf::Color::Yellow);
-        
+
     } else if (_buttons.at(0) == false) {
         ecs::component::Drawable2D *soloButtonCompo = _world.getEntity(0)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         soloButtonCompo->setOutlineColor(sf::Color::Transparent);
@@ -100,7 +101,7 @@ void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(1) == true) {
         ecs::component::Drawable2D *multiButtonCompo = _world.getEntity(2)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         multiButtonCompo->setOutlineColor(sf::Color::Yellow);
-        
+
     } else if (_buttons.at(1) == false) {
         ecs::component::Drawable2D *multiButtonCompo = _world.getEntity(2)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         multiButtonCompo->setOutlineColor(sf::Color::Transparent);
@@ -108,7 +109,7 @@ void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(2) == true) {
         ecs::component::Drawable2D *htpButtonCompo = _world.getEntity(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         htpButtonCompo->setOutlineColor(sf::Color::Yellow);
-        
+
     } else if (_buttons.at(2) == false) {
         ecs::component::Drawable2D *htpButtonCompo = _world.getEntity(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         htpButtonCompo->setOutlineColor(sf::Color::Transparent);
@@ -116,7 +117,7 @@ void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(3) == true) {
         ecs::component::Drawable2D *optionsButtonCompo = _world.getEntity(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         optionsButtonCompo->setOutlineColor(sf::Color::Yellow);
-        
+
     } else if (_buttons.at(3) == false) {
         ecs::component::Drawable2D *optionsButtonCompo = _world.getEntity(6)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         optionsButtonCompo->setOutlineColor(sf::Color::Transparent);
@@ -124,7 +125,7 @@ void rtype::menu::MenuScreen::update(rtype::Game *gameEngine)
     if (_buttons.at(4) == true) {
         ecs::component::Drawable2D *quitButtonCompo = _world.getEntity(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         quitButtonCompo->setOutlineColor(sf::Color::Yellow);
-        
+
     } else if (_buttons.at(4) == false) {
         ecs::component::Drawable2D *quitButtonCompo = _world.getEntity(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         quitButtonCompo->setOutlineColor(sf::Color::Transparent);

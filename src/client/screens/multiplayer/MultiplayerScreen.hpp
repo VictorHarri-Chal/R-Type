@@ -176,6 +176,7 @@ namespace rtype
             void hooverOnButton(rtype::Event &event, rtype::Game *gameEngine);
 
           private:
+            void initRoom(rtype::Event &event, rtype::Game *gameEngine);
             /**
              * @brief World object will contain all the entities and system
              *
@@ -201,7 +202,8 @@ namespace rtype
              *
              */
             int _roomId;
-
+            size_t _actualNbRooms;
+            bool _roomInit;
         };
     }
 }

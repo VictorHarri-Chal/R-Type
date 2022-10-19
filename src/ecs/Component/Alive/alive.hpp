@@ -5,8 +5,7 @@
 ** alive.hpp
 */
 
-#ifndef ALIVE_HPP_
-#define ALIVE_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -33,5 +32,3 @@ namespace rtype
         }
     }
 }
-
-#endif /* !ALIVE_HPP_ */

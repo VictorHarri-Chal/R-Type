@@ -1,0 +1,80 @@
+\hypertarget{classrtype_1_1ecs_1_1system_1_1CollideSystem}{}\doxysection{rtype\+::ecs\+::system\+::Collide\+System Class Reference}
+\label{classrtype_1_1ecs_1_1system_1_1CollideSystem}\index{rtype::ecs::system::CollideSystem@{rtype::ecs::system::CollideSystem}}
+
+
+Collide system.  
+
+
+
+
+{\ttfamily \#include $<$collide.\+hpp$>$}
+
+Inheritance diagram for rtype\+::ecs\+::system\+::Collide\+System\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrtype_1_1ecs_1_1system_1_1CollideSystem}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1CollideSystem_aebf9b094ad41d899b13db53bb97b7f0b}\label{classrtype_1_1ecs_1_1system_1_1CollideSystem_aebf9b094ad41d899b13db53bb97b7f0b}} 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1CollideSystem_aebf9b094ad41d899b13db53bb97b7f0b}{Collide\+System}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Collide object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1CollideSystem_ab5ebc50a529dc540e80734a2dc12c54a}\label{classrtype_1_1ecs_1_1system_1_1CollideSystem_ab5ebc50a529dc540e80734a2dc12c54a}} 
+\mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1CollideSystem_ab5ebc50a529dc540e80734a2dc12c54a}{$\sim$\+Collide\+System}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Collide object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1CollideSystem_a770d8643cc0786c8d12d1c6275b04088}{update}} (std\+::vector$<$ \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}} $\ast$ $>$ entities, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Update all the entities with the system properties. \end{DoxyCompactList}\item 
+rtype\+::ecs\+::system\+::\+System\+Type \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1CollideSystem_a0f459fbfdc554243a9fb1dd2d617c6d3}{get\+System\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the type of system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Collide system. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1CollideSystem_a0f459fbfdc554243a9fb1dd2d617c6d3}\label{classrtype_1_1ecs_1_1system_1_1CollideSystem_a0f459fbfdc554243a9fb1dd2d617c6d3}} 
+\index{rtype::ecs::system::CollideSystem@{rtype::ecs::system::CollideSystem}!getSystemType@{getSystemType}}
+\index{getSystemType@{getSystemType}!rtype::ecs::system::CollideSystem@{rtype::ecs::system::CollideSystem}}
+\doxysubsubsection{\texorpdfstring{getSystemType()}{getSystemType()}}
+{\footnotesize\ttfamily rtype\+::ecs\+::system\+::\+System\+Type rtype\+::ecs\+::system\+::\+Collide\+System\+::get\+System\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the type of system. 
+
+\begin{DoxyReturn}{Returns}
+rtype\+::ecs\+::system\+::\+System\+Type System\+Type 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1ISystem_ae6fff77020448f217a0b0ede62a1f45a}{rtype\+::ecs\+::system\+::\+ISystem}}.
+
+\mbox{\Hypertarget{classrtype_1_1ecs_1_1system_1_1CollideSystem_a770d8643cc0786c8d12d1c6275b04088}\label{classrtype_1_1ecs_1_1system_1_1CollideSystem_a770d8643cc0786c8d12d1c6275b04088}} 
+\index{rtype::ecs::system::CollideSystem@{rtype::ecs::system::CollideSystem}!update@{update}}
+\index{update@{update}!rtype::ecs::system::CollideSystem@{rtype::ecs::system::CollideSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void rtype\+::ecs\+::system\+::\+Collide\+System\+::update (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classrtype_1_1ecs_1_1entity_1_1Entity}{rtype\+::ecs\+::entity\+::\+Entity}} $\ast$ $>$}]{entities,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update all the entities with the system properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & Vector of entites to update \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1ecs_1_1system_1_1ISystem_a7bc940bd4062a0f1986b098299ab8023}{rtype\+::ecs\+::system\+::\+ISystem}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/ecs/\+System/\+Collide/collide.\+hpp\item 
+src/ecs/\+System/\+Collide/collide.\+cpp\end{DoxyCompactItemize}

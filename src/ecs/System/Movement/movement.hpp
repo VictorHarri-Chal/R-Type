@@ -5,6 +5,8 @@
 ** movement.hpp
 */
 
+#pragma once
+
 #include "../ISystem.hpp"
 
 namespace rtype

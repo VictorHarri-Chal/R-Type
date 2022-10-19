@@ -1,0 +1,316 @@
+\hypertarget{classrtype_1_1menu_1_1MultiplayerScreen}{}\doxysection{rtype\+::menu\+::Multiplayer\+Screen Class Reference}
+\label{classrtype_1_1menu_1_1MultiplayerScreen}\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+
+
+Class for the Menu Screen.  
+
+
+
+
+{\ttfamily \#include $<$Multiplayer\+Screen.\+hpp$>$}
+
+Inheritance diagram for rtype\+::menu\+::Multiplayer\+Screen\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrtype_1_1menu_1_1MultiplayerScreen}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtype_1_1menu_1_1MultiplayerScreen_1_1room__t}{room\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Room struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a8b1b3a084541b933a090e3b5935f9c33}\label{classrtype_1_1menu_1_1MultiplayerScreen_a8b1b3a084541b933a090e3b5935f9c33}} 
+\mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a8b1b3a084541b933a090e3b5935f9c33}{Multiplayer\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Menu Screen object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a9c1f2f58afd5071ae18b3374bc9b7155}\label{classrtype_1_1menu_1_1MultiplayerScreen_a9c1f2f58afd5071ae18b3374bc9b7155}} 
+\mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a9c1f2f58afd5071ae18b3374bc9b7155}{$\sim$\+Multiplayer\+Screen}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the Menu Screen object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a90e1f01dd5082f1e175e3a39c452bcd6}\label{classrtype_1_1menu_1_1MultiplayerScreen_a90e1f01dd5082f1e175e3a39c452bcd6}} 
+void \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a90e1f01dd5082f1e175e3a39c452bcd6}{init}} () override
+\begin{DoxyCompactList}\small\item\em Init the Menu Screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_ad82b4d727990357d1a06c5d0d9d635ac}{update}} (\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine) override
+\begin{DoxyCompactList}\small\item\em Update the Menu Screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a7714178325a52fcc149e5b0162ede6da}{handle\+Event}} (\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine) override
+\begin{DoxyCompactList}\small\item\em Handle event for the Menu Screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a7df9967909ef84e65a11b2dfef0fa791}{is\+Button\+Pressed}} (size\+\_\+t index, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine, \mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event) override
+\begin{DoxyCompactList}\small\item\em Check if button is pressed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a1ac5e0f8c27ce11472bc8b081081afd3}{is\+Mouse\+On\+Button}} (size\+\_\+t index, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine, \mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event) override
+\begin{DoxyCompactList}\small\item\em Check if mouse is on button. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_af7a9c3fba0e6c6b2d9b12cae5ab86e41}{is\+Surface\+Clicked}} (float x, float y, float width, float height, \mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Check if surface is clicked. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a684d267f74e64643567ace783b205955}{is\+Mouse\+On\+Surface}} (float x, float y, float width, float height, \mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Check if surface is hovered. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a839608ec1067022651a08e47b2605282}{add\+Room}} (float slot)
+\begin{DoxyCompactList}\small\item\em Add room to the list. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a94051ba0ca51eff5b34711a73503da2e}{check\+For\+Free\+Slot}} ()
+\begin{DoxyCompactList}\small\item\em Check for free slot in the room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_abec59f075d686780abddfd9bc455d8cc}{create\+Room}} (\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Create a Room. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a4f7bb92c51a607822474b001bd1b172b}\label{classrtype_1_1menu_1_1MultiplayerScreen_a4f7bb92c51a607822474b001bd1b172b}} 
+bool {\bfseries join\+Room} (int slot\+Pos, float offset, \mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\item 
+void \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_aca6548d3f82899ff62f4efe3e40481e7}{delete\+Room}} (int slot\+Pos, float offset, \mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Delete a Room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrtype_1_1menu_1_1MultiplayerScreen_a23ea02c467a3af04bf458d840e852515}{hoover\+On\+Button}} (\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&event, \mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$game\+Engine)
+\begin{DoxyCompactList}\small\item\em Check if room is hovered. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for the Menu Screen. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a839608ec1067022651a08e47b2605282}\label{classrtype_1_1menu_1_1MultiplayerScreen_a839608ec1067022651a08e47b2605282}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!addRoom@{addRoom}}
+\index{addRoom@{addRoom}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{addRoom()}{addRoom()}}
+{\footnotesize\ttfamily int rtype\+::menu\+::\+Multiplayer\+Screen\+::add\+Room (\begin{DoxyParamCaption}\item[{float}]{slot }\end{DoxyParamCaption})}
+
+
+
+Add room to the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & Number of slots \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The room id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a94051ba0ca51eff5b34711a73503da2e}\label{classrtype_1_1menu_1_1MultiplayerScreen_a94051ba0ca51eff5b34711a73503da2e}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!checkForFreeSlot@{checkForFreeSlot}}
+\index{checkForFreeSlot@{checkForFreeSlot}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{checkForFreeSlot()}{checkForFreeSlot()}}
+{\footnotesize\ttfamily float rtype\+::menu\+::\+Multiplayer\+Screen\+::check\+For\+Free\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check for free slot in the room. 
+
+\begin{DoxyReturn}{Returns}
+float The free slot 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_abec59f075d686780abddfd9bc455d8cc}\label{classrtype_1_1menu_1_1MultiplayerScreen_abec59f075d686780abddfd9bc455d8cc}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!createRoom@{createRoom}}
+\index{createRoom@{createRoom}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{createRoom()}{createRoom()}}
+{\footnotesize\ttfamily void rtype\+::menu\+::\+Multiplayer\+Screen\+::create\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Create a Room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_aca6548d3f82899ff62f4efe3e40481e7}\label{classrtype_1_1menu_1_1MultiplayerScreen_aca6548d3f82899ff62f4efe3e40481e7}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!deleteRoom@{deleteRoom}}
+\index{deleteRoom@{deleteRoom}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{deleteRoom()}{deleteRoom()}}
+{\footnotesize\ttfamily void rtype\+::menu\+::\+Multiplayer\+Screen\+::delete\+Room (\begin{DoxyParamCaption}\item[{int}]{slot\+Pos,  }\item[{float}]{offset,  }\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Delete a Room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot\+Pos} & Position of the slot \\
+\hline
+{\em offset} & Offset of the slot \\
+\hline
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a7714178325a52fcc149e5b0162ede6da}\label{classrtype_1_1menu_1_1MultiplayerScreen_a7714178325a52fcc149e5b0162ede6da}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily int rtype\+::menu\+::\+Multiplayer\+Screen\+::handle\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handle event for the Menu Screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The Scene Number 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1IScreen_ad6becf8525d2767d981324a5e7309974}{rtype\+::\+IScreen}}.
+
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a23ea02c467a3af04bf458d840e852515}\label{classrtype_1_1menu_1_1MultiplayerScreen_a23ea02c467a3af04bf458d840e852515}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!hooverOnButton@{hooverOnButton}}
+\index{hooverOnButton@{hooverOnButton}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{hooverOnButton()}{hooverOnButton()}}
+{\footnotesize\ttfamily void rtype\+::menu\+::\+Multiplayer\+Screen\+::hoover\+On\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Check if room is hovered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a7df9967909ef84e65a11b2dfef0fa791}\label{classrtype_1_1menu_1_1MultiplayerScreen_a7df9967909ef84e65a11b2dfef0fa791}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!isButtonPressed@{isButtonPressed}}
+\index{isButtonPressed@{isButtonPressed}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{isButtonPressed()}{isButtonPressed()}}
+{\footnotesize\ttfamily bool rtype\+::menu\+::\+Multiplayer\+Screen\+::is\+Button\+Pressed (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine,  }\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if button is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of the button \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If button is pressed 
+
+false If button is not pressed 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1IScreen_a9888e8ec5c41ae827921aaebc4243e16}{rtype\+::\+IScreen}}.
+
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a1ac5e0f8c27ce11472bc8b081081afd3}\label{classrtype_1_1menu_1_1MultiplayerScreen_a1ac5e0f8c27ce11472bc8b081081afd3}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!isMouseOnButton@{isMouseOnButton}}
+\index{isMouseOnButton@{isMouseOnButton}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{isMouseOnButton()}{isMouseOnButton()}}
+{\footnotesize\ttfamily bool rtype\+::menu\+::\+Multiplayer\+Screen\+::is\+Mouse\+On\+Button (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine,  }\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if mouse is on button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of the button \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If mouse is on button 
+
+false If mouse is not on button 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1IScreen_a62cabac17e8589abbce85ecb391c91a2}{rtype\+::\+IScreen}}.
+
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_a684d267f74e64643567ace783b205955}\label{classrtype_1_1menu_1_1MultiplayerScreen_a684d267f74e64643567ace783b205955}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!isMouseOnSurface@{isMouseOnSurface}}
+\index{isMouseOnSurface@{isMouseOnSurface}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{isMouseOnSurface()}{isMouseOnSurface()}}
+{\footnotesize\ttfamily bool rtype\+::menu\+::\+Multiplayer\+Screen\+::is\+Mouse\+On\+Surface (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Check if surface is hovered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position of the surface \\
+\hline
+{\em y} & Y position of the surface \\
+\hline
+{\em width} & Width of the surface \\
+\hline
+{\em height} & Height of the surface \\
+\hline
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If surface is hovered 
+
+false If surface is not hovered 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_af7a9c3fba0e6c6b2d9b12cae5ab86e41}\label{classrtype_1_1menu_1_1MultiplayerScreen_af7a9c3fba0e6c6b2d9b12cae5ab86e41}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!isSurfaceClicked@{isSurfaceClicked}}
+\index{isSurfaceClicked@{isSurfaceClicked}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{isSurfaceClicked()}{isSurfaceClicked()}}
+{\footnotesize\ttfamily bool rtype\+::menu\+::\+Multiplayer\+Screen\+::is\+Surface\+Clicked (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{\mbox{\hyperlink{structrtype_1_1Event}{rtype\+::\+Event}} \&}]{event,  }\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})}
+
+
+
+Check if surface is clicked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position of the surface \\
+\hline
+{\em y} & Y position of the surface \\
+\hline
+{\em width} & Width of the surface \\
+\hline
+{\em height} & Height of the surface \\
+\hline
+{\em event} & \mbox{\hyperlink{structrtype_1_1Event}{Event}} to be handled \\
+\hline
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If surface is clicked 
+
+false If surface is not clicked 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrtype_1_1menu_1_1MultiplayerScreen_ad82b4d727990357d1a06c5d0d9d635ac}\label{classrtype_1_1menu_1_1MultiplayerScreen_ad82b4d727990357d1a06c5d0d9d635ac}} 
+\index{rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}!update@{update}}
+\index{update@{update}!rtype::menu::MultiplayerScreen@{rtype::menu::MultiplayerScreen}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void rtype\+::menu\+::\+Multiplayer\+Screen\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrtype_1_1Game}{rtype\+::\+Game}} $\ast$}]{game\+Engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update the Menu Screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Engine} & \mbox{\hyperlink{classrtype_1_1Game}{Game}} engine \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classrtype_1_1IScreen_a113e9eebb3094028921575a88ddb1d3c}{rtype\+::\+IScreen}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/screens/multiplayer/Multiplayer\+Screen.\+hpp\item 
+src/client/screens/multiplayer/Multiplayer\+Screen.\+cpp\end{DoxyCompactItemize}

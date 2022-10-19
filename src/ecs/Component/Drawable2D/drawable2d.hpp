@@ -5,8 +5,7 @@
 ** drawable2d.hpp
 */
 
-#ifndef DRAWABLE2D_HPP_
-#define DRAWABLE2D_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 #include <string>
@@ -79,4 +78,3 @@ namespace rtype
         }
     }
 }
-#endif /* !DRAWABLE2D_HPP_ */

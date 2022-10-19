@@ -1,0 +1,214 @@
+\hypertarget{structrtype_1_1Event}{}\doxysection{rtype\+::Event Struct Reference}
+\label{structrtype_1_1Event}\index{rtype::Event@{rtype::Event}}
+
+
+{\ttfamily \#include $<$Event\+Code.\+hpp$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtype_1_1Event_1_1ControllerEvent}{Controller\+Event}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structrtype_1_1Event}{Event}} happening on the controller. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtype_1_1Event_1_1KeyEvent}{Key\+Event}}
+\begin{DoxyCompactList}\small\item\em Size events parameters (Event\+::\+Type\+::\+Resized). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3}{Controller\+Code}} \{ \newline
+\mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab27dda9b236d69d3d96f852699cdcb51}{CONTROLLER\+\_\+\+NONE}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a3ba3c6373de0dce3d9cf4fb6a375751d}{UP\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ac4c53834b2d7e0122d23835c43cddf0a}{RIGHT\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aff240b852110452f18afeda5e355d075}{DOWN\+\_\+\+BUTTON}}
+, \newline
+\mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a163c584cc9546481732803f106f551f7}{LEFT\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab32015a3b4cbe6900215f3bc43dbcafa}{T\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aa148c4f2c74b4fd3d717ee0ee298937e}{O\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ad5330021200894e5c0fa4fd1d2743b70}{X\+\_\+\+BUTTON}}
+, \newline
+\mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a0620f41cce951fe939f20997068a45e7}{S\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab5aee164855f8d6c3522bc7bd9759587}{L1\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab573e1f144f4437ecad28fad648559b2}{L2\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a442ce3dc509d0ef87555f8d27be1ae3d}{R1\+\_\+\+BUTTON}}
+, \newline
+\mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3abeb9e28036bcdff368e764b2108f8326}{R2\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab6c522fb57f038fda38807f5abefaaa9}{SHARE\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3af4681d77a2ebad4350314a4079c5fb30}{TOUCHPAD\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a4595be9bc3a3628f400bce224e6c3788}{OPTION\+\_\+\+BUTTON}}
+, \newline
+\mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ae0df36487372c2f8aa02d67780282707}{L3\+\_\+\+BUTTON}}
+, \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aa4ad21b523a818929b691f90981df42a}{R3\+\_\+\+BUTTON}}
+ \}
+\begin{DoxyCompactList}\small\item\em Controller button input. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eb}{Joystick\+Direction}} \{ \newline
+\mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eba213b9f672dc518f1b0f705ee8f8353c8}{JOYSTICK\+\_\+\+NONE}}
+, \mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eba75cbe965a83ef0658b58e371020a9762}{UP}}
+, \mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebad54a520137f81e9c76eb9563a4023934}{RIGHT}}
+, \mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebaea327889a63d30aaeeeca807243d6b57}{DOWN}}
+, \newline
+\mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebaf60f633eed62cbd2fde7cbcf0b44b69b}{LEFT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Right joystick events. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{structrtype_1_1Event_a14f2fe30f17a17cca4f849ca271d2b47}{Key}} = char
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrtype_1_1Event_ab2d3968261f4b0e9851ba7731435f7fc}\label{structrtype_1_1Event_ab2d3968261f4b0e9851ba7731435f7fc}} 
+sf\+::\+Vector2f \mbox{\hyperlink{structrtype_1_1Event_ab2d3968261f4b0e9851ba7731435f7fc}{position}}
+\begin{DoxyCompactList}\small\item\em Mouse position on click. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtype_1_1Event_a1a97f51e13f5b069c9e5115f035f9822}\label{structrtype_1_1Event_a1a97f51e13f5b069c9e5115f035f9822}} 
+sf\+::\+Vector2f \mbox{\hyperlink{structrtype_1_1Event_a1a97f51e13f5b069c9e5115f035f9822}{global\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Mouse position global. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtype_1_1Event_a91b9609669ec93fadd54f8e0f4c8ef6f}\label{structrtype_1_1Event_a91b9609669ec93fadd54f8e0f4c8ef6f}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>bool \mbox{\hyperlink{structrtype_1_1Event_ab99194c62e998386ef87b8b16becbc6b}{resized}}\\
+\>\>{\em Is the window resized? }\\
+\>\mbox{\hyperlink{structrtype_1_1Event_1_1KeyEvent}{KeyEvent}} \mbox{\hyperlink{structrtype_1_1Event_a31603374f4965f295c2734605e90cef2}{key}}\\
+\>\>{\em Key event parameters (Event::KeyPressed, Event::KeyReleased). }\\
+\>\mbox{\hyperlink{structrtype_1_1Event_1_1ControllerEvent}{ControllerEvent}} \mbox{\hyperlink{structrtype_1_1Event_a2653b0c8d3e8eaaff10be9d960f2f25a}{controller}} \mbox{[}4\mbox{]}\\
+\>\>{\em Controller events. }\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains an event\textquotesingle{}s data.
+
+\mbox{\hyperlink{structrtype_1_1Event}{Event}} data is fetched by first checking its type and then accessing the correspoding member. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{structrtype_1_1Event_a14f2fe30f17a17cca4f849ca271d2b47}\label{structrtype_1_1Event_a14f2fe30f17a17cca4f849ca271d2b47}} 
+\index{rtype::Event@{rtype::Event}!Key@{Key}}
+\index{Key@{Key}!rtype::Event@{rtype::Event}}
+\doxysubsubsection{\texorpdfstring{Key}{Key}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{structrtype_1_1Event_a14f2fe30f17a17cca4f849ca271d2b47}{rtype\+::\+Event\+::\+Key}} =  char}
+
+Key code for keyboard events.
+
+Keys are represented by their corresponding character, meaning that some keys are not currently representable using this format (such as the Enter key). 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3}} 
+\index{rtype::Event@{rtype::Event}!ControllerCode@{ControllerCode}}
+\index{ControllerCode@{ControllerCode}!rtype::Event@{rtype::Event}}
+\doxysubsubsection{\texorpdfstring{ControllerCode}{ControllerCode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structrtype_1_1Event_a842109ed366738906b69256444aca8f3}{rtype\+::\+Event\+::\+Controller\+Code}}}
+
+
+
+Controller button input. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONTROLLER\_NONE@{CONTROLLER\_NONE}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!CONTROLLER\_NONE@{CONTROLLER\_NONE}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab27dda9b236d69d3d96f852699cdcb51}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab27dda9b236d69d3d96f852699cdcb51}} 
+CONTROLLER\+\_\+\+NONE&Nothing is happening. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP\_BUTTON@{UP\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!UP\_BUTTON@{UP\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a3ba3c6373de0dce3d9cf4fb6a375751d}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a3ba3c6373de0dce3d9cf4fb6a375751d}} 
+UP\+\_\+\+BUTTON&Up arrow. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT\_BUTTON@{RIGHT\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!RIGHT\_BUTTON@{RIGHT\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ac4c53834b2d7e0122d23835c43cddf0a}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ac4c53834b2d7e0122d23835c43cddf0a}} 
+RIGHT\+\_\+\+BUTTON&Right arrow. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN\_BUTTON@{DOWN\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!DOWN\_BUTTON@{DOWN\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aff240b852110452f18afeda5e355d075}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aff240b852110452f18afeda5e355d075}} 
+DOWN\+\_\+\+BUTTON&Down arrow. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT\_BUTTON@{LEFT\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!LEFT\_BUTTON@{LEFT\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a163c584cc9546481732803f106f551f7}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a163c584cc9546481732803f106f551f7}} 
+LEFT\+\_\+\+BUTTON&Left arrow. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_BUTTON@{T\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!T\_BUTTON@{T\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab32015a3b4cbe6900215f3bc43dbcafa}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab32015a3b4cbe6900215f3bc43dbcafa}} 
+T\+\_\+\+BUTTON&Triangle key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_BUTTON@{O\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!O\_BUTTON@{O\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aa148c4f2c74b4fd3d717ee0ee298937e}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aa148c4f2c74b4fd3d717ee0ee298937e}} 
+O\+\_\+\+BUTTON&Circle button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X\_BUTTON@{X\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!X\_BUTTON@{X\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ad5330021200894e5c0fa4fd1d2743b70}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ad5330021200894e5c0fa4fd1d2743b70}} 
+X\+\_\+\+BUTTON&Cross button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\_BUTTON@{S\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!S\_BUTTON@{S\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a0620f41cce951fe939f20997068a45e7}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a0620f41cce951fe939f20997068a45e7}} 
+S\+\_\+\+BUTTON&Square button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L1\_BUTTON@{L1\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!L1\_BUTTON@{L1\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab5aee164855f8d6c3522bc7bd9759587}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab5aee164855f8d6c3522bc7bd9759587}} 
+L1\+\_\+\+BUTTON&L1. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L2\_BUTTON@{L2\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!L2\_BUTTON@{L2\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab573e1f144f4437ecad28fad648559b2}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab573e1f144f4437ecad28fad648559b2}} 
+L2\+\_\+\+BUTTON&L2. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R1\_BUTTON@{R1\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!R1\_BUTTON@{R1\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a442ce3dc509d0ef87555f8d27be1ae3d}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a442ce3dc509d0ef87555f8d27be1ae3d}} 
+R1\+\_\+\+BUTTON&R1. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R2\_BUTTON@{R2\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!R2\_BUTTON@{R2\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3abeb9e28036bcdff368e764b2108f8326}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3abeb9e28036bcdff368e764b2108f8326}} 
+R2\+\_\+\+BUTTON&R2. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHARE\_BUTTON@{SHARE\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!SHARE\_BUTTON@{SHARE\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab6c522fb57f038fda38807f5abefaaa9}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ab6c522fb57f038fda38807f5abefaaa9}} 
+SHARE\+\_\+\+BUTTON&Share button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOUCHPAD\_BUTTON@{TOUCHPAD\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!TOUCHPAD\_BUTTON@{TOUCHPAD\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3af4681d77a2ebad4350314a4079c5fb30}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3af4681d77a2ebad4350314a4079c5fb30}} 
+TOUCHPAD\+\_\+\+BUTTON&Touchpad button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPTION\_BUTTON@{OPTION\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!OPTION\_BUTTON@{OPTION\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a4595be9bc3a3628f400bce224e6c3788}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3a4595be9bc3a3628f400bce224e6c3788}} 
+OPTION\+\_\+\+BUTTON&Option button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L3\_BUTTON@{L3\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!L3\_BUTTON@{L3\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ae0df36487372c2f8aa02d67780282707}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3ae0df36487372c2f8aa02d67780282707}} 
+L3\+\_\+\+BUTTON&L3. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R3\_BUTTON@{R3\_BUTTON}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!R3\_BUTTON@{R3\_BUTTON}}}\mbox{\Hypertarget{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aa4ad21b523a818929b691f90981df42a}\label{structrtype_1_1Event_a842109ed366738906b69256444aca8f3aa4ad21b523a818929b691f90981df42a}} 
+R3\+\_\+\+BUTTON&R3. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eb}\label{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eb}} 
+\index{rtype::Event@{rtype::Event}!JoystickDirection@{JoystickDirection}}
+\index{JoystickDirection@{JoystickDirection}!rtype::Event@{rtype::Event}}
+\doxysubsubsection{\texorpdfstring{JoystickDirection}{JoystickDirection}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eb}{rtype\+::\+Event\+::\+Joystick\+Direction}}}
+
+
+
+Right joystick events. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JOYSTICK\_NONE@{JOYSTICK\_NONE}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!JOYSTICK\_NONE@{JOYSTICK\_NONE}}}\mbox{\Hypertarget{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eba213b9f672dc518f1b0f705ee8f8353c8}\label{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eba213b9f672dc518f1b0f705ee8f8353c8}} 
+JOYSTICK\+\_\+\+NONE&Nothing is happening. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!UP@{UP}}}\mbox{\Hypertarget{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eba75cbe965a83ef0658b58e371020a9762}\label{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121eba75cbe965a83ef0658b58e371020a9762}} 
+UP&Joystick going up. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!RIGHT@{RIGHT}}}\mbox{\Hypertarget{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebad54a520137f81e9c76eb9563a4023934}\label{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebad54a520137f81e9c76eb9563a4023934}} 
+RIGHT&Joystick going right. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!DOWN@{DOWN}}}\mbox{\Hypertarget{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebaea327889a63d30aaeeeca807243d6b57}\label{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebaea327889a63d30aaeeeca807243d6b57}} 
+DOWN&Joystick going down. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!rtype::Event@{rtype::Event}}\index{rtype::Event@{rtype::Event}!LEFT@{LEFT}}}\mbox{\Hypertarget{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebaf60f633eed62cbd2fde7cbcf0b44b69b}\label{structrtype_1_1Event_ace1aa5eb043a1d5cfb0201e5d52121ebaf60f633eed62cbd2fde7cbcf0b44b69b}} 
+LEFT&Joystick going left. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{EventCode_8hpp}{Event\+Code.\+hpp}}\end{DoxyCompactItemize}
