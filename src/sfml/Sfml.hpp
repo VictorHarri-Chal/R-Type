@@ -5,12 +5,9 @@
 ** Sfml.hpp
 */
 
-#ifndef SFML_HPP_
-#define SFML_HPP_
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
-
-#endif /* !SFML_HPP_ */

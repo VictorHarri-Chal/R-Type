@@ -1,0 +1,154 @@
+\hypertarget{classSafeQueue}{}\doxysection{Safe\+Queue$<$ T $>$ Class Template Reference}
+\label{classSafeQueue}\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+
+
+Template class for a thread-\/safe queue.  
+
+
+
+
+{\ttfamily \#include $<$Safe\+Queue.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSafeQueue_a802bf49b2bb2b5ac296bbaa5955d5020}\label{classSafeQueue_a802bf49b2bb2b5ac296bbaa5955d5020}} 
+\mbox{\hyperlink{classSafeQueue_a802bf49b2bb2b5ac296bbaa5955d5020}{Safe\+Queue}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSafeQueue_a05f7e091043bd65c04e85acf5cc4ba11}{Safe\+Queue}} (const \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$ \&other)=delete
+\begin{DoxyCompactList}\small\item\em Copy constructor deleted. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} \& \mbox{\hyperlink{classSafeQueue_aa05e8947e70aa799d20c13cc729330c1}{operator=}} (const \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$ \&other)=delete
+\begin{DoxyCompactList}\small\item\em Assignement constructor deleted. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSafeQueue_ad4f96ca3d7ed8c1e5cc51fe2ecd6eaea}{Safe\+Queue}} (\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$ \&\&other) noexcept(false)
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSafeQueue_a6fb2d9a4695e469e1bc73aa53eea3c94}\label{classSafeQueue_a6fb2d9a4695e469e1bc73aa53eea3c94}} 
+virtual \mbox{\hyperlink{classSafeQueue_a6fb2d9a4695e469e1bc73aa53eea3c94}{$\sim$\+Safe\+Queue}} () noexcept(false)
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{classSafeQueue_a63f8205e2ae141ef3f345483a8e23b5e}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Getter for \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} size. \end{DoxyCompactList}\item 
+std\+::optional$<$ T $>$ \mbox{\hyperlink{classSafeQueue_ab4f91c5a5a2e67f3c55ea5cac82870e6}{pop}} ()
+\begin{DoxyCompactList}\small\item\em Removes the next element in the queue, effectively reducing its size by one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSafeQueue_a46741d15e4a3678918ba0e0ecb787a0d}{push}} (const T \&item)
+\begin{DoxyCompactList}\small\item\em Pushes the given element value onto the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Safe\+Queue$<$ T $>$}
+
+Template class for a thread-\/safe queue. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the queue.\\
+\hline
+\end{DoxyTemplParams}
+Thread-\/safe queue. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the queue. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSafeQueue_a05f7e091043bd65c04e85acf5cc4ba11}\label{classSafeQueue_a05f7e091043bd65c04e85acf5cc4ba11}} 
+\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!SafeQueue@{SafeQueue}}
+\index{SafeQueue@{SafeQueue}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{SafeQueue()}{SafeQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Copy constructor deleted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & to copy \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSafeQueue_ad4f96ca3d7ed8c1e5cc51fe2ecd6eaea}\label{classSafeQueue_ad4f96ca3d7ed8c1e5cc51fe2ecd6eaea}} 
+\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!SafeQueue@{SafeQueue}}
+\index{SafeQueue@{SafeQueue}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{SafeQueue()}{SafeQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSafeQueue_a63f8205e2ae141ef3f345483a8e23b5e}\label{classSafeQueue_a63f8205e2ae141ef3f345483a8e23b5e}} 
+\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!getSize@{getSize}}
+\index{getSize@{getSize}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+unsigned long \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::get\+Size}
+
+
+
+Getter for \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} size. 
+
+\begin{DoxyReturn}{Returns}
+unsigned long \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}} size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSafeQueue_aa05e8947e70aa799d20c13cc729330c1}\label{classSafeQueue_aa05e8947e70aa799d20c13cc729330c1}} 
+\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}\& \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Assignement constructor deleted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & to assign \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSafeQueue_ab4f91c5a5a2e67f3c55ea5cac82870e6}\label{classSafeQueue_ab4f91c5a5a2e67f3c55ea5cac82870e6}} 
+\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!pop@{pop}}
+\index{pop@{pop}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::optional$<$ T $>$ \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::pop}
+
+
+
+Removes the next element in the queue, effectively reducing its size by one. 
+
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$\+T$>$ The value of the element that was removed from the queue. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSafeQueue_a46741d15e4a3678918ba0e0ecb787a0d}\label{classSafeQueue_a46741d15e4a3678918ba0e0ecb787a0d}} 
+\index{SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}!push@{push}}
+\index{push@{push}!SafeQueue$<$ T $>$@{SafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classSafeQueue}{Safe\+Queue}}$<$ T $>$\+::push (\begin{DoxyParamCaption}\item[{const T \&}]{item }\end{DoxyParamCaption})}
+
+
+
+Pushes the given element value onto the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The value of the element to push onto the queue. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/network/Safe\+Queue.\+hpp\item 
+src/server/network/Safe\+Queue.\+cpp\end{DoxyCompactItemize}

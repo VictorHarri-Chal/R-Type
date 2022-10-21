@@ -6,9 +6,7 @@
 */
 
 
-#ifndef ICOMPONENT_HPP_
-#define ICOMPONENT_HPP_
-
+#pragma once
 #include "../../sfml/Sfml.hpp"
 
 namespace rtype
@@ -80,5 +78,3 @@ namespace rtype
         }
     }
 }
-
-#endif /* !ICOMPONENT_HPP_ */

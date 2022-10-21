@@ -6,12 +6,11 @@
 */
 
 #include "Game.hpp"
-#include <iostream>
 
 rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
-    _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+    _client = new Client(_ioService, "localhost", "4242");
 }
 
 rtype::Game::~Game()
@@ -20,15 +19,21 @@ rtype::Game::~Game()
 
 void rtype::Game::init()
 {
+    _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+    boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
+    _actualScreen = Screens::Intro;
+    _intro = new rtype::menu::IntroScreen;
+    _lastScene = Screens::Intro;
+    _intro->init();
     _eventClass.initEvents(_event);
-    _actualScreen = Screens::Core;
-    _core = new rtype::menu::CoreScreen;
-    _lastScene = Screens::Core;
-    _core->init();
-    // _actualScreen = Screens::Intro;
-    // _intro = new rtype::menu::IntroScreen;
-    // _lastScene = Screens::Intro;
-    // _intro->init();
+    // _actualScreen = Screens::Core;
+    // _core = new rtype::menu::CoreScreen;
+    // _lastScene = Screens::Core;
+    // _core->init();
+    _actualScreen = Screens::Intro;
+    _intro = new rtype::menu::IntroScreen;
+    _lastScene = Screens::Intro;
+    _intro->init();
 }
 
 void rtype::Game::initMusic()
@@ -159,4 +164,5 @@ void rtype::Game::destroyLastScene()
 void rtype::Game::destroy()
 {
     destroyLastScene();
+    delete _client;
 }

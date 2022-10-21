@@ -23,12 +23,21 @@ jobs:
       - name: Build
         run: bash install.sh
 
-      - name: Check build (Windows)
-        if: matrix.os == 'windows-latest'
+      - name: DEBUG1
         shell: bash
         run: |
-          test -f Debug/r-type_client.exe
-          test -f Debug/r-type_server.exe
+          ls -l || true
+
+      - name: DEBUG2
+        shell: bash
+        run: |
+          ls -l Debug || true
+
+      - name: Check build (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "Debug/r_type-client, Debug/r_type-server"
 
       - name: Check build
         if: matrix.os != 'windows-latest'

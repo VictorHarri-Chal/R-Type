@@ -5,8 +5,7 @@
 ** collide.hpp
 */
 
-#ifndef COLLIDE_HPP_
-#define COLLIDE_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -32,5 +31,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !COLLIDE_HPP_ */
