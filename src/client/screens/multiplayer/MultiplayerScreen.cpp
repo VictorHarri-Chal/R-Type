@@ -71,6 +71,9 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
         initRoom(event, gameEngine);
     for (size_t i = 0; i < _slots.size(); i++)
         deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
+    for (size_t j = 0; j < _slots.size(); j++)
+        if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine))
+            return 6;
     if (isButtonPressed(4, gameEngine, event))
         createRoom(event, gameEngine);
     hooverOnButton(event, gameEngine);
