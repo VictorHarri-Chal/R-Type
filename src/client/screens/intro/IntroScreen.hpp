@@ -19,33 +19,33 @@ namespace rtype
     namespace menu
     {
         /**
-         * @brief Class for the Menu Screen
+         * @brief Class for the Intro Screen
          * 
          */
         class IntroScreen : public IScreen {
           public:
             /**
-             * @brief Construct a new Menu Screen object
+             * @brief Construct a new Intro Screen object
              * 
              */
             IntroScreen();
             /**
-             * @brief Destroy the Menu Screen object
+             * @brief Destroy the Intro Screen object
              * 
              */
             ~IntroScreen() = default;
             /**
-             * @brief Init the Menu Screen
+             * @brief Init the Intro Screen
              * 
              */
             void init() override;
             /**
-             * @brief Update the Menu Screen
+             * @brief Update the Intro Screen
              * @param gameEngine Game engine
              */
             void update(rtype::Game *gameEngine) override;
             /**
-             * @brief Handle event for the Menu Screen
+             * @brief Handle event for the Intro Screen
              * 
              * @param event Event to be handled
              * @param gameEngine Game engine
