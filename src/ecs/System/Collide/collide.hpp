@@ -5,8 +5,9 @@
 ** collide.hpp
 */
 
+#pragma once
+
 #include "../ISystem.hpp"
-#include "../../../client/game/Game.hpp"
 
 namespace rtype
 {

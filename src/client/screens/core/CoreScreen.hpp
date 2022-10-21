@@ -55,6 +55,9 @@ namespace rtype
 
             void destroySprites(rtype::Event &event, rtype::Game *gameEngine);
 
+            void generateEnemy(rtype::ecs::component::shipType type, bool dirHor, bool dirVer, float x, float y, 
+              std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect);
+
           private:
             /**
              * @brief World object will contain all the entities and system
