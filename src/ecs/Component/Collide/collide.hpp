@@ -20,7 +20,6 @@ namespace rtype
               public:
                 Collide();
                 ~Collide();
-                bool checkCollision(rtype::ecs::component::Collide *otherEntityCollide);
                 void setCollide(bool collide);
                 bool getCollide() const;
 
