@@ -21,10 +21,6 @@ void rtype::Game::init()
 {
     _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
-    _actualScreen = Screens::Intro;
-    _intro = new rtype::menu::IntroScreen;
-    _lastScene = Screens::Intro;
-    _intro->init();
     _eventClass.initEvents(_event);
     // _actualScreen = Screens::Core;
     // _core = new rtype::menu::CoreScreen;
