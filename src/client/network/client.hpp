@@ -51,6 +51,9 @@ class Client {
 
     void send();
     void send(message::request request, int value = 0);
+
+    size_t getNbRoom() const;
+
   private:
     /**
      * @brief IO Service
@@ -84,6 +87,7 @@ class Client {
      * @param bytes_transferred Bytes transferred
      */
     void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
+    size_t _actualNbRooms;
 };
 
 #endif /* !CLIENT_HPP_ */

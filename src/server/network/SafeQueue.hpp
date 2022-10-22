@@ -46,98 +46,57 @@ class SafeQueue {
     /// @brief Default constructor
     SafeQueue() = default;
 
-    /// @brief Copy constructor deleted
-    /// @param other to copy
-    SafeQueue(const SafeQueue<T> &other) = delete;
-
-    /// @brief Assignement constructor deleted
-    /// @param other to assign
-    SafeQueue &operator=(const SafeQueue<T> &other) = delete;
-
     /// @brief Move constructor
-    /// @param other SafeQueue
-    SafeQueue(SafeQueue<T> &&other) noexcept(false);
-
-<<<<<<< HEAD
-        /// @brief Move constructor
-        /// @param Other SafeQueue
-        SafeQueue(SafeQueue<T>&& other) noexcept(false)
-        {
-            std::lock_guard<std::mutex> lock(_mutex);
-            if (!empty()) {
-                throw NonEmptyQueue("Moving into a non-empty queue");
-            }
-            _queue = std::move(other._queue);
+    /// @param Other SafeQueue
+    SafeQueue(SafeQueue<T>&& other) noexcept(false)
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        if (!empty()) {
+            throw NonEmptyQueue("Moving into a non-empty queue");
         }
+        _queue = std::move(other._queue);
+    }
 
-        /// @brief Destructor
-        virtual ~SafeQueue() noexcept(false)
-        {
-            std::lock_guard<std::mutex> lock(_mutex);
-            if (!empty()) {
-                throw NonEmptyQueue("Destroying a non-empty queue");
-            }
-        }
-
-        /// @brief Getter for SafeQueue size
-        /// @return unsigned long SafeQueue size
-        unsigned long getSize() const
-        {
-            std::lock_guard<std::mutex> lock(_mutex);
-            return _queue.size();
-        }
-
-        /// @brief Removes the next element in the queue, effectively reducing its size by one.
-        /// @return std::optional<T> The value of the element that was removed from the queue.
-        std::optional<T> pop()
-        {
-            std::lock_guard<std::mutex> lock(_mutex);
-            if (_queue.empty()) {
-                return {};
-            }
-            T tmp = _queue.front();
-            _queue.pop();
-            return tmp;
-        }
-
-        /// @brief Pushes the given element value onto the queue.
-        /// @param item The value of the element to push onto the queue.
-        /// @return void
-        void push(const T &item)
-        {
-            std::lock_guard<std::mutex> lock(_mutex);
-            _queue.push(item);
-        }
-
-    private:
-        /// @brief Private variable for the queue.
-        std::queue<T> _queue;
-        /// @brief Private variable for mutex.
-        mutable std::mutex _mutex;
-
-        /// @brief Private method to check if the queue is empty.
-        /// @return bool True if the queue is empty, false otherwise.
-        bool empty() const
-        {
-            return _queue.empty();
-        }
-=======
     /// @brief Destructor
-    virtual ~SafeQueue() noexcept(false);
+    virtual ~SafeQueue() noexcept(false)
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        if (!empty()) {
+            throw NonEmptyQueue("Destroying a non-empty queue");
+        }
+    }
 
     /// @brief Getter for SafeQueue size
     /// @return unsigned long SafeQueue size
-    unsigned long getSize() const;
+    unsigned long getSize() const
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        return _queue.size();
+    }
 
     /// @brief Removes the next element in the queue, effectively reducing its size by one.
     /// @return std::optional<T> The value of the element that was removed from the queue.
-    std::optional<T> pop();
+    std::optional<T> pop()
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        if (_queue.empty()) {
+            return {};
+        }
+        T tmp = _queue.front();
+        _queue.pop();
+        return tmp;
+    }
 
     /// @brief Pushes the given element value onto the queue.
     /// @param item The value of the element to push onto the queue.
-    void push(const T &item);
+    /// @return void
+    void push(const T &item)
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        _queue.push(item);
+    }
 
-  private:
+private:
     /// @brief Private variable for the queue.
     std::queue<T> _queue;
     /// @brief Private variable for mutex.
@@ -145,8 +104,10 @@ class SafeQueue {
 
     /// @brief Private method to check if the queue is empty.
     /// @return bool True if the queue is empty, false otherwise.
-    bool empty() const;
->>>>>>> main
+    bool empty() const
+    {
+        return _queue.empty();
+    }
 };
 
 #endif // SAFEQUEUE_HPP

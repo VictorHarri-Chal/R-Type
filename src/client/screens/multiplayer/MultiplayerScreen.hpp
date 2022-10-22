@@ -203,7 +203,6 @@ namespace rtype
              */
             int _roomId;
             size_t _actualNbRooms;
-            bool _roomInit;
         };
     }
 }

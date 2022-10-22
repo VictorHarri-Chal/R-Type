@@ -71,8 +71,6 @@ namespace rtype
         /// @brief Set the actual screen
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
-<<<<<<< HEAD
-
         // /**
         //  * @brief Set the Sound Event
         //  *
@@ -94,14 +92,8 @@ namespace rtype
         /// @brief Game window
         sf::RenderWindow _window;
         Client *_client;
-
-=======
-        
-        /// @brief Game window
-        sf::RenderWindow _window;
-        /// @brief Clock
         sf::Clock _clock;
->>>>>>> main
+
       private:
         /// @brief Actual screen
         Screens _actualScreen;
@@ -123,12 +115,9 @@ namespace rtype
         rtype::Event _event;
         /// @brief Last active scene
         Screens _lastScene;
-<<<<<<< HEAD
 
         boost::asio::io_service _io_service;
-=======
         /// @brief Event class
         Events _eventClass;
->>>>>>> main
     };
 }

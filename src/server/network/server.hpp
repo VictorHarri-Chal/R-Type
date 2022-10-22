@@ -15,11 +15,8 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <fstream>
 
-#include "../../utils/Message.hpp"
 #include "SafeQueue.hpp"
-#include <iostream>
-#include <string>
-#include <boost/shared_ptr.hpp>
+#include "../../utils/Message.hpp"
 
 using boost::asio::ip::udp;
 
@@ -61,13 +58,10 @@ class Server {
      */
     void handle_send(boost::shared_ptr<std::string> /*message*/, const boost::system::error_code & /*error*/,
         std::size_t /*bytes_transferred*/);
-<<<<<<< HEAD
-=======
     /**
      * @brief Socket
      * 
      */
->>>>>>> main
     udp::socket _socket;
     /**
      * @brief Endpoint
@@ -88,7 +82,6 @@ class Server {
     size_t _nbRooms;
 };
 
-<<<<<<< HEAD
 class HandleCommand {
   private:
     std::vector<std::function<void(int, Server*)>> _allCommand;
@@ -98,6 +91,3 @@ class HandleCommand {
     ~HandleCommand() = default;
     void findCmd(Server *server);
 };
-=======
-#endif /* !SERVER_HPP_ */
->>>>>>> main

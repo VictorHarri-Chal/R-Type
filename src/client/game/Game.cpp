@@ -83,21 +83,6 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
 
 void rtype::Game::run()
 {
-<<<<<<< HEAD
-    // boost::asio::io_service io_service;
-    // Client client(io_service, "localhost", "4242");
-
-    // io_service.run();
-
-    while (_window.isOpen()) {
-        // client.send();
-
-        if(!processEvents(this))
-            break;
-        _window.clear(sf::Color::Black);
-        update(this);
-        _window.display();
-=======
     while (_window.isOpen()) {
         if (_clock.getElapsedTime() >= sf::seconds(1.0f/120.0f)) {
             if(!processEvents(this))
@@ -107,7 +92,6 @@ void rtype::Game::run()
             _window.display();
             _clock.restart();
         }
->>>>>>> main
     }
 }
 

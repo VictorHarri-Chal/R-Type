@@ -42,12 +42,6 @@ void Client::start_receive()
         boost::asio::placeholders::bytes_transferred));
 }
 
-void Client::handle_send(const boost::system::error_code& error,
-        std::size_t /*bytes_transferred*/)
-{
-  (void)error;
-}
-
 void Client::handle_receive(const boost::system::error_code& error,
     std::size_t /*bytes_transferred*/)
 {
@@ -68,4 +62,10 @@ void Client::handle_receive(const boost::system::error_code& error,
 
       start_receive();
   }
+}
+
+
+size_t Client::getNbRoom() const
+{
+  return(this->_actualNbRooms);
 }
