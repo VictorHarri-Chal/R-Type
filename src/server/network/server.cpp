@@ -6,16 +6,28 @@
 */
 
 #include "server.hpp"
+#include "../../utils/Rooms.hpp"
 #include <fstream>
 using boost::asio::ip::udp;
 
+static room_t CreateRoom(Server *server)
+{
+    room_t room;
+
+    room.id = server->getRoomId();
+    room.isOpen = true;
+    room.name = "Room " + std::to_string(room.id);
+    room.currPlayers = 0;
+    return (room);
+}
+
 static void CreateCommand(int value, Server *server)
 {
-    (void)server;
     std::cout << "Create Command value = " << value << std::endl;
-    if (server->getnbRoom() < 7) {
-        server->setnbRoom(server->getnbRoom() + 1);
-        server->sendMessage(message::request::ROOM, server->getnbRoom());
+    if (server->getRooms().size() < 7) {
+        server->addRooms(CreateRoom(server));
+        server->setRoomId(server->getRoomId() + 1);
+        server->sendMessage(message::request::ROOM, server->getRooms().size());
     }
 }
 
@@ -29,6 +41,10 @@ static void DeleteCommand(int value, Server *server)
 {
     (void)server;
     std::cout << "Delete Command value = " << value << std::endl;
+    // if (server->getnbRoom() > 0) {
+    //     server->setnbRoom(server->getnbRoom() - 1);
+    //     server->sendMessage(message::request::ROOM, server->getnbRoom());
+    // }
 }
 
 static void LaunchCommand(int value, Server *server)
@@ -47,7 +63,7 @@ static void RoomCommand(int value, Server *server)
 {
     (void)value;
     std::cout << "Room Command Asked" << std::endl;
-    server->sendMessage(message::request::ROOM, server->getnbRoom());
+    server->sendMessage(message::request::ROOM, server->getRooms().size());
 }
 
 HandleCommand::HandleCommand()
@@ -111,17 +127,27 @@ void Server::sendMessage(message::request type, int value)
         boost::bind(&Server::start_receive, this));
 }
 
-size_t Server::getnbRoom() const
+std::vector<room_t> Server::getRooms() const
 {
-    return(this->_nbRooms);
+    return(this->_rooms);
 }
 
-void Server::setnbRoom(size_t nbRooms)
+void Server::addRooms(room_t room)
 {
-    this->_nbRooms = nbRooms;
+    this->_rooms.push_back(room);
 }
 
 boost::array<char, 64> Server::getBuffer() const
 {
     return(this->_recv_buffer);
+}
+
+size_t Server::getRoomId() const
+{
+    return(this->_roomId);
+}
+
+void Server::setRoomId(size_t roomId)
+{
+    this->_roomId = roomId;
 }

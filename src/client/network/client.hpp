@@ -12,9 +12,9 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/bind/bind.hpp>
-#include "../../utils/Message.hpp"
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include "../../utils/Message.hpp"
 #include <iostream>
 
 using boost::asio::ip::udp;

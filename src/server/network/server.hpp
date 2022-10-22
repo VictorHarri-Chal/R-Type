@@ -17,6 +17,7 @@
 
 #include "SafeQueue.hpp"
 #include "../../utils/Message.hpp"
+#include "../../utils/Rooms.hpp"
 
 using boost::asio::ip::udp;
 
@@ -26,7 +27,7 @@ using boost::asio::ip::udp;
  */
 class Server {
   public:
-    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _nbRooms(0) {
+    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _roomId(0) {
       start_receive();
   }
     void handle_send(const boost::system::error_code& /*error*/,
@@ -34,9 +35,10 @@ class Server {
 
     void sendMessage(message::request type, int value = 0);
     boost::array<char, 64> getBuffer() const;
-    size_t getnbRoom() const;
-    void setnbRoom(size_t nbRooms);
-
+    size_t getRoomId() const;
+    void setRoomId(size_t roomId);
+    std::vector<room_t> getRooms() const;
+    void addRooms(room_t room);
   private:
     /**
      * @brief Start receiving
@@ -79,7 +81,12 @@ class Server {
      */
     int _port;
     SafeQueue<message> _queue;
-    size_t _nbRooms;
+    /**
+     * @brief Vector to store all rooms infos
+     *
+     */
+    std::vector<room_t> _rooms;
+    size_t _roomId;
 };
 
 class HandleCommand {

@@ -48,18 +48,15 @@ void Client::handle_receive(const boost::system::error_code& error,
   std::cout << "handle receive" << std::endl;
   if (!error || error == boost::asio::error::message_size)
   {
-    //   _recv_buffer.assign(0);
       std::stringstream outfile;
       outfile << _recv_buffer.data();
       boost::archive::text_iarchive oa(outfile);
-      message test;
-      oa >> test;
+      message command;
+      oa >> command;
       std::cout << "Client received: " << std::endl;
-      test.print();
-      if (test.type == message::ROOM) {
-        this->_actualNbRooms = test.value;
-      }
-
+      command.print();
+      if (command.type == message::ROOM)
+        this->_actualNbRooms = command.value;
       start_receive();
   }
 }
