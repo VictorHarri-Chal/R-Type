@@ -24,10 +24,10 @@ static room_t CreateRoom(Server *server)
 static void CreateCommand(int value, Server *server)
 {
     std::cout << "Create Command value = " << value << std::endl;
-    if (server->getRooms().size() < 7) {
+    if (server->countRoom() < 7) {
         server->addRooms(CreateRoom(server));
         server->setRoomId(server->getRoomId() + 1);
-        server->sendMessage(message::request::ROOM, server->getRooms().size());
+        server->sendMessage(message::request::ROOM, server->countRoom());
     }
 }
 
@@ -41,10 +41,7 @@ static void DeleteCommand(int value, Server *server)
 {
     (void)server;
     std::cout << "Delete Command value = " << value << std::endl;
-    // if (server->getnbRoom() > 0) {
-    //     server->setnbRoom(server->getnbRoom() - 1);
-    //     server->sendMessage(message::request::ROOM, server->getnbRoom());
-    // }
+    server->removeRooms(value / 10);
 }
 
 static void LaunchCommand(int value, Server *server)
@@ -63,7 +60,7 @@ static void RoomCommand(int value, Server *server)
 {
     (void)value;
     std::cout << "Room Command Asked" << std::endl;
-    server->sendMessage(message::request::ROOM, server->getRooms().size());
+    server->sendMessage(message::request::ROOM, server->countRoom());
 }
 
 HandleCommand::HandleCommand()
@@ -132,14 +129,44 @@ std::vector<room_t> Server::getRooms() const
     return(this->_rooms);
 }
 
+static int findPlace(Server *server)
+{
+    for (size_t i = 0; i < server->getRooms().size(); i++) {
+        if (server->getRooms()[i].id == -1)
+            return(i);
+    }
+    return (-1);
+}
+
 void Server::addRooms(room_t room)
 {
-    this->_rooms.push_back(room);
+    int place = findPlace(this);
+    if (place == -1)
+        return;
+    this->_rooms[place] = room;
+}
+
+void Server::removeRooms(int id)
+{
+    if (id == -1 || this->_rooms[id].id == -1)
+        return;
+    this->_rooms[id].id = -1;
 }
 
 boost::array<char, 64> Server::getBuffer() const
 {
     return(this->_recv_buffer);
+}
+
+size_t Server::countRoom()
+{
+    int nbRoom = 0;
+    for (size_t i = 0; i < this->_rooms.size(); i++) {
+        if (this->_rooms[i].id != -1)
+            nbRoom++;
+    }
+    std::cout << nbRoom << std::endl;
+    return (nbRoom);
 }
 
 size_t Server::getRoomId() const

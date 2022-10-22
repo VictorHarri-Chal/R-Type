@@ -28,6 +28,10 @@ using boost::asio::ip::udp;
 class Server {
   public:
     Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _roomId(0) {
+      room_t room;
+      room.id = -1;
+      std::vector<room_t> tmp(7, room);
+      _rooms = tmp;
       start_receive();
   }
     void handle_send(const boost::system::error_code& /*error*/,
@@ -36,9 +40,11 @@ class Server {
     void sendMessage(message::request type, int value = 0);
     boost::array<char, 64> getBuffer() const;
     size_t getRoomId() const;
+    size_t countRoom();
     void setRoomId(size_t roomId);
     std::vector<room_t> getRooms() const;
     void addRooms(room_t room);
+    void removeRooms(int id);
   private:
     /**
      * @brief Start receiving

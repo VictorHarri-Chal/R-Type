@@ -210,6 +210,7 @@ float rtype::menu::MultiplayerScreen::checkForFreeSlot()
 void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game *gameEngine)
 {
     (void)event;
+    (void)gameEngine;
     float freeSpot = checkForFreeSlot();
     if (freeSpot != 0.f) {
         int slot = addRoom(freeSpot);
@@ -250,6 +251,8 @@ bool rtype::menu::MultiplayerScreen::joinRoom(int slotPos, float offset, rtype::
 void rtype::menu::MultiplayerScreen::deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)
 {
     if (!_slots.at(slotPos) && isSurfaceClicked(1400.f, offset + 20.f, 150.f, 40.f, event, gameEngine)) {
+        std::cout << slotPos << std::endl;
+        gameEngine->_client->send(message::request::DELETE, slotPos);
         for (size_t i = 0; i < _world.getEntities().size(); i++) {
             ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             if ((transformCompo->getY() == offset) && (transformCompo->getX() == 320.f))

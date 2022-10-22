@@ -85,6 +85,7 @@ set(SRC_GAME
 
 set(SRC_UTILS
     ${UTILSROOT}Message.hpp
+    ${UTILSROOT}Rooms.hpp
 )
 
 set(SRC_EVENTS
