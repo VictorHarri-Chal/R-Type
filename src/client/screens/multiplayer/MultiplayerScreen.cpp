@@ -78,7 +78,6 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
         createRoom(event, gameEngine);
     hooverOnButton(event, gameEngine);
     if (isButtonPressed(2, gameEngine, event)) {
-        this->_roomInit = false;
         return 2;
     }
     return 0;

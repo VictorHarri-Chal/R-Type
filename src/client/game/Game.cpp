@@ -21,10 +21,6 @@ void rtype::Game::init()
 {
     _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
-    _actualScreen = Screens::Intro;
-    _intro = new rtype::menu::IntroScreen;
-    _lastScene = Screens::Intro;
-    _intro->init();
     _eventClass.initEvents(_event);
     // _actualScreen = Screens::Core;
     // _core = new rtype::menu::CoreScreen;
@@ -70,6 +66,7 @@ void rtype::Game::update(rtype::Game *gameEngine)
         case Screens::Menu: _menu->update(gameEngine); break;
         case Screens::Options: _options->update(gameEngine); break;
         case Screens::Multiplayer: _multiplayer->update(gameEngine); break;
+        case Screens::Room: _room->update(gameEngine); break;
         case Screens::Core: _core->update(gameEngine); break;
         default: break;
     }
@@ -82,6 +79,7 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
         case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
         case Screens::Multiplayer: return (_multiplayer->handleEvent(_event, gameEngine));
+        case Screens::Room: return (_room->handleEvent(_event, gameEngine));
         case Screens::Core: return (_core->handleEvent(_event, gameEngine));
         default: break;
     }
@@ -132,6 +130,13 @@ void rtype::Game::handleScreensSwap(int ret)
             break;
         case 6:
             destroyLastScene();
+            _room = new rtype::menu::RoomScreen;
+            _lastScene = Screens::Room;
+            _room->init();
+            setActualScreen(Screens::Room);
+            break;
+        case 7:
+            destroyLastScene();
             _core = new rtype::menu::CoreScreen;
             _lastScene = Screens::Core;
             _core->init();
@@ -157,6 +162,8 @@ void rtype::Game::destroyLastScene()
         delete _options;
     if (_lastScene == Screens::Multiplayer)
         delete _multiplayer;
+    if (_lastScene == Screens::Room)
+        delete _room;
     if (_lastScene == Screens::Core)
         delete _core;
 }

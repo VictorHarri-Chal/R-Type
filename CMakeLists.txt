@@ -74,6 +74,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}options/OptionsScreen.hpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.cpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.hpp
+    ${SCREENSROOT}room/RoomScreen.cpp
+    ${SCREENSROOT}room/RoomScreen.hpp
     ${SCREENSROOT}core/CoreScreen.cpp
     ${SCREENSROOT}core/CoreScreen.hpp
 )
