@@ -88,5 +88,3 @@ class Client {
     void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
     size_t _actualNbRooms;
 };
-
-#endif /* !CLIENT_HPP_ */

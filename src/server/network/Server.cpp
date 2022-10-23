@@ -5,7 +5,7 @@
 ** Server
 */
 
-#include "server.hpp"
+#include "Server.hpp"
 #include "../../utils/Rooms.hpp"
 #include <fstream>
 using boost::asio::ip::udp;
