@@ -5,8 +5,7 @@
 ** SafeQueue
 */
 
-#ifndef SAFEQUEUE_HPP
-#define SAFEQUEUE_HPP
+#pragma once
 
 #include <iostream>
 #include <mutex>
@@ -41,10 +40,11 @@ class NonEmptyQueue : public std::exception {
 template <typename T>
 /// @brief Thread-safe queue.
 /// @tparam T Type of the queue.
-class SafeQueue {
-  public:
-    /// @brief Default constructor
-    SafeQueue() = default;
+class SafeQueue
+{
+    public:
+        /// @brief Default constructor
+        SafeQueue() = default;
 
     /// @brief Move constructor
     /// @param Other SafeQueue
@@ -109,5 +109,3 @@ private:
         return _queue.empty();
     }
 };
-
-#endif // SAFEQUEUE_HPP

@@ -5,8 +5,7 @@
 ** collide.hpp
 */
 
-#ifndef COLLIDE_HPP_
-#define COLLIDE_HPP_
+#pragma once
 
 #include "../IComponent.hpp"
 
@@ -20,7 +19,6 @@ namespace rtype
               public:
                 Collide();
                 ~Collide();
-                bool checkCollision(rtype::ecs::component::Collide *otherEntityCollide);
                 void setCollide(bool collide);
                 bool getCollide() const;
 
@@ -33,5 +31,3 @@ namespace rtype
         } // namespace component
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !COLLIDE_HPP_ */

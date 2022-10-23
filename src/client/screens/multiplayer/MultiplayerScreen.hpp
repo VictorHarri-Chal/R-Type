@@ -20,33 +20,70 @@ namespace rtype
     namespace menu
     {
         /**
-         * @brief Class for the Menu Screen
+         * @brief Class for the Multiplayer Screen
          *
          */
         class MultiplayerScreen : public IScreen {
           public:
             /**
-             * @brief Construct a new Menu Screen object
+             * @brief Room struct
+             * 
+             * @param id Room id
+             * @param slot Room slot
+             * @param name Room name
+             * @param currPlayers Room current players
+             * @param isOpen Boolean if room is open
+             * 
+             */
+            struct room_t {
+                /**
+                 * @brief Room id
+                 * 
+                 */
+                int id;
+                /**
+                 * @brief Room slot
+                 * 
+                 */
+                int slot;
+                /**
+                 * @brief Room name
+                 * 
+                 */
+                std::string name;
+                /**
+                 * @brief Room current players
+                 * 
+                 */
+                unsigned int currPlayers;
+                /**
+                 * @brief Boolean if room is open
+                 * 
+                 */
+                bool isOpen;
+            };
+            /**
+             * @brief Construct a new Multiplayer Screen object
              *
              */
             MultiplayerScreen();
             /**
-             * @brief Destroy the Menu Screen object
+             * @brief Destroy the Multiplayer Screen object
              *
              */
             ~MultiplayerScreen() = default;
             /**
-             * @brief Init the Menu Screen
+             * @brief Init the Multiplayer Screen
              *
              */
             void init() override;
             /**
-             * @brief Update the Menu Screen
+             * @brief Update the Multiplayer Screen
              * @param gameEngine Game engine
              */
             void update(rtype::Game *gameEngine) override;
             /**
-             * @brief Handle event for the Menu Screen
+             * @brief Handle event for the Multiplayer Screen
              *
              * @param event Event to be handled
              * @param gameEngine Game engine

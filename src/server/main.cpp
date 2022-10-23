@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "network/server.hpp"
+#include "network/Server.hpp"
 #include "network/SafeQueue.hpp"
 
 int main() {

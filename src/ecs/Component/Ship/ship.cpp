@@ -7,13 +7,11 @@
 
 #include "ship.hpp"
 
-rtype::ecs::component::Ship::Ship(rtype::ecs::component::shipType type)
+rtype::ecs::component::Ship::Ship(rtype::ecs::component::shipType type, bool dirHor, bool dirVer)
 {
     this->_shipType = type;
-    if (_shipType == rtype::ecs::component::shipType::ZIGZAG) {
-        _directionHorizontal = false;
-        _directionVertical = false;
-    }
+    _directionHorizontal = dirHor;
+    _directionVertical = dirVer;
 }
 
 rtype::ecs::component::Ship::~Ship()

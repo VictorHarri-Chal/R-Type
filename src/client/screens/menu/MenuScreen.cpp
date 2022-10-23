@@ -70,6 +70,10 @@ void rtype::menu::MenuScreen::init()
 
 int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
+
+    if (isButtonPressed(0, gameEngine, event)) {
+        return 7;
+    }
     if (isButtonPressed(2, gameEngine, event)) {
         gameEngine->_client->send(message::ROOM);
         return 5;

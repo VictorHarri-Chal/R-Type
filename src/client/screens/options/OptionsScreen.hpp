@@ -19,7 +19,7 @@ namespace rtype
     namespace menu
     {
         /**
-         * @brief Class for the Menu Screen
+         * @brief Class for the Options Screen
          *
          */
         class OptionsScreen : public IScreen {
@@ -30,27 +30,27 @@ namespace rtype
              */
             enum cursorPosition { FULLSCREEN = 0,  FPS = 1, SOUND = 2 , DEVICE = 3, SAVE = 4, BACK = 5 };
             /**
-             * @brief Construct a new Menu Screen object
+             * @brief Construct a new Options Screen object
              *
              */
             OptionsScreen();
             /**
-             * @brief Destroy the Menu Screen object
+             * @brief Destroy the Options Screen object
              *
              */
             ~OptionsScreen() = default;
             /**
-             * @brief Init the Menu Screen
+             * @brief Init the Options Screen
              *
              */
             void init() override;
             /**
-             * @brief Update the Menu Screen
+             * @brief Update the Options Screen
              * @param gameEngine Game engine
              */
             void update(rtype::Game *gameEngine) override;
             /**
-             * @brief Handle event for the Menu Screen
+             * @brief Handle event for the Options Screen
              *
              * @param event Event to be handled
              * @param gameEngine Game engine

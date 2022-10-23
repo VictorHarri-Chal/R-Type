@@ -12,33 +12,33 @@ namespace rtype
     namespace menu
     {
         /**
-         * @brief Class for the Menu Screen
+         * @brief Class for the Core Screen
          * 
          */
         class CoreScreen : public IScreen {
           public:
             /**
-             * @brief Construct a new Menu Screen object
+             * @brief Construct a new Core Screen object
              * 
              */
             CoreScreen();
             /**
-             * @brief Destroy the Menu Screen object
+             * @brief Destroy the Core Screen object
              * 
              */
             ~CoreScreen() = default;
             /**
-             * @brief Init the Menu Screen
+             * @brief Init the Core Screen
              * 
              */
             void init() override;
             /**
-             * @brief Update the Menu Screen
+             * @brief Update the Core Screen
              * 
              */
             void update(rtype::Game *gameEngine) override;
             /**
-             * @brief Handle event for the Menu Screen
+             * @brief Handle event for the Core Screen
              * 
              * @param event Event to be handled
              * @return int The Scene Number
@@ -54,6 +54,9 @@ namespace rtype
             void managePlayerShot(rtype::Event &event, rtype::Game *gameEngine);
 
             void destroySprites(rtype::Event &event, rtype::Game *gameEngine);
+
+            void generateEnemy(rtype::ecs::component::shipType type, bool dirHor, bool dirVer, float x, float y, 
+              std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect);
 
           private:
             /**

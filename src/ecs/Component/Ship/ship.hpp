@@ -18,7 +18,7 @@ namespace rtype
         {
             class Ship : public IComponent {
               public:
-                Ship(rtype::ecs::component::shipType type);
+                Ship(rtype::ecs::component::shipType type, bool dirHor = false, bool dirVer = false);
                 ~Ship();
 
                 rtype::ecs::component::compoType getType() const;

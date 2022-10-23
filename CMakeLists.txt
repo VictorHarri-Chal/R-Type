@@ -74,6 +74,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}options/OptionsScreen.hpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.cpp
     ${SCREENSROOT}multiplayer/MultiplayerScreen.hpp
+    ${SCREENSROOT}room/RoomScreen.cpp
+    ${SCREENSROOT}room/RoomScreen.hpp
     ${SCREENSROOT}core/CoreScreen.cpp
     ${SCREENSROOT}core/CoreScreen.hpp
 )
@@ -100,14 +102,14 @@ set(SRC_TOOLS
 
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
-    ${SRCCLIENT}network/client.cpp
-    ${SRCCLIENT}network/client.hpp
-    ${SRC_UTILS}
+    ${SRCCLIENT}network/Client.cpp
+    ${SRCCLIENT}network/Client.hpp
     ${SRC_ECS}
     ${SRC_EVENTS}
     ${SRC_GAME}
     ${SRC_SCREENS}
     ${SRC_TOOLS}
+    ${SRC_UTILS}
 )
 
 add_executable(r-type_client ${SRC_CLIENT})
@@ -124,11 +126,11 @@ target_include_directories(r-type_client PUBLIC
 
 set(SRC_SERVER
     ${SRCSERVER}main.cpp
-    ${SRCSERVER}network/server.cpp
-    ${SRCSERVER}network/server.hpp
+    ${SRCSERVER}network/Server.cpp
+    ${SRCSERVER}network/Server.hpp
     ${SRCSERVER}network/SafeQueue.hpp
-    ${SRC_UTILS}
     ${SRC_ECS}
+    ${SRC_UTILS}
 )
 
 add_executable(r-type_server ${SRC_SERVER})
