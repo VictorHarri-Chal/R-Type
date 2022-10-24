@@ -67,12 +67,16 @@ void rtype::menu::IntroScreen::init()
     choose->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 770.f, 140.f, 0.0f, 0.0f);
     choose->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Choose a nickname", 40.f, sf::Color::White, true);
     this->_world.addEntity(choose);
+    rtype::ecs::entity::Entity *warning = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+    warning->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 650.f, 280.f, 0.0f, 0.0f);
+    warning->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Your nickname need to have at least 3 letters", 30.f, sf::Color::Red, true);
+    this->_world.addEntity(warning);
 }
 
 int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     handleNickname(event);
-    if (isButtonPressed(5, gameEngine, event)) {
+    if (isButtonPressed(5, gameEngine, event) && _pseudo.size() > 2) {
         saveParalax();
         return 2;
     }

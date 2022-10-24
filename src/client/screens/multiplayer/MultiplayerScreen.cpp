@@ -88,7 +88,7 @@ void rtype::menu::MultiplayerScreen::init()
 
 int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
-    if (this->_roomInit == false)
+    if (!this->_roomInit)
         initRoom(event, gameEngine);
     for (size_t i = 0; i < _slots.size(); i++)
         deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
@@ -110,19 +110,19 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
 void rtype::menu::MultiplayerScreen::update(rtype::Game *gameEngine)
 {
     // gameEngine->_client->receive()
-    if (_buttons.at(0) == true) {
+    if (_buttons.at(0)) {
         ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        disconnectButtonCompo->setOutlineColor(sf::Color::Yellow);
+        disconnectButtonCompo->setOutlineColor(sf::Color::Cyan);
 
-    } else if (_buttons.at(0) == false) {
+    } else if (!_buttons.at(0)) {
         ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         disconnectButtonCompo->setOutlineColor(sf::Color::Blue);
     }
-    if (_buttons.at(1) == true) {
+    if (_buttons.at(1)) {
         ecs::component::Drawable2D *createButtonCompo = _world.getEntity(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        createButtonCompo->setOutlineColor(sf::Color::Yellow);
+        createButtonCompo->setOutlineColor(sf::Color::Cyan);
 
-    } else if (_buttons.at(1) == false) {
+    } else if (!_buttons.at(1)) {
         ecs::component::Drawable2D *createButtonCompo = _world.getEntity(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         createButtonCompo->setOutlineColor(sf::Color::Blue);
     }
@@ -336,7 +336,7 @@ void rtype::menu::MultiplayerScreen::hooverOnButton(rtype::Event &event, rtype::
                 ecs::component::Transform *transformCompo = _world.getEntity(j)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if ((transformCompo->getY() ==  (120.f + (i * 100.f)) + 20.f) && (transformCompo->getX() == 1400.f)) {
                     ecs::component::Drawable2D *delButtonCompo = _world.getEntity(j)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-                    delButtonCompo->setOutlineColor(sf::Color::Red);
+                    delButtonCompo->setOutlineColor(sf::Color::Magenta);
                 }
             }
         }
@@ -345,7 +345,7 @@ void rtype::menu::MultiplayerScreen::hooverOnButton(rtype::Event &event, rtype::
                 ecs::component::Transform *transformCompo = _world.getEntity(k)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if ((transformCompo->getY() == (120.f + (i * 100.f))) && (transformCompo->getX() == 320.f)) {
                     ecs::component::Drawable2D *roomButtonCompo = _world.getEntity(k)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-                    roomButtonCompo->setOutlineColor(sf::Color::Yellow);
+                    roomButtonCompo->setOutlineColor(sf::Color::Cyan);
                 }
             }
         }

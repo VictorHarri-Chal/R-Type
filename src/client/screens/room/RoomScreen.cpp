@@ -98,7 +98,7 @@ void rtype::menu::RoomScreen::update(rtype::Game *gameEngine)
 {
     if (_buttons.at(0) == true) {
         ecs::component::Drawable2D *leaveButtonCompo = _world.getEntity(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        leaveButtonCompo->setOutlineColor(sf::Color::Yellow);
+        leaveButtonCompo->setOutlineColor(sf::Color::Cyan);
 
     } else if (_buttons.at(0) == false) {
         ecs::component::Drawable2D *leaveButtonCompo = _world.getEntity(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
@@ -106,7 +106,7 @@ void rtype::menu::RoomScreen::update(rtype::Game *gameEngine)
     }
     if (_buttons.at(1) == true) {
         ecs::component::Drawable2D *readyButtonCompo = _world.getEntity(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        readyButtonCompo->setOutlineColor(sf::Color::Yellow);
+        readyButtonCompo->setOutlineColor(sf::Color::Cyan);
 
     } else if (_buttons.at(1) == false) {
         ecs::component::Drawable2D *readyButtonCompo = _world.getEntity(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
