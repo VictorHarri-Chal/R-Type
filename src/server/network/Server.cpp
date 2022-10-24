@@ -34,7 +34,9 @@ static void CreateCommand(int value, Server *server)
 static void JoinCommand(int value, Server *server)
 {
     (void)server;
-    std::cout << "Join Command value = " << value << std::endl;
+    std::cout << "Player join room " << value << std::endl;
+    server->addPlayerInRoom(value);
+    server->sendMessage(message::request::INROOM, server->getRooms()[value].currPlayers);
 }
 
 static void DeleteCommand(int value, Server *server)
@@ -122,6 +124,11 @@ void Server::sendMessage(message::request type, int value)
 
     _socket.async_send_to(boost::asio::buffer(os.str()), _remote_endpoint,
         boost::bind(&Server::start_receive, this));
+}
+
+void Server::addPlayerInRoom(size_t id)
+{
+    this->_rooms[id].currPlayers += 1;
 }
 
 std::vector<room_t> Server::getRooms() const

@@ -45,6 +45,8 @@ void Client::handle_receive(const boost::system::error_code& error,
       command.print();
       if (command.type == message::ROOM)
         this->_actualNbRooms = command.value;
+      if (command.type == message::INROOM)
+        this->_actualNbPeopleInRoom = command.value;
       start_receive();
   }
 }
@@ -53,4 +55,9 @@ void Client::handle_receive(const boost::system::error_code& error,
 size_t Client::getNbRoom() const
 {
   return(this->_actualNbRooms);
+}
+
+size_t Client::getNbPeopleInRoom() const
+{
+  return(this->_actualNbPeopleInRoom);
 }

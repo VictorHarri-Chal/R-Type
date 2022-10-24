@@ -12,7 +12,7 @@
 
 class message {
   public:
-    enum request { CREATE, JOIN, DELETE, LAUNCH, DISCONNECT, ROOM };
+    enum request { CREATE, JOIN, DELETE, LAUNCH, DISCONNECT, ROOM, INROOM };
     /*public access is required for the class member which are to be saved/loaded*/
     request type;
     int value;

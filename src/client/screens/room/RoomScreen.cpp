@@ -8,7 +8,7 @@
 #include "RoomScreen.hpp"
 #include "../../../ecs/System/Draw2D/draw2d.hpp"
 
-rtype::menu::RoomScreen::RoomScreen(): _nbPlayers(2), _nbReadyPlayers(0), _isReady(false)
+rtype::menu::RoomScreen::RoomScreen(): _nbPlayers(0), _nbReadyPlayers(0), _isReady(false)
 {
 
 }
@@ -48,6 +48,8 @@ void rtype::menu::RoomScreen::init()
 int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     cleanPlayers();
+    if (gameEngine->_client->getNbPeopleInRoom() != this->_nbPlayers)
+        this->_nbPlayers = gameEngine->_client->getNbPeopleInRoom();
     for (int i = 0; i < _nbPlayers; i++) {
         rtype::ecs::entity::Entity *player = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
         player->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);

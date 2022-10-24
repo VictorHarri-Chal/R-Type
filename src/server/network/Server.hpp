@@ -91,6 +91,12 @@ class Server {
      * @param id 
      */
     void removeRooms(int id);
+    /**
+     * @brief add one to nb player in room
+     * 
+     * @param id 
+     */
+    void addPlayerInRoom(size_t id);
   private:
     /**
      * @brief Start receiving

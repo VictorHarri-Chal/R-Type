@@ -34,6 +34,7 @@ class Client {
       udp::resolver::iterator iter = resolver.resolve(query);
       _endpoint = *iter;
       _actualNbRooms = 0;
+      _actualNbPeopleInRoom = 0;
       start_receive();
     }
     /**
@@ -52,6 +53,7 @@ class Client {
     void send(message::request request, int value = 0);
 
     size_t getNbRoom() const;
+    size_t getNbPeopleInRoom() const;
 
   private:
     /**
@@ -87,4 +89,5 @@ class Client {
      */
     void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
     size_t _actualNbRooms;
+    size_t _actualNbPeopleInRoom;
 };
