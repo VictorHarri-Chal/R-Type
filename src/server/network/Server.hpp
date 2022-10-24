@@ -8,7 +8,6 @@
 #pragma once
 
 #include <boost/array.hpp>
-#include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/archive/text_oarchive.hpp>
@@ -18,10 +17,9 @@
 #include "SafeQueue.hpp"
 #include "../../utils/Message.hpp"
 #include "../../utils/Rooms.hpp"
+#include "Client.hpp"
 
-using boost::asio::ip::udp;
-typedef std::map<uint32_t, udp::endpoint> ClientList;
-typedef ClientList::value_type Client;
+typedef std::map<uint32_t, Client> ClientList;
 
 /**
  * @brief Server class
@@ -51,8 +49,28 @@ class Server {
      * @param value a int value if is needed
      */
     void sendMessage(message::request type, int value = 0);
+    /**
+     * @brief Send Message to particular client
+     * 
+     * @param type 
+     * @param target_endpoint 
+     * @param value 
+     */
     void sendToClient(message::request type, udp::endpoint target_endpoint, int value = 0);
+    /**
+     * @brief Send Message to all Client
+     * 
+     * @param type 
+     * @param value 
+     */
     void SendToAll(message::request type, int value = 0);
+    /**
+     * @brief Send Message to all Client in the same room
+     * 
+     * @param type 
+     * @param value 
+     */
+    void SendToAllInRoom(message::request type, size_t acutalId, int value = 0);
     /**
      * @brief Get the Buffer object
      * 
@@ -101,6 +119,12 @@ class Server {
      * @param id 
      */
     void addPlayerInRoom(size_t id);
+    /**
+     * @brief Get the Clients object
+     * 
+     * @return ClientList 
+     */
+    ClientList getClients() const;
   private:
     /**
      * @brief Start receiving
@@ -181,7 +205,7 @@ class Server {
  */
 class HandleCommand {
   private:
-    std::vector<std::function<void(int, Server*)>> _allCommand;
+    std::vector<std::function<void(int, Server*, size_t)>> _allCommand;
 
   public:
     /**
@@ -199,5 +223,5 @@ class HandleCommand {
      * 
      * @param server 
      */
-    void findCmd(Server *server);
+    void findCmd(Server *server, size_t actualId);
 };
