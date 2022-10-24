@@ -27,7 +27,7 @@ static void CreateCommand(int value, Server *server)
     if (server->countRoom() < 7) {
         server->addRooms(CreateRoom(server));
         server->setRoomId(server->getRoomId() + 1);
-        server->sendMessage(message::request::ROOM, server->countRoom());
+        server->SendToAll(message::request::ROOM, server->countRoom());
     }
 }
 
@@ -109,11 +109,23 @@ void Server::handle_receive(const boost::system::error_code& error,
         std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
         _queue.pop();
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
-
+        getOrCreateClientId(this->_remote_endpoint);
         commandHandler.findCmd(this);
         start_receive();
     }
 }
+
+uint32_t Server::getOrCreateClientId(udp::endpoint endpoint)
+{
+    size_t nbClient = this->_nbClients;
+    for (const auto& client : clients)
+        if (client.second == endpoint)
+            return client.first;
+    std::cout << "New User id: " << nbClient << std::endl;
+    clients.insert(Client(nbClient, endpoint));
+    this->_nbClients++;
+    return nbClient;
+};
 
 void Server::sendMessage(message::request type, int value)
 {
@@ -124,6 +136,23 @@ void Server::sendMessage(message::request type, int value)
 
     _socket.async_send_to(boost::asio::buffer(os.str()), _remote_endpoint,
         boost::bind(&Server::start_receive, this));
+}
+
+void Server::sendToClient(message::request type, udp::endpoint target_endpoint, int value)
+{
+    message Command(type, value);
+    std::stringstream os;
+    boost::archive::text_oarchive oa(os);
+    oa << Command;
+
+    _socket.async_send_to(boost::asio::buffer(os.str()), target_endpoint,
+        boost::bind(&Server::start_receive, this));
+}
+
+void Server::SendToAll(message::request type, int value)
+{
+    for (auto client : clients)
+        sendToClient(type, client.second, value);
 }
 
 void Server::addPlayerInRoom(size_t id)

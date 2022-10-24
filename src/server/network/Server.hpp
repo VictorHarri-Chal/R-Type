@@ -20,6 +20,8 @@
 #include "../../utils/Rooms.hpp"
 
 using boost::asio::ip::udp;
+typedef std::map<uint32_t, udp::endpoint> ClientList;
+typedef ClientList::value_type Client;
 
 /**
  * @brief Server class
@@ -33,7 +35,7 @@ class Server {
      * @param io_service 
      * @param port 
      */
-    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _roomId(0) {
+    Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _roomId(0), _nbClients(0) {
       room_t room;
       room.id = -1;
       std::vector<room_t> tmp(7, room);
@@ -49,6 +51,8 @@ class Server {
      * @param value a int value if is needed
      */
     void sendMessage(message::request type, int value = 0);
+    void sendToClient(message::request type, udp::endpoint target_endpoint, int value = 0);
+    void SendToAll(message::request type, int value = 0);
     /**
      * @brief Get the Buffer object
      * 
@@ -116,8 +120,15 @@ class Server {
      * @param error Error
      * @param bytes_transferred Bytes transferred
      */
-    void handle_send(boost::shared_ptr<std::string> /*message*/, const boost::system::error_code & /*error*/,
+      void handle_send(boost::shared_ptr<std::string> /*message*/, const boost::system::error_code & /*error*/,
         std::size_t /*bytes_transferred*/);
+    /**
+     * @brief Get the or create client id object
+     * 
+     * @param endpoint 
+     * @return uint32_t 
+     */
+    uint32_t getOrCreateClientId(udp::endpoint endpoint);
     /**
      * @brief Socket
      * 
@@ -153,6 +164,16 @@ class Server {
      * 
      */
     size_t _roomId;
+    /**
+     * @brief Client connect to server
+     * 
+     */
+    ClientList clients;
+    /**
+     * @brief Number of client connect to server
+     * 
+     */
+    size_t _nbClients;
 };
 /**
  * @brief HandleCommand class who execut command
