@@ -91,13 +91,13 @@ if [ "$os_name" = "Linux" ]; then
   conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 elif [ "$os_name" = "Darwin" ]; then
   pip3 install conan
-  conan install .. --build=missing
+  conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 else
   pip3 install conan
-  conan install .. --build=missing
+  conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 fi
 cmake -DCMAKE_BUILD_TYPE=Debug ..
-cmake --build .
+cmake --build . -j 4
 
 echo "__________        ________________.___._____________________"
 echo "\______   \       \__    ___/\__  |   |\______   \_   _____/"
