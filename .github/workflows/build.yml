@@ -2,8 +2,13 @@ name: Build
 
 on:
   push:
+    branches:
+      - main
   pull_request:
+    branches:
+      - main
   workflow_dispatch:
+
 jobs:
   Build:
     strategy:
@@ -23,15 +28,15 @@ jobs:
       - name: Build
         run: bash install.sh
 
-      - name: DEBUG1
-        shell: bash
-        run: |
-          ls -l || true
+      #- name: DEBUG1
+      #  shell: bash
+      #  run: |
+      #    ls -l || true
 
-      - name: DEBUG2
-        shell: bash
-        run: |
-          ls -l Debug || true
+      #- name: DEBUG2
+      #  shell: bash
+      #  run: |
+      #    ls -l Debug || true
 
       - name: Check build (Windows)
         if: matrix.os == 'windows-latest'
