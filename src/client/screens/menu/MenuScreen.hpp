@@ -72,7 +72,11 @@ namespace rtype
             * @return false If mouse is not on button
             */
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
-
+            /**
+            * @brief Handle the background paralax
+            * 
+            */
+            void paralax(void) override;
           private:
             /**
              * @brief World object will contain all the entities and system

@@ -62,5 +62,10 @@ namespace rtype
          * @return false If mouse is not on button
          */
         virtual bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) = 0;
+        /**
+         * @brief Handle the background paralax
+         * 
+         */
+        virtual void paralax(void) = 0;
     };
 }
