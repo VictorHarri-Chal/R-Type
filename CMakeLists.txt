@@ -101,6 +101,7 @@ set(SRC_TOOLS
 
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
+    ${SRCCLIENT}Globals.hpp
     ${SRCCLIENT}network/Client.cpp
     ${SRCCLIENT}network/Client.hpp
     ${SRC_ECS}

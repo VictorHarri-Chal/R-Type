@@ -21,22 +21,22 @@ void rtype::menu::OptionsScreen::init()
     this->_world.addSystem(movementSystemMenu);
 
     rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -0.5f, 0.0f);
+    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
     bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -0.7f, 0.0f);
+    stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
     stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(stars);
     rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -1.0f, 0.0f);
+    planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
     planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(planets);
     rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1600.0f, 700.0f, -1.2f, 0.0f);
+    bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
     bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
@@ -58,6 +58,7 @@ void rtype::menu::OptionsScreen::init()
 int rtype::menu::OptionsScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (isButtonPressed(4, gameEngine, event)) {
+        saveParalax();
         return 2;
     }
     return 0;
@@ -92,6 +93,18 @@ bool rtype::menu::OptionsScreen::isMouseOnButton(size_t index, rtype::Game *game
         return true;
     }
     return false;
+}
+
+void rtype::menu::OptionsScreen::saveParalax(void)
+{
+    ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo1 = _world.getEntity(1)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo2 = _world.getEntity(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo3 = _world.getEntity(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    bg_x = transformCompo->getX();
+    stars_x = transformCompo1->getX();
+    planets_x = transformCompo2->getX();
+    bigPlanet_x = transformCompo3->getX();
 }
 
 void rtype::menu::OptionsScreen::paralax(void)

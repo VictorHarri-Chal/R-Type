@@ -12,6 +12,7 @@
 #include "../../../include/EventCode.hpp"
 #include "../../sfml/Sfml.hpp"
 #include "../../ecs/Entity/entity.hpp"
+#include "../Globals.hpp"
 
 namespace rtype
 {
@@ -62,6 +63,12 @@ namespace rtype
          * @return false If mouse is not on button
          */
         virtual bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) = 0;
+        /**
+        * @brief Save the paralax assets x and y throught scenes
+        * 
+        */
+        virtual void saveParalax(void) = 0;
+
         /**
          * @brief Handle the background paralax
          * 
