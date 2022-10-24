@@ -36,22 +36,22 @@ void rtype::menu::MultiplayerScreen::init()
     this->_world.addSystem(movementSystemMenu);
 
     rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -0.5f, 0.0f);
+    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
     bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -0.7f, 0.0f);
+    stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
     stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(stars);
     rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.0f, 0.0f, -1.0f, 0.0f);
+    planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
     planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(planets);
     rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1600.0f, 700.0f, -1.2f, 0.0f);
+    bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
     bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
@@ -93,12 +93,15 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
     for (size_t i = 0; i < _slots.size(); i++)
         deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
     for (size_t j = 0; j < _slots.size(); j++)
-        if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine))
+        if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine)) {
+            saveParalax();
             return 6;
+        }
     if (isButtonPressed(7, gameEngine, event))
         createRoom(event, gameEngine);
     hooverOnButton(event, gameEngine);
     if (isButtonPressed(5, gameEngine, event)) {
+        saveParalax();
         return 2;
     }
     return 0;
@@ -347,6 +350,18 @@ void rtype::menu::MultiplayerScreen::hooverOnButton(rtype::Event &event, rtype::
             }
         }
     }
+}
+
+void rtype::menu::MultiplayerScreen::saveParalax(void)
+{
+    ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo1 = _world.getEntity(1)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo2 = _world.getEntity(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo3 = _world.getEntity(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    bg_x = transformCompo->getX();
+    stars_x = transformCompo1->getX();
+    planets_x = transformCompo2->getX();
+    bigPlanet_x = transformCompo3->getX();
 }
 
 void rtype::menu::MultiplayerScreen::paralax(void)
