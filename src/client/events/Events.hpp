@@ -5,8 +5,7 @@
 ** Events.hpp
 */
 
-#ifndef EVENTS_HPP_
-#define EVENTS_HPP_
+#pragma once
 
 #include "../../../include/EventCode.hpp"
 #include "../../sfml/Sfml.hpp"
@@ -53,19 +52,17 @@ namespace rtype
         //  */
         // void getControllerEvents(rtype::Event &event, int controllerId, sf::Event sfmlEvent);
         /**
-         * @brief Get the Mouse Buttons 
-         * 
+         * @brief Get the Mouse Buttons
+         *
          * @param event Event class to modify
          * @param sfmlEvent Sfml event
          */
         void getMouseButtons(rtype::Event &event, sf::Event sfmlEvent);
         /**
          * @brief Init the event variables values
-         * 
+         *
          * @param event Event class to modify
          */
         void initEvents(rtype::Event &event);
     };
 } // namespace rtype
-
-#endif /* !EVENTS_HPP_ */

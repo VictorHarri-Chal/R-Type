@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** MultiplayerScreen.hpp
+** RoomScreen.hpp
 */
 
 #pragma once
@@ -19,70 +19,33 @@ namespace rtype
     namespace menu
     {
         /**
-         * @brief Class for the Multiplayer Screen
+         * @brief Class for the Menu Screen
          *
          */
-        class MultiplayerScreen : public IScreen {
+        class RoomScreen : public IScreen {
           public:
             /**
-             * @brief Room struct
-             * 
-             * @param id Room id
-             * @param slot Room slot
-             * @param name Room name
-             * @param currPlayers Room current players
-             * @param isOpen Boolean if room is open
-             * 
-             */
-            struct room_t {
-                /**
-                 * @brief Room id
-                 * 
-                 */
-                int id;
-                /**
-                 * @brief Room slot
-                 * 
-                 */
-                int slot;
-                /**
-                 * @brief Room name
-                 * 
-                 */
-                std::string name;
-                /**
-                 * @brief Room current players
-                 * 
-                 */
-                unsigned int currPlayers;
-                /**
-                 * @brief Boolean if room is open
-                 * 
-                 */
-                bool isOpen;
-            };
-            /**
-             * @brief Construct a new Multiplayer Screen object
+             * @brief Construct a new Room Screen object
              *
              */
-            MultiplayerScreen();
+            RoomScreen();
             /**
-             * @brief Destroy the Multiplayer Screen object
+             * @brief Destroy the Room Screen object
              *
              */
-            ~MultiplayerScreen() = default;
+            ~RoomScreen() = default;
             /**
-             * @brief Init the Multiplayer Screen
+             * @brief Init the Room Screen
              *
              */
             void init() override;
             /**
-             * @brief Update the Multiplayer Screen
+             * @brief Update the Room Screen
              * @param gameEngine Game engine
              */
             void update(rtype::Game *gameEngine) override;
             /**
-             * @brief Handle event for the Multiplayer Screen
+             * @brief Handle event for the Room Screen
              *
              * @param event Event to be handled
              * @param gameEngine Game engine
@@ -135,38 +98,7 @@ namespace rtype
              * @return false If surface is not hovered
              */
             bool isMouseOnSurface(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
-            /**
-             * @brief Add room to the list
-             * 
-             * @param slot Number of slots
-             * @return int The room id
-             */
-            int addRoom(float slot);
-            /**
-             * @brief Check for free slot in the room
-             * 
-             * @return float The free slot
-             */
-            float checkForFreeSlot();
-            /**
-             * @brief Create a Room 
-             * 
-             * @param event Event to be handled
-             * @param gameEngine Game engine
-             */
-            void createRoom(rtype::Event &event, rtype::Game *gameEngine);
-
-            bool joinRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
-
-            /**
-             * @brief Delete a Room
-             * 
-             * @param slotPos Position of the slot
-             * @param offset Offset of the slot
-             * @param event Event to be handled
-             * @param gameEngine Game engine
-             */
-            void deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
+            void cleanPlayers();
             /**
              * @brief Check if room is hovered
              * 
@@ -176,19 +108,9 @@ namespace rtype
             void hooverOnButton(rtype::Event &event, rtype::Game *gameEngine);
 
           private:
-            void initRoom(rtype::Event &event, rtype::Game *gameEngine);
-            /**
-             * @brief World object will contain all the entities and system
-             *
-             */
             rtype::ecs::world::World _world;
             /**
              * @brief Vector to store all rooms infos
-             *
-             */
-            std::vector<room_t> _rooms;
-            /**
-             * @brief Vector to check if the mouse is on a button
              *
              */
             std::vector<bool> _buttons;
@@ -196,14 +118,21 @@ namespace rtype
              * @brief Vector to check if rooms slots are empty or not
              *
              */
-            std::vector<bool> _slots;
+            int _nbPlayers;
             /**
-             * @brief Int who is being incremented everytime a room is created
+             * @brief Number of players in the room
              *
              */
-            int _roomId;
-            size_t _actualNbRooms;
-            bool _roomInit;
+            int _nbReadyPlayers;
+            /**
+             * @brief Number of players who are ready in the room
+             *
+             */
+            bool _isReady;
+            /**
+             * @brief Check if the current player is ready
+             *
+             */
         };
     }
 }

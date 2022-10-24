@@ -67,7 +67,7 @@ namespace rtype
                  *
                  * @param entity current entity.
                  */
-                void animations(rtype::ecs::entity::Entity* entity);
+                void animations(std::vector<rtype::ecs::entity::Entity*> entities);
                 /**
                  * @brief Get the type of system.
                  *
