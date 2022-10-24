@@ -18,23 +18,14 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
                 auto transformCompo = entities[x]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if (transformCompo->getY() < 450) {
                     shipCompo->setDirectionVertical(true);
-                    // shipCompo->setDirectionHorizontal(true);
-                    // transformCompo->setSpeedX(0.40);
                 } else if (transformCompo->getY() > 450) {
                     shipCompo->setDirectionVertical(false);
-                    // shipCompo->setDirectionHorizontal(false);
-                    // transformCompo->setSpeedX(-0.40);
                 }
                 if (shipCompo->getDirectionVertical()) {
                     transformCompo->setSpeedY(transformCompo->getSpeedY() + 0.03);
                 } else if (!shipCompo->getDirectionVertical()) {
                     transformCompo->setSpeedY(transformCompo->getSpeedY() - 0.03);
                 }
-                // if (shipCompo->getDirectionHorizontal()) {
-                //     transformCompo->setSpeedX(transformCompo->getSpeedX() + 0.8);
-                // } else if (!shipCompo->getDirectionHorizontal()) {
-                //     transformCompo->setSpeedX(transformCompo->getSpeedX() - 0.8);
-                // }
             } else if (shipCompo->getShipType() == ecs::component::shipType::RUSHER) {
 
             }

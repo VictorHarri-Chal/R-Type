@@ -74,6 +74,16 @@ namespace rtype
              */
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
             /**
+            * @brief Save the paralax assets x and y throught scenes
+            * 
+            */
+            void saveParalax(void) override;
+            /**
+            * @brief Handle the background paralax
+            * 
+            */
+            void paralax(void) override;
+            /**
              * @brief Check if surface is clicked
              *
              * @param x X position of the surface
@@ -85,8 +95,8 @@ namespace rtype
              * @return true If surface is clicked
              * @return false If surface is not clicked
              */
-            bool isSurfaceClicked(
-                float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
+            
+            bool isSurfaceClicked(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
             /**
              * @brief Check if surface is hovered
              *

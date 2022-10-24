@@ -73,6 +73,16 @@ namespace rtype
             */
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
             /**
+            * @brief Save the paralax assets x and y throught scenes
+            * 
+            */
+            void saveParalax(void) override;
+            /**
+            * @brief Handle the background paralax
+            * 
+            */
+            void paralax(void) override;
+            /**
              * @brief Check if surface is clicked
              * 
              * @param x X position of the surface
@@ -98,7 +108,11 @@ namespace rtype
              * @return false If surface is not hovered
              */
             bool isMouseOnSurface(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
-            void cleanPlayers();
+            /**
+             * @brief Destroy sprites who indicate the players slots
+             * 
+             */
+            void cleanPlayers(void);
             /**
              * @brief Check if room is hovered
              * 

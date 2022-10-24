@@ -6,6 +6,12 @@
 */
 
 #include "Game.hpp"
+#include "../Globals.hpp"
+
+float bg_x = 0.0f;
+float stars_x = 0.0f;
+float planets_x = 0.0f;
+float bigPlanet_x = 1600.f;
 
 rtype::Game::Game(size_t baseFps)
 {
