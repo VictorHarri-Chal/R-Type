@@ -50,7 +50,7 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
     cleanPlayers();
     if (gameEngine->_client->getNbPeopleInRoom() != this->_nbPlayers)
         this->_nbPlayers = gameEngine->_client->getNbPeopleInRoom();
-    for (int i = 0; i < _nbPlayers; i++) {
+    for (size_t i = 0; i < _nbPlayers; i++) {
         rtype::ecs::entity::Entity *player = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
         player->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);
         player->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
