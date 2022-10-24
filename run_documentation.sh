@@ -2,7 +2,7 @@ echo "Creating documentation..."
 echo "-------------------------"
 echo " "
 echo "1. Creating folder doc/output"
-mkdir -p doc
+[ -f doc ] && rm -fr doc
 mkdir -p doc/output
 echo "2. Installing dependencies"
 if [ "$os_name" = "Linux" ]; then
@@ -19,6 +19,4 @@ fi
 echo "3. Generating documentation"
 doxygen
 echo "4. Launching documentation"
-xdg-open doc/output/html/index.html
-
-
+[[ -z "${CI}" ]] || xdg-open doc/output/html/index.html
