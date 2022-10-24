@@ -217,7 +217,8 @@ void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game
     (void)event;
     float freeSpot = checkForFreeSlot();
     if (freeSpot != 0.f) {
-        gameEngine->_client->send(message::CREATE);
+        gameEngine->_client->sendMessage(message::CREATE);
+        // gameEngine->_client->send(message::CREATE);
         int slot = addRoom(freeSpot);
         std::string roomName;
         for (size_t i = 0; i < _rooms.size(); i++) {

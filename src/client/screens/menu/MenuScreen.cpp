@@ -75,7 +75,8 @@ int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         return 7;
     }
     if (isButtonPressed(2, gameEngine, event)) {
-        gameEngine->_client->send(message::ROOM);
+        gameEngine->_client->sendMessage(message::ROOM);
+        // gameEngine->_client->send(message::ROOM);
         return 5;
     }
     if (isButtonPressed(6, gameEngine, event)) {
