@@ -7,12 +7,17 @@
 
 #pragma once
 
+#include <array>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/archive/text_oarchive.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/shared_ptr.hpp>
+
 #include <fstream>
 
 #include "../../utils/Message.hpp"
@@ -38,12 +43,15 @@ class Server
          * @brief Send message to clients
          * @param message
          */
-        void send(message msg);
+        void send(std::string message);
         void send(message::request req, int value);
+        // void send(message msg);
+        // void send(message::request req, int value);
 
         size_t getnbRoom() const;
         void setnbRoom(size_t nbRooms);
-        boost::array<char, 64> getBuffer() const;
+        std::array<char, 64> getBuffer() const;
+        // boost::array<char, 64> getBuffer() const;
 
       private:
         /**
@@ -76,7 +84,8 @@ class Server
         udp::socket _socket;
         int _port;
         udp::endpoint _remoteEndpoint;
-        boost::array<char, 64> _recvBuffer;
+        std::array<char, 64> _recvBuffer;
+        // boost::array<char, 64> _recvBuffer;
         SafeQueue<message> _queue;
         size_t _nbRooms;
 };

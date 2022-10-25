@@ -21,18 +21,31 @@ void Server::listen()
 }
 
 void Server::handleListen(const boost::system::error_code& error,
-    std::size_t /*bytes_transferred*/)
+    std::size_t bytes_transferred)
   {
     if (!error || error == boost::asio::error::message_size)
     {
         HandleCommand commandHandler;
         message msg = getStreamData();
-        message msgToSend(message::ROOM, 1);
+        // message msgToSend(message::ROOM, 1);
 
-        commandHandler.findCmd(this);
-        std::cout << "Add message to queue... " << std::endl;
-        _queue.push(msg);
-        send(msgToSend);
+        // commandHandler.findCmd(this);
+        // std::cout << "Add message to queue... " << std::endl;
+        // _queue.push(msg);
+        // send(msgToSend);
+        // listen();
+
+        message msg;
+
+        std::string recv_str(_recvBuffer.data(), _recvBuffer.data() + bytes_transferred);
+
+        boost::iostreams::basic_array_source<char> device(recv_str.data(), recv_str.size());
+        boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
+        boost::archive::binary_iarchive ia(s);
+        ia >> msg;
+        std::cout << "Print message:" << std::endl;
+        msg.print();
+
         listen();
     }
 }
@@ -50,35 +63,44 @@ message Server::getStreamData()
     return msg;
 }
 
-
-void Server::send(message msg)
+void Server::send(message::request request, int value)
 {
-    std::stringstream ss;
-    boost::archive::text_oarchive oa(ss);
-
-    std::cout << "Send message to client..." << std::endl;
-    msg.print();
-    oa << msg;
-    _recvBuffer.assign(0);
-    _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
-        boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
-            boost::asio::placeholders::bytes_transferred));
+    // _socket.send_to(boost::asio::buffer(request), _remoteEndpoint);
+    _socket.send_to(boost::asio::buffer("Test"), _remoteEndpoint);
 }
 
-void Server::send(message::request req, int value)
+void Server::send(std::string msg)
 {
-    std::stringstream ss;
-    boost::archive::text_oarchive oa(ss);
-    message msg(req, value);
+    _socket.send_to(boost::asio::buffer(msg), _remoteEndpoint);
+    // _socket.send_to(boost::asio::buffer(msg.CREATE), _remoteEndpoint);
 
-    std::cout << "Send message to client..." << std::endl;
-    msg.print();
-    oa << msg;
-    _recvBuffer.assign(0);
-    _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
-        boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
-            boost::asio::placeholders::bytes_transferred));
+    // std::stringstream ss;
+    // boost::archive::text_oarchive oa(ss);
+
+    // std::cout << "Send message to client..." << std::endl;
+    // msg.print();
+    // oa << msg;
+    // // _recvBuffer.flush();
+    // // _recvBuffer.assign(0);
+    // _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
+    //     boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
+    //         boost::asio::placeholders::bytes_transferred));
 }
+
+// void Server::send(message::request req, int value)
+// {
+//     std::stringstream ss;
+//     boost::archive::text_oarchive oa(ss);
+//     message msg(req, value);
+
+//     std::cout << "Send message to client..." << std::endl;
+//     msg.print();
+//     oa << msg;
+//     _recvBuffer.assign(0);
+//     _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
+//         boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
+//             boost::asio::placeholders::bytes_transferred));
+// }
 
 void Server::handleSend(
     const boost::system::error_code& /*error*/,
@@ -161,7 +183,13 @@ void Server::setnbRoom(size_t nbRooms)
     this->_nbRooms = nbRooms;
 }
 
-boost::array<char, 64> Server::getBuffer() const
+std::array<char, 64> Server::getBuffer() const
 {
+
     return(this->_recvBuffer);
 }
+// boost::array<char, 64> Server::getBuffer() const
+// {
+
+//     return(this->_recvBuffer);
+// }
