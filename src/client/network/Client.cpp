@@ -7,60 +7,93 @@
 
 #include "Client.hpp"
 
+Client::Client(boost::asio::io_service &io_service, const std::string &host, const std::string &port): _ioService(io_service), _socket(io_service, udp::endpoint(udp::v4(), 0))
+{
+    udp::resolver resolver(_ioService);
+    udp::resolver::query query(udp::v4(), host, port);
+    udp::resolver::iterator iter = resolver.resolve(query);
+    _endpoint = *iter;
+    _actualNbRooms = 0;
+    _actualNbPeopleInRoom = 0;
+    _gameStart = false;
+    listen();
+}
+
 Client::~Client()
 {
-  _socket.close();
+    _socket.close();
 }
 
 void Client::listen()
 {
-  _socket.async_receive_from(
-      boost::asio::buffer(_recvBuffer), _endpoint,
-      boost::bind(&Client::handleListen, this,
-        boost::asio::placeholders::error,
-        boost::asio::placeholders::bytes_transferred));
+    std::cout << "start receive" << std::endl;
+    _socket.async_receive_from(boost::asio::buffer(_recvBuffer), _endpoint,
+        boost::bind(&Client::handleReceive, this, boost::asio::placeholders::error,
+            boost::asio::placeholders::bytes_transferred));
 }
 
-void Client::handleListen(const boost::system::error_code& error,
-    std::size_t /*bytes_transferred*/)
+void Client::handleReceive(const boost::system::error_code &error, std::size_t bytesTransferred)
 {
-    if (!error || error == boost::asio::error::message_size)
-    {
-        message msg = getStreamData();
-        // message msgToSend(message::ROOM, 1);
-
-        // send(msgToSend);
+    std::cout << "handle receive" << std::endl;
+    if (!error || error == boost::asio::error::message_size) {
+        message msg = getStreamData(bytesTransferred);
+        if (msg.type == message::ROOM)
+            this->_actualNbRooms = msg.value;
+        if (msg.type == message::INROOM)
+            this->_actualNbPeopleInRoom = msg.value;
+        if (msg.type == message::LAUNCH)
+            this->_gameStart = true;
         listen();
     }
 }
 
-message Client::getStreamData()
+void Client::send(message::request request, int value)
 {
-    std::stringstream ss;
-    message msg;
+    _socket.send_to(boost::asio::buffer(createPaquet(request, value)), _endpoint);
+}
 
-    ss << _recvBuffer.data();
-    boost::archive::text_iarchive ia(ss);
+message Client::getStreamData(std::size_t bytesTransferred)
+{
+    message msg;
+    std::string recvStr(_recvBuffer.data(), _recvBuffer.data() + bytesTransferred);
+
+    boost::iostreams::basic_array_source<char> source(recvStr.data(), recvStr.size());
+    boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
+    boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Client received a message: " << std::endl;
+    std::cout << "Server received message: ";
     msg.print();
+
     return msg;
 }
 
-void Client::send(message::request request, int value)
+std::string Client::createPaquet(message::request request, int value)
 {
-    std::stringstream ss;
-    boost::archive::text_oarchive oa(ss);
     message msg(request, value);
+    std::string str;
 
-    std::cout << "Send message to server..." << std::endl;
+    boost::iostreams::back_insert_device<std::string> insert(str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
+    boost::archive::binary_oarchive oa(ss);
+
+    std::cout << "Sending message: ";
     msg.print();
     oa << msg;
-    _recvBuffer.assign(0);
-    _socket.send_to(boost::asio::buffer(ss.str()), _endpoint);
+    ss.flush();
+    return (str);
 }
 
-void Client::handleSend(const boost::system::error_code& error,
-        std::size_t /*bytes_transferred*/)
+size_t Client::getNbRoom() const
 {
+    return (this->_actualNbRooms);
+}
+
+size_t Client::getNbPeopleInRoom() const
+{
+    return (this->_actualNbPeopleInRoom);
+}
+
+bool Client::getGameStart() const
+{
+    return (this->_gameStart);
 }
