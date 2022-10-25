@@ -45,12 +45,10 @@ class Client
 
     ~Client();
 
-    // void send(message msg);
-    // void send(message::request request, int value = 0);
     void send(const std::string &message);
     void sendMessage(message::request request, int value = 0);
 
-        private :
+ private :
         /**
          * @brief Get data from stream
          * @return message
@@ -58,12 +56,11 @@ class Client
         message getStreamData();
 
     void listen();
-    void handleListen(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
-    void handleSend(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
+    void handleListen(const boost::system::error_code &error, std::size_t bytesTransferred);
+    void handleSend(const boost::system::error_code &error, std::size_t bytesTransferred);
 
     boost::asio::io_service &_ioService;
     udp::socket _socket;
     udp::endpoint _endpoint;
     std::array<char, 64> _recvBuffer;
-    //   boost::array<char, 64> _recvBuffer;
 };

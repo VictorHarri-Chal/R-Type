@@ -22,26 +22,20 @@ void Client::listen()
 }
 
 void Client::handleListen(const boost::system::error_code& error,
-    std::size_t bytes_transferred)
+    std::size_t bytesTransferred)
 {
     if (!error || error == boost::asio::error::message_size)
     {
-        // message msg = getStreamData();
-        // // message msgToSend(message::ROOM, 1);
-
-        // // send(msgToSend);
-
         message msg;
+        std::string recvStr(_recvBuffer.data(), _recvBuffer.data() + bytesTransferred);
 
-        std::string recv_str(_recvBuffer.data(), _recvBuffer.data() + bytes_transferred);
-
-        boost::iostreams::basic_array_source<char> device(recv_str.data(), recv_str.size());
-        boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
-        boost::archive::binary_iarchive ia(s);
+        boost::iostreams::basic_array_source<char> source(recvStr.data(), recvStr.size());
+        boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
+        boost::archive::binary_iarchive ia(ss);
         ia >> msg;
-
-        std::cout << msg.type << std::endl;
-        std::cout << msg.value << std::endl;
+        std::cout << "Client received message:" << std::endl;
+        msg.print();
+        std::cout << "Client printed message." << std::endl;
 
         listen();
     }
@@ -60,19 +54,6 @@ message Client::getStreamData()
     return msg;
 }
 
-// void Client::send(message::request request, int value)
-// {
-//     std::stringstream ss;
-//     boost::archive::text_oarchive oa(ss);
-//     message msg(request, value);
-
-//     std::cout << "Send message to server..." << std::endl;
-//     msg.print();
-//     oa << msg;
-//     // _recvBuffer.assign(0);
-//     _socket.send_to(boost::asio::buffer(ss.str()), _endpoint);
-// }
-
 void Client::send(const std::string &message)
 {
     _socket.send_to(boost::asio::buffer(message), _endpoint);
@@ -80,21 +61,17 @@ void Client::send(const std::string &message)
 
 void Client::sendMessage(message::request request, int value)
 {
-    std::cout << request << std::endl;
-    std::cout << value << std::endl;
-
     message msg(request, value);
+    std::string str;
+    boost::iostreams::back_insert_device<std::string> insert(str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
+    boost::archive::binary_oarchive oa(ss);
 
-    std::string serial_str;
-    boost::iostreams::back_insert_device<std::string> inserter(serial_str);
-    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
-    boost::archive::binary_oarchive oa(s);
-
+    std::cout << "Sending message: " << std::endl;
+    msg.print();
     oa << msg;
-
-    s.flush();
-
-    send(serial_str);
+    ss.flush();
+    send(str);
 }
 
 void Client::handleSend(const boost::system::error_code& error,

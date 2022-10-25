@@ -18,7 +18,12 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include <boost/thread.hpp>
+
+#include <boost/serialization/vector.hpp>
 #include <fstream>
+#include <sstream>
+#include <boost/iostreams/device/back_inserter.hpp>
 
 #include "../../utils/Message.hpp"
 #include "SafeQueue.hpp"
@@ -45,13 +50,11 @@ class Server
          */
         void send(std::string message);
         void send(message::request req, int value);
-        // void send(message msg);
-        // void send(message::request req, int value);
+        void sendMessage(message::request req, int value);
 
         size_t getnbRoom() const;
         void setnbRoom(size_t nbRooms);
         std::array<char, 64> getBuffer() const;
-        // boost::array<char, 64> getBuffer() const;
 
       private:
         /**
@@ -63,7 +66,7 @@ class Server
         * @brief Get data from stream
         * @return message
         */
-        message getStreamData();
+        message getStreamData(std::size_t bytesTransferred);
 
         /**
         * @brief Handle data sent from the clients to the server
@@ -85,7 +88,6 @@ class Server
         int _port;
         udp::endpoint _remoteEndpoint;
         std::array<char, 64> _recvBuffer;
-        // boost::array<char, 64> _recvBuffer;
         SafeQueue<message> _queue;
         size_t _nbRooms;
 };
@@ -100,5 +102,5 @@ class HandleCommand {
   public:
     HandleCommand();
     ~HandleCommand() = default;
-    void findCmd(Server *server);
+    void findCmd(Server *server, message command);
 };

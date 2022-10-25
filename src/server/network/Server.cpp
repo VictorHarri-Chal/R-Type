@@ -21,90 +21,63 @@ void Server::listen()
 }
 
 void Server::handleListen(const boost::system::error_code& error,
-    std::size_t bytes_transferred)
+    std::size_t bytesTransferred)
   {
     if (!error || error == boost::asio::error::message_size)
     {
         HandleCommand commandHandler;
-        message msg = getStreamData();
-        // message msgToSend(message::ROOM, 1);
+        message command = getStreamData(bytesTransferred);
 
-        // commandHandler.findCmd(this);
+
+        commandHandler.findCmd(this, command);
         // std::cout << "Add message to queue... " << std::endl;
         // _queue.push(msg);
         // send(msgToSend);
-        // listen();
-
-        message msg;
-
-        std::string recv_str(_recvBuffer.data(), _recvBuffer.data() + bytes_transferred);
-
-        boost::iostreams::basic_array_source<char> device(recv_str.data(), recv_str.size());
-        boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
-        boost::archive::binary_iarchive ia(s);
-        ia >> msg;
-        std::cout << "Print message:" << std::endl;
-        msg.print();
-
         listen();
     }
 }
 
-message Server::getStreamData()
+message Server::getStreamData(std::size_t bytesTransferred)
 {
-    std::stringstream ss;
     message msg;
+    std::string recvStr(_recvBuffer.data(), _recvBuffer.data() + bytesTransferred);
 
-    ss << _recvBuffer.data();
-    boost::archive::text_iarchive ia(ss);
+    boost::iostreams::basic_array_source<char> source(recvStr.data(), recvStr.size());
+    boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
+    boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Server received a message: " << std::endl;
+    std::cout << "Server received message:" << std::endl;
     msg.print();
-    return msg;
-}
+    std::cout << "Server printed message." << std::endl;
 
-void Server::send(message::request request, int value)
-{
-    // _socket.send_to(boost::asio::buffer(request), _remoteEndpoint);
-    _socket.send_to(boost::asio::buffer("Test"), _remoteEndpoint);
+    return msg;
 }
 
 void Server::send(std::string msg)
 {
-    _socket.send_to(boost::asio::buffer(msg), _remoteEndpoint);
-    // _socket.send_to(boost::asio::buffer(msg.CREATE), _remoteEndpoint);
-
-    // std::stringstream ss;
-    // boost::archive::text_oarchive oa(ss);
-
-    // std::cout << "Send message to client..." << std::endl;
-    // msg.print();
-    // oa << msg;
-    // // _recvBuffer.flush();
-    // // _recvBuffer.assign(0);
-    // _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
-    //     boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
-    //         boost::asio::placeholders::bytes_transferred));
+    _socket.async_send_to(boost::asio::buffer(msg), _remoteEndpoint,
+        boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
+            boost::asio::placeholders::bytes_transferred));
 }
 
-// void Server::send(message::request req, int value)
-// {
-//     std::stringstream ss;
-//     boost::archive::text_oarchive oa(ss);
-//     message msg(req, value);
+void Server::sendMessage(message::request request, int value)
+{
+    message msg(request, value);
+    std::string str;
+    boost::iostreams::back_insert_device<std::string> insert(str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
+    boost::archive::binary_oarchive oa(ss);
 
-//     std::cout << "Send message to client..." << std::endl;
-//     msg.print();
-//     oa << msg;
-//     _recvBuffer.assign(0);
-//     _socket.async_send_to(boost::asio::buffer(ss.str()), _remoteEndpoint,
-//         boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
-//             boost::asio::placeholders::bytes_transferred));
-// }
+    std::cout << "Sending message: " << std::endl;
+    msg.print();
+    oa << msg;
+    ss.flush();
+    send(str);
+}
 
 void Server::handleSend(
     const boost::system::error_code& /*error*/,
-    std::size_t /*bytes_transferred*/)
+    std::size_t /*bytesTransferred*/)
 {
 }
 
@@ -116,7 +89,7 @@ static void CreateCommand(int value, Server *server)
     std::cout << "Create Command value = " << value << std::endl;
     if (server->getnbRoom() < 7) {
         server->setnbRoom(server->getnbRoom() + 1);
-        server->send(message::request::ROOM, server->getnbRoom());
+        server->sendMessage(message::request::ROOM, server->getnbRoom());
     }
 }
 
@@ -148,7 +121,7 @@ static void RoomCommand(int value, Server *server)
 {
     (void)value;
     std::cout << "Room Command Asked" << std::endl;
-    server->send(message::request::ROOM, server->getnbRoom());
+    server->sendMessage(message::request::ROOM, server->getnbRoom());
 }
 
 HandleCommand::HandleCommand()
@@ -161,15 +134,8 @@ HandleCommand::HandleCommand()
     _allCommand.emplace_back(RoomCommand);
 }
 
-void HandleCommand::findCmd(Server *server)
+void HandleCommand::findCmd(Server *server, message command)
 {
-    std::stringstream outfile;
-    outfile << server->getBuffer().data();
-    boost::archive::text_iarchive oa(outfile);
-    message command;
-    oa >> command;
-    std::cout << "Server received: " << std::endl;
-    command.print();
     this->_allCommand[command.type](command.value, server);
 }
 
@@ -188,8 +154,3 @@ std::array<char, 64> Server::getBuffer() const
 
     return(this->_recvBuffer);
 }
-// boost::array<char, 64> Server::getBuffer() const
-// {
-
-//     return(this->_recvBuffer);
-// }
