@@ -56,7 +56,9 @@ message Client::getStreamData()
 
 void Client::send(const std::string &message)
 {
-    _socket.send_to(boost::asio::buffer(message), _endpoint);
+    _socket.async_send_to(boost::asio::buffer(message), _endpoint,
+        boost::bind(
+            &Client::handleSend, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
 
 void Client::sendMessage(message::request request, int value)

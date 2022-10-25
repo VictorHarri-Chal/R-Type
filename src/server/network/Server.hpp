@@ -48,7 +48,7 @@ class Server
          * @brief Send message to clients
          * @param message
          */
-        void send(std::string message);
+        void send(const std::string &msg);
         void send(message::request req, int value);
         void sendMessage(message::request req, int value);
 

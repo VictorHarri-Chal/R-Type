@@ -53,7 +53,7 @@ message Server::getStreamData(std::size_t bytesTransferred)
     return msg;
 }
 
-void Server::send(std::string msg)
+void Server::send(const std::string &msg)
 {
     _socket.async_send_to(boost::asio::buffer(msg), _remoteEndpoint,
         boost::bind(&Server::handleSend, this, boost::asio::placeholders::error,
