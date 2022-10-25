@@ -142,6 +142,8 @@ void rtype::menu::CoreScreen::managePlayerShot(rtype::Event &event, rtype::Game 
         if (event.key.code == ' ') {
             ecs::component::Transform *transformCompo = _world.getEntity(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
+            if (shot == nullptr)
+                throw ScreensExceptions("Error: Can't create a entity (6)");
             shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
             shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
             shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
@@ -175,6 +177,8 @@ void rtype::menu::CoreScreen::generateEnemy(rtype::ecs::component::shipType type
     std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect)
 {
     rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+    if (enemy == nullptr)
+        throw ScreensExceptions("CoreScreen: Can't create entity (7)");
     enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.15f, 0.15f);
     enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
