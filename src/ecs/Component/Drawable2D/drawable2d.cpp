@@ -38,6 +38,8 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool isRe
     this->_rotation = rotation;
     if (!texturePath.empty())
         _texture.loadFromFile(texturePath.c_str());
+    this->_width = _texture.getSize().x;
+    this->_height = _texture.getSize().y;
     _sprite = sf::Sprite(_texture);
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = rtype::ecs::component::drawableType::SPRITE;

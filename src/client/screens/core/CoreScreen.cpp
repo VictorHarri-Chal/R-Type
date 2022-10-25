@@ -237,14 +237,15 @@ void rtype::menu::CoreScreen::handleWindowBorder(void)
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
             ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            ecs::component::Drawable2D *drawableCompo = _world.getEntity(i)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
             if (transformCompo->getX() < -0.1f)
                 transformCompo->setX(0.0f);
             else if (transformCompo->getY() < -0.1f)
                 transformCompo->setY(0.0f);
-            else if (transformCompo->getX() > 1920.1f)
-                transformCompo->setX(1920.f);
-            else if (transformCompo->getY() > 1080.1f)
-                transformCompo->setY(1080.f);
+            else if (transformCompo->getX() + drawableCompo->getWidth() > 1920.1f)
+                transformCompo->setX(1920.f - drawableCompo->getWidth());
+            else if (transformCompo->getY() + drawableCompo->getHeight() > 1080.1f)
+                transformCompo->setY(1080.f - drawableCompo->getHeight());
             break;
         }
     }
