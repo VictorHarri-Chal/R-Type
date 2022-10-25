@@ -66,3 +66,13 @@ void rtype::ecs::component::AShip::setCadency(sf::Time cadency)
 {
     this->_cadency = cadency;
 }
+
+sf::Clock rtype::ecs::component::AShip::getClock() const
+{
+    return (this->_clock);
+}
+
+void rtype::ecs::component::AShip::restartClock()
+{
+    _clock.restart();
+}

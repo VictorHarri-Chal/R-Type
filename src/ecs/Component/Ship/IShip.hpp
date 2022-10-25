@@ -119,6 +119,16 @@ namespace rtype
                  *
                  */
                 virtual void setCadency(sf::Time cadency) = 0;
+                /**
+                 * @brief Getter for the current clock.
+                 *
+                 */
+                virtual sf::Clock getClock() const = 0;
+                /**
+                 * @brief Restart the current clock.
+                 *
+                 */
+                virtual void restartClock() = 0;
               protected:
             };
         }

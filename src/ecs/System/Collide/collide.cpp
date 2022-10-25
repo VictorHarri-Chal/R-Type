@@ -50,6 +50,8 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                         }
                         else if ((entities[x]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::PLAYER) || 
                         (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::PLAYER)) {
+                            entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
+                            entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo->setAlive(false);
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
@@ -58,6 +60,8 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                         }
                         else if ((entities[x]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) || 
                         (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE)) {
+                            entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
+                            entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo->setAlive(false);
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);

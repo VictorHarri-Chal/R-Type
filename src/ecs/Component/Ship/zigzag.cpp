@@ -14,7 +14,7 @@ rtype::ecs::component::Zigzag::Zigzag(bool dirHor, bool dirVer, int currWave)
     _health = 2.0f * (currWave * 0.4f);
     _damage = 1.0f;
     _speed = 0.15f;
-    _cadency = sf::seconds(1.0/4.0f);
+    _cadency = sf::seconds(1.0/2.0f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Zigzag::getType() const

@@ -97,6 +97,16 @@ namespace rtype
                  *
                  */
                 void setCadency(sf::Time cadency);
+                /**
+                 * @brief Getter for the current clock.
+                 *
+                 */
+                sf::Clock getClock() const;
+                /**
+                 * @brief Restart the current clock.
+                 *
+                 */
+                void restartClock();
               protected:
                 /// @brief True if right, false if going left
                 bool _directionHorizontal;
@@ -115,6 +125,9 @@ namespace rtype
 
                 /// @brief Current shots cadency
                 sf::Time _cadency;
+
+                /// @brief Clock for the current object
+                sf::Clock _clock;
             };
         }
     }
