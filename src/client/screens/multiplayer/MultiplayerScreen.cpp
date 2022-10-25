@@ -120,10 +120,10 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
             gameEngine->_client->send(message::JOIN, j);
             return 6;
         }
-    if (isButtonPressed(4, gameEngine, event))
+    if (isButtonPressed(7, gameEngine, event))
         gameEngine->_client->send(message::CREATE);
     hooverOnButton(event, gameEngine);
-    if (isButtonPressed(2, gameEngine, event))
+    if (isButtonPressed(5, gameEngine, event))
         return 2;
     return 0;
 }
