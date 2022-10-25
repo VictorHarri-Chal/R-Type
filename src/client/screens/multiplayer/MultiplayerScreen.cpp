@@ -7,8 +7,10 @@
 
 #include "MultiplayerScreen.hpp"
 #include "../../../ecs/System/Draw2D/draw2d.hpp"
+#include "../../../ecs/System/Movement/movement.hpp"
+#include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(0), _roomInit(false)
+rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(0)
 {
     _slots.push_back(true);
     _slots.push_back(true);
@@ -21,44 +23,86 @@ rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(
 
 void rtype::menu::MultiplayerScreen::initRoom(rtype::Event &event, rtype::Game *gameEngine)
 {
-    for (size_t i = 0; i < this->_actualNbRooms; i++)
+    for (size_t i = this->_actualNbRooms; i < gameEngine->_client->getNbRoom(); i++)
         createRoom(event, gameEngine);
-
-    this->_roomInit = true;
+    this->_actualNbRooms = gameEngine->_client->getNbRoom();
 }
 
 void rtype::menu::MultiplayerScreen::init()
 {
     rtype::ecs::system::ISystem *draw2DSystemMenu = new rtype::ecs::system::Draw2DSystem();
+    if (draw2DSystemMenu == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Draw2DSystem");
     this->_world.addSystem(draw2DSystemMenu);
+    rtype::ecs::system::ISystem *movementSystemMenu = new rtype::ecs::system::MovementSystem();
+    if (movementSystemMenu == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating MovementSystem");
+    this->_world.addSystem(movementSystemMenu);
+
     rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 0.f, 0.f, 0.0f, 0.0f);
+    if (bg == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (1)");
+    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
+    bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
+    rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (stars == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (2)");
+    stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
+    stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
+    this->_world.addEntity(stars);
+    rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (planets == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (3)");
+    planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
+    planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
+    this->_world.addEntity(planets);
+    rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (bigPlanet == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (4)");
+    bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
+    bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
+    this->_world.addEntity(bigPlanet);
     rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+    if (back == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (5)");
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 300.f, 100.f, 0.0f, 0.0f);
     back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1300.f, 800.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(back);
     rtype::ecs::entity::Entity *butt_disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+    if (butt_disconnect == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (6)");
     butt_disconnect->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 850.f, 0.0f, 0.0f);
     butt_disconnect->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 300.f, 100.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_disconnect);
     _buttons.push_back(false);
     rtype::ecs::entity::Entity *disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+    if (disconnect == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (7)");
     disconnect->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 545.f, 870.f, 0.0f, 0.0f);
     disconnect->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Disconnect", 40.f, sf::Color::Blue, true);
     this->_world.addEntity(disconnect);
     rtype::ecs::entity::Entity *butt_create = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+    if (butt_create == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (8)");
     butt_create->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1100.f, 850.f, 0.0f, 0.0f);
     butt_create->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 300.f, 100.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_create);
     _buttons.push_back(false);
     rtype::ecs::entity::Entity *create = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+    if (create == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (9)");
     create->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1170.f, 870.f, 0.0f, 0.0f);
     create->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Create", 40.f, sf::Color::Blue, true);
     this->_world.addEntity(create);
     for (int i = 0; i < 7; i++) {
         rtype::ecs::entity::Entity *emplySlot = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+        if (emplySlot == nullptr)
+            throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (10)");
         emplySlot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 860.f, 140.f + (i * 100.f), 0.0f, 0.0f);
         emplySlot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Empty Slot", 30.f, sf::Color::White, false);
         this->_world.addEntity(emplySlot);
@@ -67,41 +111,44 @@ void rtype::menu::MultiplayerScreen::init()
 
 int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
-    if (this->_roomInit == false)
+    if (this->_actualNbRooms < gameEngine->_client->getNbRoom())
         initRoom(event, gameEngine);
     for (size_t i = 0; i < _slots.size(); i++)
         deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
     for (size_t j = 0; j < _slots.size(); j++)
-        if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine))
+        if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine)) {
+            gameEngine->_client->send(message::JOIN, j);
             return 6;
+        }
     if (isButtonPressed(4, gameEngine, event))
-        createRoom(event, gameEngine);
+        gameEngine->_client->send(message::CREATE);
     hooverOnButton(event, gameEngine);
-    if (isButtonPressed(2, gameEngine, event)) {
+    if (isButtonPressed(2, gameEngine, event))
         return 2;
-    }
     return 0;
 }
 
 void rtype::menu::MultiplayerScreen::update(rtype::Game *gameEngine)
 {
     // gameEngine->_client->receive()
-    if (_buttons.at(0) == true) {
-        ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(2)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        disconnectButtonCompo->setOutlineColor(sf::Color::Yellow);
+    if (_buttons.at(0)) {
+        ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        disconnectButtonCompo->setOutlineColor(sf::Color::Cyan);
 
-    } else if (_buttons.at(0) == false) {
-        ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(2)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+    } else if (!_buttons.at(0)) {
+        ecs::component::Drawable2D *disconnectButtonCompo = _world.getEntity(5)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         disconnectButtonCompo->setOutlineColor(sf::Color::Blue);
     }
-    if (_buttons.at(1) == true) {
-        ecs::component::Drawable2D *createButtonCompo = _world.getEntity(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-        createButtonCompo->setOutlineColor(sf::Color::Yellow);
+    if (_buttons.at(1)) {
+        ecs::component::Drawable2D *createButtonCompo = _world.getEntity(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+        createButtonCompo->setOutlineColor(sf::Color::Cyan);
 
-    } else if (_buttons.at(1) == false) {
-        ecs::component::Drawable2D *createButtonCompo = _world.getEntity(4)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+    } else if (!_buttons.at(1)) {
+        ecs::component::Drawable2D *createButtonCompo = _world.getEntity(7)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
         createButtonCompo->setOutlineColor(sf::Color::Blue);
     }
+    paralax();
+    this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
 }
 
@@ -215,9 +262,9 @@ float rtype::menu::MultiplayerScreen::checkForFreeSlot()
 void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game *gameEngine)
 {
     (void)event;
+    (void)gameEngine;
     float freeSpot = checkForFreeSlot();
     if (freeSpot != 0.f) {
-        gameEngine->_client->send(message::CREATE);
         int slot = addRoom(freeSpot);
         std::string roomName;
         for (size_t i = 0; i < _rooms.size(); i++) {
@@ -256,6 +303,8 @@ bool rtype::menu::MultiplayerScreen::joinRoom(int slotPos, float offset, rtype::
 void rtype::menu::MultiplayerScreen::deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)
 {
     if (!_slots.at(slotPos) && isSurfaceClicked(1400.f, offset + 20.f, 150.f, 40.f, event, gameEngine)) {
+        std::cout << slotPos << std::endl;
+        gameEngine->_client->send(message::request::DELETE, slotPos);
         for (size_t i = 0; i < _world.getEntities().size(); i++) {
             ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             if ((transformCompo->getY() == offset) && (transformCompo->getX() == 320.f))
@@ -288,8 +337,8 @@ void rtype::menu::MultiplayerScreen::deleteRoom(int slotPos, float offset, rtype
 
 void rtype::menu::MultiplayerScreen::hooverOnButton(rtype::Event &event, rtype::Game *gameEngine)
 {
-    isMouseOnButton(2, gameEngine, event) ? _buttons.at(0) = true : _buttons.at(0) = false;
-    isMouseOnButton(4, gameEngine, event) ? _buttons.at(1) = true : _buttons.at(1) = false;
+    isMouseOnButton(5, gameEngine, event) ? _buttons.at(0) = true : _buttons.at(0) = false;
+    isMouseOnButton(7, gameEngine, event) ? _buttons.at(1) = true : _buttons.at(1) = false;
     for (size_t i = 0; i < _slots.size(); i++) {
         for (size_t j = 0; j < _world.getEntities().size(); j++) {
             ecs::component::Transform *transformCompo = _world.getEntity(j)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
@@ -310,7 +359,7 @@ void rtype::menu::MultiplayerScreen::hooverOnButton(rtype::Event &event, rtype::
                 ecs::component::Transform *transformCompo = _world.getEntity(j)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if ((transformCompo->getY() ==  (120.f + (i * 100.f)) + 20.f) && (transformCompo->getX() == 1400.f)) {
                     ecs::component::Drawable2D *delButtonCompo = _world.getEntity(j)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-                    delButtonCompo->setOutlineColor(sf::Color::Red);
+                    delButtonCompo->setOutlineColor(sf::Color::Magenta);
                 }
             }
         }
@@ -319,9 +368,41 @@ void rtype::menu::MultiplayerScreen::hooverOnButton(rtype::Event &event, rtype::
                 ecs::component::Transform *transformCompo = _world.getEntity(k)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if ((transformCompo->getY() == (120.f + (i * 100.f))) && (transformCompo->getX() == 320.f)) {
                     ecs::component::Drawable2D *roomButtonCompo = _world.getEntity(k)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
-                    roomButtonCompo->setOutlineColor(sf::Color::Yellow);
+                    roomButtonCompo->setOutlineColor(sf::Color::Cyan);
                 }
             }
         }
+    }
+}
+
+void rtype::menu::MultiplayerScreen::saveParalax(void)
+{
+    ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo1 = _world.getEntity(1)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo2 = _world.getEntity(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo3 = _world.getEntity(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    bg_x = transformCompo->getX();
+    stars_x = transformCompo1->getX();
+    planets_x = transformCompo2->getX();
+    bigPlanet_x = transformCompo3->getX();
+}
+
+void rtype::menu::MultiplayerScreen::paralax(void)
+{
+    ecs::component::Transform *transformCompo = _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo1 = _world.getEntity(1)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo2 = _world.getEntity(2)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    ecs::component::Transform *transformCompo3 = _world.getEntity(3)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    if (transformCompo->getX() <= -1920) {
+        transformCompo->setX(0);
+    }
+    if (transformCompo1->getX() <= -1920) {
+        transformCompo1->setX(0);
+    }
+    if (transformCompo2->getX() <= -1920) {
+        transformCompo2->setX(0);
+    }
+    if (transformCompo3->getX() <= -264) {
+        transformCompo3->setX(1920);
     }
 }

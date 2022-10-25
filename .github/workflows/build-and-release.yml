@@ -1,7 +1,6 @@
 name: Build and create release
 
 on:
-  #push:
   workflow_dispatch:
 jobs:
   Build-And-Release:

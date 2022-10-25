@@ -87,6 +87,7 @@ set(SRC_GAME
 
 set(SRC_UTILS
     ${UTILSROOT}Message.hpp
+    ${UTILSROOT}Rooms.hpp
 )
 
 set(SRC_EVENTS
@@ -101,6 +102,7 @@ set(SRC_TOOLS
 
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
+    ${SRCCLIENT}Globals.hpp
     ${SRCCLIENT}network/Client.cpp
     ${SRCCLIENT}network/Client.hpp
     ${SRC_ECS}
@@ -128,6 +130,7 @@ set(SRC_SERVER
     ${SRCSERVER}network/Server.cpp
     ${SRCSERVER}network/Server.hpp
     ${SRCSERVER}network/SafeQueue.hpp
+    ${SRCSERVER}network/Client.hpp
     ${SRC_ECS}
     ${SRC_UTILS}
 )
