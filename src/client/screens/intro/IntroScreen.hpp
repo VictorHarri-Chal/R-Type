@@ -61,7 +61,7 @@ namespace rtype
             * @return true If button is pressed
             * @return false If button is not pressed
             */
-            bool isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event);
+            bool isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
             /**
             * @brief Check if mouse is on button
             * 
@@ -71,7 +71,17 @@ namespace rtype
             * @return true If mouse is on button
             * @return false If mouse is not on button
             */
-            bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event);
+            bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
+            /**
+            * @brief Save the paralax assets x and y throught scenes
+            * 
+            */
+            void saveParalax(void) override;
+            /**
+            * @brief Handle the background paralax
+            * 
+            */
+            void paralax(void) override;
             /**
              * @brief Check if surface is clicked
              * 
@@ -113,6 +123,12 @@ namespace rtype
              * @return false If is not Alpha
              */
             bool isAlpha(rtype::Event &event);
+            /**
+             * @brief Handle the player keyboard to fill the nickname
+             * 
+             * @param event Event to be handled
+             */
+            void handleNickname(rtype::Event &event);
 
           private:
             /**
