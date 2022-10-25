@@ -72,7 +72,6 @@ namespace rtype
         /// @brief Set the actual screen
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
-
         // /**
         //  * @brief Set the Sound Event
         //  *
