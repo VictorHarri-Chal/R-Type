@@ -5,8 +5,7 @@
 ** enemypath.hpp
 */
 
-#ifndef ENEMYPATH_HPP_
-#define ENEMYPATH_HPP_
+#pragma once
 
 #include <map>
 #include "../ISystem.hpp"
@@ -49,6 +48,4 @@ namespace rtype
         } // namespace system
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !ENEMYPATH_HPP_ */
 

@@ -5,8 +5,7 @@
 ** Particles.hpp
 */
 
-#ifndef PARTICLES_HPP_
-#define PARTICLES_HPP_
+#pragma once
 
 #include <map>
 #include "../ISystem.hpp"
@@ -49,5 +48,3 @@ namespace rtype
         } // namespace system
     }     // namespace ecs
 } // namespace rtype
-
-#endif /* !PARTICLES_HPP_ */
