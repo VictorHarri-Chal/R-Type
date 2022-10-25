@@ -35,7 +35,6 @@ void Client::handleListen(const boost::system::error_code& error,
         ia >> msg;
         std::cout << "Client received message:" << std::endl;
         msg.print();
-        std::cout << "Client printed message." << std::endl;
 
         listen();
     }

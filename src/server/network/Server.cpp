@@ -48,7 +48,6 @@ message Server::getStreamData(std::size_t bytesTransferred)
     ia >> msg;
     std::cout << "Server received message:" << std::endl;
     msg.print();
-    std::cout << "Server printed message." << std::endl;
 
     return msg;
 }
