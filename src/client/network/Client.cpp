@@ -47,6 +47,8 @@ void Client::handle_receive(const boost::system::error_code& error,
         this->_actualNbRooms = command.value;
       if (command.type == message::INROOM)
         this->_actualNbPeopleInRoom = command.value;
+      if (command.type == message::LAUNCH)
+        this->_gameStart = true;
       start_receive();
   }
 }
@@ -60,4 +62,9 @@ size_t Client::getNbRoom() const
 size_t Client::getNbPeopleInRoom() const
 {
   return(this->_actualNbPeopleInRoom);
+}
+
+bool Client::getGameStart() const
+{
+  return(this->_gameStart);
 }

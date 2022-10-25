@@ -6,6 +6,7 @@
 */
 
 #pragma once
+#include <map>
 
 /**
  * @brief Room struct
@@ -43,4 +44,9 @@ struct room_t {
      *
      */
     bool isOpen;
+    /**
+     * @brief list of id people in room
+     * 
+     */
+    std::map<size_t, bool> _idPeopleInRoom;
 };

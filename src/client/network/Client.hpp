@@ -35,6 +35,7 @@ class Client {
       _endpoint = *iter;
       _actualNbRooms = 0;
       _actualNbPeopleInRoom = 0;
+      _gameStart = false;
       start_receive();
     }
     /**
@@ -54,6 +55,7 @@ class Client {
 
     size_t getNbRoom() const;
     size_t getNbPeopleInRoom() const;
+    bool getGameStart() const;
 
   private:
     /**
@@ -90,4 +92,5 @@ class Client {
     void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
     size_t _actualNbRooms;
     size_t _actualNbPeopleInRoom;
+    bool _gameStart;
 };

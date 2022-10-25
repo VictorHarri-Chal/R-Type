@@ -118,13 +118,26 @@ class Server {
      * 
      * @param id 
      */
-    void addPlayerInRoom(size_t id);
+    void addPlayerInRoom(size_t idRoom, size_t idPlayer);
     /**
      * @brief Get the Clients object
      * 
      * @return ClientList 
      */
     ClientList getClients() const;
+    /**
+     * @brief Count who is ready in room
+     * 
+     * @param idRoom 
+     * @return size_t ris number of people ready in room
+     */
+    size_t countNbPeopleReadyInRoom(size_t idRoom);
+    /**
+     * @brief Set the Player Ready object in map of client in room
+     * 
+     * @param idClient 
+     */
+    void setPlayerReady(size_t idClient);
   private:
     /**
      * @brief Start receiving

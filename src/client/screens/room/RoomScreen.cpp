@@ -69,6 +69,8 @@ void rtype::menu::RoomScreen::init()
 int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     cleanPlayers();
+    if (gameEngine->_client->getGameStart())
+        return 7;
     if (gameEngine->_client->getNbPeopleInRoom() != this->_nbPlayers)
         this->_nbPlayers = gameEngine->_client->getNbPeopleInRoom();
     for (size_t i = 0; i < _nbPlayers; i++) {
@@ -77,8 +79,6 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         player->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
         this->_world.addEntity(player);
     }
-    if (_nbPlayers >= 2 && _nbReadyPlayers == _nbPlayers)
-        return 7;
     if (isButtonPressed(5, gameEngine, event)) {
         _nbPlayers--;
         if (_isReady)
@@ -86,10 +86,9 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         saveParalax();
         return 5;
     }
-    if (isButtonPressed(7, gameEngine, event)) {
-        // if (!_isReady)
-            _nbReadyPlayers++;
+    if (isButtonPressed(7, gameEngine, event) && !_isReady) {
         _isReady = true;
+        gameEngine->_client->send(message::READY);
         saveParalax();
     }
     hooverOnButton(event, gameEngine);

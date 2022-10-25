@@ -33,9 +33,9 @@ static void JoinCommand(int value, Server *server, size_t actualId)
 {
     (void)server;
     std::cout << "Player join room " << value << std::endl;
-    server->addPlayerInRoom(value);
     server->getClients().at(actualId).setIdRoom(value);
-    server->SendToAllInRoom(message::request::INROOM, actualId, server->getRooms()[value].currPlayers);
+    server->addPlayerInRoom(value, actualId);
+    server->SendToAllInRoom(message::request::INROOM, actualId, server->getRooms()[value]._idPeopleInRoom.size());
 }
 
 static void DeleteCommand(int value, Server *server, size_t actualId)
@@ -51,10 +51,23 @@ static void LaunchCommand(int value, Server *server, size_t actualId)
 {
     (void)actualId;
     (void)value;
+    std::cout << "Lauch Command Asked" << std::endl;
+    server->SendToAllInRoom(message::request::LAUNCH, actualId);
+}
+
+static void ReadyCommand(int value, Server *server, size_t actualId)
+{
+    (void)actualId;
+    (void)value;
     (void)server;
+    size_t nbPlayer = server->getRooms()[server->getClients().at(actualId).getIdRoom()]._idPeopleInRoom.size();
+
     std::cout << "Player " << actualId << " is ready" << std::endl;
     server->getClients().at(actualId).setReady(true);
-
+    server->setPlayerReady(actualId);
+    std::cout << "nbplayer = " << nbPlayer << " nb player ready " << server->countNbPeopleReadyInRoom(server->getClients().at(actualId).getIdRoom()) << std::endl;
+    if (nbPlayer >= 2 && server->countNbPeopleReadyInRoom(server->getClients().at(actualId).getIdRoom()) == nbPlayer)
+        LaunchCommand(value, server, actualId);
 }
 
 static void DisconectCommand(int value, Server *server, size_t actualId)
@@ -77,9 +90,10 @@ HandleCommand::HandleCommand()
     _allCommand.emplace_back(CreateCommand);
     _allCommand.emplace_back(JoinCommand);
     _allCommand.emplace_back(DeleteCommand);
-    _allCommand.emplace_back(LaunchCommand);
+    _allCommand.emplace_back(ReadyCommand);
     _allCommand.emplace_back(DisconectCommand);
     _allCommand.emplace_back(RoomCommand);
+    _allCommand.emplace_back(LaunchCommand);
 }
 
 void HandleCommand::findCmd(Server *server, size_t actualId)
@@ -174,9 +188,9 @@ void Server::SendToAllInRoom(message::request type, size_t actualId, int value)
             sendToClient(type, client.second.getEndpoint(), value);
 }
 
-void Server::addPlayerInRoom(size_t id)
+void Server::addPlayerInRoom(size_t idRoom, size_t idPlayer)
 {
-    this->_rooms[id].currPlayers += 1;
+    this->_rooms[idRoom]._idPeopleInRoom.insert(std::pair(idPlayer, false));
 }
 
 std::vector<room_t> Server::getRooms() const
@@ -237,4 +251,19 @@ void Server::setRoomId(size_t roomId)
 ClientList Server::getClients() const
 {
     return (this->clients);
+}
+
+size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
+{
+    size_t nbPeople = 0;
+
+    for(std::map<size_t, bool>::iterator i = this->_rooms[idRoom]._idPeopleInRoom.begin(); i != this->_rooms[idRoom]._idPeopleInRoom.end(); i++)
+        if ((*i).second == true)
+            nbPeople++;
+    return (nbPeople);
+}
+
+void Server::setPlayerReady(size_t idClient)
+{
+    this->_rooms.at(this->clients.at(idClient).getIdRoom())._idPeopleInRoom.at(idClient) = true;
 }
