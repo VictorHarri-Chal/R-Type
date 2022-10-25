@@ -51,14 +51,14 @@ void rtype::menu::CoreScreen::init()
     ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
     ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship->addComponent<ecs::component::Ship>(rtype::ecs::component::SHIP, rtype::ecs::component::shipType::ALLY_SHIP);
+    ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
 
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1000.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1100.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1300.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1400.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1000.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1100.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1300.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1400.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
 }
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
@@ -152,15 +152,16 @@ void rtype::menu::CoreScreen::destroySprites(rtype::Event &event, rtype::Game *g
     }
 }
 
-void rtype::menu::CoreScreen::generateEnemy(rtype::ecs::component::shipType type, bool dirHor, bool dirVer, float x, float y,
+void rtype::menu::CoreScreen::generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y,
     std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect)
 {
     rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
     enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.15f, 0.15f);
     enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    enemy->addComponent<ecs::component::Ship>(rtype::ecs::component::SHIP, type, dirHor, dirVer);
     enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, asset, isRect, scale, rotation, rect);
+    if (shipType == rtype::ecs::component::shipType::ZIGZAG)
+        enemy->addComponent<ecs::component::Zigzag>(rtype::ecs::component::SHIP, dirHor, dirVer, currWave);
     this->_world.addEntity(enemy);
 }
 

@@ -13,7 +13,7 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
     (void) gameEngine;
     for (size_t x = 0; x < entities.size(); x++) {
         if (entities[x]->hasCompoType(ecs::component::compoType::SHIP)) {
-            auto shipCompo = entities[x]->getComponent<ecs::component::Ship>(ecs::component::compoType::SHIP);
+            auto shipCompo = entities[x]->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
             if (shipCompo->getShipType() == ecs::component::shipType::ZIGZAG) {
                 auto transformCompo = entities[x]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if (transformCompo->getY() < 450) {

@@ -36,8 +36,6 @@ set(SRC_ECS
     ${ECSROOT}Component/Alive/alive.hpp
     ${ECSROOT}Component/Collide/collide.cpp
     ${ECSROOT}Component/Collide/collide.hpp
-    ${ECSROOT}Component/Ship/ship.cpp
-    ${ECSROOT}Component/Ship/ship.hpp
     ${ECSROOT}Component/Drawable2D/drawable2d.cpp
     ${ECSROOT}Component/Drawable2D/drawable2d.hpp
     ${ECSROOT}Component/Projectile/projectile.cpp
@@ -48,9 +46,12 @@ set(SRC_ECS
     ${ECSROOT}Component/Sound/sound.hpp
     ${ECSROOT}Component/Transform/transform.cpp
     ${ECSROOT}Component/Transform/transform.hpp
-    ${ECSROOT}Component/Health/health.cpp
-    ${ECSROOT}Component/Health/health.hpp
     ${ECSROOT}Component/IComponent.hpp
+    ${ECSROOT}Component/Ship/recruit.cpp
+    ${ECSROOT}Component/Ship/recruit.hpp
+    ${ECSROOT}Component/Ship/zigzag.cpp
+    ${ECSROOT}Component/Ship/zigzag.hpp
+    ${ECSROOT}Component/Ship/IShip.hpp
     ${ECSROOT}System/Draw2D/draw2d.cpp
     ${ECSROOT}System/Draw2D/draw2d.hpp
     ${ECSROOT}System/Movement/movement.cpp

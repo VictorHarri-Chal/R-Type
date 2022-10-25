@@ -31,7 +31,6 @@ namespace rtype
                 COLLIDE,
                 SOUND,
                 SHIP,
-                HEALTH,
                 UNKNOWNCOMPO
             };
             /**
@@ -39,13 +38,6 @@ namespace rtype
              *
              */
             enum drawableType { SPRITE, TEXT, RECTANGLE, UNKNOWNDRAWABLE };
-            /**
-             * @brief Enum for ship type
-             * @param ALLY Allies ship
-             * @param ZIGZAG Enemy ship who have a zigzag movement
-             * @param RUSHER Enemy ship who goes straight on allies ship
-             */
-            enum shipType { ALLY_SHIP, ZIGZAG, RUSHER, UNKNOWNSHIP };
             /**
              * @brief Enum for projectile type
              * @param ALLY Allies projectile
