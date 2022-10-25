@@ -33,7 +33,7 @@ namespace rtype
         /// @brief Destructor
         ~Game();
         /// @brief Initialize the game class elements
-        void init(void);
+        void init(std::string flag);
         /// @brief Run the game class
         void run(void);
         /// @brief Update game elements

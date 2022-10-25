@@ -107,19 +107,19 @@ void rtype::menu::CoreScreen::managePlayerMovement(rtype::Event &event, rtype::G
     transformCompo->setSpeedX(0.0f);
     transformCompo->setSpeedY(0.0f);
     if (event.key.right && !event.key.left )
-        transformCompo->setSpeedX(8.0f);
+        transformCompo->setSpeedX(5.0f);
     if (event.key.left && !event.key.right)
-        transformCompo->setSpeedX(-8.0f);
+        transformCompo->setSpeedX(-5.0f);
     if (event.key.up && !event.key.down)
-        transformCompo->setSpeedY(-8.0f);
+        transformCompo->setSpeedY(-5.0f);
     if (event.key.down && !event.key.up)
-        transformCompo->setSpeedY(8.0f);
+        transformCompo->setSpeedY(5.0f);
 }
 
 void rtype::menu::CoreScreen::managePlayerShot(rtype::Event &event, rtype::Game *gameEngine)
 {
     (void) gameEngine;
-    if (_clock.getElapsedTime() >= sf::seconds(1.0/8.0f)) {
+    if (_clock.getElapsedTime() >= sf::seconds(1.0/6.0f)) {
         if (event.key.code == ' ') {
             ecs::component::Transform *transformCompo = _world.getEntity(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);

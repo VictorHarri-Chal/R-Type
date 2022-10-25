@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "IShip.hpp"
+#include "AShip.hpp"
 
 namespace rtype
 {
@@ -15,7 +15,7 @@ namespace rtype
     {
         namespace component
         {
-            class Recruit : public IShip {
+            class Recruit : public AShip {
               public:
                 Recruit();
                 ~Recruit() = default;
@@ -24,14 +24,6 @@ namespace rtype
 
                 rtype::ecs::component::shipType getShipType() const;
 
-                bool getDirectionHorizontal() const override;
-                bool getDirectionVertical() const override;
-                
-                void setDirectionHorizontal(bool dir) override;
-                void setDirectionVertical(bool dir) override;
-
-                void setHealth(float health) override;
-                float getHealth() const override;
               protected:
               private:
 

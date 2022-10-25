@@ -51,6 +51,8 @@ set(SRC_ECS
     ${ECSROOT}Component/Ship/recruit.hpp
     ${ECSROOT}Component/Ship/zigzag.cpp
     ${ECSROOT}Component/Ship/zigzag.hpp
+    ${ECSROOT}Component/Ship/AShip.cpp
+    ${ECSROOT}Component/Ship/AShip.hpp
     ${ECSROOT}Component/Ship/IShip.hpp
     ${ECSROOT}System/Draw2D/draw2d.cpp
     ${ECSROOT}System/Draw2D/draw2d.hpp

@@ -11,7 +11,10 @@ rtype::ecs::component::Zigzag::Zigzag(bool dirHor, bool dirVer, int currWave)
 {
     _directionHorizontal = dirHor;
     _directionVertical = dirVer;
-    _health = 2 * (currWave * 0.4);
+    _health = 2.0f * (currWave * 0.4f);
+    _damage = 1.0f;
+    _speed = 0.15f;
+    _cadency = sf::seconds(1.0/4.0f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Zigzag::getType() const
@@ -22,34 +25,4 @@ rtype::ecs::component::compoType rtype::ecs::component::Zigzag::getType() const
 rtype::ecs::component::shipType rtype::ecs::component::Zigzag::getShipType() const
 {
     return rtype::ecs::component::shipType::ZIGZAG;
-}
-
-bool rtype::ecs::component::Zigzag::getDirectionHorizontal() const
-{
-    return this->_directionHorizontal;
-}
-
-bool rtype::ecs::component::Zigzag::getDirectionVertical() const
-{
-    return this->_directionVertical;
-}
-
-void rtype::ecs::component::Zigzag::setDirectionHorizontal(bool dir)
-{
-    _directionHorizontal = dir;
-}
-
-void rtype::ecs::component::Zigzag::setDirectionVertical(bool dir)
-{
-    _directionVertical = dir;
-}
-
-float rtype::ecs::component::Zigzag::getHealth() const
-{
-    return (this->_health);
-}
-
-void rtype::ecs::component::Zigzag::setHealth(float health)
-{
-    this->_health = health;
 }

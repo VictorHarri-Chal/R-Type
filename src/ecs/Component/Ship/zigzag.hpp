@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "IShip.hpp"
+#include "AShip.hpp"
 
 namespace rtype
 {
@@ -15,7 +15,7 @@ namespace rtype
     {
         namespace component
         {
-            class Zigzag : public IShip {
+            class Zigzag : public AShip {
               public:
                 Zigzag(bool dirHor = false, bool dirVer = false, int currWave = 1);
                 ~Zigzag() = default;
@@ -24,14 +24,6 @@ namespace rtype
 
                 rtype::ecs::component::shipType getShipType() const;
 
-                bool getDirectionHorizontal() const override;
-                bool getDirectionVertical() const override;
-                
-                void setDirectionHorizontal(bool dir) override;
-                void setDirectionVertical(bool dir) override;
-
-                void setHealth(float health) override;
-                float getHealth() const override;
               protected:
               private:                
             };
