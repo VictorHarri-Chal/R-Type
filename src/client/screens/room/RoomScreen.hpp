@@ -132,12 +132,12 @@ namespace rtype
              * @brief Vector to check if rooms slots are empty or not
              *
              */
-            int _nbPlayers;
+            size_t _nbPlayers;
             /**
              * @brief Number of players in the room
              *
              */
-            int _nbReadyPlayers;
+            size_t _nbReadyPlayers;
             /**
              * @brief Number of players who are ready in the room
              *

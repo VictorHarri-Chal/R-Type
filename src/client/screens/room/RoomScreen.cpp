@@ -9,7 +9,7 @@
 #include "../../../ecs/System/Draw2D/draw2d.hpp"
 #include "../../../ecs/System/Movement/movement.hpp"
 
-rtype::menu::RoomScreen::RoomScreen(): _nbPlayers(2), _nbReadyPlayers(0), _isReady(false)
+rtype::menu::RoomScreen::RoomScreen(): _nbPlayers(0), _nbReadyPlayers(0), _isReady(false)
 {
 
 }
@@ -69,14 +69,16 @@ void rtype::menu::RoomScreen::init()
 int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     cleanPlayers();
-    for (int i = 0; i < _nbPlayers; i++) {
+    if (gameEngine->_client->getGameStart())
+        return 7;
+    if (gameEngine->_client->getNbPeopleInRoom() != this->_nbPlayers)
+        this->_nbPlayers = gameEngine->_client->getNbPeopleInRoom();
+    for (size_t i = 0; i < _nbPlayers; i++) {
         rtype::ecs::entity::Entity *player = new rtype::ecs::entity::Entity(rtype::ecs::entity::UNKNOWN);
         player->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);
         player->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
         this->_world.addEntity(player);
     }
-    if (_nbPlayers >= 2 && _nbReadyPlayers == _nbPlayers)
-        return 7;
     if (isButtonPressed(5, gameEngine, event)) {
         _nbPlayers--;
         if (_isReady)
@@ -84,10 +86,9 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         saveParalax();
         return 5;
     }
-    if (isButtonPressed(7, gameEngine, event)) {
-        // if (!_isReady)
-            _nbReadyPlayers++;
+    if (isButtonPressed(7, gameEngine, event) && !_isReady) {
         _isReady = true;
+        gameEngine->_client->send(message::READY);
         saveParalax();
     }
     hooverOnButton(event, gameEngine);

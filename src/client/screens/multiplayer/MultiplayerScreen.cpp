@@ -9,7 +9,7 @@
 #include "../../../ecs/System/Draw2D/draw2d.hpp"
 #include "../../../ecs/System/Movement/movement.hpp"
 
-rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(0), _roomInit(false)
+rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(0)
 {
     _slots.push_back(true);
     _slots.push_back(true);
@@ -22,10 +22,9 @@ rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(
 
 void rtype::menu::MultiplayerScreen::initRoom(rtype::Event &event, rtype::Game *gameEngine)
 {
-    for (size_t i = 0; i < this->_actualNbRooms; i++)
+    for (size_t i = this->_actualNbRooms; i < gameEngine->_client->getNbRoom(); i++)
         createRoom(event, gameEngine);
-
-    this->_roomInit = true;
+    this->_actualNbRooms = gameEngine->_client->getNbRoom();
 }
 
 void rtype::menu::MultiplayerScreen::init()
@@ -88,22 +87,20 @@ void rtype::menu::MultiplayerScreen::init()
 
 int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
-    if (!this->_roomInit)
+    if (this->_actualNbRooms < gameEngine->_client->getNbRoom())
         initRoom(event, gameEngine);
     for (size_t i = 0; i < _slots.size(); i++)
         deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
     for (size_t j = 0; j < _slots.size(); j++)
         if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine)) {
-            saveParalax();
+            gameEngine->_client->send(message::JOIN, j);
             return 6;
         }
-    if (isButtonPressed(7, gameEngine, event))
-        createRoom(event, gameEngine);
+    if (isButtonPressed(4, gameEngine, event))
+        gameEngine->_client->send(message::CREATE);
     hooverOnButton(event, gameEngine);
-    if (isButtonPressed(5, gameEngine, event)) {
-        saveParalax();
+    if (isButtonPressed(2, gameEngine, event))
         return 2;
-    }
     return 0;
 }
 
@@ -241,9 +238,9 @@ float rtype::menu::MultiplayerScreen::checkForFreeSlot()
 void rtype::menu::MultiplayerScreen::createRoom(rtype::Event &event, rtype::Game *gameEngine)
 {
     (void)event;
+    (void)gameEngine;
     float freeSpot = checkForFreeSlot();
     if (freeSpot != 0.f) {
-        gameEngine->_client->send(message::CREATE);
         int slot = addRoom(freeSpot);
         std::string roomName;
         for (size_t i = 0; i < _rooms.size(); i++) {
@@ -282,6 +279,8 @@ bool rtype::menu::MultiplayerScreen::joinRoom(int slotPos, float offset, rtype::
 void rtype::menu::MultiplayerScreen::deleteRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine)
 {
     if (!_slots.at(slotPos) && isSurfaceClicked(1400.f, offset + 20.f, 150.f, 40.f, event, gameEngine)) {
+        std::cout << slotPos << std::endl;
+        gameEngine->_client->send(message::request::DELETE, slotPos);
         for (size_t i = 0; i < _world.getEntities().size(); i++) {
             ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             if ((transformCompo->getY() == offset) && (transformCompo->getX() == 320.f))
