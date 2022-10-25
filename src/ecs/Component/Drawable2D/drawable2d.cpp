@@ -6,6 +6,7 @@
 */
 
 #include "drawable2d.hpp"
+#include "../../../exceptions/EcsExceptions.hpp"
 #include <iostream>
 
 rtype::ecs::component::Drawable2D::Drawable2D()
@@ -37,7 +38,8 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool isRe
     this->_scale = scale;
     this->_rotation = rotation;
     if (!texturePath.empty())
-        _texture.loadFromFile(texturePath.c_str());
+        if (_texture.loadFromFile(texturePath.c_str()) == false)
+            throw EcsExceptions("Drawable2D: Error while loading texture");
     _sprite = sf::Sprite(_texture);
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = rtype::ecs::component::drawableType::SPRITE;

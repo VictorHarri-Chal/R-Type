@@ -8,6 +8,7 @@
 #include "MultiplayerScreen.hpp"
 #include "../../../ecs/System/Draw2D/draw2d.hpp"
 #include "../../../ecs/System/Movement/movement.hpp"
+#include "../../../exceptions/ScreensExceptions.hpp"
 
 rtype::menu::MultiplayerScreen::MultiplayerScreen(): _roomId(0), _actualNbRooms(0)
 {
@@ -30,55 +31,78 @@ void rtype::menu::MultiplayerScreen::initRoom(rtype::Event &event, rtype::Game *
 void rtype::menu::MultiplayerScreen::init()
 {
     rtype::ecs::system::ISystem *draw2DSystemMenu = new rtype::ecs::system::Draw2DSystem();
+    if (draw2DSystemMenu == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Draw2DSystem");
     this->_world.addSystem(draw2DSystemMenu);
     rtype::ecs::system::ISystem *movementSystemMenu = new rtype::ecs::system::MovementSystem();
+    if (movementSystemMenu == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating MovementSystem");
     this->_world.addSystem(movementSystemMenu);
 
     rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (bg == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (1)");
     bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
     bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (stars == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (2)");
     stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
     stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(stars);
     rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (planets == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (3)");
     planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
     planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(planets);
     rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    if (bigPlanet == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (4)");
     bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
     bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
-
     rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+    if (back == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (5)");
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 300.f, 100.f, 0.0f, 0.0f);
     back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1300.f, 800.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(back);
     rtype::ecs::entity::Entity *butt_disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+    if (butt_disconnect == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (6)");
     butt_disconnect->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 850.f, 0.0f, 0.0f);
     butt_disconnect->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 300.f, 100.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_disconnect);
     _buttons.push_back(false);
     rtype::ecs::entity::Entity *disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+    if (disconnect == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (7)");
     disconnect->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 545.f, 870.f, 0.0f, 0.0f);
     disconnect->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Disconnect", 40.f, sf::Color::Blue, true);
     this->_world.addEntity(disconnect);
     rtype::ecs::entity::Entity *butt_create = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
+    if (butt_create == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (8)");
     butt_create->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1100.f, 850.f, 0.0f, 0.0f);
     butt_create->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 300.f, 100.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(butt_create);
     _buttons.push_back(false);
     rtype::ecs::entity::Entity *create = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+    if (create == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (9)");
     create->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 1170.f, 870.f, 0.0f, 0.0f);
     create->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Create", 40.f, sf::Color::Blue, true);
     this->_world.addEntity(create);
     for (int i = 0; i < 7; i++) {
         rtype::ecs::entity::Entity *emplySlot = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+        if (emplySlot == nullptr)
+            throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (10)");
         emplySlot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 860.f, 140.f + (i * 100.f), 0.0f, 0.0f);
         emplySlot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Empty Slot", 30.f, sf::Color::White, false);
         this->_world.addEntity(emplySlot);
