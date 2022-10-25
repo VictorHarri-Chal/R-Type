@@ -63,7 +63,6 @@ void rtype::menu::CoreScreen::init()
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
-    destroySprites(event, gameEngine);
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
             managePlayer(i, event);
@@ -75,8 +74,10 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
 void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
 {   
+    destroySprites();
     paralax();
     manageEnemiesShooting();
+    handleWindowBorder();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
 }
@@ -136,7 +137,7 @@ void rtype::menu::CoreScreen::managePlayerShot(ecs::component::IShip *shipCompo,
             shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
             shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
             shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-            shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(2.f, 2.f), 0, sf::IntRect(165, 133, 50, 17));
+            shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
             this->_world.addEntity(shot);
             event.key.code = '\0';
             _clockAllyShot.restart();
@@ -144,10 +145,8 @@ void rtype::menu::CoreScreen::managePlayerShot(ecs::component::IShip *shipCompo,
     }
 }
 
-void rtype::menu::CoreScreen::destroySprites(rtype::Event &event, rtype::Game *gameEngine)
+void rtype::menu::CoreScreen::destroySprites(void)
 {
-    (void) gameEngine;
-    (void) event;
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE ||
@@ -230,5 +229,23 @@ void rtype::menu::CoreScreen::paralax(void)
     }
     if (transformCompo3->getX() <= -264) {
         transformCompo3->setX(1920);
+    }
+}
+
+void rtype::menu::CoreScreen::handleWindowBorder(void)
+{
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
+            ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            if (transformCompo->getX() < -0.1f)
+                transformCompo->setX(0.0f);
+            else if (transformCompo->getY() < -0.1f)
+                transformCompo->setY(0.0f);
+            else if (transformCompo->getX() > 1920.1f)
+                transformCompo->setX(1920.f);
+            else if (transformCompo->getY() > 1080.1f)
+                transformCompo->setY(1080.f);
+            break;
+        }
     }
 }

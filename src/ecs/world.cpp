@@ -7,7 +7,7 @@
 
 #include "world.hpp"
 
-rtype::ecs::world::World::World(): _maxEntities(80)
+rtype::ecs::world::World::World(): _maxEntities(40)
 {
     this->_nbEntities = 0;
     this->_entitiesVector.reserve(1);

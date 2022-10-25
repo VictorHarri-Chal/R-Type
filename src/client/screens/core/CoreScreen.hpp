@@ -81,12 +81,14 @@ namespace rtype
 
             void managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event);
 
-            void destroySprites(rtype::Event &event, rtype::Game *gameEngine);
+            void destroySprites(void);
 
             void manageEnemiesShooting(void);
 
             void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y, 
               std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect);
+            
+            void handleWindowBorder(void);
 
           private:
             /**

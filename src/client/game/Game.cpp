@@ -56,7 +56,7 @@ bool rtype::Game::processEvents(rtype::Game *gameEngine)
     bool ret = true;
     int swap = 0;
 
-    while (_window.pollEvent(_sfmlEvent)) {
+    if (_window.pollEvent(_sfmlEvent)) {
         ret = _eventClass.inputUpdate(_event, _sfmlEvent);
         if (_sfmlEvent.type == sf::Event::Closed || !ret)
             _window.close();

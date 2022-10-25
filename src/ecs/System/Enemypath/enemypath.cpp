@@ -22,9 +22,9 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
                     shipCompo->setDirectionVertical(false);
                 }
                 if (shipCompo->getDirectionVertical()) {
-                    transformCompo->setSpeedY(transformCompo->getSpeedY() + 0.03);
+                    transformCompo->setSpeedY(transformCompo->getSpeedY() + 0.01);
                 } else if (!shipCompo->getDirectionVertical()) {
-                    transformCompo->setSpeedY(transformCompo->getSpeedY() - 0.03);
+                    transformCompo->setSpeedY(transformCompo->getSpeedY() - 0.01);
                 }
             } else if (shipCompo->getShipType() == ecs::component::shipType::RUSHER) {
 
