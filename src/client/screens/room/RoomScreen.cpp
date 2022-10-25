@@ -108,6 +108,7 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         _nbPlayers--;
         if (_isReady)
             _nbReadyPlayers--;
+        gameEngine->_client->send(message::DISCONNECT);
         saveParalax();
         return 5;
     }
