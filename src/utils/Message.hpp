@@ -16,19 +16,27 @@ class message {
     /*public access is required for the class member which are to be saved/loaded*/
     request type;
     int value;
+    std::string string;
 
     /*default constructor for class*/
     message(){};
     /*parameterized constructor for class*/
-    message(request t, int v) : type(t), value(v)
+    message(request t, int v, std::string s) : type(t), value(v), string(s)
     {
     }
+    // message(request t, int v) : type(t), value(v)
+    // {
+    // }
 
     /*this function prints the details of class object*/
     void print()
     {
-        std::cout << "(" << type << ", " << value << ")" << std::endl;
+        std::cout << "(" << type << ", " << value << ", " << string << ")" << std::endl;
     }
+    // void print()
+    // {
+    //     std::cout << "(" << type << ", " << value << ")" << std::endl;
+    // }
 };
 
 namespace boost
@@ -39,6 +47,7 @@ namespace boost
         {
             archive &object.type;
             archive &object.value;
+            archive &object.string;
             (void)version;
         }
     } // namespace serialization

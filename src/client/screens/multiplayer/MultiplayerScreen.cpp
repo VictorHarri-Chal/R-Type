@@ -117,16 +117,16 @@ int rtype::menu::MultiplayerScreen::handleEvent(rtype::Event &event, rtype::Game
         initRoom(event, gameEngine);
     for (size_t i = 0; i < _slots.size(); i++)
         if (!_slots.at(static_cast<int>(i)) && isSurfaceClicked(1400.f, 120.f + (i * 100.f) + 20.f, 150.f, 40.f, event, gameEngine)) {
-            gameEngine->_client->send(message::request::DELETE, static_cast<int>(i));
+            gameEngine->_client->send(message::request::DELETE, "Test", static_cast<int>(i));
             // deleteRoom(static_cast<int>(i), 120.f + (i * 100.f), event, gameEngine);
         }
     for (size_t j = 0; j < _slots.size(); j++)
         if (joinRoom(static_cast<int>(j), 120.f + (j * 100.f), event, gameEngine)) {
-            gameEngine->_client->send(message::JOIN, j);
+            gameEngine->_client->send(message::JOIN, "Test", j);
             return 6;
         }
     if (isButtonPressed(7, gameEngine, event))
-        gameEngine->_client->send(message::CREATE);
+        gameEngine->_client->send(message::CREATE, "Test");
     hooverOnButton(event, gameEngine);
     if (isButtonPressed(5, gameEngine, event))
         return 2;
