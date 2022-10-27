@@ -7,6 +7,7 @@
 
 #include "Game.hpp"
 #include "../Globals.hpp"
+#include "../../exceptions/GameExceptions.hpp"
 
 float bg_x = 0.0f;
 float stars_x = 0.0f;
@@ -17,6 +18,8 @@ rtype::Game::Game(size_t baseFps)
 {
     _fps = baseFps;
     _client = new Client(_ioService, "localhost", "4242");
+    if (_client == nullptr)
+        throw GameExceptions("Game constructor: Error while creating client");
 }
 
 rtype::Game::~Game()
@@ -31,11 +34,15 @@ void rtype::Game::init(std::string flag)
     if (flag == "-g") {
         _actualScreen = Screens::Core;
         _core = new rtype::menu::CoreScreen;
+        if (_core == nullptr)
+            throw GameExceptions("Game init: Error while creating CoreScreen");
         _lastScene = Screens::Core;
         _core->init();
     } else {
         _actualScreen = Screens::Intro;
         _intro = new rtype::menu::IntroScreen;
+        if (_intro == nullptr)
+            throw GameExceptions("Game init: Error while creating IntroScreen");
         _lastScene = Screens::Intro;
         _intro->init();
     }
@@ -115,6 +122,8 @@ void rtype::Game::handleScreensSwap(int ret)
         case 2:
             destroyLastScene();
             _menu = new rtype::menu::MenuScreen;
+            if (_menu == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating MenuScreen");
             _lastScene = Screens::Menu;
             _menu->init();
             setActualScreen(Screens::Menu);
@@ -126,6 +135,8 @@ void rtype::Game::handleScreensSwap(int ret)
         case 4:
             destroyLastScene();
             _options = new rtype::menu::OptionsScreen;
+            if (_options == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating OptionsScreen");
             _lastScene = Screens::Options;
             _options->init();
             setActualScreen(Screens::Options);
@@ -133,6 +144,8 @@ void rtype::Game::handleScreensSwap(int ret)
         case 5:
             destroyLastScene();
             _multiplayer = new rtype::menu::MultiplayerScreen;
+            if (_multiplayer == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating MultiplayerScreen");
             _lastScene = Screens::Multiplayer;
             _multiplayer->init();
             setActualScreen(Screens::Multiplayer);
@@ -140,6 +153,8 @@ void rtype::Game::handleScreensSwap(int ret)
         case 6:
             destroyLastScene();
             _room = new rtype::menu::RoomScreen;
+            if (_room == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating RoomScreen");
             _lastScene = Screens::Room;
             _room->init();
             setActualScreen(Screens::Room);
@@ -147,6 +162,8 @@ void rtype::Game::handleScreensSwap(int ret)
         case 7:
             destroyLastScene();
             _core = new rtype::menu::CoreScreen;
+            if (_core == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating CoreScreen");
             _lastScene = Screens::Core;
             _core->init();
             setActualScreen(Screens::Core);
