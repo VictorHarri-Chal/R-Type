@@ -44,7 +44,7 @@ class Client {
      * 
      * @param msg Message to be sent
      */
-    void send(message::request request, int value = 0);
+    void send(message::request request, std::string body = "");
     /**
      * @brief Get the Stream Data object
      * 
@@ -112,7 +112,7 @@ class Client {
      * @param value 
      * @return std::string 
      */
-    std::string createPaquet(message::request request, int value);
+    std::string createPaquet(message::request request, std::string body);
     /**
      * @brief number of room create
      * 

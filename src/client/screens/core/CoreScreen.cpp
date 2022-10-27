@@ -82,6 +82,7 @@ void rtype::menu::CoreScreen::init()
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
+    (void)gameEngine;
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
             managePlayer(i, event);
