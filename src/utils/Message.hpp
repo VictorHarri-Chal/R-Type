@@ -15,19 +15,19 @@ class message {
     enum request { CREATE, JOIN, DELETE, READY, DISCONNECT, ROOM, INROOM, LAUNCH };
     /*public access is required for the class member which are to be saved/loaded*/
     request type;
-    int value;
+    std::string body;
 
     /*default constructor for class*/
     message(){};
     /*parameterized constructor for class*/
-    message(request t, int v) : type(t), value(v)
+    message(request t, std::string b) : type(t), body(b)
     {
     }
 
     /*this function prints the details of class object*/
     void print()
     {
-        std::cout << "(" << type << ", " << value << ")" << std::endl;
+        std::cout << "(" << type << ", " << body << ")" << std::endl;
     }
 };
 
@@ -38,7 +38,7 @@ namespace boost
         template <class Archive> void serialize(Archive &archive, message &object, const unsigned int version)
         {
             archive &object.type;
-            archive &object.value;
+            archive &object.body;
             (void)version;
         }
     } // namespace serialization

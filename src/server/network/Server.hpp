@@ -39,9 +39,9 @@ class Server {
      * @brief Send a message to client
      * 
      * @param type of the request
-     * @param value a int value if is needed
+     * @param value a std::string body if is needed
      */
-    void sendMessage(message::request type, int value = 0);
+    void sendMessage(message::request type, std::string body = 0);
     /**
      * @brief Send Message to particular client
      * 
@@ -49,21 +49,21 @@ class Server {
      * @param target_endpoint 
      * @param value 
      */
-    void sendToClient(message::request type, udp::endpoint target_endpoint, int value = 0);
+    void sendToClient(message::request type, udp::endpoint target_endpoint, std::string body = 0);
     /**
      * @brief Send Message to all Client
      * 
      * @param type 
      * @param value 
      */
-    void SendToAll(message::request type, int value = 0);
+    void SendToAll(message::request type, std::string body = 0);
     /**
      * @brief Send Message to all Client in the same room
      * 
      * @param type 
      * @param value 
      */
-    void SendToAllInRoom(message::request type, size_t acutalId, int value = 0);
+    void SendToAllInRoom(message::request type, size_t acutalId, std::string body = 0);
     /**
      * @brief Get the Buffer object
      * 
@@ -171,7 +171,7 @@ class Server {
      * @param value 
      * @return std::string 
      */
-    std::string createPaquet(message::request request, int value);
+    std::string createPaquet(message::request request, std::string body);
     /**
      * @brief Socket
      * 
@@ -228,7 +228,7 @@ class HandleCommand {
      * @brief Vector of function pointer
      * 
      */
-    std::vector<std::function<void(int, Server*, size_t)>> _allCommand;
+    std::vector<std::function<void(std::string, Server*, size_t)>> _allCommand;
 
   public:
     /**
