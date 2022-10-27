@@ -133,7 +133,7 @@ int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         return 7;
     }
     if (isButtonPressed(6, gameEngine, event)) {
-        gameEngine->_client->send(message::ROOM, "Test");
+        gameEngine->_client->send(message::ROOM);
         saveParalax();
         return 5;
     }

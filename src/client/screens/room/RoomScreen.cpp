@@ -108,13 +108,13 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         _nbPlayers--;
         if (_isReady)
             _nbReadyPlayers--;
-        gameEngine->_client->send(message::DISCONNECT, "Test");
+        gameEngine->_client->send(message::DISCONNECT);
         saveParalax();
         return 5;
     }
     if (isButtonPressed(7, gameEngine, event) && !_isReady) {
         _isReady = true;
-        gameEngine->_client->send(message::READY, "Test");
+        gameEngine->_client->send(message::READY);
         saveParalax();
     }
     hooverOnButton(event, gameEngine);
