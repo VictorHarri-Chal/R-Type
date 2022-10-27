@@ -19,7 +19,9 @@ jobs:
         shell: bash
         run: |
           sudo apt update
-          sudo apt install -y graphviz doxygen texlive-epstopdf
+          sudo apt install -y \
+            doxygen \
+            texlive-font-utils
 
       - name: Run doxygen
         shell: bash
