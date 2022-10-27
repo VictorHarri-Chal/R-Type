@@ -18,8 +18,7 @@ namespace rtype
             class Alive : public IComponent {
                 public:
                     Alive();
-                    Alive(bool isAlive);
-                    ~Alive();
+                    ~Alive() = default;
                     void setAlive(bool isAlive);
                     bool getAlive() const;
 

@@ -17,18 +17,18 @@ namespace rtype
         namespace system
         {
             /// @brief Particles system
-            class Particles : public ISystem {
+            class ParticlesSystem : public ISystem {
               public:
                 /**
                  * @brief Construct a new Particles object
                  *
                  */
-                Particles() {}
+                ParticlesSystem() {}
                 /**
                  * @brief Destroy the Particles object
                  *
                  */
-                ~Particles() {}
+                ~ParticlesSystem() {}
                 /**
                  * @brief Update Particles entities
                  *
@@ -44,6 +44,8 @@ namespace rtype
 
               protected:
               private:
+                sf::Clock _particleClock;
+
             };
         } // namespace system
     }     // namespace ecs

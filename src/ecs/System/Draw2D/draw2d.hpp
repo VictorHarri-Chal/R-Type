@@ -76,7 +76,6 @@ namespace rtype
                 rtype::ecs::system::SystemType getSystemType() const override;
 
               private:
-
                 sf::Clock _allyClock;
                 sf::Clock _zigzagClock;
                 sf::Clock _rusherClock;

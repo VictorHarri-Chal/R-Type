@@ -116,6 +116,13 @@ namespace rtype
             * 
             */
             void handleWindowBorder(void);
+            /**
+            * @brief Create a particle sprite when called
+            * 
+            * @param x Position x
+            * @param y Position y
+            */
+            void createParticle(float x, float y);
 
           private:
             /**
@@ -123,11 +130,6 @@ namespace rtype
              * 
              */
             rtype::ecs::world::World _world;
-            /**
-             * @brief Vector to check if the mouse is on a button
-             * 
-             */
-            std::vector<bool> _buttons;
         };
     }
 }

@@ -7,15 +7,7 @@
 
 #include "sound.hpp"
 
-rtype::ecs::system::Sound::Sound()
-{
-}
-
-rtype::ecs::system::Sound::~Sound()
-{
-}
-
-void rtype::ecs::system::Sound::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
+void rtype::ecs::system::SoundSystem::update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine)
 {
     // for (auto &entity : entities) {
     //     if (entity->hasCompoType(rtype::ecs::component::compoType::SOUND)) {
@@ -32,7 +24,7 @@ void rtype::ecs::system::Sound::update(std::vector<rtype::ecs::entity::Entity*> 
     // }
 }
 
-rtype::ecs::system::SystemType rtype::ecs::system::Sound::getSystemType() const
+rtype::ecs::system::SystemType rtype::ecs::system::SoundSystem::getSystemType() const
 {
     return (rtype::ecs::system::SystemType::SOUNDSYSTEM);
 }

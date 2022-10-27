@@ -12,7 +12,7 @@ rtype::ecs::component::Rusher::Rusher(int currWave)
     _health = 1.0f * (currWave * 0.2f);
     _damage = 1.0f;
     _speed = 0.20f;
-    _cadency = sf::seconds(1.0/2.0f);
+    _cadency = sf::seconds(1.0/1.5f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Rusher::getType() const

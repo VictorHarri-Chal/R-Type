@@ -131,5 +131,43 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
             }
             _rusherClock.restart();
         }
-    }
+    } else if (_kamikazeClock.getElapsedTime() >= sf::seconds(1.0/3.0f)) {
+        for (auto &entity : entities) {
+            if (entity->getEntityType() == rtype::ecs::entity::ENEMY) {
+                ecs::component::IShip *shipCompo = entity->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+                if (shipCompo->getShipType() == ecs::component::shipType::KAMIKAZE) {
+                    rtype::ecs::component::Drawable2D *drawable2dCompo =
+                        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                    sf::IntRect rect = drawable2dCompo->getRect();
+                    if (rect.left == 135) {
+                        rect.left = 75;
+                        rect.width = 60;
+                    } else {
+                        rect.left += 60;
+                        rect.width = 63;
+                    }
+                    drawable2dCompo->setRect(rect);
+                } 
+            }
+            _kamikazeClock.restart();
+        }
+    } else if (_turretClock.getElapsedTime() >= sf::seconds(1.0/3.0f)) {
+        for (auto &entity : entities) {
+            if (entity->getEntityType() == rtype::ecs::entity::ENEMY) {
+                ecs::component::IShip *shipCompo = entity->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+                if (shipCompo->getShipType() == ecs::component::shipType::TURRET) {
+                    rtype::ecs::component::Drawable2D *drawable2dCompo =
+                        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                    sf::IntRect rect = drawable2dCompo->getRect();
+                    if (rect.left == 33) {
+                        rect.left = 0;
+                    } else {
+                        rect.left += 33;
+                    }
+                    drawable2dCompo->setRect(rect);
+                } 
+            }
+            _turretClock.restart();
+        }
+    }  
 }
