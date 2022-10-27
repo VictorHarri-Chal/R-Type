@@ -47,9 +47,9 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
     }
 }
 
-void Client::send(message::request request, int value)
+void Client::send(message::request request, std::string string, int value)
 {
-    _socket.send_to(boost::asio::buffer(createPaquet(request, value)), _endpoint);
+    _socket.send_to(boost::asio::buffer(createPaquet(request, value, string)), _endpoint);
 }
 
 message Client::getStreamData(std::size_t bytesTransferred)
@@ -67,9 +67,9 @@ message Client::getStreamData(std::size_t bytesTransferred)
     return msg;
 }
 
-std::string Client::createPaquet(message::request request, int value)
+std::string Client::createPaquet(message::request request, int value, std::string string)
 {
-    message msg(request, value);
+    message msg(request, value, string);
     std::string str;
 
     boost::iostreams::back_insert_device<std::string> insert(str);
