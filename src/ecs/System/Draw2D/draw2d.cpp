@@ -94,19 +94,42 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
             }
             _allyClock.restart();
         }
-    } else if (_enemyClock.getElapsedTime() >= sf::seconds(1.0/6.0f)) {
+    } else if (_zigzagClock.getElapsedTime() >= sf::seconds(1.0/6.0f)) {
         for (auto &entity : entities) {
             if (entity->getEntityType() == rtype::ecs::entity::ENEMY) {
-                rtype::ecs::component::Drawable2D *drawable2dCompo =
-                entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
-                sf::IntRect rect = drawable2dCompo->getRect();
-                if (rect.left == 66)
-                    rect.left = 34;
-                else
-                    rect.left += 32;
-                drawable2dCompo->setRect(rect);
+                ecs::component::IShip *shipCompo = entity->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+                if (shipCompo->getShipType() == ecs::component::shipType::ZIGZAG) {
+                    rtype::ecs::component::Drawable2D *drawable2dCompo =
+                        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                    sf::IntRect rect = drawable2dCompo->getRect();
+                        if (rect.left == 66)
+                            rect.left = 34;
+                    else
+                        rect.left += 32;
+                    drawable2dCompo->setRect(rect);
+                } 
             }
-            _enemyClock.restart();
+            _zigzagClock.restart();
+        }
+    } else if (_rusherClock.getElapsedTime() >= sf::seconds(1.0/3.0f)) {
+        for (auto &entity : entities) {
+            if (entity->getEntityType() == rtype::ecs::entity::ENEMY) {
+                ecs::component::IShip *shipCompo = entity->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+                if (shipCompo->getShipType() == ecs::component::shipType::RUSHER) {
+                    rtype::ecs::component::Drawable2D *drawable2dCompo =
+                        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                    sf::IntRect rect = drawable2dCompo->getRect();
+                    if (rect.left == 115) {
+                        rect.left = 50;
+                        rect.width = 65;
+                    } else {
+                        rect.left += 65;
+                        rect.width = 50;
+                    }
+                    drawable2dCompo->setRect(rect);
+                } 
+            }
+            _rusherClock.restart();
         }
     }
 }

@@ -74,20 +74,47 @@ namespace rtype
             * 
             */
             void paralax(void) override;
-
+            /**
+            * @brief Handle all function for the player
+            * 
+            * @param entityId Id of the player in the _world
+            * @param event Event to be handled
+            */
             void managePlayer(size_t entityId, rtype::Event &event);
-
+            /**
+            * @brief Handle the player movement depending of the event
+            * 
+            * @param transformCompo Component transform of the player
+            * @param shipCompo Component ship of the player
+            * @param event Event to be handled
+            */
             void managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
-
-            void managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event);
-
+            /**
+            * @brief Handle the player shooting depending of the event
+            * 
+            * @param shipCompo Component ship of the player
+            * @param event Event to be handled
+            */
+            void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
+            /**
+            * @brief Destroy sprites who goes out of the screen
+            * 
+            */
             void destroySprites(void);
-
+            /**
+            * @brief Handle automatic shooting for all enemies
+            * 
+            */
             void manageEnemiesShooting(void);
-
-            void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y, 
-              std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect);
-            
+            /**
+            * @brief Generic function to create an enemy
+            * 
+            */
+            void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y);
+            /**
+            * @brief Handle player position when he is out of the screen
+            * 
+            */
             void handleWindowBorder(void);
 
           private:
@@ -101,17 +128,6 @@ namespace rtype
              * 
              */
             std::vector<bool> _buttons;
-            /**
-            *  @brief Clock for ally shot delay
-            *
-            */
-            sf::Clock _clockAllyShot;
-            /**
-            *  @brief Clock for enemy shot delay
-            *
-            */
-            sf::Clock _clockEnemyShot;
-
         };
     }
 }

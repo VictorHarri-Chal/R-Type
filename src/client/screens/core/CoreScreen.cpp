@@ -74,14 +74,17 @@ void rtype::menu::CoreScreen::init()
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
 
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1000.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, false, 1, 1100.f, -100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1300.f, 1100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
-    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, false, 1, 1400.f, -100.f, "assets/enemy_1.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1000.f, 1100.f);
+    generateEnemy(rtype::ecs::component::shipType::RUSHER, false, false, 1, 1930.f, 600.f);
+    generateEnemy(rtype::ecs::component::shipType::KAMIKAZE, false, false, 1, 1100.f, -100.f);
+    // generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, false, 1, 1100.f, -100.f);
+    // generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1300.f, 1100.f);
+    // generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, false, 1, 1400.f, -100.f);
 }
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
+    (void) gameEngine;
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
             managePlayer(i, event);
@@ -130,7 +133,7 @@ void rtype::menu::CoreScreen::managePlayer(size_t entityId, rtype::Event &event)
     ecs::component::Transform *transformCompo = _world.getEntity(entityId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
     ecs::component::IShip *shipCompo = _world.getEntity(entityId)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
     managePlayerMovement(transformCompo, shipCompo, event);
-    managePlayerShot(shipCompo, event);
+    managePlayerShot(transformCompo, shipCompo, event);
 }
 
 void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event)
@@ -147,11 +150,10 @@ void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *tr
         transformCompo->setSpeedY(shipCompo->getSpeed());
 }
 
-void rtype::menu::CoreScreen::managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event)
+void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event)
 {
-    if (_clockAllyShot.getElapsedTime() >= shipCompo->getCadency()) {
+    if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
         if (event.key.code == ' ') {
-            ecs::component::Transform *transformCompo = _world.getEntity(4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
             if (shot == nullptr)
                 throw ScreensExceptions("Error: Can't create a entity (6)");
@@ -161,7 +163,7 @@ void rtype::menu::CoreScreen::managePlayerShot(ecs::component::IShip *shipCompo,
             shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
             this->_world.addEntity(shot);
             event.key.code = '\0';
-            _clockAllyShot.restart();
+            shipCompo->restartClock();
         }
     }
 }
@@ -195,7 +197,7 @@ void rtype::menu::CoreScreen::manageEnemiesShooting(void)
                   if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
                     ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                     rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY_PROJECTILE);
-                    shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() - 15.f, transformCompo->getY() + 40.f, -20.0f, 0.0f);
+                    shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() - 15.f, transformCompo->getY() + 45.f, -20.0f, 0.0f);
                     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
                     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.f, 1.f), 180, sf::IntRect(165, 133, 50, 17));
@@ -207,18 +209,41 @@ void rtype::menu::CoreScreen::manageEnemiesShooting(void)
     }
 }
 
-void rtype::menu::CoreScreen::generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y,
-    std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect)
+void rtype::menu::CoreScreen::generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y)
 {
-    rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
-    enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.15f);
-    enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, asset, isRect, scale, rotation, rect);
-    if (shipType == rtype::ecs::component::shipType::ZIGZAG)
+    if (shipType == rtype::ecs::component::shipType::ZIGZAG) {
+        rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+        enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.15f);
+        enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/zigzag.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(34, 33, 32, 32));
         enemy->addComponent<ecs::component::Zigzag>(rtype::ecs::component::SHIP, dirHor, dirVer, currWave);
-    // AJOUTER LES AUTRES SHIPS ENNEMIS ICI
-    this->_world.addEntity(enemy);
+        this->_world.addEntity(enemy);
+    } else if (shipType == rtype::ecs::component::shipType::RUSHER) {
+        rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+        enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, -5.0f, 0.0f);
+        enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/rusher.png", true, sf::Vector2f(2.f, 2.f), 0, sf::IntRect(50, 0, 65, 60));
+        enemy->addComponent<ecs::component::Rusher>(rtype::ecs::component::SHIP, currWave);
+        this->_world.addEntity(enemy);
+    } else if (shipType == rtype::ecs::component::shipType::KAMIKAZE) {
+        rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+        enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, -7.0f, 0.0f);
+        enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/kamikaze.png", true, sf::Vector2f(1.f, 1.f), 0, sf::IntRect(75, 50, 60, 50));
+        enemy->addComponent<ecs::component::Kamikaze>(rtype::ecs::component::SHIP, currWave);
+        this->_world.addEntity(enemy);
+    } else if (shipType == rtype::ecs::component::shipType::TURRET) {
+        rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+        enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, -3.0f, 0.0f);
+        enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/turret.png", true, sf::Vector2f(1.f, 1.f), 0, sf::IntRect(0, 0, 0, 0));
+        enemy->addComponent<ecs::component::Turret>(rtype::ecs::component::SHIP, currWave);
+        this->_world.addEntity(enemy);
+    }
 }
 
 void rtype::menu::CoreScreen::saveParalax(void)

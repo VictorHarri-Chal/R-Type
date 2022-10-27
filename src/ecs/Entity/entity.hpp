@@ -21,6 +21,9 @@
 #include "../Component/Transform/transform.hpp"
 #include "../Component/Ship/recruit.hpp"
 #include "../Component/Ship/zigzag.hpp"
+#include "../Component/Ship/rusher.hpp"
+#include "../Component/Ship/kamikaze.hpp"
+#include "../Component/Ship/turret.hpp"
 
 namespace rtype
 {
