@@ -38,18 +38,18 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
     if (!error || error == boost::asio::error::message_size) {
         message msg = getStreamData(bytesTransferred);
         if (msg.type == message::ROOM)
-            this->_actualNbRooms = msg.value;
+            this->_actualNbRooms = std::stoi(msg.body);
         if (msg.type == message::INROOM)
-            this->_actualNbPeopleInRoom = msg.value;
+            this->_actualNbPeopleInRoom = std::stoi(msg.body);
         if (msg.type == message::LAUNCH)
             this->_gameStart = true;
         listen();
     }
 }
 
-void Client::send(message::request request, int value)
+void Client::send(message::request request, std::string body)
 {
-    _socket.send_to(boost::asio::buffer(createPaquet(request, value)), _endpoint);
+    _socket.send_to(boost::asio::buffer(createPaquet(request, body)), _endpoint);
 }
 
 message Client::getStreamData(std::size_t bytesTransferred)
@@ -67,9 +67,9 @@ message Client::getStreamData(std::size_t bytesTransferred)
     return msg;
 }
 
-std::string Client::createPaquet(message::request request, int value)
+std::string Client::createPaquet(message::request request, std::string body)
 {
-    message msg(request, value);
+    message msg(request, body);
     std::string str;
 
     boost::iostreams::back_insert_device<std::string> insert(str);
