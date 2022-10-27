@@ -40,6 +40,8 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool isRe
     if (!texturePath.empty())
         if (_texture.loadFromFile(texturePath.c_str()) == false)
             throw EcsExceptions("Drawable2D: Error while loading texture");
+    this->_width = _texture.getSize().x;
+    this->_height = _texture.getSize().y;
     _sprite = sf::Sprite(_texture);
     this->_compoType = rtype::ecs::component::compoType::DRAWABLE2D;
     this->_drawableType = rtype::ecs::component::drawableType::SPRITE;

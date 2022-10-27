@@ -75,14 +75,20 @@ namespace rtype
             */
             void paralax(void) override;
 
-            void managePlayerMovement(rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayer(size_t entityId, rtype::Event &event);
 
-            void managePlayerShot(rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
 
-            void destroySprites(rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event);
 
-            void generateEnemy(rtype::ecs::component::shipType type, bool dirHor, bool dirVer, float x, float y, 
+            void destroySprites(void);
+
+            void manageEnemiesShooting(void);
+
+            void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y, 
               std::string asset, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect);
+            
+            void handleWindowBorder(void);
 
           private:
             /**
@@ -96,10 +102,15 @@ namespace rtype
              */
             std::vector<bool> _buttons;
             /**
-            *  @brief Clock for shot delay
+            *  @brief Clock for ally shot delay
             *
             */
-            sf::Clock _clock;
+            sf::Clock _clockAllyShot;
+            /**
+            *  @brief Clock for enemy shot delay
+            *
+            */
+            sf::Clock _clockEnemyShot;
 
         };
     }

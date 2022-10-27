@@ -11,12 +11,15 @@
 #include "../exceptions/GameExceptions.hpp"
 #include "../exceptions/ScreensExceptions.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
   try {
         rtype::Game Game(60);
 
-        Game.init();
+        if ((argc == 2) && (strcmp(argv[1], "-g") == 0))
+            Game.init("-g");
+        else
+            Game.init("");
         Game.run();
         Game.destroy();
     } catch (EcsExceptions &e) {

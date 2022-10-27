@@ -7,64 +7,93 @@
 
 #include "Client.hpp"
 
+Client::Client(boost::asio::io_service &io_service, const std::string &host, const std::string &port): _ioService(io_service), _socket(io_service, udp::endpoint(udp::v4(), 0))
+{
+    udp::resolver resolver(_ioService);
+    udp::resolver::query query(udp::v4(), host, port);
+    udp::resolver::iterator iter = resolver.resolve(query);
+    _endpoint = *iter;
+    _actualNbRooms = 0;
+    _actualNbPeopleInRoom = 0;
+    _gameStart = false;
+    listen();
+}
+
 Client::~Client()
 {
-  _socket.close();
+    _socket.close();
 }
 
-void Client::send(message::request request, int value) {
-    std::stringstream os;
-    boost::archive::text_oarchive oa(os);
-    message test(request, value);
-    oa << test;
-    _socket.send_to(boost::asio::buffer(os.str()), _endpoint);
-}
-
-void Client::start_receive()
+void Client::listen()
 {
-  std::cout << "start receive" << std::endl;
-  _socket.async_receive_from(
-      boost::asio::buffer(_recv_buffer), _endpoint,
-      boost::bind(&Client::handle_receive, this,
-        boost::asio::placeholders::error,
-        boost::asio::placeholders::bytes_transferred));
+    std::cout << "start receive" << std::endl;
+    _socket.async_receive_from(boost::asio::buffer(_recvBuffer), _endpoint,
+        boost::bind(&Client::handleReceive, this, boost::asio::placeholders::error,
+            boost::asio::placeholders::bytes_transferred));
 }
 
-void Client::handle_receive(const boost::system::error_code& error,
-    std::size_t /*bytes_transferred*/)
+void Client::handleReceive(const boost::system::error_code &error, std::size_t bytesTransferred)
 {
-  std::cout << "handle receive" << std::endl;
-  if (!error || error == boost::asio::error::message_size)
-  {
-      std::stringstream outfile;
-      outfile << _recv_buffer.data();
-      boost::archive::text_iarchive oa(outfile);
-      message command;
-      oa >> command;
-      std::cout << "Client received: " << std::endl;
-      command.print();
-      if (command.type == message::ROOM)
-        this->_actualNbRooms = command.value;
-      if (command.type == message::INROOM)
-        this->_actualNbPeopleInRoom = command.value;
-      if (command.type == message::LAUNCH)
-        this->_gameStart = true;
-      start_receive();
-  }
+    std::cout << "handle receive" << std::endl;
+    if (!error || error == boost::asio::error::message_size) {
+        message msg = getStreamData(bytesTransferred);
+        if (msg.type == message::ROOM)
+            this->_actualNbRooms = msg.value;
+        if (msg.type == message::INROOM)
+            this->_actualNbPeopleInRoom = msg.value;
+        if (msg.type == message::LAUNCH)
+            this->_gameStart = true;
+        listen();
+    }
 }
 
+void Client::send(message::request request, std::string string, int value)
+{
+    _socket.send_to(boost::asio::buffer(createPaquet(request, value, string)), _endpoint);
+}
+
+message Client::getStreamData(std::size_t bytesTransferred)
+{
+    message msg;
+    std::string recvStr(_recvBuffer.data(), _recvBuffer.data() + bytesTransferred);
+
+    boost::iostreams::basic_array_source<char> source(recvStr.data(), recvStr.size());
+    boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
+    boost::archive::binary_iarchive ia(ss);
+    ia >> msg;
+    std::cout << "Server received message: ";
+    msg.print();
+
+    return msg;
+}
+
+std::string Client::createPaquet(message::request request, int value, std::string string)
+{
+    message msg(request, value, string);
+    std::string str;
+
+    boost::iostreams::back_insert_device<std::string> insert(str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
+    boost::archive::binary_oarchive oa(ss);
+
+    std::cout << "Sending message: ";
+    msg.print();
+    oa << msg;
+    ss.flush();
+    return (str);
+}
 
 size_t Client::getNbRoom() const
 {
-  return(this->_actualNbRooms);
+    return (this->_actualNbRooms);
 }
 
 size_t Client::getNbPeopleInRoom() const
 {
-  return(this->_actualNbPeopleInRoom);
+    return (this->_actualNbPeopleInRoom);
 }
 
 bool Client::getGameStart() const
 {
-  return(this->_gameStart);
+    return (this->_gameStart);
 }
