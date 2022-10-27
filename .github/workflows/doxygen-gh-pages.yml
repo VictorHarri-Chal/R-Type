@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
 
       - name: Checkout repo
@@ -21,8 +21,7 @@ jobs:
           sudo apt update
           sudo apt install -y \
             doxygen \
-            texlive-font-utils \
-            git
+            texlive-font-utils
 
       - name: Run doxygen
         shell: bash
