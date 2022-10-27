@@ -36,6 +36,6 @@ To access our project documentation, you need to execute a script in order to op
 
 You can also look here ```placeholder```, to look out directly at our online documentation.
 
-You can check our RFC protocol that details the communication protocol between the server and the clients [here](https://simonlefourn.notion.site/Network-db4461454b9d44e78efc64aecb0cddb7).
+You can check our RFC protocol that details the communication protocol between the server and the clients ![here](https://simonlefourn.notion.site/Network-db4461454b9d44e78efc64aecb0cddb7).
 # :dancers:  Authors
 [Henri Chauvet](https://github.com/H-chauvet) - [Nathan Le Bigot](https://github.com/nlbxyz) - [Matthis Lesur](https://github.com/tistech0) - [Simon Le Fourn](https://github.com/simlf) - [Victor Harri-Chal](https://github.com/VictorHarri-Chal)
