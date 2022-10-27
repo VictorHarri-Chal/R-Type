@@ -21,7 +21,8 @@ jobs:
           sudo apt update
           sudo apt install -y \
             doxygen \
-            texlive-font-utils
+            texlive-font-utils \
+            git
 
       - name: Run doxygen
         shell: bash
