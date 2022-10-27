@@ -15,15 +15,29 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Delete and create doc directory
+      - name: Run doxygen
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install -y graphviz doxygen texlive-epstopdf
+
+      - name: Run doxygen
         shell: bash
         run: |
           [ -f doc ] && rm -fr doc
           mkdir -p doc/output
+          doxygen
 
-      - uses: DenverCoder1/doxygen-github-pages-action@v1.1.0
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-          config_file: Doxyfile
-          folder: doc/output
+          folder: doc/output/html
+
+      #- uses: DenverCoder1/doxygen-github-pages-action@v1.1.0
+      #  with:
+      #    github_token: ${{ secrets.GITHUB_TOKEN }}
+      #    branch: gh-pages
+      #    config_file: Doxyfile
+      #    folder: doc/output
