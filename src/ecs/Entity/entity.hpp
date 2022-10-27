@@ -13,13 +13,14 @@
 #include "../Component/IComponent.hpp"
 #include "../Component/Alive/alive.hpp"
 #include "../Component/Collide/collide.hpp"
-#include "../Component/Ship/ship.hpp"
+#include "../Component/Ship/IShip.hpp"
 #include "../Component/Drawable2D/drawable2d.hpp"
 #include "../Component/Projectile/projectile.hpp"
 #include "../Component/Inventory/inventory.hpp"
 #include "../Component/Sound/sound.hpp"
 #include "../Component/Transform/transform.hpp"
-#include "../Component/Health/health.hpp"
+#include "../Component/Ship/recruit.hpp"
+#include "../Component/Ship/zigzag.hpp"
 
 namespace rtype
 {

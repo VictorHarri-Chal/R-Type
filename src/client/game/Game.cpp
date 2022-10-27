@@ -23,19 +23,22 @@ rtype::Game::~Game()
 {
 }
 
-void rtype::Game::init()
+void rtype::Game::init(std::string flag)
 {
     _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _eventClass.initEvents(_event);
-    // _actualScreen = Screens::Core;
-    // _core = new rtype::menu::CoreScreen;
-    // _lastScene = Screens::Core;
-    // _core->init();
-    _actualScreen = Screens::Intro;
-    _intro = new rtype::menu::IntroScreen;
-    _lastScene = Screens::Intro;
-    _intro->init();
+    if (flag == "-g") {
+        _actualScreen = Screens::Core;
+        _core = new rtype::menu::CoreScreen;
+        _lastScene = Screens::Core;
+        _core->init();
+    } else {
+        _actualScreen = Screens::Intro;
+        _intro = new rtype::menu::IntroScreen;
+        _lastScene = Screens::Intro;
+        _intro->init();
+    }
 }
 
 void rtype::Game::initMusic()
@@ -53,7 +56,7 @@ bool rtype::Game::processEvents(rtype::Game *gameEngine)
     bool ret = true;
     int swap = 0;
 
-    while (_window.pollEvent(_sfmlEvent)) {
+    if (_window.pollEvent(_sfmlEvent)) {
         ret = _eventClass.inputUpdate(_event, _sfmlEvent);
         if (_sfmlEvent.type == sf::Event::Closed || !ret)
             _window.close();
