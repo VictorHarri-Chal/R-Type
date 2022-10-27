@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: DEBUG
+        shell: bash
+        run: |
+          ls -l
+
       - name: Delete and create doc directory
         shell: bash
         run: |
