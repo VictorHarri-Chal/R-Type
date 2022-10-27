@@ -33,7 +33,7 @@ To read our project documentation, you need to execute a script in order to open
 
 ```./run_documentation.sh```
 
-You can also look here ```placeholder```, to look out directly at our online documentation.
+You can also look [here](https://victorharri-chal.github.io/R-Type/), to look out directly at our online documentation.
 
 You can check our ```RFC``` that details the communication protocol between the server and the clients [here](https://simonlefourn.notion.site/Network-db4461454b9d44e78efc64aecb0cddb7).
 
