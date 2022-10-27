@@ -17,7 +17,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
     (void) gameEngine;
     for (size_t x = 0; x < entities.size(); x++) {
         if (entities[x]->hasCompoType(ecs::component::compoType::COLLIDE) && 
-            entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->getCollide() == true) {
+            entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->getCollide()) {
             auto transformCompo1 = entities[x]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             auto drawableCompo1 = entities[x]->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
             sf::Sprite sprite;
@@ -28,7 +28,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                 sprite.setTextureRect(drawableCompo1->getRect());
             for (size_t y = 0; y < entities.size(); y++) {
                 if (entities[y] != entities[x] && entities[y]->hasCompoType(rtype::ecs::component::compoType::COLLIDE) && 
-                    entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->getCollide() == true) {
+                    entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->getCollide()) {
                     auto transformCompo2 = entities[y]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                     auto drawableCompo2 = entities[y]->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
                     sf::Sprite otherSprite;

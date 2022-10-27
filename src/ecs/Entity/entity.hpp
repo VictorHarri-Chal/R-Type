@@ -20,10 +20,15 @@
 #include "../Component/Sound/sound.hpp"
 #include "../Component/Transform/transform.hpp"
 #include "../Component/Ship/recruit.hpp"
+#include "../Component/Ship/sniper.hpp"
+#include "../Component/Ship/stealthy.hpp"
+#include "../Component/Ship/tank.hpp"
+#include "../Component/Ship/support.hpp"
 #include "../Component/Ship/zigzag.hpp"
 #include "../Component/Ship/rusher.hpp"
 #include "../Component/Ship/kamikaze.hpp"
 #include "../Component/Ship/turret.hpp"
+
 
 namespace rtype
 {
