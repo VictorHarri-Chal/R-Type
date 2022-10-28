@@ -20,7 +20,15 @@
 #include "../Component/Sound/sound.hpp"
 #include "../Component/Transform/transform.hpp"
 #include "../Component/Ship/recruit.hpp"
+#include "../Component/Ship/sniper.hpp"
+#include "../Component/Ship/stealthy.hpp"
+#include "../Component/Ship/tank.hpp"
+#include "../Component/Ship/support.hpp"
 #include "../Component/Ship/zigzag.hpp"
+#include "../Component/Ship/rusher.hpp"
+#include "../Component/Ship/kamikaze.hpp"
+#include "../Component/Ship/turret.hpp"
+
 
 namespace rtype
 {
@@ -33,7 +41,7 @@ namespace rtype
              * @brief Entity Type for entity object creation
              *
              */
-            enum entityType { PLAYER, ENEMY, ALLY_PROJECTILE, ENEMY_PROJECTILE, BOSS, BUILDING, TEXT, RECTANGLE, STATIC_SPRITE, UNKNOWN };
+            enum entityType { PLAYER, ENEMY, ALLY_PROJECTILE, ENEMY_PROJECTILE, BOSS, PARTICLE, BUILDING, TEXT, RECTANGLE, STATIC_SPRITE, UNKNOWN };
             /// @brief Entity class
             class Entity {
               public:

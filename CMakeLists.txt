@@ -49,8 +49,22 @@ set(SRC_ECS
     ${ECSROOT}Component/IComponent.hpp
     ${ECSROOT}Component/Ship/recruit.cpp
     ${ECSROOT}Component/Ship/recruit.hpp
+    ${ECSROOT}Component/Ship/sniper.cpp
+    ${ECSROOT}Component/Ship/sniper.hpp
+    ${ECSROOT}Component/Ship/stealthy.cpp
+    ${ECSROOT}Component/Ship/stealthy.hpp
+    ${ECSROOT}Component/Ship/tank.cpp
+    ${ECSROOT}Component/Ship/tank.hpp
+    ${ECSROOT}Component/Ship/support.cpp
+    ${ECSROOT}Component/Ship/support.hpp
     ${ECSROOT}Component/Ship/zigzag.cpp
     ${ECSROOT}Component/Ship/zigzag.hpp
+    ${ECSROOT}Component/Ship/rusher.cpp
+    ${ECSROOT}Component/Ship/rusher.hpp
+    ${ECSROOT}Component/Ship/kamikaze.cpp
+    ${ECSROOT}Component/Ship/kamikaze.hpp
+    ${ECSROOT}Component/Ship/turret.cpp
+    ${ECSROOT}Component/Ship/turret.hpp
     ${ECSROOT}Component/Ship/AShip.cpp
     ${ECSROOT}Component/Ship/AShip.hpp
     ${ECSROOT}Component/Ship/IShip.hpp

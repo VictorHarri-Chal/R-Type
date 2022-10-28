@@ -76,9 +76,12 @@ namespace rtype
                 rtype::ecs::system::SystemType getSystemType() const override;
 
               private:
-
                 sf::Clock _allyClock;
-                sf::Clock _enemyClock;
+                sf::Clock _zigzagClock;
+                sf::Clock _rusherClock;
+                sf::Clock _turretClock;
+                sf::Clock _kamikazeClock;
+
             };
         } // namespace system
     }     // namespace ecs

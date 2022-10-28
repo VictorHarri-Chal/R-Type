@@ -14,8 +14,8 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
     for (size_t x = 0; x < entities.size(); x++) {
         if (entities[x]->hasCompoType(ecs::component::compoType::SHIP)) {
             auto shipCompo = entities[x]->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+            auto transformCompo = entities[x]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             if (shipCompo->getShipType() == ecs::component::shipType::ZIGZAG) {
-                auto transformCompo = entities[x]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                 if (transformCompo->getY() < 450) {
                     shipCompo->setDirectionVertical(true);
                 } else if (transformCompo->getY() > 450) {
@@ -27,7 +27,19 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
                     transformCompo->setSpeedY(transformCompo->getSpeedY() - 0.01);
                 }
             } else if (shipCompo->getShipType() == ecs::component::shipType::RUSHER) {
-
+                if (transformCompo->getX() < -100) {
+                    ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
+                    aliveCompo->setAlive(false);
+                }
+            } else if (shipCompo->getShipType() == ecs::component::shipType::KAMIKAZE) {
+                if (transformCompo->getX() < 200) {
+                    ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
+                    aliveCompo->setAlive(false);
+                }
+            } else if (shipCompo->getShipType() == ecs::component::shipType::TURRET) {
+                if (transformCompo->getX() < 1630) {
+                   transformCompo->setSpeedX(0.0f);
+                }
             }
         }
     }

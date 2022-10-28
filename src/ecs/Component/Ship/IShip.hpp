@@ -20,7 +20,7 @@ namespace rtype
              * @param RECRUIT Basic ally ship
              * @param SNIPER Class 1 ally ship
              * @param TANK Class 2 ally ship
-             * @param STEALTY Class 3 ally ship
+             * @param STEALTHY Class 3 ally ship
              * @param SUPPORT Class 4 ally ship
              * @param ZIGZAG Type 1 enemy ship
              * @param RUSHER Type 2 enemy ship
@@ -30,7 +30,7 @@ namespace rtype
             enum shipType { RECRUIT,
                             SNIPER,
                             TANK,
-                            STEALTY,
+                            STEALTHY,
                             SUPPORT,
                             ZIGZAG,
                             RUSHER,
