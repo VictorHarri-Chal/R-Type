@@ -59,7 +59,8 @@ void rtype::menu::IntroScreen::init()
     if (back == nullptr)
         throw ScreensExceptions("IntroScreen: Error while creating Entity (5)");
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 100.f, 0.0f, 0.0f);
-    back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 900.f, 800.f, sf::Color::Black, true, 3.0f, sf::Color::Magenta);
+    sf::Color bgColor(0, 0, 0, 150);
+    back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 900.f, 800.f, bgColor, true, 3.0f, sf::Color::Magenta);
     this->_world.addEntity(back);
     rtype::ecs::entity::Entity *butt_validate = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     if (butt_validate == nullptr)
