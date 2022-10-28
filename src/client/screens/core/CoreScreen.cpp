@@ -90,6 +90,8 @@ void rtype::menu::CoreScreen::init()
     this->_world.addEntity(ship2);
 
     generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1000.f, 1100.f);
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1100.f, 1100.f);
+    generateEnemy(rtype::ecs::component::shipType::ZIGZAG, true, true, 1, 1200.f, 1100.f);
     generateEnemy(rtype::ecs::component::shipType::RUSHER, false, false, 1, 1930.f, 600.f);
     generateEnemy(rtype::ecs::component::shipType::KAMIKAZE, false, false, 1, 1930.f, 700.f);
     generateEnemy(rtype::ecs::component::shipType::TURRET, false, false, 1, 1930.f, 300.f);
