@@ -73,6 +73,9 @@ $(function() {
 <li>GameExceptions()
 : <a class="el" href="classGameExceptions.html#a087a705eee1c5acfd707ebc742ef6283">GameExceptions</a>
 </li>
+<li>generateEnemy()
+: <a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a4ce5c598ab4839c93869bda18d7da4fc">rtype::menu::CoreScreen</a>
+</li>
 <li>getBuffer()
 : <a class="el" href="classServer.html#ae99eb6bf31a97820edbb59e1797848eb">Server</a>
 </li>
@@ -148,7 +151,14 @@ $(function() {
 <li>getShipType()
 : <a class="el" href="classrtype_1_1ecs_1_1component_1_1AShip.html#a29660066d42803eeaaef9e7500ae754b">rtype::ecs::component::AShip</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1IShip.html#ad30aaa9b14789b91825175c73281db3a">rtype::ecs::component::IShip</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Kamikaze.html#a56b4711becce1bf33179c8ff4a314f12">rtype::ecs::component::Kamikaze</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Recruit.html#a7faad4d9c67cd7e96cb7e5290dabd527">rtype::ecs::component::Recruit</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Rusher.html#a32f6cc4c0822752dbad841c065a095f8">rtype::ecs::component::Rusher</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Sniper.html#a79b455455b7d4625a18d5a11005a5529">rtype::ecs::component::Sniper</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Stealthy.html#a848c20599d83731a357b9727332dc026">rtype::ecs::component::Stealthy</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Support.html#a1594b3c3b335d619b7bb1e66908b7ee5">rtype::ecs::component::Support</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Tank.html#ac64e26ee1cd7cdd4c97ecea18e87cc64">rtype::ecs::component::Tank</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Turret.html#aa0a0a853830d106e5dab7bbff11c3eb6">rtype::ecs::component::Turret</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Zigzag.html#a272a899b7b0aed7c1c10e20b2c21989a">rtype::ecs::component::Zigzag</a>
 </li>
 <li>getSize()
@@ -174,8 +184,8 @@ $(function() {
 , <a class="el" href="classrtype_1_1ecs_1_1system_1_1EnemypathSystem.html#aea73d42c16123795e1d66408ff548c09">rtype::ecs::system::EnemypathSystem</a>
 , <a class="el" href="classrtype_1_1ecs_1_1system_1_1ISystem.html#ae6fff77020448f217a0b0ede62a1f45a">rtype::ecs::system::ISystem</a>
 , <a class="el" href="classrtype_1_1ecs_1_1system_1_1MovementSystem.html#a754ecabfae6db980d7caabe88c8e6747">rtype::ecs::system::MovementSystem</a>
-, <a class="el" href="classrtype_1_1ecs_1_1system_1_1Particles.html#ab5e7483662dcb5cf2f9fbf9a55544982">rtype::ecs::system::Particles</a>
-, <a class="el" href="classrtype_1_1ecs_1_1system_1_1Sound.html#af6872a4aa5d7cee182e0a9d7933453a8">rtype::ecs::system::Sound</a>
+, <a class="el" href="classrtype_1_1ecs_1_1system_1_1ParticlesSystem.html#af3afbb0352982d1b6eae7c3d20b7682a">rtype::ecs::system::ParticlesSystem</a>
+, <a class="el" href="classrtype_1_1ecs_1_1system_1_1SoundSystem.html#a176cb600e64b0c46686f98774012a604">rtype::ecs::system::SoundSystem</a>
 </li>
 <li>getType()
 : <a class="el" href="classrtype_1_1ecs_1_1component_1_1Alive.html#a5a7b8455acf0165e37aa9e1a903b9be4">rtype::ecs::component::Alive</a>
@@ -183,10 +193,17 @@ $(function() {
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Drawable2D.html#a2909fa9869733fc246a2a9dcbeb6f86a">rtype::ecs::component::Drawable2D</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1IComponent.html#af486fbee8563997742770b9f6f0d025e">rtype::ecs::component::IComponent</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Inventory.html#a369910bd1717c008f168e8cff930b797">rtype::ecs::component::Inventory</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Kamikaze.html#a0a313a3513379ac9f143801da50175a4">rtype::ecs::component::Kamikaze</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a8c6c8692ccbdcd861282505a85b2874c">rtype::ecs::component::Projectile</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Recruit.html#a360cede246b1ef66f6ca1c22af78a941">rtype::ecs::component::Recruit</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Rusher.html#a65c822072357481b249e82b9bd6bf751">rtype::ecs::component::Rusher</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Sniper.html#aa482a2c6f95ebb548ccd31739e5309db">rtype::ecs::component::Sniper</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Sound.html#a5bd76ee81daa29b2500e11733610ba54">rtype::ecs::component::Sound</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Stealthy.html#af202be8fa1fcee989d848c717b09ae18">rtype::ecs::component::Stealthy</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Support.html#a41ec1f165defdb7b91eef48578754764">rtype::ecs::component::Support</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Tank.html#ac88a7a51506dfc0f1ed65c79c6c66e9f">rtype::ecs::component::Tank</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Transform.html#a0df009bf0e6d10a6d7008012ca9a0c9c">rtype::ecs::component::Transform</a>
+, <a class="el" href="classrtype_1_1ecs_1_1component_1_1Turret.html#afe333f91faad5c57216aac39fbc92157">rtype::ecs::component::Turret</a>
 , <a class="el" href="classrtype_1_1ecs_1_1component_1_1Zigzag.html#a09ead812de6ba40e7767b022f2f95504">rtype::ecs::component::Zigzag</a>
 </li>
 <li>global_position
