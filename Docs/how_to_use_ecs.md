@@ -35,11 +35,9 @@ int main()
 
 result :
 
-B je suis vivant
+B i'm alive
 
-C je suis mort
-
-L'univers est un espace infini où s'entrechoque tous les hasards.
+C i'm dead
 
 ## Next the Entity with her component
 
@@ -81,48 +79,48 @@ int main()
     
     Player.addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE, true);
     if (Player.hasCompoType(rtype::ecs::component::ALIVE))
-        std::cout << "J'ai bien le composent alive" << std::endl;
+        std::cout << "I have the alive component" << std::endl;
     std::cout << "Hp = " << Player.getComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE) ->getAlive() << std::endl;
-    std::cout << "Je passe Alive a false" << std::endl;
+    std::cout << "Im setting alive to false" << std::endl;
     Player.getComponent<rtype::ecs::component::Alive>(rtype::ecs::component::compoType::ALIVE)->setAlive(false);
     std::cout << "Hp = " << Player.getComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE) ->getAlive() << std::endl;
-    std::cout << "J'essaye de rajouter un componeent Alive" << std::endl;
+    std::cout << "I try to add an other alive component" << std::endl;
     Player.addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE, true);
     if (Player.hasCompoType(rtype::ecs::component::ALIVE))
-        std::cout << "J'ai toujours le composent alive" << std::endl;
+        std::cout << "It already exists" << std::endl;
     Player.remove(rtype::ecs::component::compoType::ALIVE);
-    std::cout << "J'ai remove le composent alive" << std::endl;
+    std::cout << "I removed the alive component" << std::endl;
     if (Player.hasCompoType(rtype::ecs::component::ALIVE))
-        std::cout << "J'ai toujours le composent alive" << std::endl;
+        std::cout << "I still have the alive component" << std::endl;
     else
-        std::cout << "J'ai plus le composent alive" << std::endl;
-    std::cout << "J'ajouter un componeent Alive" << std::endl;
+        std::cout << "I don't have anymore the alive component" << std::endl;
+    std::cout << "I'm adding a new alive component" << std::endl;
     Player.addComponent<rtype::ecs::component::Alive>(rtype::ecs::component::ALIVE, true);
     if (Player.hasCompoType(rtype::ecs::component::ALIVE))
-        std::cout << "J'ai bien le composent alive" << std::endl;
+        std::cout << "I have the alive component" << std::endl;
     return 0;
 }
 ```
 result :
 
-J'ai bien le composent alive
+I have the alive component
 
 Hp = 1
 
-Je passe Alive a false
+Im setting alive to false
 
 Hp = 0
 
-J'essaye de rajouter un componeent Alive
+I try to add an other alive component
 
-Component already exist
+It already exists
 
-J'ai toujours le composent alive
+I removed the alive component
 
-J'ai remove le composent alive
+I still have the alive component
 
-J'ai plus le composent alive
+I don't have anymore the alive component
 
-J'ajouter un componeent Alive
+I'm adding a new alive component
 
-J'ai bien le composent alive
+I have the alive component

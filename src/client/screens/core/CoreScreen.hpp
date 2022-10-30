@@ -5,6 +5,7 @@
 
 #include "../IScreen.hpp"
 #include "../../../ecs/world.hpp"
+#include "../../script/Script.hpp"
 
 namespace rtype
 {
@@ -110,7 +111,12 @@ namespace rtype
             * @brief Generic function to create an enemy
             * 
             */
-            void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y);
+            void generateEnemy(int shipType, bool dirHor, bool dirVer, int currWave, float x, float y);
+            /**
+            * @brief Spawn enemies depending on the script
+            * 
+            */
+           void spawnEnemiesFromScript(void);
             /**
             * @brief Handle player position when he is out of the screen
             * 
@@ -130,6 +136,11 @@ namespace rtype
              * 
              */
             rtype::ecs::world::World _world;
+            /**
+             * @brief Script object to make enemies spawn
+             * 
+             */
+            rtype::Script _script;
         };
     }
 }
