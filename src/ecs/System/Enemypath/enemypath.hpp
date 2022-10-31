@@ -33,6 +33,7 @@ namespace rtype
                  * @brief Update Enemypath entities
                  *
                  * @param entities Entity to update
+                 * @param gameEngine Game engine
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
                 /**
