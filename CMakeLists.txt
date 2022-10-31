@@ -26,6 +26,7 @@ set(EVENTSROOT ${SRCCLIENT}/events/)
 set(GAMEROOT ${SRCCLIENT}/game/)
 set(SCREENSROOT ${SRCCLIENT}/screens/)
 set(TOOLSROOT ${SRCCLIENT}/tools/)
+set(SCRIPTROOT ${SRCCLIENT}/script/)
 
 set(SRC_ECS
     ${ECSROOT}Entity/entity.cpp
@@ -117,6 +118,11 @@ set(SRC_TOOLS
     ${TOOLSROOT}Tools.hpp
 )
 
+set(SRC_SCRIPT
+    ${SCRIPTROOT}Script.cpp
+    ${SCRIPTROOT}Script.hpp
+)
+
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
     ${SRCCLIENT}Globals.hpp
@@ -127,6 +133,7 @@ set(SRC_CLIENT
     ${SRC_GAME}
     ${SRC_SCREENS}
     ${SRC_TOOLS}
+    ${SRC_SCRIPT}
     ${SRC_UTILS}
 )
 
