@@ -99,56 +99,57 @@ $(function() {
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#afc9fa03ae2612ed7e7c69d371c4d366f">   29</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classrtype_1_1Game.html#afc9fa03ae2612ed7e7c69d371c4d366f">Musics</a> {};</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classrtype_1_1Game.html#aaca40646ad638e53cb839d27c74607fe">Game</a>(<span class="keywordtype">size_t</span> baseFps = 60);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classrtype_1_1Game.html#ad11f9ca5794fc4ffbdf8ac4456fbaa02">~Game</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ae80d2383d85fcde6e9efa46059d60773">init</a>(std::string flag);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#a52550985c07cec824279098c2cec645e">run</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#aae8a001ff523522747e8c21a31975d86">update</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classrtype_1_1Game.html#ab265419c254eb25493d0eccde5912e8f">processEvents</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classrtype_1_1Game.html#ac50203a1f323a2f45e9d5f533cc9b135">handleEvent</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ad17c5b0405f17b5d3ccff3c30e61b457">initSounds</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#a92fc3e6ecf45aafb2b5b484d1fd98bb0">initMusic</a>();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ab754fac0847903a6a0332697038566af">destroy</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#a2d5d08ea9f03a880bc09d8f05dfc9736">handleScreensSwap</a>(<span class="keywordtype">int</span> ret);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ace8b04de937cdf1c79008a45215470cb">destroyLastScene</a>();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#aeccb692df72b8d5278cb8a2611b060bf">setActualScreen</a>(<a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> newScreen);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// /**</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">//  * @brief Set the Sound Event</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">//  *</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">//  * @param entititesIndex Index for entity</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">//  */</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// void setSoundEvent(int entititesIndex);</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// /**</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//  * @brief Add sound entity</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment">//  *</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">//  * @param entity Entity sound to add</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">//  */</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">// void addSoundEntity(std::unique_ptr&lt;rtype::ecs::entity::Entity&gt; entity);</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">// /**</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="comment">//  * @brief Add sound system</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment">//  *</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">//  * @param system System sound to add</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">//  */</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">// void addSoundSystem(std::unique_ptr&lt;rtype::ecs::system::ISystem&gt; system);</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="classClient.html">Client</a> *_client;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ae80d2383d85fcde6e9efa46059d60773">init</a>(std::string flag);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#a52550985c07cec824279098c2cec645e">run</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#aae8a001ff523522747e8c21a31975d86">update</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classrtype_1_1Game.html#ab265419c254eb25493d0eccde5912e8f">processEvents</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classrtype_1_1Game.html#ac50203a1f323a2f45e9d5f533cc9b135">handleEvent</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ad17c5b0405f17b5d3ccff3c30e61b457">initSounds</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#a92fc3e6ecf45aafb2b5b484d1fd98bb0">initMusic</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ab754fac0847903a6a0332697038566af">destroy</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#a2d5d08ea9f03a880bc09d8f05dfc9736">handleScreensSwap</a>(<span class="keywordtype">int</span> ret);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#ace8b04de937cdf1c79008a45215470cb">destroyLastScene</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Game.html#aeccb692df72b8d5278cb8a2611b060bf">setActualScreen</a>(<a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> newScreen);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">// /**</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">//  * @brief Set the Sound Event</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">//  *</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">//  * @param entititesIndex Index for entity</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">//  */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// void setSoundEvent(int entititesIndex);</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// /**</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment">//  * @brief Add sound entity</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">//  *</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">//  * @param entity Entity sound to add</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">//  */</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">// void addSoundEntity(std::unique_ptr&lt;rtype::ecs::entity::Entity&gt; entity);</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="comment">// /**</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment">//  * @brief Add sound system</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">//  *</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">//  * @param system System sound to add</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">//  */</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">// void addSoundSystem(std::unique_ptr&lt;rtype::ecs::system::ISystem&gt; system);</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">   96</a></span>&#160;        sf::RenderWindow <a class="code" href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">_window</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#a0f1a862771843ab1bc8ae7700710863d">   98</a></span>&#160;        sf::Clock <a class="code" href="classrtype_1_1Game.html#a0f1a862771843ab1bc8ae7700710863d">_clock</a>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _actualScreen;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">size_t</span> _fps;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1IntroScreen.html">rtype::menu::IntroScreen</a> *_intro;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MenuScreen.html">rtype::menu::MenuScreen</a> *_menu;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1OptionsScreen.html">rtype::menu::OptionsScreen</a> *_options;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MultiplayerScreen.html">rtype::menu::MultiplayerScreen</a> *_multiplayer;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1RoomScreen.html">rtype::menu::RoomScreen</a> *_room;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1CoreScreen.html">rtype::menu::CoreScreen</a> *_core;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        sf::Event _sfmlEvent;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <a class="code" href="structrtype_1_1Event.html">rtype::Event</a> _event;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _lastScene;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        boost::asio::io_service _ioService;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="classrtype_1_1Events.html">Events</a> _eventClass;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    };</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#a43ab6bac586138e3dd22294ecc1601c3">   96</a></span>&#160;        <a class="code" href="classClient.html">Client</a> *<a class="code" href="classrtype_1_1Game.html#a43ab6bac586138e3dd22294ecc1601c3">_client</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">   99</a></span>&#160;        sf::RenderWindow <a class="code" href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">_window</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#a0f1a862771843ab1bc8ae7700710863d">  101</a></span>&#160;        sf::Clock <a class="code" href="classrtype_1_1Game.html#a0f1a862771843ab1bc8ae7700710863d">_clock</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _actualScreen;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">size_t</span> _fps;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1IntroScreen.html">rtype::menu::IntroScreen</a> *_intro;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MenuScreen.html">rtype::menu::MenuScreen</a> *_menu;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1OptionsScreen.html">rtype::menu::OptionsScreen</a> *_options;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MultiplayerScreen.html">rtype::menu::MultiplayerScreen</a> *_multiplayer;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1RoomScreen.html">rtype::menu::RoomScreen</a> *_room;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1CoreScreen.html">rtype::menu::CoreScreen</a> *_core;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        sf::Event _sfmlEvent;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="structrtype_1_1Event.html">rtype::Event</a> _event;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _lastScene;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        boost::asio::io_service _ioService;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="classrtype_1_1Events.html">Events</a> _eventClass;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    };</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructrtype_1_1Event_html"><div class="ttname"><a href="structrtype_1_1Event.html">rtype::Event</a></div><div class="ttdef"><b>Definition:</b> EventCode.hpp:21</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_aaca40646ad638e53cb839d27c74607fe"><div class="ttname"><a href="classrtype_1_1Game.html#aaca40646ad638e53cb839d27c74607fe">rtype::Game::Game</a></div><div class="ttdeci">Game(size_t baseFps=60)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> Game.cpp:17</div></div>
@@ -166,18 +167,19 @@ $(function() {
 <div class="ttc" id="aclassrtype_1_1menu_1_1MultiplayerScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1MultiplayerScreen.html">rtype::menu::MultiplayerScreen</a></div><div class="ttdoc">Class for the Multiplayer Screen.</div><div class="ttdef"><b>Definition:</b> MultiplayerScreen.hpp:26</div></div>
 <div class="ttc" id="aclassrtype_1_1menu_1_1IntroScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1IntroScreen.html">rtype::menu::IntroScreen</a></div><div class="ttdoc">Class for the Intro Screen.</div><div class="ttdef"><b>Definition:</b> IntroScreen.hpp:25</div></div>
 <div class="ttc" id="aclassrtype_1_1menu_1_1CoreScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1CoreScreen.html">rtype::menu::CoreScreen</a></div><div class="ttdoc">Class for the Core Screen.</div><div class="ttdef"><b>Definition:</b> CoreScreen.hpp:18</div></div>
-<div class="ttc" id="aclassrtype_1_1Game_html_a0f1a862771843ab1bc8ae7700710863d"><div class="ttname"><a href="classrtype_1_1Game.html#a0f1a862771843ab1bc8ae7700710863d">rtype::Game::_clock</a></div><div class="ttdeci">sf::Clock _clock</div><div class="ttdoc">Clock.</div><div class="ttdef"><b>Definition:</b> Game.hpp:98</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_a0f1a862771843ab1bc8ae7700710863d"><div class="ttname"><a href="classrtype_1_1Game.html#a0f1a862771843ab1bc8ae7700710863d">rtype::Game::_clock</a></div><div class="ttdeci">sf::Clock _clock</div><div class="ttdoc">Clock.</div><div class="ttdef"><b>Definition:</b> Game.hpp:101</div></div>
 <div class="ttc" id="aclassrtype_1_1menu_1_1OptionsScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1OptionsScreen.html">rtype::menu::OptionsScreen</a></div><div class="ttdoc">Class for the Options Screen.</div><div class="ttdef"><b>Definition:</b> OptionsScreen.hpp:25</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html"><div class="ttname"><a href="classrtype_1_1Game.html">rtype::Game</a></div><div class="ttdoc">Game class.</div><div class="ttdef"><b>Definition:</b> Game.hpp:22</div></div>
 <div class="ttc" id="aclassrtype_1_1Events_html"><div class="ttname"><a href="classrtype_1_1Events.html">rtype::Events</a></div><div class="ttdoc">Events base class.</div><div class="ttdef"><b>Definition:</b> Events.hpp:19</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a87d1cf3b32b4ed2fbbf7289dfc235f69"><div class="ttname"><a href="classrtype_1_1Game.html#a87d1cf3b32b4ed2fbbf7289dfc235f69">rtype::Game::Sounds</a></div><div class="ttdeci">Sounds</div><div class="ttdoc">enum containing all type of sounds</div><div class="ttdef"><b>Definition:</b> Game.hpp:27</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_ae80d2383d85fcde6e9efa46059d60773"><div class="ttname"><a href="classrtype_1_1Game.html#ae80d2383d85fcde6e9efa46059d60773">rtype::Game::init</a></div><div class="ttdeci">void init(std::string flag)</div><div class="ttdoc">Initialize the game class elements.</div><div class="ttdef"><b>Definition:</b> Game.cpp:29</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a92fc3e6ecf45aafb2b5b484d1fd98bb0"><div class="ttname"><a href="classrtype_1_1Game.html#a92fc3e6ecf45aafb2b5b484d1fd98bb0">rtype::Game::initMusic</a></div><div class="ttdeci">void initMusic()</div><div class="ttdoc">Init all musics.</div><div class="ttdef"><b>Definition:</b> Game.cpp:55</div></div>
-<div class="ttc" id="aclassrtype_1_1Game_html_aa03d028860cd463c855e6e5bb716b616"><div class="ttname"><a href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">rtype::Game::_window</a></div><div class="ttdeci">sf::RenderWindow _window</div><div class="ttdoc">Game window.</div><div class="ttdef"><b>Definition:</b> Game.hpp:96</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_aa03d028860cd463c855e6e5bb716b616"><div class="ttname"><a href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">rtype::Game::_window</a></div><div class="ttdeci">sf::RenderWindow _window</div><div class="ttdoc">Game window.</div><div class="ttdef"><b>Definition:</b> Game.hpp:99</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_ab754fac0847903a6a0332697038566af"><div class="ttname"><a href="classrtype_1_1Game.html#ab754fac0847903a6a0332697038566af">rtype::Game::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdoc">Destroy all.</div><div class="ttdef"><b>Definition:</b> Game.cpp:201</div></div>
 <div class="ttc" id="aclassClient_html"><div class="ttname"><a href="classClient.html">Client</a></div><div class="ttdoc">Client class.</div><div class="ttdef"><b>Definition:</b> Client.hpp:27</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a2d5d08ea9f03a880bc09d8f05dfc9736"><div class="ttname"><a href="classrtype_1_1Game.html#a2d5d08ea9f03a880bc09d8f05dfc9736">rtype::Game::handleScreensSwap</a></div><div class="ttdeci">void handleScreensSwap(int ret)</div><div class="ttdoc">Swap between screens.</div><div class="ttdef"><b>Definition:</b> Game.cpp:123</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_aeccb692df72b8d5278cb8a2611b060bf"><div class="ttname"><a href="classrtype_1_1Game.html#aeccb692df72b8d5278cb8a2611b060bf">rtype::Game::setActualScreen</a></div><div class="ttdeci">void setActualScreen(Screens newScreen)</div><div class="ttdoc">Set the actual screen.</div><div class="ttdef"><b>Definition:</b> Game.cpp:180</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_a43ab6bac586138e3dd22294ecc1601c3"><div class="ttname"><a href="classrtype_1_1Game.html#a43ab6bac586138e3dd22294ecc1601c3">rtype::Game::_client</a></div><div class="ttdeci">Client * _client</div><div class="ttdoc">Game client.</div><div class="ttdef"><b>Definition:</b> Game.hpp:96</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['what_421',['what',['../classEcsExceptions.html#a213d04f2c03ec10b20c8e511407f8937',1,'EcsExceptions::what()'],['../classExceptions.html#a805e009c7efc281ac324df7f602589bd',1,'Exceptions::what()'],['../classGameExceptions.html#a1fa086c22426d8134d184a315ccf8020',1,'GameExceptions::what()'],['../classScreensExceptions.html#a63d4e5ef65339241eb708cfced0ec994',1,'ScreensExceptions::what()'],['../classNonEmptyQueue.html#a79f35647c87aaa3365b1537e1e38b3a7',1,'NonEmptyQueue::what()']]],
-  ['world_422',['World',['../classrtype_1_1ecs_1_1world_1_1World.html#a754cb8825c5750ac897beb22e2a35324',1,'rtype::ecs::world::World']]]
+  ['tank_564',['Tank',['../classrtype_1_1ecs_1_1component_1_1Tank.html#a12e4b5500b53569c8d02c3b222bd6c1b',1,'rtype::ecs::component::Tank']]],
+  ['tools_565',['Tools',['../classrtype_1_1Tools.html#a277189352919f43703148c7ecac0df65',1,'rtype::Tools']]],
+  ['transform_566',['Transform',['../classrtype_1_1ecs_1_1component_1_1Transform.html#aa699615f0f152068e190337ab60219c2',1,'rtype::ecs::component::Transform::Transform()'],['../classrtype_1_1ecs_1_1component_1_1Transform.html#affa79e258c711dbd5fd80fafd36c29e4',1,'rtype::ecs::component::Transform::Transform(float posX, float posY, float speedX, float speedY)']]],
+  ['turret_567',['Turret',['../classrtype_1_1ecs_1_1component_1_1Turret.html#a74654b7801c35d2bbf7ee62cbf227e16',1,'rtype::ecs::component::Turret']]]
 ];

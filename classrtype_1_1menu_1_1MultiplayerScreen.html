@@ -134,8 +134,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abec59f075d686780abddfd9bc455d8cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc">createRoom</a> (<a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
 <tr class="memdesc:abec59f075d686780abddfd9bc455d8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Room.  <a href="classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc">More...</a><br /></td></tr>
 <tr class="separator:abec59f075d686780abddfd9bc455d8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f7bb92c51a607822474b001bd1b172b"><td class="memItemLeft" align="right" valign="top"><a id="a4f7bb92c51a607822474b001bd1b172b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>joinRoom</b> (int slotPos, float offset, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
+<tr class="memitem:a4f7bb92c51a607822474b001bd1b172b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MultiplayerScreen.html#a4f7bb92c51a607822474b001bd1b172b">joinRoom</a> (int slotPos, float offset, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
+<tr class="memdesc:a4f7bb92c51a607822474b001bd1b172b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join a Room.  <a href="classrtype_1_1menu_1_1MultiplayerScreen.html#a4f7bb92c51a607822474b001bd1b172b">More...</a><br /></td></tr>
 <tr class="separator:a4f7bb92c51a607822474b001bd1b172b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca6548d3f82899ff62f4efe3e40481e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MultiplayerScreen.html#aca6548d3f82899ff62f4efe3e40481e7">deleteRoom</a> (int slotPos, float offset, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
 <tr class="memdesc:aca6548d3f82899ff62f4efe3e40481e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a Room.  <a href="classrtype_1_1menu_1_1MultiplayerScreen.html#aca6548d3f82899ff62f4efe3e40481e7">More...</a><br /></td></tr>
@@ -694,6 +694,58 @@ false If surface is not hovered </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true If surface is clicked </dd>
 <dd>
 false If surface is not clicked </dd></dl>
+
+</div>
+</div>
+<a id="a4f7bb92c51a607822474b001bd1b172b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f7bb92c51a607822474b001bd1b172b">&#9670;&nbsp;</a></span>joinRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rtype::menu::MultiplayerScreen::joinRoom </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slotPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *&#160;</td>
+          <td class="paramname"><em>gameEngine</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Join a Room. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slotPos</td><td>Position of the slot </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the slot </td></tr>
+    <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
+    <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool If room is joined </dd></dl>
 
 </div>
 </div>

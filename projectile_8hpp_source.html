@@ -93,27 +93,28 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">namespace </span>component</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classrtype_1_1ecs_1_1component_1_1Projectile.html">   22</a></span>&#160;            <span class="keyword">class </span><a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html">Projectile</a> : <span class="keyword">public</span> <a class="code" href="classrtype_1_1ecs_1_1component_1_1IComponent.html">IComponent</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;              <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html">Projectile</a>(rtype::ecs::component::projectileType type);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                ~<a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html">Projectile</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                rtype::ecs::component::compoType <a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a8c6c8692ccbdcd861282505a85b2874c">getType</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                rtype::ecs::component::projectileType getProjectileType() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;              <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                rtype::ecs::component::projectileType _projectileType;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        } <span class="comment">// namespace component</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }     <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;} <span class="comment">// namespace rtype</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !PROJECTILE_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classrtype_1_1ecs_1_1component_1_1Projectile.html">   26</a></span>&#160;            <span class="keyword">class </span><a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html">Projectile</a> : <span class="keyword">public</span> <a class="code" href="classrtype_1_1ecs_1_1component_1_1IComponent.html">IComponent</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;              <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html#ab9fd84963205b3ca9688fdcdf95ba68c">Projectile</a>(rtype::ecs::component::projectileType type);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a1d801811ddd7f3f79668dd34f96d6fa5">~Projectile</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                rtype::ecs::component::compoType <a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a8c6c8692ccbdcd861282505a85b2874c">getType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                rtype::ecs::component::projectileType <a class="code" href="classrtype_1_1ecs_1_1component_1_1Projectile.html#abcb4f632b5b1a19885f40a2c6a4f9aae">getProjectileType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;              <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                rtype::ecs::component::projectileType _projectileType;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            };</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        } <span class="comment">// namespace component</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }     <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace rtype</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !PROJECTILE_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html">rtype::ecs::component::Projectile</a></div><div class="ttdef"><b>Definition:</b> projectile.hpp:22</div></div>
+<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html">rtype::ecs::component::Projectile</a></div><div class="ttdoc">Projectile component.</div><div class="ttdef"><b>Definition:</b> projectile.hpp:26</div></div>
+<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html_abcb4f632b5b1a19885f40a2c6a4f9aae"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html#abcb4f632b5b1a19885f40a2c6a4f9aae">rtype::ecs::component::Projectile::getProjectileType</a></div><div class="ttdeci">rtype::ecs::component::projectileType getProjectileType() const</div><div class="ttdoc">Get the Type of the projectile.</div><div class="ttdef"><b>Definition:</b> projectile.cpp:24</div></div>
+<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html_a1d801811ddd7f3f79668dd34f96d6fa5"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a1d801811ddd7f3f79668dd34f96d6fa5">rtype::ecs::component::Projectile::~Projectile</a></div><div class="ttdeci">~Projectile()</div><div class="ttdoc">Destroy the Projectile object.</div><div class="ttdef"><b>Definition:</b> projectile.cpp:15</div></div>
 <div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1IComponent_html"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1IComponent.html">rtype::ecs::component::IComponent</a></div><div class="ttdoc">Component interface.</div><div class="ttdef"><b>Definition:</b> IComponent.hpp:54</div></div>
-<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html_a8c6c8692ccbdcd861282505a85b2874c"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a8c6c8692ccbdcd861282505a85b2874c">rtype::ecs::component::Projectile::getType</a></div><div class="ttdeci">rtype::ecs::component::compoType getType() const</div><div class="ttdoc">Get type of the component.</div><div class="ttdef"><b>Definition:</b> projectile.cpp:19</div></div>
+<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html_ab9fd84963205b3ca9688fdcdf95ba68c"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html#ab9fd84963205b3ca9688fdcdf95ba68c">rtype::ecs::component::Projectile::Projectile</a></div><div class="ttdeci">Projectile(rtype::ecs::component::projectileType type)</div><div class="ttdoc">Construct a new Projectile object.</div><div class="ttdef"><b>Definition:</b> projectile.cpp:10</div></div>
+<div class="ttc" id="aclassrtype_1_1ecs_1_1component_1_1Projectile_html_a8c6c8692ccbdcd861282505a85b2874c"><div class="ttname"><a href="classrtype_1_1ecs_1_1component_1_1Projectile.html#a8c6c8692ccbdcd861282505a85b2874c">rtype::ecs::component::Projectile::getType</a></div><div class="ttdeci">rtype::ecs::component::compoType getType() const</div><div class="ttdoc">Get the Type of the component.</div><div class="ttdef"><b>Definition:</b> projectile.cpp:19</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -306,6 +306,17 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Generic function to create an enemy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shipType</td><td>Type of the enemy </td></tr>
+    <tr><td class="paramname">dirHor</td><td>Boolean to know if the enemy is horizontal </td></tr>
+    <tr><td class="paramname">dirVer</td><td>Boolean to know if the enemy is vertical </td></tr>
+    <tr><td class="paramname">currWave</td><td>Current wave of the game </td></tr>
+    <tr><td class="paramname">x</td><td>X position of the enemy </td></tr>
+    <tr><td class="paramname">y</td><td>Y position of the enemy </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -347,6 +358,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
+    <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine</td></tr>
   </table>
   </dd>
 </dl>
@@ -655,6 +667,7 @@ false If mouse is not on button </dd></dl>
 <p>Handle the player shooting depending of the event. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">transformCompo</td><td>Component transform of the player </td></tr>
     <tr><td class="paramname">shipCompo</td><td>Component ship of the player </td></tr>
     <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
   </table>
@@ -748,6 +761,12 @@ false If mouse is not on button </dd></dl>
 </div><div class="memdoc">
 
 <p>Update the Core Screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IScreen.html#a113e9eebb3094028921575a88ddb1d3c">rtype::IScreen</a>.</p>
 
