@@ -20,6 +20,14 @@ It will take care of dowloading the dependencies as well as compiling our code.
 
 ```./install.sh```
 
+After that you need to call the server, you can execute this command: 
+
+```./r-type_server```
+
+And then, you can connect as many clients as you wish with this command:
+
+```./r-type_client```
+
 ### On Linux, Windows & Mac
 The dependencies are [CMake](https://cmake.org/), [SFML](https://www.sfml-dev.org/index-fr.php) and [Boost](https://boost.org).
 
