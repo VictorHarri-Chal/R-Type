@@ -131,9 +131,17 @@ namespace rtype
              * @param gameEngine Game engine
              */
             void createRoom(rtype::Event &event, rtype::Game *gameEngine);
-
+            /**
+             * @brief Join a Room
+             *
+             * @param slotPos Position of the slot
+             * @param offset Offset of the slot
+             * @param event Event to be handled
+             * @param gameEngine Game engine
+             * 
+             * @return bool If room is joined
+             */
             bool joinRoom(int slotPos, float offset, rtype::Event &event, rtype::Game *gameEngine);
-
             /**
              * @brief Delete a Room
              *
