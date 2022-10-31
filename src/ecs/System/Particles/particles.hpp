@@ -33,6 +33,7 @@ namespace rtype
                  * @brief Update Particles entities
                  *
                  * @param entities Entity to update
+                 * @param gameEngine Game engine
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
                 /**
@@ -44,6 +45,10 @@ namespace rtype
 
               protected:
               private:
+                /**
+                 * @brief Clock for particles
+                 * 
+                 */
                 sf::Clock _particleClock;
 
             };

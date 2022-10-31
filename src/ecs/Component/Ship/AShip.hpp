@@ -14,7 +14,10 @@ namespace rtype
     {
         namespace component
         {
-            /// @brief Component interface
+            /**
+             * @brief Class for the AShip component
+             * 
+             */
             class AShip : public IShip {
               public:
                 /**
@@ -28,29 +31,33 @@ namespace rtype
                 /**
                  * @brief Get type of the ship.
                  *
-                 * @return the shipType value of the component.
+                 * @return rtype::ecs::component::shipType the shipType value of the component.
                  */
                 virtual rtype::ecs::component::shipType getShipType() const = 0;
                 /**
                  * @brief Getter for the current horizontal direction.
                  *
-                 * @return True if going down, False if going up.
+                 * @return True if going down
+                 * @return False if going up
                  */
                 bool getDirectionHorizontal() const;
                 /**
                  * @brief Getter for the current vertical direction.
                  *
-                 * @return True if going right, False if going left.
+                 * @return True if going right
+                 * @return False if going left
                  */
                 bool getDirectionVertical() const;
                 /**
                  * @brief Setter for the current horizontal direction.
                  *
+                 * @param dir True if horizontal
                  */
                 void setDirectionHorizontal(bool dir);
                 /**
                  * @brief Setter for the current vertical direction.
-                 *
+                 * 
+                 * @param dir True if vertical
                  */
                 void setDirectionVertical(bool dir);
                 /**
@@ -61,6 +68,8 @@ namespace rtype
                 float getHealth() const;
                 /**
                  * @brief Setter to set new health points.
+                 * 
+                 * @param health The new health amount.
                  *
                  */
                 void setHealth(float health);
@@ -72,6 +81,8 @@ namespace rtype
                 float getDamage() const;
                 /**
                  * @brief Setter to set new damage per shot.
+                 * 
+                 * @param damage The new damage per shot.
                  *
                  */
                 void setDamage(float damage);
@@ -83,6 +94,8 @@ namespace rtype
                 float getSpeed() const;
                 /**
                  * @brief Setter to set new speed value.
+                 * 
+                 * @param speed The new speed value.
                  *
                  */
                 void setSpeed(float speed);
@@ -94,11 +107,15 @@ namespace rtype
                 sf::Time getCadency() const;
                 /**
                  * @brief Setter to set new shot cadency.
+                 * 
+                 * @param cadency The new shot cadency.
                  *
                  */
                 void setCadency(sf::Time cadency);
                 /**
                  * @brief Getter for the current clock.
+                 * 
+                 * @return The current clock.
                  *
                  */
                 sf::Clock getClock() const;

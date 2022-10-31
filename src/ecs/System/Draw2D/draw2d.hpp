@@ -65,7 +65,7 @@ namespace rtype
                 /**
                  * @brief Handle and modify sprites rect to manage animations.
                  *
-                 * @param entity current entity.
+                 * @param entities Vector of entities
                  */
                 void animations(std::vector<rtype::ecs::entity::Entity*> entities);
                 /**

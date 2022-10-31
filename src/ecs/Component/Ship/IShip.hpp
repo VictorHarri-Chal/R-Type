@@ -27,19 +27,11 @@ namespace rtype
              * @param TURRET Type 3 enemy ship
              * @param KAMIKAZE Type 4 enemy ship
              */
-            enum shipType { RECRUIT,
-                            SNIPER,
-                            TANK,
-                            STEALTHY,
-                            SUPPORT,
-                            ZIGZAG,
-                            RUSHER,
-                            TURRET,
-                            KAMIKAZE,
-                            UNKNOWNSHIP
-                        };
+            enum shipType { RECRUIT, SNIPER, TANK, STEALTHY, SUPPORT, ZIGZAG, RUSHER, TURRET, KAMIKAZE, UNKNOWNSHIP };
 
-            /// @brief Component interface
+            /**
+             * @brief Class for the IShip component
+             */
             class IShip : public IComponent {
               public:
                 /**
@@ -50,29 +42,36 @@ namespace rtype
                 /**
                  * @brief Get type of the ship.
                  *
-                 * @return the shipType value of the component.
+                 * @return rtype::ecs::component::shipType The shipType value of the component.
                  */
                 virtual rtype::ecs::component::shipType getShipType() const = 0;
                 /**
                  * @brief Getter for the current horizontal direction.
                  *
-                 * @return True if going down, False if going up.
+                 * @return True if going down
+                 * @return False if going up
+
                  */
                 virtual bool getDirectionHorizontal() const = 0;
                 /**
                  * @brief Getter for the current vertical direction.
                  *
-                 * @return True if going right, False if going left.
+                 * @return True if going right
+                 * @return False if going left
                  */
                 virtual bool getDirectionVertical() const = 0;
                 /**
                  * @brief Setter for the current horizontal direction.
+                 * 
+                 * @param dir True if horizontal
                  *
                  */
                 virtual void setDirectionHorizontal(bool dir) = 0;
                 /**
                  * @brief Setter for the current vertical direction.
                  *
+                 * @param dir True if vertical
+                 * 
                  */
                 virtual void setDirectionVertical(bool dir) = 0;
                 /**
@@ -83,6 +82,8 @@ namespace rtype
                 virtual float getHealth() const = 0;
                 /**
                  * @brief Setter to set new health points.
+                 * 
+                 * @param health The new health amount.
                  *
                  */
                 virtual void setHealth(float health) = 0;
@@ -94,6 +95,8 @@ namespace rtype
                 virtual float getDamage() const = 0;
                 /**
                  * @brief Setter to set new damage per shot.
+                 * 
+                 * @param damage The new damage amount.
                  *
                  */
                 virtual void setDamage(float damage) = 0;
@@ -105,6 +108,8 @@ namespace rtype
                 virtual float getSpeed() const = 0;
                 /**
                  * @brief Setter to set new speed value.
+                 * 
+                 * @param speed The new speed value.
                  *
                  */
                 virtual void setSpeed(float speed) = 0;
@@ -116,11 +121,15 @@ namespace rtype
                 virtual sf::Time getCadency() const = 0;
                 /**
                  * @brief Setter to set new shot cadency.
+                 * 
+                 * @param cadency The new time between each shot.
                  *
                  */
                 virtual void setCadency(sf::Time cadency) = 0;
                 /**
                  * @brief Getter for the current clock.
+                 * 
+                 * @return The current clock.
                  *
                  */
                 virtual sf::Clock getClock() const = 0;
@@ -129,8 +138,9 @@ namespace rtype
                  *
                  */
                 virtual void restartClock() = 0;
+
               protected:
             };
-        }
-    }
-}
+        } // namespace component
+    }     // namespace ecs
+} // namespace rtype

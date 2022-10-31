@@ -35,12 +35,16 @@ namespace rtype
             /**
              * @brief Update the Core Screen
              * 
+             * @param gameEngine Game engine
+             * 
              */
             void update(rtype::Game *gameEngine) override;
             /**
              * @brief Handle event for the Core Screen
              * 
              * @param event Event to be handled
+             * @param gameEngine Game engine
+
              * @return int The Scene Number
              */
             int handleEvent(rtype::Event &event, rtype::Game *gameEngine) override;
@@ -92,6 +96,7 @@ namespace rtype
             /**
             * @brief Handle the player shooting depending of the event
             * 
+            * @param transformCompo Component transform of the player
             * @param shipCompo Component ship of the player
             * @param event Event to be handled
             */
@@ -109,6 +114,12 @@ namespace rtype
             /**
             * @brief Generic function to create an enemy
             * 
+            * @param shipType Type of the enemy
+            * @param dirHor Boolean to know if the enemy is horizontal
+            * @param dirVer Boolean to know if the enemy is vertical
+            * @param currWave Current wave of the game
+            * @param x X position of the enemy
+            * @param y Y position of the enemy
             */
             void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y);
             /**
