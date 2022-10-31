@@ -17,6 +17,11 @@ sf::Clock rtype::Script::getClock() const
     return (this->_clock);
 }
 
+void rtype::Script::restartClock()
+{
+    _clock.restart();
+}
+
 std::vector<std::vector<int>> rtype::Script::getLines() const
 {
     return (this->_lines);
