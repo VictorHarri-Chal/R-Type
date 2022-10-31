@@ -97,9 +97,8 @@ Getting started -&gt; World</h1>
 <div class="line">    return 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>result :</p>
-<p>B je suis vivant</p>
-<p>C je suis mort</p>
-<p>L'univers est un espace infini où s'entrechoque tous les hasards.</p>
+<p>B i'm alive</p>
+<p>C i'm dead</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 Next the Entity with her component</h1>
 <p>Next you will need <a class="el" href="classrtype_1_1ecs_1_1entity_1_1Entity.html" title="Entity class.">rtype::ecs::entity::Entity</a> object. It will represent the object that contains all your componenent.</p>
@@ -132,39 +131,39 @@ Next the Entity with her component</h1>
 <div class="line">    </div>
 <div class="line">    Player.addComponent&lt;rtype::ecs::component::Alive&gt;(rtype::ecs::component::ALIVE, true);</div>
 <div class="line">    if (Player.hasCompoType(rtype::ecs::component::ALIVE))</div>
-<div class="line">        std::cout &lt;&lt; &quot;J&#39;ai bien le composent alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">        std::cout &lt;&lt; &quot;I have the alive component&quot; &lt;&lt; std::endl;</div>
 <div class="line">    std::cout &lt;&lt; &quot;Hp = &quot; &lt;&lt; Player.getComponent&lt;rtype::ecs::component::Alive&gt;(rtype::ecs::component::ALIVE) -&gt;getAlive() &lt;&lt; std::endl;</div>
-<div class="line">    std::cout &lt;&lt; &quot;Je passe Alive a false&quot; &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; &quot;Im setting alive to false&quot; &lt;&lt; std::endl;</div>
 <div class="line">    Player.getComponent&lt;rtype::ecs::component::Alive&gt;(rtype::ecs::component::compoType::ALIVE)-&gt;setAlive(false);</div>
 <div class="line">    std::cout &lt;&lt; &quot;Hp = &quot; &lt;&lt; Player.getComponent&lt;rtype::ecs::component::Alive&gt;(rtype::ecs::component::ALIVE) -&gt;getAlive() &lt;&lt; std::endl;</div>
-<div class="line">    std::cout &lt;&lt; &quot;J&#39;essaye de rajouter un componeent Alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; &quot;I try to add an other alive component&quot; &lt;&lt; std::endl;</div>
 <div class="line">    Player.addComponent&lt;rtype::ecs::component::Alive&gt;(rtype::ecs::component::ALIVE, true);</div>
 <div class="line">    if (Player.hasCompoType(rtype::ecs::component::ALIVE))</div>
-<div class="line">        std::cout &lt;&lt; &quot;J&#39;ai toujours le composent alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">        std::cout &lt;&lt; &quot;It already exists&quot; &lt;&lt; std::endl;</div>
 <div class="line">    Player.remove(rtype::ecs::component::compoType::ALIVE);</div>
-<div class="line">    std::cout &lt;&lt; &quot;J&#39;ai remove le composent alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; &quot;I removed the alive component&quot; &lt;&lt; std::endl;</div>
 <div class="line">    if (Player.hasCompoType(rtype::ecs::component::ALIVE))</div>
-<div class="line">        std::cout &lt;&lt; &quot;J&#39;ai toujours le composent alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">        std::cout &lt;&lt; &quot;I still have the alive component&quot; &lt;&lt; std::endl;</div>
 <div class="line">    else</div>
-<div class="line">        std::cout &lt;&lt; &quot;J&#39;ai plus le composent alive&quot; &lt;&lt; std::endl;</div>
-<div class="line">    std::cout &lt;&lt; &quot;J&#39;ajouter un componeent Alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">        std::cout &lt;&lt; &quot;I don&#39;t have anymore the alive component&quot; &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; &quot;I&#39;m adding a new alive component&quot; &lt;&lt; std::endl;</div>
 <div class="line">    Player.addComponent&lt;rtype::ecs::component::Alive&gt;(rtype::ecs::component::ALIVE, true);</div>
 <div class="line">    if (Player.hasCompoType(rtype::ecs::component::ALIVE))</div>
-<div class="line">        std::cout &lt;&lt; &quot;J&#39;ai bien le composent alive&quot; &lt;&lt; std::endl;</div>
+<div class="line">        std::cout &lt;&lt; &quot;I have the alive component&quot; &lt;&lt; std::endl;</div>
 <div class="line">    return 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>result :</p>
-<p>J'ai bien le composent alive</p>
+<p>I have the alive component</p>
 <p>Hp = 1</p>
-<p>Je passe Alive a false</p>
+<p>Im setting alive to false</p>
 <p>Hp = 0</p>
-<p>J'essaye de rajouter un componeent Alive</p>
-<p>Component already exist</p>
-<p>J'ai toujours le composent alive</p>
-<p>J'ai remove le composent alive</p>
-<p>J'ai plus le composent alive</p>
-<p>J'ajouter un componeent Alive</p>
-<p>J'ai bien le composent alive </p>
+<p>I try to add an other alive component</p>
+<p>It already exists</p>
+<p>I removed the alive component</p>
+<p>I still have the alive component</p>
+<p>I don't have anymore the alive component</p>
+<p>I'm adding a new alive component</p>
+<p>I have the alive component </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

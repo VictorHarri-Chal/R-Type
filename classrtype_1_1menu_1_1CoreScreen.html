@@ -134,9 +134,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aec8cbcfdab922849077ecb10016fbc48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#aec8cbcfdab922849077ecb10016fbc48">manageEnemiesShooting</a> (void)</td></tr>
 <tr class="memdesc:aec8cbcfdab922849077ecb10016fbc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle automatic shooting for all enemies.  <a href="classrtype_1_1menu_1_1CoreScreen.html#aec8cbcfdab922849077ecb10016fbc48">More...</a><br /></td></tr>
 <tr class="separator:aec8cbcfdab922849077ecb10016fbc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce5c598ab4839c93869bda18d7da4fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a4ce5c598ab4839c93869bda18d7da4fc">generateEnemy</a> (rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y)</td></tr>
-<tr class="memdesc:a4ce5c598ab4839c93869bda18d7da4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic function to create an enemy.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a4ce5c598ab4839c93869bda18d7da4fc">More...</a><br /></td></tr>
-<tr class="separator:a4ce5c598ab4839c93869bda18d7da4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad466700c393730a7464fd55af714c5d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#ad466700c393730a7464fd55af714c5d3">generateEnemy</a> (int shipType, bool dirHor, bool dirVer, int currWave, float x, float y)</td></tr>
+<tr class="memdesc:ad466700c393730a7464fd55af714c5d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic function to create an enemy.  <a href="classrtype_1_1menu_1_1CoreScreen.html#ad466700c393730a7464fd55af714c5d3">More...</a><br /></td></tr>
+<tr class="separator:ad466700c393730a7464fd55af714c5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a364f3e41b579b1119447cd780741090b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a364f3e41b579b1119447cd780741090b">spawnEnemiesFromScript</a> (void)</td></tr>
+<tr class="memdesc:a364f3e41b579b1119447cd780741090b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawn enemies depending on the script.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a364f3e41b579b1119447cd780741090b">More...</a><br /></td></tr>
+<tr class="separator:a364f3e41b579b1119447cd780741090b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36b39a35361ca280689090c0833ea98e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a36b39a35361ca280689090c0833ea98e">handleWindowBorder</a> (void)</td></tr>
 <tr class="memdesc:a36b39a35361ca280689090c0833ea98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle player position when he is out of the screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a36b39a35361ca280689090c0833ea98e">More...</a><br /></td></tr>
 <tr class="separator:a36b39a35361ca280689090c0833ea98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,8 +258,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4ce5c598ab4839c93869bda18d7da4fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ce5c598ab4839c93869bda18d7da4fc">&#9670;&nbsp;</a></span>generateEnemy()</h2>
+<a id="ad466700c393730a7464fd55af714c5d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad466700c393730a7464fd55af714c5d3">&#9670;&nbsp;</a></span>generateEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +267,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void rtype::menu::CoreScreen::generateEnemy </td>
           <td>(</td>
-          <td class="paramtype">rtype::ecs::component::shipType&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>shipType</em>, </td>
         </tr>
         <tr>
@@ -733,6 +736,26 @@ false If mouse is not on button </dd></dl>
 <p>Save the paralax assets x and y throught scenes. </p>
 
 <p>Implements <a class="el" href="classrtype_1_1IScreen.html#a7d99f8f2d41eeb55ec764a716c0808ca">rtype::IScreen</a>.</p>
+
+</div>
+</div>
+<a id="a364f3e41b579b1119447cd780741090b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a364f3e41b579b1119447cd780741090b">&#9670;&nbsp;</a></span>spawnEnemiesFromScript()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::menu::CoreScreen::spawnEnemiesFromScript </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Spawn enemies depending on the script. </p>
 
 </div>
 </div>
