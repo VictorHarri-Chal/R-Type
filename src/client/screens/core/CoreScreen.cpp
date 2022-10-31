@@ -285,7 +285,7 @@ void rtype::menu::CoreScreen::generateEnemy(int shipType, bool dirHor, bool dirV
 void rtype::menu::CoreScreen::spawnEnemiesFromScript(void)
 {
     for (size_t i = 0; i < _script.getLines().size(); i++) {
-        if (_script.getLines().at(i).size() > 1 && _script.getLines().at(i).at(7)) {
+        if (_script.getLines().at(i).size() > 2 && _script.getLines().at(i).at(7)) {
             sf::Time time = sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)));
             if (_script.getClock().getElapsedTime() >= time) {
                 generateEnemy(_script.getLines().at(i).at(1), static_cast<bool>(_script.getLines().at(i).at(2)), 
