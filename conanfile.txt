@@ -1,6 +1,7 @@
 [requires]
 boost/1.76.0
 sfml/2.5.1
+zlib/1.2.12
 
 [options]
 boost:shared=True
