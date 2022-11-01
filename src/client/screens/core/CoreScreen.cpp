@@ -13,7 +13,7 @@
 #include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::CoreScreen::CoreScreen()
+rtype::menu::CoreScreen::CoreScreen(): _currWave(1)
 {
 }
 
@@ -79,15 +79,15 @@ void rtype::menu::CoreScreen::init()
     ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
-    rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
-    if (ship2 == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
-    ship2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
-    ship2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    ship2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
-    ship2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
-    this->_world.addEntity(ship2);
+    // rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    // if (ship2 == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+    // ship2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
+    // ship2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    // ship2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    // ship2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+    // ship2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
+    // this->_world.addEntity(ship2);
 }
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
@@ -107,7 +107,7 @@ void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
     destroySprites();
     paralax();
     spawnEnemiesFromScript();
-    manageEnemiesShooting();
+    // manageEnemiesShooting();
     handleWindowBorder();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
@@ -237,7 +237,7 @@ void rtype::menu::CoreScreen::manageEnemiesShooting(void)
     }
 }
 
-void rtype::menu::CoreScreen::generateEnemy(int shipType, bool dirHor, bool dirVer, int currWave, float x, float y)
+void rtype::menu::CoreScreen::generateEnemy(int currWave, int shipType, bool dirHor, bool dirVer, float x, float y)
 {
     if (shipType == 1) {
         rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
@@ -284,17 +284,89 @@ void rtype::menu::CoreScreen::generateEnemy(int shipType, bool dirHor, bool dirV
 
 void rtype::menu::CoreScreen::spawnEnemiesFromScript(void)
 {
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::TEXT) {
+            ecs::component::Drawable2D *drawableCompo = _world.getEntity(i)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+            sf::Color tmpColor(250, 250, 250, drawableCompo->getColor().a - 0.1);
+            drawableCompo->setColor(tmpColor);
+            if (drawableCompo->getColor().a == 0)
+                _world.removeEntity(i);
+            break;
+        }
+    }
+    if (_script.getClock().getElapsedTime() >= getWaveDuration()) {
+        for (size_t i = 0; i < _world.getEntities().size(); i++) {
+            if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY ||
+            _world.getEntity(i)->getEntityType() == rtype::ecs::entity::BOSS) {
+                return;
+            }
+        }
+        _currWave++;
+        printWaveNumber();
+        _script.restartClock();
+    }
     for (size_t i = 0; i < _script.getLines().size(); i++) {
-        if (_script.getLines().at(i).size() > 2 && _script.getLines().at(i).at(7)) {
+        if (_script.getLines().at(i).at(7) && (_script.getLines().at(i).at(1) == _currWave)) {
             sf::Time time = sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)));
             if (_script.getClock().getElapsedTime() >= time) {
-                generateEnemy(_script.getLines().at(i).at(1), static_cast<bool>(_script.getLines().at(i).at(2)), 
-                static_cast<bool>( _script.getLines().at(i).at(3)), _script.getLines().at(i).at(4),
+                generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
+                static_cast<bool>(_script.getLines().at(i).at(3)), static_cast<bool>( _script.getLines().at(i).at(4)),
                 static_cast<float>(_script.getLines().at(i).at(5)), static_cast<float>(_script.getLines().at(i).at(6)));
                 _script.spriteIsPrinted(i);
             }
         }
     }
+}
+
+void rtype::menu::CoreScreen::printWaveNumber(void)
+{
+    rtype::ecs::entity::Entity *wave = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+    if (wave == nullptr)
+        throw ScreensExceptions("MultiplayerScreen: Error while creating the wave number entity");
+    wave->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 800.f, 450.f, 0.0f, 0.0f);
+    sf::Color textColor(250, 250, 250, 150);
+    wave->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Wave " + std::to_string(_currWave), 120.f, textColor, true);
+    this->_world.addEntity(wave);
+}
+
+sf::Time rtype::menu::CoreScreen::getWaveDuration(void)
+{
+    sf::Time tmp;
+    switch (_currWave) {
+        case 1:
+            tmp = sf::seconds(5.f);
+            break;
+        case 2:
+            tmp = sf::seconds(5.f);
+            break;
+        case 3:
+            tmp = sf::seconds(50.f);
+            break;
+        case 4:
+            tmp = sf::seconds(60.f);
+            break;
+        case 5:
+            tmp = sf::seconds(30.f);
+            break;
+        case 6:
+            tmp = sf::seconds(40.f);
+            break;
+        case 7:
+            tmp = sf::seconds(50.f);
+            break;
+        case 8:
+            tmp = sf::seconds(60.f);
+            break;
+        case 9:
+            tmp = sf::seconds(70.f);
+            break;
+        case 10:
+            tmp = sf::seconds(60.f);
+            break;
+        default:
+            break;
+    };
+    return tmp;
 }
 
 void rtype::menu::CoreScreen::saveParalax(void)

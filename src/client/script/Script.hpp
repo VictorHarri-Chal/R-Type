@@ -38,6 +38,11 @@ namespace rtype
         */
         sf::Clock getClock() const;
         /**
+        * @brief Restart the current clock.
+        *
+        */
+       void restartClock();
+        /**
         * @brief Set the current sprite to "printed".
         *
         */

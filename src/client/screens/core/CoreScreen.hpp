@@ -122,12 +122,22 @@ namespace rtype
             * @param x X position of the enemy
             * @param y Y position of the enemy
             */
-            void generateEnemy(int shipType, bool dirHor, bool dirVer, int currWave, float x, float y);
+            void generateEnemy(int currWave, int shipType, bool dirHor, bool dirVer, float x, float y);
             /**
             * @brief Spawn enemies depending on the script
             * 
             */
            void spawnEnemiesFromScript(void);
+           /**
+            * @brief Return wave duration based on current wave nbr
+            * 
+            */
+           sf::Time getWaveDuration(void);
+           /**
+            * @brief Print on the middle of the screen the wave number.
+            * 
+            */
+           void printWaveNumber(void);
             /**
             * @brief Handle player position when he is out of the screen
             * 
@@ -152,6 +162,11 @@ namespace rtype
              * 
              */
             rtype::Script _script;
+            /**
+             * @brief Current wave in game
+             * 
+             */
+            int _currWave;
         };
     }
 }

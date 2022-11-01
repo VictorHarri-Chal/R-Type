@@ -3,22 +3,20 @@
 ## How it works
 
 Our script reader parse the lines from the script one by one.
-There is 2 types of lines :
-- A solo number -> representing a new wave arrival
-- Multiple numbers -> representing an enemy entity with all her caracteristics
+Each line is representing an enemy entity with all his caracteristics:
 
 
 ## An exemple
 
-Ex :  5                1      0     1    1 1000   1100    1
-Means sf::seconds(5.f) ZIGZAG false true 1 1000.f 1100.f  true
+Ex :  5                1 1      0     1    1000   1100    1
+Means sf::seconds(5.f) 1 ZIGZAG false true 1000.f 1100.f  true
 
 
 First param -> timestamp : sf::Time elapsed since the start in second
-Second param -> ship type : 1 if ZIGZAG - 2 if RUSHER - 3 if KAMIKAZE - 4 if TURRET
-Third param -> horizontal direction : 0 if left - 1 if right
-Fourth param -> vertical direction : 0 if up - 1 if down
-Fifth param -> current wave number
+Second param -> current wave number
+Third param -> ship type : 1 if ZIGZAG - 2 if RUSHER - 3 if KAMIKAZE - 4 if TURRET
+Fourth param -> horizontal direction : 0 if left - 1 if right
+Fifth param -> vertical direction : 0 if up - 1 if down
 Sixth param -> x position
 Seventh param -> y position
 Eight param -> is the sprite printed ?
