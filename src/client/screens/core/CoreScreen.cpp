@@ -79,15 +79,15 @@ void rtype::menu::CoreScreen::init()
     ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
-    rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
-    if (ship2 == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
-    ship2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
-    ship2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    ship2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
-    ship2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
-    this->_world.addEntity(ship2);
+    // rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    // if (ship2 == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+    // ship2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
+    // ship2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    // ship2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    // ship2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+    // ship2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
+    // this->_world.addEntity(ship2);
 }
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
@@ -107,7 +107,7 @@ void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
     destroySprites();
     paralax();
     spawnEnemiesFromScript();
-    manageEnemiesShooting();
+    // manageEnemiesShooting();
     handleWindowBorder();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
