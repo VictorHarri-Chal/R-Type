@@ -5,6 +5,7 @@
 
 #include "../IScreen.hpp"
 #include "../../../ecs/world.hpp"
+#include "../../script/Script.hpp"
 
 namespace rtype
 {
@@ -35,12 +36,16 @@ namespace rtype
             /**
              * @brief Update the Core Screen
              * 
+             * @param gameEngine Game engine
+             * 
              */
             void update(rtype::Game *gameEngine) override;
             /**
              * @brief Handle event for the Core Screen
              * 
              * @param event Event to be handled
+             * @param gameEngine Game engine
+
              * @return int The Scene Number
              */
             int handleEvent(rtype::Event &event, rtype::Game *gameEngine) override;
@@ -92,6 +97,7 @@ namespace rtype
             /**
             * @brief Handle the player shooting depending of the event
             * 
+            * @param transformCompo Component transform of the player
             * @param shipCompo Component ship of the player
             * @param event Event to be handled
             */
@@ -109,8 +115,29 @@ namespace rtype
             /**
             * @brief Generic function to create an enemy
             * 
+            * @param shipType Type of the enemy
+            * @param dirHor Boolean to know if the enemy is horizontal
+            * @param dirVer Boolean to know if the enemy is vertical
+            * @param currWave Current wave of the game
+            * @param x X position of the enemy
+            * @param y Y position of the enemy
             */
-            void generateEnemy(rtype::ecs::component::shipType shipType, bool dirHor, bool dirVer, int currWave, float x, float y);
+            void generateEnemy(int currWave, int shipType, bool dirHor, bool dirVer, float x, float y);
+            /**
+            * @brief Spawn enemies depending on the script
+            * 
+            */
+           void spawnEnemiesFromScript(void);
+           /**
+            * @brief Return wave duration based on current wave nbr
+            * 
+            */
+           sf::Time getWaveDuration(void);
+           /**
+            * @brief Print on the middle of the screen the wave number.
+            * 
+            */
+           void printWaveNumber(void);
             /**
             * @brief Handle player position when he is out of the screen
             * 
@@ -130,6 +157,16 @@ namespace rtype
              * 
              */
             rtype::ecs::world::World _world;
+            /**
+             * @brief Script object to make enemies spawn
+             * 
+             */
+            rtype::Script _script;
+            /**
+             * @brief Current wave in game
+             * 
+             */
+            int _currWave;
         };
     }
 }

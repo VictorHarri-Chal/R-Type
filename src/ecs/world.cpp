@@ -39,6 +39,7 @@ rtype::ecs::entity::Entity *rtype::ecs::world::World::getEntity(size_t id) const
 
 void rtype::ecs::world::World::addEntity(entity::Entity *entity)
 {
+    std::cout << _nbEntities << std::endl;
     if (_nbEntities >= _maxEntities)
         return;
     for (size_t i = 0; i < this->_entitiesVector.size(); i++)

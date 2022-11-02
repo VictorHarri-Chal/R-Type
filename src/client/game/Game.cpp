@@ -28,7 +28,6 @@ rtype::Game::~Game()
 
 void rtype::Game::init(std::string flag)
 {
-    _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
     // sf::Music music;
     // if (!music.openFromFile("assets/music.ogg"))
     //     throw GameExceptions("Game init: Error while loading the music");
@@ -36,13 +35,31 @@ void rtype::Game::init(std::string flag)
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _eventClass.initEvents(_event);
     if (flag == "-g") {
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
         _actualScreen = Screens::Core;
         _core = new rtype::menu::CoreScreen;
         if (_core == nullptr)
             throw GameExceptions("Game init: Error while creating CoreScreen");
         _lastScene = Screens::Core;
         _core->init();
+    } else if (flag == "-gw") {
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
+        _actualScreen = Screens::Core;
+        _core = new rtype::menu::CoreScreen();
+        if (_core == nullptr)
+            throw GameExceptions("Game init: Error while creating CoreScreen");
+        _lastScene = Screens::Core;
+        _core->init();
+    } else if (flag == "-w") {
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
+        _actualScreen = Screens::Intro;
+        _intro = new rtype::menu::IntroScreen;
+        if (_intro == nullptr)
+            throw GameExceptions("Game init: Error while creating IntroScreen");
+        _lastScene = Screens::Intro;
+        _intro->init();
     } else {
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
         _actualScreen = Screens::Intro;
         _intro = new rtype::menu::IntroScreen;
         if (_intro == nullptr)

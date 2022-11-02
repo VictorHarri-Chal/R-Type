@@ -18,6 +18,10 @@ int main(int argc, char **argv)
 
         if ((argc == 2) && (strcmp(argv[1], "-g") == 0))
             Game.init("-g");
+        else if ((argc == 2) && (strcmp(argv[1], "-w") == 0))
+            Game.init("-w");
+        else if ((argc == 2) && (strcmp(argv[1], "-gw") == 0))
+            Game.init("-gw");
         else
             Game.init("");
         Game.run();

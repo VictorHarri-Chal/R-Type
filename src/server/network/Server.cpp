@@ -9,9 +9,9 @@
 
 /**
  * @brief Create a Room object
- * 
- * @param server 
- * @return room_t 
+ *
+ * @param server
+ * @return room_t
  */
 static room_t CreateRoom(Server *server)
 {
@@ -25,10 +25,10 @@ static room_t CreateRoom(Server *server)
 }
 /**
  * @brief Execute create room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void CreateCommand(std::string body, Server *server, size_t actualId)
 {
@@ -42,10 +42,10 @@ static void CreateCommand(std::string body, Server *server, size_t actualId)
 }
 /**
  * @brief Execute join room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void JoinCommand(std::string body, Server *server, size_t actualId)
 {
@@ -57,10 +57,10 @@ static void JoinCommand(std::string body, Server *server, size_t actualId)
 }
 /**
  * @brief Execute delete room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void DeleteCommand(std::string body, Server *server, size_t actualId)
 {
@@ -71,10 +71,10 @@ static void DeleteCommand(std::string body, Server *server, size_t actualId)
 }
 /**
  * @brief Execute Launch command when game start
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void LaunchCommand(std::string body, Server *server, size_t actualId)
 {
@@ -85,10 +85,10 @@ static void LaunchCommand(std::string body, Server *server, size_t actualId)
 }
 /**
  * @brief Execute ready command in room
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void ReadyCommand(std::string body, Server *server, size_t actualId)
 {
@@ -102,10 +102,10 @@ static void ReadyCommand(std::string body, Server *server, size_t actualId)
 }
 /**
  * @brief Execute disconect room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void DisconectCommand(std::string body, Server *server, size_t actualId)
 {
@@ -118,10 +118,10 @@ static void DisconectCommand(std::string body, Server *server, size_t actualId)
 }
 /**
  * @brief Execute room command who send number of room
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void RoomCommand(std::string body, Server *server, size_t actualId)
 {
@@ -198,7 +198,7 @@ uint32_t Server::getOrCreateClientId(udp::endpoint endpoint)
     clients.insert(std::pair(nbClient, newClient));
     this->_nbClients++;
     return nbClient;
-};
+}
 
 void Server::sendMessage(message::request request, std::string body)
 {
