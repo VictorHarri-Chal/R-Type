@@ -99,9 +99,8 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
  * Before handle command function
  **/
 
-Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _roomId(0), _nbClients(0)
+Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _nbClients(0)
 {
-    _room.id = -1;
     listen();
 }
 
