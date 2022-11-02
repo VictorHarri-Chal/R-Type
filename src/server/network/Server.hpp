@@ -22,7 +22,7 @@
 
 /**
  * @brief map of all the clients
- * 
+ *
  */
 typedef std::map<uint32_t, Client> ClientList;
 
@@ -42,33 +42,35 @@ class Server {
     /**
      * @brief Send a message to client
      *
-     * @param type Type of the request
-     * @param body Body of the request
+     * @param type of the request
+     * @param value a std::string value if is needed
      */
-    void sendMessage(message::request type, std::string body = 0);
+    void sendMessage(message::request type, std::string value = "");
+
+    room_t getRoom() const;
+
     /**
      * @brief Send Message to particular client
      *
-     * @param type Type of the request
-     * @param target_endpoint Client endpoint
-     * @param body Body of the request
+     * @param type
+     * @param target_endpoint
+     * @param value
      */
-    void sendToClient(message::request type, udp::endpoint target_endpoint, std::string body = 0);
+    void sendToClient(message::request type, udp::endpoint target_endpoint, std::string value = "");
     /**
      * @brief Send Message to all Client
      *
-     * @param type Type of the request
-     * @param body Body of the request
+     * @param type
+     * @param value
      */
-    void SendToAll(message::request type, std::string body = 0);
+    void SendToAll(message::request type, std::string value = "");
     /**
      * @brief Send Message to all Client in the same room
      *
-     * @param type Type of the request
-     * @param actualId Id of the room
-     * @param body Body of the request
+     * @param type
+     * @param value
      */
-    void SendToAllInRoom(message::request type, size_t actualId, std::string body = 0);
+    void SendToAllInRoom(message::request type, size_t acutalId, std::string value = "");
     /**
      * @brief Get the Buffer object
      *
@@ -76,55 +78,17 @@ class Server {
      */
     std::array<char, 64> getBuffer() const;
     /**
-     * @brief Get the Room Id object
+     * @brief add one to nb player in room
      *
-     * @return size_t
+     * @param id
      */
-    size_t getRoomId() const;
+    void addPlayerInRoom(size_t idPlayer);
     /**
-     * @brief Count nb room available
+     * @brief remove one to nb player in room
      *
-     * @return size_t
+     * @param id
      */
-    size_t countRoom();
-    /**
-     * @brief Set the Room Id object
-     *
-     * @param roomId
-     */
-    void setRoomId(size_t roomId);
-    /**
-     * @brief Get the Rooms object
-     *
-     * @return std::vector<room_t> List of all the rooms
-     */
-    std::vector<room_t> getRooms() const;
-    /**
-     * @brief Add rooms
-     *
-     * @param room Room to add
-     */
-    void addRooms(room_t room);
-    /**
-     * @brief Remove a room
-     *
-     * @param id Id of the room to remove
-     */
-    void removeRooms(int id);
-    /**
-     * @brief Add player in the room
-     *
-     * @param idRoom Id of the room
-     * @param idPlayer Id of the player
-     */
-    void addPlayerInRoom(size_t idRoom, size_t idPlayer);
-    /**
-     * @brief Remove player from the room
-     *
-     * @param idRoom Id of the room
-     * @param idPlayer Id of the player
-     */
-    void removePlayerInRoom(size_t idRoom, size_t idPlayer);
+    void removePlayerInRoom(size_t idPlayer);
     /**
      * @brief Get the Clients object
      *
@@ -134,8 +98,8 @@ class Server {
     /**
      * @brief Count who is ready in room
      *
-     * @param idRoom Id of the room 
-     * 
+     * @param idRoom Id of the room
+     *
      * @return size_t The number of people ready in room
      */
     size_t countNbPeopleReadyInRoom(size_t idRoom);
@@ -152,6 +116,11 @@ class Server {
      * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
+    /**
+     * @brief nb client connect in room
+     *
+     */
+    size_t _nbClientsInRoom;
 
   private:
     /**
@@ -176,11 +145,11 @@ class Server {
     /**
      * @brief Create binary packet ready to be send
      *
-     * @param request Type of the request
-     * @param body Body of the request
-     * @return std::string Binary packet
+     * @param request
+     * @param value
+     * @return std::string
      */
-    std::string createPaquet(message::request request, std::string body);
+    std::string createPaquet(message::request request, std::string value);
     /**
      * @brief Socket
      *
@@ -206,16 +175,8 @@ class Server {
      *
      */
     SafeQueue<message> _queue;
-    /**
-     * @brief Vector to store all rooms infos
-     *
-     */
-    std::vector<room_t> _rooms;
-    /**
-     * @brief Count number of room created
-     *
-     */
-    size_t _roomId;
+
+    room_t _room;
     /**
      * @brief Client connect to server
      *
