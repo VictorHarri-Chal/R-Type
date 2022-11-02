@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 os_name=$(uname)
 
 command_found() {
