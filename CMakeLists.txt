@@ -139,15 +139,67 @@ set(SRC_CLIENT
 
 add_executable(r-type_client ${SRC_CLIENT})
 
-target_link_libraries(r-type_client
-    CONAN_PKG::boost
-    CONAN_PKG::sfml
-)
+if(APPLE)
+  target_include_directories(
+    r-type_client PUBLIC ${INCROOT} /opt/homebrew/include/
+    ${PROJECT_BINARY_DIR}/)
+  target_link_libraries(
+    r-type_client
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_container.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_contract.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_coroutine.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_date_time.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_filesystem.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_graph.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_iostreams.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_json.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_log.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_log_setup.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_c99.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_c99f.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_c99l.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_tr1.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_tr1f.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_tr1l.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_nowide.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_prg_exec_monitor.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_program_options.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_random.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_regex.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_serialization.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_stacktrace_addr2line.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_stacktrace_basic.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_stacktrace_noop.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_system.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_thread-mt.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_timer.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_type_erasure.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_unit_test_framework.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_wave.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_wserialization.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-audio.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-graphics.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-network.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-system.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-window.dylib)
+else()
+    target_include_directories(r-type_client PUBLIC
+    ${CONAN_INCLUDE_DIRS_BOOST} ${CONAN_INCLUDE_DIRS_SFML})
+    target_link_libraries(r-type_client
+        CONAN_PKG::boost
+        CONAN_PKG::sfml
+    )
+endif()
 
-target_include_directories(r-type_client PUBLIC
-    ${CONAN_INCLUDE_DIRS_BOOST}
-    ${CONAN_INCLUDE_DIRS_SFML}
-)
+# target_link_libraries(r-type_client
+#     CONAN_PKG::boost
+#     CONAN_PKG::sfml
+# )
+
+# target_include_directories(r-type_client PUBLIC
+#     ${CONAN_INCLUDE_DIRS_BOOST}
+#     ${CONAN_INCLUDE_DIRS_SFML}
+# )
 
 set(SRC_SERVER
     ${SRCSERVER}main.cpp
@@ -161,17 +213,61 @@ set(SRC_SERVER
 
 add_executable(r-type_server ${SRC_SERVER})
 
-target_include_directories(r-type_server PUBLIC
-    ${CONAN_INCLUDE_DIRS_BOOST}
-)
 
 include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
-target_link_libraries(r-type_server
-    CONAN_PKG::boost
-    CONAN_PKG::sfml
-)
+if(APPLE)
+  target_include_directories(
+    r-type_server PUBLIC ${INCROOT} /opt/homebrew/include/
+    ${PROJECT_BINARY_DIR}/)
+  target_link_libraries(
+    r-type_server
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_container.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_contract.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_coroutine.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_date_time.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_filesystem.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_graph.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_iostreams.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_json.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_log.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_log_setup.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_c99.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_c99f.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_c99l.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_tr1.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_tr1f.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_math_tr1l.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_nowide.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_prg_exec_monitor.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_program_options.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_random.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_regex.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_serialization.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_stacktrace_addr2line.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_stacktrace_basic.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_stacktrace_noop.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_system.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_thread-mt.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_timer.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_type_erasure.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_unit_test_framework.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_wave.dylib
+    /opt/homebrew/Cellar/boost/1.80.0/lib/libboost_wserialization.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-audio.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-graphics.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-network.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-system.dylib
+    /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-window.dylib)
+else()
+    target_include_directories(r-type_server PUBLIC
+    ${CONAN_INCLUDE_DIRS_BOOST})
+    target_link_libraries(r-type_server
+        CONAN_PKG::boost
+        CONAN_PKG::sfml
+    )
+endif()
 
 set_property(TARGET r-type_client PROPERTY MSVC_RUNTIME_LIBRARY "")
 set_property(TARGET r-type_server PROPERTY MSVC_RUNTIME_LIBRARY "")

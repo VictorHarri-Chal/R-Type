@@ -90,6 +90,13 @@ if [ "$os_name" = "Linux" ]; then
   fi
   conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 elif [ "$os_name" = "Darwin" ]; then
+  which -s brew
+  if [[ $? != 0 ]] ; then
+      /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+  brew install cmake pip
+  xcode-select --install
+
   pip3 install conan
   conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 else
@@ -105,3 +112,12 @@ echo " |       _/  ______ |    |    /   |   | |     ___/|    __)_ "
 echo " |    |   \ /_____/ |    |    \____   | |    |    |        \\"
 echo " |____|_  /         |____|    / ______| |____|   /_______  /"
 echo "        \/                    \/                         \/ "
+
+
+
+
+
+
+# mkdir build/ && cd build/ && conan install .. --build=missing -c \
+# tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
+# cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles' && cmake --build . -j 3
