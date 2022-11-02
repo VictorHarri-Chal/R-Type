@@ -12,7 +12,6 @@
 
 rtype::menu::RoomScreen::RoomScreen(): _nbPlayers(0), _nbReadyPlayers(0), _isReady(false)
 {
-
 }
 
 void rtype::menu::RoomScreen::init()
@@ -111,7 +110,7 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
             _nbReadyPlayers--;
         gameEngine->_client->send(message::DISCONNECT);
         saveParalax();
-        return 5;
+        return 2;
     }
     if (isButtonPressed(7, gameEngine, event) && !_isReady) {
         _isReady = true;

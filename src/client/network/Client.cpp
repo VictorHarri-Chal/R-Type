@@ -37,8 +37,6 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
     std::cout << "handle receive" << std::endl;
     if (!error || error == boost::asio::error::message_size) {
         message msg = getStreamData(bytesTransferred);
-        if (msg.type == message::ROOM)
-            this->_actualNbRooms = std::stoi(msg.body);
         if (msg.type == message::INROOM)
             this->_actualNbPeopleInRoom = std::stoi(msg.body);
         if (msg.type == message::LAUNCH)
