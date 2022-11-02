@@ -26,6 +26,7 @@ set(EVENTSROOT ${SRCCLIENT}/events/)
 set(GAMEROOT ${SRCCLIENT}/game/)
 set(SCREENSROOT ${SRCCLIENT}/screens/)
 set(TOOLSROOT ${SRCCLIENT}/tools/)
+set(SCRIPTROOT ${SRCCLIENT}/script/)
 
 set(SRC_ECS
     ${ECSROOT}Entity/entity.cpp
@@ -49,8 +50,22 @@ set(SRC_ECS
     ${ECSROOT}Component/IComponent.hpp
     ${ECSROOT}Component/Ship/recruit.cpp
     ${ECSROOT}Component/Ship/recruit.hpp
+    ${ECSROOT}Component/Ship/sniper.cpp
+    ${ECSROOT}Component/Ship/sniper.hpp
+    ${ECSROOT}Component/Ship/stealthy.cpp
+    ${ECSROOT}Component/Ship/stealthy.hpp
+    ${ECSROOT}Component/Ship/tank.cpp
+    ${ECSROOT}Component/Ship/tank.hpp
+    ${ECSROOT}Component/Ship/support.cpp
+    ${ECSROOT}Component/Ship/support.hpp
     ${ECSROOT}Component/Ship/zigzag.cpp
     ${ECSROOT}Component/Ship/zigzag.hpp
+    ${ECSROOT}Component/Ship/rusher.cpp
+    ${ECSROOT}Component/Ship/rusher.hpp
+    ${ECSROOT}Component/Ship/kamikaze.cpp
+    ${ECSROOT}Component/Ship/kamikaze.hpp
+    ${ECSROOT}Component/Ship/turret.cpp
+    ${ECSROOT}Component/Ship/turret.hpp
     ${ECSROOT}Component/Ship/AShip.cpp
     ${ECSROOT}Component/Ship/AShip.hpp
     ${ECSROOT}Component/Ship/IShip.hpp
@@ -103,6 +118,11 @@ set(SRC_TOOLS
     ${TOOLSROOT}Tools.hpp
 )
 
+set(SRC_SCRIPT
+    ${SCRIPTROOT}Script.cpp
+    ${SCRIPTROOT}Script.hpp
+)
+
 set(SRC_CLIENT
     ${SRCCLIENT}main.cpp
     ${SRCCLIENT}Globals.hpp
@@ -113,6 +133,7 @@ set(SRC_CLIENT
     ${SRC_GAME}
     ${SRC_SCREENS}
     ${SRC_TOOLS}
+    ${SRC_SCRIPT}
     ${SRC_UTILS}
 )
 

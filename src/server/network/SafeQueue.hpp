@@ -13,26 +13,29 @@
 #include <queue>
 #include <thread>
 
-/// @brief Exception when SafeQueue is not empty.
+/**
+ * @brief SafeQueue class
+ *
+ */
 class NonEmptyQueue : public std::exception {
-    public:
-        /// @brief Constructor
-        /// @param Message to display
-        explicit NonEmptyQueue(std::string msg)
-        {
-            _what = std::move(msg);
-        }
+  public:
+    /// @brief Constructor
+    /// @param msg to display
+    explicit NonEmptyQueue(std::string msg)
+    {
+        _what = std::move(msg);
+    }
 
-        /// @brief Exception what
-        /// @return Error message
-        const char* what() const noexcept override
-        {
-            return _what.c_str();
-        }
+    /// @brief Exception what
+    /// @return Error message
+    const char *what() const noexcept override
+    {
+        return _what.c_str();
+    }
 
-    private:
-        /// @brief Error message string
-        std::string _what;
+  private:
+    /// @brief Error message string
+    std::string _what;
 };
 
 /// @brief Template class for a thread-safe queue.
@@ -40,15 +43,14 @@ class NonEmptyQueue : public std::exception {
 template <typename T>
 /// @brief Thread-safe queue.
 /// @tparam T Type of the queue.
-class SafeQueue
-{
-    public:
-        /// @brief Default constructor
-        SafeQueue() = default;
+class SafeQueue {
+  public:
+    /// @brief Default constructor
+    SafeQueue() = default;
 
     /// @brief Move constructor
-    /// @param Other SafeQueue
-    SafeQueue(SafeQueue<T>&& other) noexcept(false)
+    /// @param other SafeQueue
+    SafeQueue(SafeQueue<T> &&other) noexcept(false)
     {
         std::lock_guard<std::mutex> lock(_mutex);
         if (!empty()) {
@@ -87,16 +89,18 @@ class SafeQueue
         return tmp;
     }
 
-    /// @brief Pushes the given element value onto the queue.
-    /// @param item The value of the element to push onto the queue.
-    /// @return void
+    /**
+     * @brief Pushes the given element value onto the queue.
+     * 
+     * @param item Element to push
+     */
     void push(const T &item)
     {
         std::lock_guard<std::mutex> lock(_mutex);
         _queue.push(item);
     }
 
-private:
+  private:
     /// @brief Private variable for the queue.
     std::queue<T> _queue;
     /// @brief Private variable for mutex.

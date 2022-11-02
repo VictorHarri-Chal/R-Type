@@ -1,0 +1,45 @@
+name: Doxygen GitHub Pages Deploy Action
+
+on:
+  push:
+    branches:
+      - main
+      - doxygen-to-gh-pages
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            doxygen \
+            texlive-font-utils
+
+      - name: Run doxygen
+        shell: bash
+        run: |
+          [ -f doc ] && rm -fr doc
+          mkdir -p doc/output
+          doxygen
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: doc/output/html
+
+      #- uses: DenverCoder1/doxygen-github-pages-action@v1.1.0
+      #  with:
+      #    github_token: ${{ secrets.GITHUB_TOKEN }}
+      #    branch: gh-pages
+      #    config_file: Doxyfile
+      #    folder: doc/output

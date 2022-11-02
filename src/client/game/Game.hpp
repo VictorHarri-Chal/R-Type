@@ -33,6 +33,7 @@ namespace rtype
         /// @brief Destructor
         ~Game();
         /// @brief Initialize the game class elements
+        /// @param flag launch flag
         void init(std::string flag);
         /// @brief Run the game class
         void run(void);
@@ -90,6 +91,8 @@ namespace rtype
         //  * @param system System sound to add
         //  */
         // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
+
+        /// @brief Game client 
         Client *_client;
 
         /// @brief Game window

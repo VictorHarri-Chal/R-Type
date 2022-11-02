@@ -20,6 +20,14 @@ It will take care of dowloading the dependencies as well as compiling our code.
 
 ```./install.sh```
 
+After that you need to call the server, you can execute this command: 
+
+```./r-type_server```
+
+And then, you can connect as many clients as you wish with this command:
+
+```./r-type_client```
+
 ### On Linux, Windows & Mac
 The dependencies are [CMake](https://cmake.org/), [SFML](https://www.sfml-dev.org/index-fr.php) and [Boost](https://boost.org).
 
@@ -33,7 +41,7 @@ To read our project documentation, you need to execute a script in order to open
 
 ```./run_documentation.sh```
 
-You can also look here ```placeholder```, to look out directly at our online documentation.
+You can also look [here](https://victorharri-chal.github.io/R-Type/), to look out directly at our online documentation.
 
 You can check our ```RFC``` that details the communication protocol between the server and the clients [here](https://simonlefourn.notion.site/Network-db4461454b9d44e78efc64aecb0cddb7).
 

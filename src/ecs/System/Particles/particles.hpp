@@ -17,22 +17,23 @@ namespace rtype
         namespace system
         {
             /// @brief Particles system
-            class Particles : public ISystem {
+            class ParticlesSystem : public ISystem {
               public:
                 /**
                  * @brief Construct a new Particles object
                  *
                  */
-                Particles() {}
+                ParticlesSystem() {}
                 /**
                  * @brief Destroy the Particles object
                  *
                  */
-                ~Particles() {}
+                ~ParticlesSystem() {}
                 /**
                  * @brief Update Particles entities
                  *
                  * @param entities Entity to update
+                 * @param gameEngine Game engine
                  */
                 void update(std::vector<rtype::ecs::entity::Entity*> entities, rtype::Game*gameEngine);
                 /**
@@ -44,6 +45,12 @@ namespace rtype
 
               protected:
               private:
+                /**
+                 * @brief Clock for particles
+                 * 
+                 */
+                sf::Clock _particleClock;
+
             };
         } // namespace system
     }     // namespace ecs

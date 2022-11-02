@@ -9,17 +9,21 @@
 
 #include <boost/array.hpp>
 #include <boost/bind/bind.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <fstream>
-#include "SafeQueue.hpp"
 #include "../../utils/Message.hpp"
 #include "../../utils/Rooms.hpp"
 #include "Client.hpp"
+#include "SafeQueue.hpp"
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/shared_ptr.hpp>
 
+/**
+ * @brief map of all the clients
+ * 
+ */
 typedef std::map<uint32_t, Client> ClientList;
 
 /**
@@ -31,10 +35,10 @@ class Server {
     /**
      * @brief Construct a new Server object
      *
-     * @param io_service
-     * @param port
+     * @param io_service Boost io_service
+     * @param port Port to listen
      */
-    Server(boost::asio::io_service& io_service, int port);
+    Server(boost::asio::io_service &io_service, int port);
     /**
      * @brief Send a message to client
      *
@@ -88,29 +92,31 @@ class Server {
     /**
      * @brief Get the Clients object
      *
-     * @return ClientList
+     * @return ClientList List of all the clients
      */
     ClientList getClients() const;
     /**
      * @brief Count who is ready in room
      *
-     * @param idRoom
-     * @return size_t ris number of people ready in room
+     * @param idRoom Id of the room 
+     * 
+     * @return size_t The number of people ready in room
      */
     size_t countNbPeopleReadyInRoom(size_t idRoom);
     /**
      * @brief Set the Player Ready object in map of client in room
      *
-     * @param idClient
+     * @param idClient Id of the client
      */
     void setPlayerReady(size_t idClient);
     /**
      * @brief Get the Stream Data object
      *
-     * @param bytesTransferred
-     * @return message
+     * @param bytesTransferred Number of bytes received
+     * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
+
   private:
     /**
      * @brief Start receiving
@@ -127,8 +133,8 @@ class Server {
     /**
      * @brief Get the or create client id object
      *
-     * @param endpoint
-     * @return uint32_t
+     * @param endpoint Client endpoint
+     * @return uint32_t Id of the client
      */
     uint32_t getOrCreateClientId(udp::endpoint endpoint);
     /**
@@ -203,7 +209,9 @@ class HandleCommand {
     /**
      * @brief Exectut the command ask
      *
-     * @param server
+     * @param server Server
+     * @param msg Message received
+     * @param actualId Id of the client
      */
     void findCmd(Server *server, message msg, size_t actualId);
 };

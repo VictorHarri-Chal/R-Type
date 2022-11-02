@@ -12,15 +12,6 @@ rtype::ecs::component::Alive::Alive()
     this->_alive = true;
 }
 
-rtype::ecs::component::Alive::Alive(bool isAlive)
-{
-    this->_alive = isAlive;
-}
-
-rtype::ecs::component::Alive::~Alive()
-{
-}
-
 void rtype::ecs::component::Alive::setAlive(bool alive)
 {
     this->_alive = alive;

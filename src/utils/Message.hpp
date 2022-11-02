@@ -10,6 +10,10 @@
 #include <iostream>
 #include <string>
 
+/**
+ * @brief Message class
+ * 
+ */
 class message {
   public:
     enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH };
@@ -19,12 +23,13 @@ class message {
 
     /*default constructor for class*/
     message(){};
-    /*parameterized constructor for class*/
-    message(request t, std::string b) : type(t), body(b)
+    /*parameterized constructor for class*/    message(request t, std::string b) : type(t), body(b)
     {
     }
-
-    /*this function prints the details of class object*/
+    /**
+     * @brief Print the message
+     * 
+     */
     void print()
     {
         std::cout << "(" << type << ", " << body << ")" << std::endl;
@@ -35,6 +40,14 @@ namespace boost
 {
     namespace serialization
     {
+        /**
+         * @brief Serialize message
+         * 
+         * @tparam Archive Archive type
+         * @param archive Archive
+         * @param object Message to serialize
+         * @param version Version of the message
+         */
         template <class Archive> void serialize(Archive &archive, message &object, const unsigned int version)
         {
             archive &object.type;

@@ -33,7 +33,7 @@ static void JoinCommand(std::string value, Server *server, size_t actualId)
 static void LaunchCommand(std::string value, Server *server, size_t actualId)
 {
     (void)actualId;
-    (void)value;
+    (void)body;
     std::cout << "Lauch Command Asked" << std::endl;
     server->SendToAllInRoom(message::request::LAUNCH, actualId);
 }
@@ -50,13 +50,13 @@ static void ReadyCommand(std::string value, Server *server, size_t actualId)
     (void)actualId;
     (void)value;
     (void)server;
-    size_t nbPlayer = server->getRoom()._idPeopleInRoom.size();
+    size_t nbPlayer = server->getRoom()._idPeopleInRoom.size
 
     std::cout << "Player " << actualId << " is ready" << std::endl;
     server->getClients().at(actualId).setReady(true);
     server->setPlayerReady(actualId);
     if (nbPlayer >= 2 && server->countNbPeopleReadyInRoom(server->getClients().at(actualId).getIdRoom()) == nbPlayer)
-        LaunchCommand(value, server, actualId);
+        LaunchCommand(body, server, actualId);
 }
 /**
  * @brief Execute disconect room command
@@ -86,6 +86,14 @@ static void InRoomCommand(std::string value, Server *server, size_t actualId)
  * @param server
  * @param actualId
  */
+static void RoomCommand(std::string body, Server *server, size_t actualId)
+{
+    (void)actualId;
+    (void)body;
+    std::cout << "Room Command Asked" << std::endl;
+    server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
+}
+
 
 HandleCommand::HandleCommand()
 {
@@ -148,31 +156,31 @@ uint32_t Server::getOrCreateClientId(udp::endpoint endpoint)
     clients.insert(std::pair(nbClient, newClient));
     this->_nbClients++;
     return nbClient;
-};
+}
 
 void Server::sendMessage(message::request request, std::string value)
 {
-    _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), _remoteEndpoint, boost::bind(&Server::listen, this));
+    _socket.async_send_to(boost::asio::buffer(createPaquet(request, body)), _remoteEndpoint, boost::bind(&Server::listen, this));
 }
 
 void Server::sendToClient(message::request request, udp::endpoint targetEndpoint, std::string value)
 {
-    _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), targetEndpoint, boost::bind(&Server::listen, this));
+    _socket.async_send_to(boost::asio::buffer(createPaquet(request, body)), targetEndpoint, boost::bind(&Server::listen, this));
 }
 
-void Server::SendToAll(message::request type, std::string value)
+void Server::SendToAll(message::request type, std::string body)
 {
     for (auto client : clients)
-        sendToClient(type, client.second.getEndpoint(), value);
+        sendToClient(type, client.second.getEndpoint(), body);
 }
 
-void Server::SendToAllInRoom(message::request type, size_t actualId, std::string value)
+void Server::SendToAllInRoom(message::request type, size_t actualId, std::string body)
 {
     size_t actualRoom = this->clients.at(actualId).getIdRoom();
 
     for (auto client : clients)
         if (client.second.getIdRoom() == actualRoom)
-            sendToClient(type, client.second.getEndpoint(), value);
+            sendToClient(type, client.second.getEndpoint(), body);
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)
@@ -192,7 +200,7 @@ message Server::getStreamData(std::size_t bytesTransferred)
 
 std::string Server::createPaquet(message::request request, std::string value)
 {
-    message msg(request, value);
+    message msg(request, body);
     std::string str;
 
     boost::iostreams::back_insert_device<std::string> insert(str);
@@ -243,5 +251,5 @@ size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
 
 void Server::setPlayerReady(size_t idClient)
 {
-    this->_room._idPeopleInRoom.at(idClient) = true;
+    this->_rooms.at(this->clients.at(idClient).getIdRoom())._idPeopleInRoom.at(idClient) = true;
 }

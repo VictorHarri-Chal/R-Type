@@ -73,7 +73,8 @@ void rtype::menu::MultiplayerScreen::init()
     if (back == nullptr)
         throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (5)");
     back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 300.f, 100.f, 0.0f, 0.0f);
-    back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1300.f, 800.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
+    sf::Color bgColor(0, 0, 0, 150);
+    back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1300.f, 800.f, bgColor, true, 3.0f, sf::Color::Blue);
     this->_world.addEntity(back);
     rtype::ecs::entity::Entity *butt_disconnect = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
     if (butt_disconnect == nullptr)

@@ -16,16 +16,16 @@ namespace rtype
         namespace system
         {
             /// @brief Sound system
-            class Sound : public ISystem {
+            class SoundSystem : public ISystem {
               public:
                 /**
                  * @brief Create new sound system.
                  */
-                Sound();
+                SoundSystem() = default;
                 /**
                  * @brief Destroy sound system.
                  */
-                ~Sound();
+                ~SoundSystem() = default;
 
                 /**
                  * @brief Update all the entities with the system properties.

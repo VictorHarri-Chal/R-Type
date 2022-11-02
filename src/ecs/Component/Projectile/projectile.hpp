@@ -19,17 +19,41 @@ namespace rtype
     {
         namespace component
         {
+            /**
+             * @brief Projectile component
+             *
+             */
             class Projectile : public IComponent {
               public:
+                /**
+                 * @brief Construct a new Projectile object
+                 *
+                 * @param type Type of the projectile
+                 */
                 Projectile(rtype::ecs::component::projectileType type);
+                /**
+                 * @brief Destroy the Projectile object
+                 *
+                 */
                 ~Projectile();
-
+                /**
+                 * @brief Get the Type of the component
+                 * 
+                 * @return rtype::ecs::component::compoType Type of the component
+                 */
                 rtype::ecs::component::compoType getType() const;
-
+                /**
+                 * @brief Get the Type of the projectile
+                 * 
+                 * @return rtype::ecs::component::projectileType Type of the projectile
+                 */
                 rtype::ecs::component::projectileType getProjectileType() const;
 
               private:
-                /// @brief True if allies, false if enemies
+                /**
+                 * @brief Type of the projectile
+                 * 
+                 */
                 rtype::ecs::component::projectileType _projectileType;
             };
         } // namespace component

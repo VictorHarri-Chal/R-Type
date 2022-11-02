@@ -42,14 +42,15 @@ class Client {
     /**
      * @brief Send a message to the server
      * 
-     * @param msg Message to be sent
+     * @param request Request type
+     * @param body Body of the message
      */
     void send(message::request request, std::string body = "");
     /**
      * @brief Get the Stream Data object
      * 
-     * @param bytesTransferred 
-     * @return message 
+     * @param bytesTransferred Bytes transferred
+     * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
     /**
