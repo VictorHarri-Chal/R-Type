@@ -35,7 +35,7 @@ if [ "$(uname)" = "Linux" ]; then
   -c tools.system.package_manager:sudo=True
 
 elif [ "$(uname)" = "Darwin" ]; then
-  pip3 install conan
+  brew install conan
   conan install .. --build=missing \
   -c tools.system.package_manager:mode=install \
   -c tools.system.package_manager:sudo=True
