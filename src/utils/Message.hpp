@@ -12,7 +12,7 @@
 
 class message {
   public:
-    enum request { CREATE, JOIN, DELETE, READY, DISCONNECT, ROOM, INROOM, LAUNCH };
+    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH };
     /*public access is required for the class member which are to be saved/loaded*/
     request type;
     std::string body;

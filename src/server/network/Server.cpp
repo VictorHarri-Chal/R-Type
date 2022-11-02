@@ -8,73 +8,28 @@
 #include "Server.hpp"
 
 /**
- * @brief Create a Room object
- * 
- * @param server 
- * @return room_t 
- */
-static room_t CreateRoom(Server *server)
-{
-    room_t room;
-
-    room.id = server->getRoomId();
-    room.isOpen = true;
-    room.name = "Room " + std::to_string(room.id);
-    room.currPlayers = 0;
-    return (room);
-}
-/**
- * @brief Execute create room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
- */
-static void CreateCommand(int value, Server *server, size_t actualId)
-{
-    (void)actualId;
-    std::cout << "Create Command value = " << value << std::endl;
-    if (server->countRoom() < 7) {
-        server->addRooms(CreateRoom(server));
-        server->setRoomId(server->getRoomId() + 1);
-        server->SendToAll(message::request::ROOM, server->countRoom());
-    }
-}
-/**
  * @brief Execute join room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void JoinCommand(int value, Server *server, size_t actualId)
 {
     (void)server;
+    (void)actualId;
     std::cout << "Player join room " << value << std::endl;
     server->getClients().at(actualId).setIdRoom(value);
-    server->addPlayerInRoom(value, actualId);
-    server->SendToAllInRoom(message::request::INROOM, actualId, server->getRooms()[value]._idPeopleInRoom.size());
+    server->addPlayerInRoom(value);
+    server->SendToAll(message::request::INROOM, server->getRoom()._idPeopleInRoom.size());
 }
-/**
- * @brief Execute delete room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
- */
-static void DeleteCommand(int value, Server *server, size_t actualId)
-{
-    (void)actualId;
-    std::cout << "Delete Command value = " << value << std::endl;
-    server->removeRooms(value);
-    server->SendToAll(message::request::ROOM, server->countRoom());
-}
+
 /**
  * @brief Execute Launch command when game start
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void LaunchCommand(int value, Server *server, size_t actualId)
 {
@@ -83,19 +38,20 @@ static void LaunchCommand(int value, Server *server, size_t actualId)
     std::cout << "Lauch Command Asked" << std::endl;
     server->SendToAllInRoom(message::request::LAUNCH, actualId);
 }
+
 /**
  * @brief Execute ready command in room
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void ReadyCommand(int value, Server *server, size_t actualId)
 {
     (void)actualId;
     (void)value;
     (void)server;
-    size_t nbPlayer = server->getRooms()[server->getClients().at(actualId).getIdRoom()]._idPeopleInRoom.size();
+    size_t nbPlayer = server->getRoom()._idPeopleInRoom.size();
 
     std::cout << "Player " << actualId << " is ready" << std::endl;
     server->getClients().at(actualId).setReady(true);
@@ -105,49 +61,39 @@ static void ReadyCommand(int value, Server *server, size_t actualId)
 }
 /**
  * @brief Execute disconect room command
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
 static void DisconectCommand(int value, Server *server, size_t actualId)
 {
     std::cout << "Disconect Command value = " << value << std::endl;
-    server->removePlayerInRoom(value, actualId);
-    server->SendToAll(message::request::ROOM, server->countRoom());
-    server->SendToAllInRoom(message::request::INROOM, actualId, server->getRooms()[value]._idPeopleInRoom.size());
+    server->removePlayerInRoom(value);
+    server->SendToAll(message::request::INROOM);
     server->getClients().at(actualId).setIdRoom(-1);
 
 }
+
 /**
  * @brief Execute room command who send number of room
- * 
- * @param value 
- * @param server 
- * @param actualId 
+ *
+ * @param value
+ * @param server
+ * @param actualId
  */
-static void RoomCommand(int value, Server *server, size_t actualId)
-{
-    (void)actualId;
-    (void)value;
-    std::cout << "Room Command Asked" << std::endl;
-    server->sendMessage(message::request::ROOM, server->countRoom());
-}
 
 HandleCommand::HandleCommand()
 {
-    _allCommand.emplace_back(CreateCommand);
     _allCommand.emplace_back(JoinCommand);
-    _allCommand.emplace_back(DeleteCommand);
     _allCommand.emplace_back(ReadyCommand);
     _allCommand.emplace_back(DisconectCommand);
-    _allCommand.emplace_back(RoomCommand);
     _allCommand.emplace_back(LaunchCommand);
 }
 
 void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
 {
-    this->_allCommand[msg.type](msg.value, server, actualId);
+    this->_allCommand[msg.type](msg.body, server, actualId);
 }
 /**
  * Before handle command function
@@ -155,10 +101,7 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
 
 Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _roomId(0), _nbClients(0)
 {
-    room_t room;
-    room.id = -1;
-    std::vector<room_t> tmp(7, room);
-    _rooms = tmp;
+    _room.id = -1;
     listen();
 }
 
@@ -259,69 +202,24 @@ std::string Server::createPaquet(message::request request, int value)
     return (str);
 }
 
-void Server::addPlayerInRoom(size_t idRoom, size_t idPlayer)
+void Server::addPlayerInRoom(size_t idPlayer)
 {
-    this->_rooms[idRoom]._idPeopleInRoom.insert(std::pair(idPlayer, false));
+    this->_room._idPeopleInRoom.insert(std::pair(idPlayer, false));
 }
 
-void Server::removePlayerInRoom(size_t idRoom, size_t idPlayer)
+void Server::removePlayerInRoom(size_t idPlayer)
 {
-    this->_rooms[idRoom]._idPeopleInRoom.erase(idPlayer);
+    this->_room._idPeopleInRoom.erase(idPlayer);
 }
 
-std::vector<room_t> Server::getRooms() const
+room_t Server::getRoom() const
 {
-    return(this->_rooms);
-}
-
-static int findPlace(Server *server)
-{
-    for (size_t i = 0; i < server->getRooms().size(); i++) {
-        if (server->getRooms()[i].id == -1)
-            return(i);
-    }
-    return (-1);
-}
-
-void Server::addRooms(room_t room)
-{
-    int place = findPlace(this);
-    if (place == -1)
-        return;
-    this->_rooms[place] = room;
-}
-
-void Server::removeRooms(int id)
-{
-    if (id == -1 || this->_rooms[id].id == -1)
-        return;
-    this->_rooms[id].id = -1;
+    return(this->_room);
 }
 
 std::array<char, 64> Server::getBuffer() const
 {
     return(this->_recvBuffer);
-}
-
-size_t Server::countRoom()
-{
-    int nbRoom = 0;
-    for (size_t i = 0; i < this->_rooms.size(); i++) {
-        if (this->_rooms[i].id >= 0)
-            nbRoom++;
-    }
-    std::cout << nbRoom << std::endl;
-    return (nbRoom);
-}
-
-size_t Server::getRoomId() const
-{
-    return(this->_roomId);
-}
-
-void Server::setRoomId(size_t roomId)
-{
-    this->_roomId = roomId;
 }
 
 ClientList Server::getClients() const
@@ -333,7 +231,7 @@ size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
 {
     size_t nbPeople = 0;
 
-    for(std::map<size_t, bool>::iterator i = this->_rooms[idRoom]._idPeopleInRoom.begin(); i != this->_rooms[idRoom]._idPeopleInRoom.end(); i++)
+    for(std::map<size_t, bool>::iterator i = this->_room._idPeopleInRoom.begin(); i != this->_room._idPeopleInRoom.end(); i++)
         if ((*i).second == true)
             nbPeople++;
     return (nbPeople);
@@ -341,5 +239,5 @@ size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
 
 void Server::setPlayerReady(size_t idClient)
 {
-    this->_rooms.at(this->clients.at(idClient).getIdRoom())._idPeopleInRoom.at(idClient) = true;
+    this->_room._idPeopleInRoom.at(idClient) = true;
 }
