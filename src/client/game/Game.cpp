@@ -74,7 +74,6 @@ void rtype::Game::update(rtype::Game *gameEngine)
         case Screens::Intro: _intro->update(gameEngine); break;
         case Screens::Menu: _menu->update(gameEngine); break;
         case Screens::Options: _options->update(gameEngine); break;
-        case Screens::Multiplayer: _multiplayer->update(gameEngine); break;
         case Screens::Room: _room->update(gameEngine); break;
         case Screens::Core: _core->update(gameEngine); break;
         default: break;
@@ -87,7 +86,6 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
         case Screens::Intro: return (_intro->handleEvent(_event, gameEngine));
         case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
-        case Screens::Multiplayer: return (_multiplayer->handleEvent(_event, gameEngine));
         case Screens::Room: return (_room->handleEvent(_event, gameEngine));
         case Screens::Core: return (_core->handleEvent(_event, gameEngine));
         default: break;
