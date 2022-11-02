@@ -95,7 +95,12 @@ elif [ "$os_name" = "Darwin" ]; then
   pip3 install conan
   conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 else
+  echo DARWIN
   pip3 install conan
+  echo LOGS
+  which conan
+  conan --version
+  echo END
   conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 fi
 cmake -DCMAKE_BUILD_TYPE=Debug ..
