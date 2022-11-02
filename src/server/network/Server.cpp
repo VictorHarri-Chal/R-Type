@@ -20,7 +20,8 @@ static void JoinCommand(std::string value, Server *server, size_t actualId)
     (void)actualId;
     std::cout << "Player join room " << value << std::endl;
     server->addPlayerInRoom(actualId);
-    server->SendToAll(message::request::INROOM, std::to_string(server->getRoom()._idPeopleInRoom.size()));
+    server->_nbClientsInRoom++;
+    server->SendToAll(message::request::INROOM, std::to_string(server->_nbClientsInRoom));
 }
 
 /**
@@ -33,7 +34,7 @@ static void JoinCommand(std::string value, Server *server, size_t actualId)
 static void LaunchCommand(std::string value, Server *server, size_t actualId)
 {
     (void)actualId;
-    (void)body;
+    (void)value;
     std::cout << "Lauch Command Asked" << std::endl;
     server->SendToAllInRoom(message::request::LAUNCH, actualId);
 }
@@ -50,13 +51,13 @@ static void ReadyCommand(std::string value, Server *server, size_t actualId)
     (void)actualId;
     (void)value;
     (void)server;
-    size_t nbPlayer = server->getRoom()._idPeopleInRoom.size
+    size_t nbPlayer = server->getRoom()._idPeopleInRoom.size();
 
     std::cout << "Player " << actualId << " is ready" << std::endl;
     server->getClients().at(actualId).setReady(true);
     server->setPlayerReady(actualId);
     if (nbPlayer >= 2 && server->countNbPeopleReadyInRoom(server->getClients().at(actualId).getIdRoom()) == nbPlayer)
-        LaunchCommand(body, server, actualId);
+        LaunchCommand(value, server, actualId);
 }
 /**
  * @brief Execute disconect room command
@@ -68,32 +69,19 @@ static void ReadyCommand(std::string value, Server *server, size_t actualId)
 static void DisconectCommand(std::string value, Server *server, size_t actualId)
 {
     std::cout << "Disconect Command value = " << value << std::endl;
-    server->removePlayerInRoom(std::stoi(value));
-    server->SendToAll(message::request::INROOM);
-    server->getClients().at(actualId).setIdRoom(-1);
-
+    server->removePlayerInRoom(actualId);
+    server->_nbClientsInRoom--;
+    server->SendToAll(message::request::INROOM, std::to_string(server->_nbClientsInRoom));
 }
 
 static void InRoomCommand(std::string value, Server *server, size_t actualId)
 {
+    (void)value;
+    (void)server;
+    (void)actualId;
+    
     std::cout << "In Room Command" << std::endl;
 }
-
-/**
- * @brief Execute room command who send number of room
- *
- * @param value
- * @param server
- * @param actualId
- */
-static void RoomCommand(std::string body, Server *server, size_t actualId)
-{
-    (void)actualId;
-    (void)body;
-    std::cout << "Room Command Asked" << std::endl;
-    server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
-}
-
 
 HandleCommand::HandleCommand()
 {
@@ -112,7 +100,7 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
  * Before handle command function
  **/
 
-Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _nbClients(0)
+Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port), _nbClients(0)
 {
     listen();
 }
@@ -160,12 +148,12 @@ uint32_t Server::getOrCreateClientId(udp::endpoint endpoint)
 
 void Server::sendMessage(message::request request, std::string value)
 {
-    _socket.async_send_to(boost::asio::buffer(createPaquet(request, body)), _remoteEndpoint, boost::bind(&Server::listen, this));
+    _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), _remoteEndpoint, boost::bind(&Server::listen, this));
 }
 
 void Server::sendToClient(message::request request, udp::endpoint targetEndpoint, std::string value)
 {
-    _socket.async_send_to(boost::asio::buffer(createPaquet(request, body)), targetEndpoint, boost::bind(&Server::listen, this));
+    _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), targetEndpoint, boost::bind(&Server::listen, this));
 }
 
 void Server::SendToAll(message::request type, std::string body)
@@ -200,7 +188,7 @@ message Server::getStreamData(std::size_t bytesTransferred)
 
 std::string Server::createPaquet(message::request request, std::string value)
 {
-    message msg(request, body);
+    message msg(request, value);
     std::string str;
 
     boost::iostreams::back_insert_device<std::string> insert(str);
@@ -221,7 +209,9 @@ void Server::addPlayerInRoom(size_t idPlayer)
 
 void Server::removePlayerInRoom(size_t idPlayer)
 {
-    this->_room._idPeopleInRoom.erase(idPlayer);
+    std::map<size_t, bool>::iterator it;
+    it = this->_room._idPeopleInRoom.find(idPlayer);
+    this->_room._idPeopleInRoom.erase(it);
 }
 
 room_t Server::getRoom() const
@@ -241,6 +231,7 @@ ClientList Server::getClients() const
 
 size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
 {
+    (void)idRoom;
     size_t nbPeople = 0;
 
     for(std::map<size_t, bool>::iterator i = this->_room._idPeopleInRoom.begin(); i != this->_room._idPeopleInRoom.end(); i++)
@@ -251,5 +242,5 @@ size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
 
 void Server::setPlayerReady(size_t idClient)
 {
-    this->_rooms.at(this->clients.at(idClient).getIdRoom())._idPeopleInRoom.at(idClient) = true;
+    this->_room._idPeopleInRoom.at(idClient) = true;
 }

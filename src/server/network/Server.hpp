@@ -22,7 +22,7 @@
 
 /**
  * @brief map of all the clients
- * 
+ *
  */
 typedef std::map<uint32_t, Client> ClientList;
 
@@ -50,12 +50,12 @@ class Server {
     room_t getRoom() const;
 
     /**
-    * @brief Send Message to particular client
-    *
-    * @param type
-    * @param target_endpoint
-    * @param value
-    */
+     * @brief Send Message to particular client
+     *
+     * @param type
+     * @param target_endpoint
+     * @param value
+     */
     void sendToClient(message::request type, udp::endpoint target_endpoint, std::string value = "");
     /**
      * @brief Send Message to all Client
@@ -98,8 +98,8 @@ class Server {
     /**
      * @brief Count who is ready in room
      *
-     * @param idRoom Id of the room 
-     * 
+     * @param idRoom Id of the room
+     *
      * @return size_t The number of people ready in room
      */
     size_t countNbPeopleReadyInRoom(size_t idRoom);
@@ -116,6 +116,11 @@ class Server {
      * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
+    /**
+     * @brief nb client connect in room
+     *
+     */
+    size_t _nbClientsInRoom;
 
   private:
     /**
@@ -193,7 +198,7 @@ class HandleCommand {
      * @brief Vector of function pointer
      *
      */
-    std::vector<std::function<void(std::string, Server*, size_t)>> _allCommand;
+    std::vector<std::function<void(std::string, Server *, size_t)>> _allCommand;
 
   public:
     /**
