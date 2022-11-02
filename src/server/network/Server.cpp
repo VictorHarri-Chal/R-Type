@@ -14,14 +14,13 @@
  * @param server
  * @param actualId
  */
-static void JoinCommand(int value, Server *server, size_t actualId)
+static void JoinCommand(std::string value, Server *server, size_t actualId)
 {
     (void)server;
     (void)actualId;
     std::cout << "Player join room " << value << std::endl;
-    server->getClients().at(actualId).setIdRoom(value);
-    server->addPlayerInRoom(value);
-    server->SendToAll(message::request::INROOM, server->getRoom()._idPeopleInRoom.size());
+    server->addPlayerInRoom(actualId);
+    server->SendToAll(message::request::INROOM, std::to_string(server->getRoom()._idPeopleInRoom.size()));
 }
 
 /**
@@ -31,7 +30,7 @@ static void JoinCommand(int value, Server *server, size_t actualId)
  * @param server
  * @param actualId
  */
-static void LaunchCommand(int value, Server *server, size_t actualId)
+static void LaunchCommand(std::string value, Server *server, size_t actualId)
 {
     (void)actualId;
     (void)value;
@@ -46,7 +45,7 @@ static void LaunchCommand(int value, Server *server, size_t actualId)
  * @param server
  * @param actualId
  */
-static void ReadyCommand(int value, Server *server, size_t actualId)
+static void ReadyCommand(std::string value, Server *server, size_t actualId)
 {
     (void)actualId;
     (void)value;
@@ -66,13 +65,18 @@ static void ReadyCommand(int value, Server *server, size_t actualId)
  * @param server
  * @param actualId
  */
-static void DisconectCommand(int value, Server *server, size_t actualId)
+static void DisconectCommand(std::string value, Server *server, size_t actualId)
 {
     std::cout << "Disconect Command value = " << value << std::endl;
-    server->removePlayerInRoom(value);
+    server->removePlayerInRoom(std::stoi(value));
     server->SendToAll(message::request::INROOM);
     server->getClients().at(actualId).setIdRoom(-1);
 
+}
+
+static void InRoomCommand(std::string value, Server *server, size_t actualId)
+{
+    std::cout << "In Room Command" << std::endl;
 }
 
 /**
@@ -88,6 +92,7 @@ HandleCommand::HandleCommand()
     _allCommand.emplace_back(JoinCommand);
     _allCommand.emplace_back(ReadyCommand);
     _allCommand.emplace_back(DisconectCommand);
+    _allCommand.emplace_back(InRoomCommand);
     _allCommand.emplace_back(LaunchCommand);
 }
 
@@ -145,23 +150,23 @@ uint32_t Server::getOrCreateClientId(udp::endpoint endpoint)
     return nbClient;
 };
 
-void Server::sendMessage(message::request request, int value)
+void Server::sendMessage(message::request request, std::string value)
 {
     _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), _remoteEndpoint, boost::bind(&Server::listen, this));
 }
 
-void Server::sendToClient(message::request request, udp::endpoint targetEndpoint, int value)
+void Server::sendToClient(message::request request, udp::endpoint targetEndpoint, std::string value)
 {
     _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), targetEndpoint, boost::bind(&Server::listen, this));
 }
 
-void Server::SendToAll(message::request type, int value)
+void Server::SendToAll(message::request type, std::string value)
 {
     for (auto client : clients)
         sendToClient(type, client.second.getEndpoint(), value);
 }
 
-void Server::SendToAllInRoom(message::request type, size_t actualId, int value)
+void Server::SendToAllInRoom(message::request type, size_t actualId, std::string value)
 {
     size_t actualRoom = this->clients.at(actualId).getIdRoom();
 
@@ -185,7 +190,7 @@ message Server::getStreamData(std::size_t bytesTransferred)
     return msg;
 }
 
-std::string Server::createPaquet(message::request request, int value)
+std::string Server::createPaquet(message::request request, std::string value)
 {
     message msg(request, value);
     std::string str;
