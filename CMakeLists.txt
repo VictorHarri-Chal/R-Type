@@ -20,13 +20,13 @@ set(SRC_INTERFACE
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/)
 set(SRCCLIENT ${PROJECT_SOURCE_DIR}/src/client/)
 set(SRCSERVER ${PROJECT_SOURCE_DIR}/src/server/)
+set(EVENTSROOT ${SRCCLIENT}/events/)
+set(SCREENSROOT ${SRCCLIENT}/screens/)
+set(GAMEROOT ${SRCCLIENT}/game/)
+set(TOOLSROOT ${SRCCLIENT}/tools/)
 set(ECSROOT ${SRCROOT}/ecs/)
 set(UTILSROOT ${SRCROOT}/utils/)
-set(EVENTSROOT ${SRCCLIENT}/events/)
-set(GAMEROOT ${SRCCLIENT}/game/)
-set(SCREENSROOT ${SRCCLIENT}/screens/)
-set(TOOLSROOT ${SRCCLIENT}/tools/)
-set(SCRIPTROOT ${SRCCLIENT}/script/)
+set(SCRIPTROOT ${SRCROOT}/script/)
 
 set(SRC_ECS
     ${ECSROOT}Entity/entity.cpp
@@ -96,6 +96,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}room/RoomScreen.hpp
     ${SCREENSROOT}core/CoreScreen.cpp
     ${SCREENSROOT}core/CoreScreen.hpp
+    ${SCREENSROOT}solo/SoloScreen.cpp
+    ${SCREENSROOT}solo/SoloScreen.hpp
 )
 
 set(SRC_GAME
@@ -158,6 +160,7 @@ set(SRC_SERVER
     ${SRCSERVER}Game.cpp
     ${SRCSERVER}Game.hpp
     ${SRC_ECS}
+    ${SRC_SCRIPT}
     ${SRC_UTILS}
 )
 

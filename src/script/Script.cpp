@@ -35,7 +35,7 @@ void rtype::Script::spriteIsPrinted(size_t i)
 void rtype::Script::parseScript()
 {
     std::ifstream file;
-    file.open("src/client/script/script.txt");
+    file.open("src/script/script.txt");
     std::string line;
     std::string value;
     
