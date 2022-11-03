@@ -85,7 +85,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a840e519ca781888cbd54181572ebe3a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a840e519ca781888cbd54181572ebe3a7">~Client</a> ()</td></tr>
 <tr class="memdesc:a840e519ca781888cbd54181572ebe3a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classClient.html" title="Client class.">Client</a> object.  <a href="classClient.html#a840e519ca781888cbd54181572ebe3a7">More...</a><br /></td></tr>
 <tr class="separator:a840e519ca781888cbd54181572ebe3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c7b47664cf32f7d5e7934eb35abe33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">send</a> (message::request request, std::string body=&quot;&quot;)</td></tr>
+<tr class="memitem:a62c7b47664cf32f7d5e7934eb35abe33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">send</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> request, std::string body=&quot;&quot;)</td></tr>
 <tr class="memdesc:a62c7b47664cf32f7d5e7934eb35abe33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to the server.  <a href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">More...</a><br /></td></tr>
 <tr class="separator:a62c7b47664cf32f7d5e7934eb35abe33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d194cdbf13ce7d1b1e0e2743b63b3f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmessage.html">message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a2d194cdbf13ce7d1b1e0e2743b63b3f9">getStreamData</a> (std::size_t bytesTransferred)</td></tr>
@@ -100,6 +100,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2673fbbe8b52b9cde4332a18f5a1a3a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a2673fbbe8b52b9cde4332a18f5a1a3a1">getGameStart</a> () const</td></tr>
 <tr class="memdesc:a2673fbbe8b52b9cde4332a18f5a1a3a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get if the Game Start.  <a href="classClient.html#a2673fbbe8b52b9cde4332a18f5a1a3a1">More...</a><br /></td></tr>
 <tr class="separator:a2673fbbe8b52b9cde4332a18f5a1a3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b908be48d60d473773f8ff144c0748"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a72b908be48d60d473773f8ff144c0748">getPlayerNumber</a> () const</td></tr>
+<tr class="memdesc:a72b908be48d60d473773f8ff144c0748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current player number.  <a href="classClient.html#a72b908be48d60d473773f8ff144c0748">More...</a><br /></td></tr>
+<tr class="separator:a72b908be48d60d473773f8ff144c0748"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae89218f5098833d904d713e32ccda7d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#ae89218f5098833d904d713e32ccda7d9">Client</a> (size_t id, udp::endpoint endpoint)</td></tr>
 <tr class="memdesc:ae89218f5098833d904d713e32ccda7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classClient.html" title="Client class.">Client</a> object.  <a href="classClient.html#ae89218f5098833d904d713e32ccda7d9">More...</a><br /></td></tr>
 <tr class="separator:ae89218f5098833d904d713e32ccda7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -380,6 +383,26 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="a72b908be48d60d473773f8ff144c0748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b908be48d60d473773f8ff144c0748">&#9670;&nbsp;</a></span>getPlayerNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Client::getPlayerNumber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current player number. </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of the player </dd></dl>
+
+</div>
+</div>
 <a id="a6a675a0a36bacf8a58768ea18fd387bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a675a0a36bacf8a58768ea18fd387bb">&#9670;&nbsp;</a></span>getReady()</h2>
 
@@ -446,7 +469,7 @@ false If not ready to play </dd></dl>
         <tr>
           <td class="memname">void Client::send </td>
           <td>(</td>
-          <td class="paramtype">message::request&#160;</td>
+          <td class="paramtype"><a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a>&#160;</td>
           <td class="paramname"><em>request</em>, </td>
         </tr>
         <tr>

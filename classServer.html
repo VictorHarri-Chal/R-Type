@@ -83,21 +83,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7351104356303935152a859cfb0fb1b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a7351104356303935152a859cfb0fb1b4">Server</a> (boost::asio::io_service &amp;io_service, int port)</td></tr>
 <tr class="memdesc:a7351104356303935152a859cfb0fb1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classServer.html" title="Server class.">Server</a> object.  <a href="classServer.html#a7351104356303935152a859cfb0fb1b4">More...</a><br /></td></tr>
 <tr class="separator:a7351104356303935152a859cfb0fb1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afce001a711a0e24b641a64b6b2082aac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#afce001a711a0e24b641a64b6b2082aac">sendMessage</a> (message::request type, std::string value=&quot;&quot;)</td></tr>
+<tr class="memitem:afce001a711a0e24b641a64b6b2082aac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#afce001a711a0e24b641a64b6b2082aac">sendMessage</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:afce001a711a0e24b641a64b6b2082aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to client.  <a href="classServer.html#afce001a711a0e24b641a64b6b2082aac">More...</a><br /></td></tr>
 <tr class="separator:afce001a711a0e24b641a64b6b2082aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a627809258b2ea06717f893b99994cb06"><td class="memItemLeft" align="right" valign="top"><a id="a627809258b2ea06717f893b99994cb06"></a>
 <a class="el" href="structroom__t.html">room_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRoom</b> () const</td></tr>
 <tr class="separator:a627809258b2ea06717f893b99994cb06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5c78cc95a90ae2a591af7d6e3bc1df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae5c78cc95a90ae2a591af7d6e3bc1df8">sendToClient</a> (message::request type, udp::endpoint target_endpoint, std::string value=&quot;&quot;)</td></tr>
+<tr class="memitem:ae5c78cc95a90ae2a591af7d6e3bc1df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae5c78cc95a90ae2a591af7d6e3bc1df8">sendToClient</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, udp::endpoint target_endpoint, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:ae5c78cc95a90ae2a591af7d6e3bc1df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to particular client.  <a href="classServer.html#ae5c78cc95a90ae2a591af7d6e3bc1df8">More...</a><br /></td></tr>
 <tr class="separator:ae5c78cc95a90ae2a591af7d6e3bc1df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b1eb51c5943f85fb29e68992ef8c206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a7b1eb51c5943f85fb29e68992ef8c206">SendToAll</a> (message::request type, std::string value=&quot;&quot;)</td></tr>
+<tr class="memitem:a7b1eb51c5943f85fb29e68992ef8c206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a7b1eb51c5943f85fb29e68992ef8c206">SendToAll</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:a7b1eb51c5943f85fb29e68992ef8c206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a>.  <a href="classServer.html#a7b1eb51c5943f85fb29e68992ef8c206">More...</a><br /></td></tr>
 <tr class="separator:a7b1eb51c5943f85fb29e68992ef8c206"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fffb4e807606970dda6e5359d02a4d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0fffb4e807606970dda6e5359d02a4d9">SendToAllInRoom</a> (message::request type, size_t acutalId, std::string value=&quot;&quot;)</td></tr>
+<tr class="memitem:a0fffb4e807606970dda6e5359d02a4d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0fffb4e807606970dda6e5359d02a4d9">SendToAllInRoom</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, size_t acutalId, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:a0fffb4e807606970dda6e5359d02a4d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a> in the same room.  <a href="classServer.html#a0fffb4e807606970dda6e5359d02a4d9">More...</a><br /></td></tr>
 <tr class="separator:a0fffb4e807606970dda6e5359d02a4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd1c08870861efc1716c6b59545ff85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a9cd1c08870861efc1716c6b59545ff85">gameLoop</a> ()</td></tr>
+<tr class="memdesc:a9cd1c08870861efc1716c6b59545ff85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the server loop.  <a href="classServer.html#a9cd1c08870861efc1716c6b59545ff85">More...</a><br /></td></tr>
+<tr class="separator:a9cd1c08870861efc1716c6b59545ff85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae99eb6bf31a97820edbb59e1797848eb"><td class="memItemLeft" align="right" valign="top">std::array&lt; char, 64 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae99eb6bf31a97820edbb59e1797848eb">getBuffer</a> () const</td></tr>
 <tr class="memdesc:ae99eb6bf31a97820edbb59e1797848eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Buffer object.  <a href="classServer.html#ae99eb6bf31a97820edbb59e1797848eb">More...</a><br /></td></tr>
 <tr class="separator:ae99eb6bf31a97820edbb59e1797848eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,6 +122,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:add90a4a1b854a20116f4e829d42218af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmessage.html">message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#add90a4a1b854a20116f4e829d42218af">getStreamData</a> (std::size_t bytesTransferred)</td></tr>
 <tr class="memdesc:add90a4a1b854a20116f4e829d42218af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Stream Data object.  <a href="classServer.html#add90a4a1b854a20116f4e829d42218af">More...</a><br /></td></tr>
 <tr class="separator:add90a4a1b854a20116f4e829d42218af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa693ae5629e177f6db85f5f9255ab07e"><td class="memItemLeft" align="right" valign="top"><a id="aa693ae5629e177f6db85f5f9255ab07e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIsGameLaunched</b> (void)</td></tr>
+<tr class="separator:aa693ae5629e177f6db85f5f9255ab07e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2a22be72218f5dd1d2f3f4193b7d52"><td class="memItemLeft" align="right" valign="top"><a id="a1d2a22be72218f5dd1d2f3f4193b7d52"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIsGameInit</b> (void)</td></tr>
+<tr class="separator:a1d2a22be72218f5dd1d2f3f4193b7d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c8205a75f8cfd818f6f39fe03e03e1"><td class="memItemLeft" align="right" valign="top"><a id="a18c8205a75f8cfd818f6f39fe03e03e1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsGameLaunched</b> (bool value)</td></tr>
+<tr class="separator:a18c8205a75f8cfd818f6f39fe03e03e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa9874484faef93fc6ede89dd899e6e0"><td class="memItemLeft" align="right" valign="top"><a id="afa9874484faef93fc6ede89dd899e6e0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsGameInit</b> (bool value)</td></tr>
+<tr class="separator:afa9874484faef93fc6ede89dd899e6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -218,6 +233,25 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>size_t The number of people ready in room </dd></dl>
+
+</div>
+</div>
+<a id="a9cd1c08870861efc1716c6b59545ff85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd1c08870861efc1716c6b59545ff85">&#9670;&nbsp;</a></span>gameLoop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::gameLoop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handle the server loop. </p>
 
 </div>
 </div>
@@ -323,7 +357,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Server::sendMessage </td>
           <td>(</td>
-          <td class="paramtype">message::request&#160;</td>
+          <td class="paramtype"><a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a>&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
@@ -360,7 +394,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Server::SendToAll </td>
           <td>(</td>
-          <td class="paramtype">message::request&#160;</td>
+          <td class="paramtype"><a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a>&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
@@ -397,7 +431,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Server::SendToAllInRoom </td>
           <td>(</td>
-          <td class="paramtype">message::request&#160;</td>
+          <td class="paramtype"><a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a>&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
@@ -440,7 +474,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Server::sendToClient </td>
           <td>(</td>
-          <td class="paramtype">message::request&#160;</td>
+          <td class="paramtype"><a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a>&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
