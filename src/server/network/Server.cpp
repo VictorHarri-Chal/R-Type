@@ -33,10 +33,10 @@ static void JoinCommand(std::string value, Server *server, size_t actualId)
  */
 static void LaunchCommand(std::string value, Server *server, size_t actualId)
 {
-    (void)actualId;
     (void)value;
-    std::cout << "Lauch Command Asked" << std::endl;
-    server->SendToAllInRoom(message::request::LAUNCH, actualId);
+    std::cout << "Launch Command Asked" << std::endl;
+    server->SendToAllInRoom(message::request::LAUNCH, actualId, "");
+    server->setIsGameLaunched(true);
 }
 
 /**
@@ -83,6 +83,14 @@ static void InRoomCommand(std::string value, Server *server, size_t actualId)
     std::cout << "In Room Command" << std::endl;
 }
 
+static void MoveCommand(std::string body, Server *server, size_t actualId)
+{
+    (void)actualId;
+    // (void)body;
+    std::cout << "Move Command Asked" << std::endl;
+    // server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
+}
+
 HandleCommand::HandleCommand()
 {
     _allCommand.emplace_back(JoinCommand);
@@ -90,6 +98,8 @@ HandleCommand::HandleCommand()
     _allCommand.emplace_back(DisconectCommand);
     _allCommand.emplace_back(InRoomCommand);
     _allCommand.emplace_back(LaunchCommand);
+    _allCommand.emplace_back(MoveCommand);
+
 }
 
 void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
@@ -100,7 +110,8 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
  * Before handle command function
  **/
 
-Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port), _nbClients(0)
+Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port),
+_nbClients(0), _isGameLaunched(false), _isGameInit(false)
 {
     listen();
 }
@@ -127,6 +138,7 @@ void Server::handleReceive(const boost::system::error_code& error, std::size_t b
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
         idClient = getOrCreateClientId(this->_remoteEndpoint);
         commandHandler.findCmd(this, msg, idClient);
+        gameLoop();
         listen();
     }
 }
@@ -165,10 +177,29 @@ void Server::SendToAll(message::request type, std::string body)
 void Server::SendToAllInRoom(message::request type, size_t actualId, std::string body)
 {
     size_t actualRoom = this->clients.at(actualId).getIdRoom();
+    int i = 1;
+    for (auto client : clients) {
+        if (client.second.getIdRoom() == actualRoom) {
+            if (type == message::request::LAUNCH) {
+                sendToClient(type, client.second.getEndpoint(), std::to_string(i));
+                i++;
+            } else {
+                sendToClient(type, client.second.getEndpoint(), body);
+            }
+        }
+    }
+}
 
-    for (auto client : clients)
-        if (client.second.getIdRoom() == actualRoom)
-            sendToClient(type, client.second.getEndpoint(), body);
+void Server::gameLoop(void)
+{
+    if (getIsGameLaunched()) {
+        if (!getIsGameInit()) {
+            _game = new rtype::Game();
+            _game->init();
+            setIsGameInit(true);
+        }
+        _game->update();
+    }
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)
@@ -243,4 +274,24 @@ size_t Server::countNbPeopleReadyInRoom(size_t idRoom)
 void Server::setPlayerReady(size_t idClient)
 {
     this->_room._idPeopleInRoom.at(idClient) = true;
+}
+
+bool Server::getIsGameLaunched()
+{
+    return (this->_isGameLaunched);
+}
+
+bool Server::getIsGameInit()
+{
+    return (this->_isGameInit);
+}
+
+void Server::setIsGameLaunched(bool value)
+{
+    this->_isGameLaunched = value;
+}
+
+void Server::setIsGameInit(bool value)
+{
+    this->_isGameInit = value;
 }

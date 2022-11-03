@@ -16,8 +16,19 @@
  */
 class message {
   public:
-    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH };
     /*public access is required for the class member which are to be saved/loaded*/
+    /**
+     * @brief Request type enum
+     *
+     * @param JOIN Join room
+     * @param READY Ready in room
+     * @param DISCONNECT Disconnect from room
+     * @param INROOM In room message
+     * @param LAUNCH Launch game
+     * @param MOVE Move command
+     *
+     */
+    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH, MOVE };
     request type;
     std::string body;
 
