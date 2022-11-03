@@ -155,6 +155,8 @@ set(SRC_SERVER
     ${SRCSERVER}network/Server.hpp
     ${SRCSERVER}network/SafeQueue.hpp
     ${SRCSERVER}network/Client.hpp
+    ${SRCSERVER}Game.cpp
+    ${SRCSERVER}Game.hpp
     ${SRC_ECS}
     ${SRC_UTILS}
 )

@@ -82,7 +82,8 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
 {
     if (_allyClock.getElapsedTime() >= sf::seconds(1.0/8.0f)) {
         for (auto &entity : entities) {
-            if (entity->getEntityType() == rtype::ecs::entity::PLAYER) {
+            if (entity->getEntityType() == rtype::ecs::entity::PLAYER1 || entity->getEntityType() == rtype::ecs::entity::PLAYER2 ||
+            entity->getEntityType() == rtype::ecs::entity::PLAYER3 || entity->getEntityType() == rtype::ecs::entity::PLAYER4) {
                 rtype::ecs::component::Drawable2D *drawable2dCompo =
                 entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
                 sf::IntRect rect = drawable2dCompo->getRect();

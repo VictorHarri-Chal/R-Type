@@ -8,12 +8,9 @@
 #include "CoreScreen.hpp"
 #include "../../../ecs/System/Draw2D/draw2d.hpp"
 #include "../../../ecs/System/Movement/movement.hpp"
-#include "../../../ecs/System/Collide/collide.hpp"
-#include "../../../ecs/System/Enemypath/enemypath.hpp"
-#include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::CoreScreen::CoreScreen(): _currWave(1)
+rtype::menu::CoreScreen::CoreScreen(): _isPlayerNumInit(false), _currWave(1)
 {
 }
 
@@ -23,54 +20,41 @@ void rtype::menu::CoreScreen::init()
     if (draw2DSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating Draw2DSystem");
     this->_world.addSystem(draw2DSystem);
-    rtype::ecs::system::ISystem *movementSystem = new rtype::ecs::system::MovementSystem();
-    if (movementSystem == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating MovementSystem");
-    this->_world.addSystem(movementSystem);
-    rtype::ecs::system::ISystem *collideSystem = new rtype::ecs::system::CollideSystem();
-    if (collideSystem == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating CollideSystem");
-    this->_world.addSystem(collideSystem);
-    rtype::ecs::system::ISystem *enemypathSystem = new rtype::ecs::system::EnemypathSystem();
-    if (enemypathSystem == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating EnemypathSystem");
-    this->_world.addSystem(enemypathSystem);
-    rtype::ecs::system::ISystem *particleSystem = new rtype::ecs::system::ParticlesSystem();
-    if (particleSystem == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating ParticleSystem");
-    this->_world.addSystem(particleSystem);
+    // rtype::ecs::system::ISystem *movementSystem = new rtype::ecs::system::MovementSystem();
+    // if (movementSystem == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating MovementSystem");
+    // this->_world.addSystem(movementSystem);
 
+    // rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    // if (bg == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating Entity (1)");
+    // bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
+    // bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    // bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
+    // this->_world.addEntity(bg);
+    // rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    // if (stars == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating Entity (2)");
+    // stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
+    // stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    // stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
+    // this->_world.addEntity(stars);
+    // rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    // if (planets == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating Entity (3)");
+    // planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
+    // planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    // planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
+    // this->_world.addEntity(planets);
+    // rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+    // if (bigPlanet == nullptr)
+    //     throw ScreensExceptions("CoreScreen: Error while creating Entity (4)");
+    // bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
+    // bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    // bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
+    // this->_world.addEntity(bigPlanet);
 
-    rtype::ecs::entity::Entity *bg = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    if (bg == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (1)");
-    bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
-    bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
-    this->_world.addEntity(bg);
-    rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    if (stars == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (2)");
-    stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
-    stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
-    this->_world.addEntity(stars);
-    rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    if (planets == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (3)");
-    planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
-    planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
-    this->_world.addEntity(planets);
-    rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    if (bigPlanet == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (4)");
-    bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
-    bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
-    this->_world.addEntity(bigPlanet);
-
-    rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
     if (ship == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
     ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
@@ -79,7 +63,7 @@ void rtype::menu::CoreScreen::init()
     ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
-    rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER);
+    rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
     if (ship2 == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
     ship2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 300.f, 0.0f, 0.0f);
@@ -92,10 +76,10 @@ void rtype::menu::CoreScreen::init()
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
-    (void) gameEngine;
+    initPlayerNumber(gameEngine);
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
-        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
-            managePlayer(i, event);
+        if (_world.getEntity(i)->getEntityType() == _playerNumber) {
+            managePlayer(i, event, gameEngine);
             break;
         }
     }
@@ -104,13 +88,29 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
 void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
 {   
-    destroySprites();
-    paralax();
-    spawnEnemiesFromScript();
-    manageEnemiesShooting();
-    handleWindowBorder();
+    // destroySprites();
+    // paralax();
+    // spawnEnemiesFromScript();
+    // manageEnemiesShooting();
+    // handleWindowBorder();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
+}
+
+void rtype::menu::CoreScreen::initPlayerNumber(rtype::Game *gameEngine)
+{
+    if (!_isPlayerNumInit) {
+        std::string tmp = gameEngine->_client->getPlayerNumber();
+        if (tmp == "1")
+            _playerNumber = rtype::ecs::entity::PLAYER1;
+        if (tmp == "2")
+            _playerNumber = rtype::ecs::entity::PLAYER2;
+        if (tmp == "3")
+            _playerNumber = rtype::ecs::entity::PLAYER3;
+        if (tmp == "4")
+            _playerNumber = rtype::ecs::entity::PLAYER4;
+        _isPlayerNumInit = true;
+    }
 }
 
 bool rtype::menu::CoreScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)
@@ -137,29 +137,37 @@ bool rtype::menu::CoreScreen::isMouseOnButton(size_t index, rtype::Game *gameEng
     return false;
 }
 
-void rtype::menu::CoreScreen::managePlayer(size_t entityId, rtype::Event &event)
+void rtype::menu::CoreScreen::managePlayer(size_t entityId, rtype::Event &event, rtype::Game *gameEngine)
 {
     ecs::component::Transform *transformCompo = _world.getEntity(entityId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
     ecs::component::IShip *shipCompo = _world.getEntity(entityId)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
-    managePlayerMovement(transformCompo, shipCompo, event);
-    managePlayerShot(transformCompo, shipCompo, event);
+    managePlayerMovement(transformCompo, shipCompo, event, gameEngine);
+    managePlayerShot(transformCompo, shipCompo, event, gameEngine);
 }
 
-void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event)
+void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
 {
     transformCompo->setSpeedX(0.0f);
     transformCompo->setSpeedY(0.0f);
-    if (event.key.right && !event.key.left )
+    if (event.key.right && !event.key.left) {
         transformCompo->setSpeedX(shipCompo->getSpeed());
-    if (event.key.left && !event.key.right)
+        gameEngine->_client->send(message::MOVE, "R");
+    }
+    if (event.key.left && !event.key.right) {
         transformCompo->setSpeedX(-1 * shipCompo->getSpeed());
-    if (event.key.up && !event.key.down)
+        gameEngine->_client->send(message::MOVE, "L");
+    }
+    if (event.key.up && !event.key.down) {
         transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
-    if (event.key.down && !event.key.up)
+        gameEngine->_client->send(message::MOVE, "U");
+    }
+    if (event.key.down && !event.key.up) {
         transformCompo->setSpeedY(shipCompo->getSpeed());
+        gameEngine->_client->send(message::MOVE, "D");
+    }
 }
 
-void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event)
+void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
 {
     if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
         if (event.key.code == ' ') {
@@ -406,7 +414,7 @@ void rtype::menu::CoreScreen::paralax(void)
 void rtype::menu::CoreScreen::handleWindowBorder(void)
 {
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
-        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER) {
+        if (_world.getEntity(i)->getEntityType() == _playerNumber) {
             ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
             ecs::component::Drawable2D *drawableCompo = _world.getEntity(i)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
             if (transformCompo->getX() < -0.1f)

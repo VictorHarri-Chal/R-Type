@@ -89,7 +89,7 @@ namespace rtype
                  * @param gameEngine the gameEngine
                  *
                  */
-                void update(rtype::Game *gameEngine);
+                void update(rtype::Game *gameEngine = nullptr);
 
               private:
                 /**

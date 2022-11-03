@@ -80,28 +80,36 @@ namespace rtype
             */
             void paralax(void) override;
             /**
+            * @brief Init the player number
+            *
+            */
+            void initPlayerNumber(rtype::Game *gameEngine);
+            /**
             * @brief Handle all function for the player
             * 
             * @param entityId Id of the player in the _world
             * @param event Event to be handled
+            * @param gameEngine Game engine
             */
-            void managePlayer(size_t entityId, rtype::Event &event);
+            void managePlayer(size_t entityId, rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Handle the player movement depending of the event
             * 
             * @param transformCompo Component transform of the player
             * @param shipCompo Component ship of the player
             * @param event Event to be handled
+            * @param gameEngine Game engine
             */
-            void managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
+            void managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Handle the player shooting depending of the event
             * 
             * @param transformCompo Component transform of the player
             * @param shipCompo Component ship of the player
             * @param event Event to be handled
+            * @param gameEngine Game engine
             */
-            void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
+            void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Destroy sprites who goes out of the screen
             * 
@@ -162,6 +170,16 @@ namespace rtype
              * 
              */
             rtype::Script _script;
+            /**
+             * @brief Store which ship does this client control
+             *
+             */
+            rtype::ecs::entity::entityType _playerNumber;
+            /**
+             * @brief Check if the player number is initialised
+             *
+             */
+            bool _isPlayerNumInit;
             /**
              * @brief Current wave in game
              * 

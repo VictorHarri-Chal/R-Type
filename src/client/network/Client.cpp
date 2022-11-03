@@ -39,8 +39,10 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
         message msg = getStreamData(bytesTransferred);
         if (msg.type == message::INROOM)
             this->_actualNbPeopleInRoom = std::stoi(msg.body);
-        if (msg.type == message::LAUNCH)
+        if (msg.type == message::LAUNCH) {
             this->_gameStart = true;
+            this->_playerNumber = msg.body;
+        }
         listen();
     }
 }
@@ -94,4 +96,9 @@ size_t Client::getNbPeopleInRoom() const
 bool Client::getGameStart() const
 {
     return (this->_gameStart);
+}
+
+std::string Client::getPlayerNumber() const
+{
+    return (this->_playerNumber);
 }

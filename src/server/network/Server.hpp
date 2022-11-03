@@ -10,15 +10,17 @@
 #include <boost/array.hpp>
 #include <boost/bind/bind.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/shared_ptr.hpp>
 #include <fstream>
 #include "../../utils/Message.hpp"
 #include "../../utils/Rooms.hpp"
 #include "Client.hpp"
 #include "SafeQueue.hpp"
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
-#include <boost/shared_ptr.hpp>
+#include "../Game.hpp"
+
 
 /**
  * @brief map of all the clients
@@ -72,6 +74,11 @@ class Server {
      */
     void SendToAllInRoom(message::request type, size_t acutalId, std::string value = "");
     /**
+     * @brief Handle the server loop
+     *
+     */
+    void gameLoop();
+    /**
      * @brief Get the Buffer object
      *
      * @return std::array<char, 64>
@@ -116,6 +123,10 @@ class Server {
      * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
+    bool getIsGameLaunched(void);
+    bool getIsGameInit(void);
+    void setIsGameLaunched(bool value);
+    void setIsGameInit(bool value);
     /**
      * @brief nb client connect in room
      *
@@ -187,6 +198,21 @@ class Server {
      *
      */
     size_t _nbClients;
+    /**
+     * @brief Game class
+     *
+     */
+    rtype::Game *_game;
+    /**
+     * @brief Is game launched ?
+     *
+     */
+    bool _isGameLaunched;
+    /**
+     * @brief Is game initialised ?
+     *
+     */
+    bool _isGameInit;
 };
 /**
  * @brief HandleCommand class who execut command

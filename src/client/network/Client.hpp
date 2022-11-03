@@ -72,7 +72,12 @@ class Client {
      * @return false 
      */
     bool getGameStart() const;
-
+    /**
+     * @brief Get the current player number
+     * 
+     * @return the number of the player
+     */
+    std::string getPlayerNumber() const;
   private:
     /**
      * @brief IO Service
@@ -129,4 +134,9 @@ class Client {
      * 
      */
     bool _gameStart;
+    /**
+     * @brief store which player is this client
+     * 
+     */
+    std::string _playerNumber;
 };
