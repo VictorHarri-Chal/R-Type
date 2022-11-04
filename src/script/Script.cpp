@@ -29,7 +29,7 @@ std::vector<std::vector<int>> rtype::Script::getLines() const
 
 void rtype::Script::spriteIsPrinted(size_t i)
 {
-    _lines[i][7] = 0;
+    _lines[i][5] = 0;
 }
 
 void rtype::Script::parseScript()

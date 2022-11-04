@@ -66,6 +66,8 @@ set(SRC_ECS
     ${ECSROOT}Component/Ship/kamikaze.hpp
     ${ECSROOT}Component/Ship/turret.cpp
     ${ECSROOT}Component/Ship/turret.hpp
+    ${ECSROOT}Component/Ship/boss.cpp
+    ${ECSROOT}Component/Ship/boss.hpp
     ${ECSROOT}Component/Ship/AShip.cpp
     ${ECSROOT}Component/Ship/AShip.hpp
     ${ECSROOT}Component/Ship/IShip.hpp

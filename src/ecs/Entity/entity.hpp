@@ -28,6 +28,7 @@
 #include "../Component/Ship/rusher.hpp"
 #include "../Component/Ship/kamikaze.hpp"
 #include "../Component/Ship/turret.hpp"
+#include "../Component/Ship/boss.hpp"
 
 
 namespace rtype
@@ -41,7 +42,7 @@ namespace rtype
              * @brief Entity Type for entity object creation
              *
              */
-            enum entityType { PLAYER1, PLAYER2, PLAYER3, PLAYER4, ENEMY, ALLY_PROJECTILE, ENEMY_PROJECTILE, BOSS, PARTICLE, BUILDING, TEXT, RECTANGLE, STATIC_SPRITE, UNKNOWN };
+            enum entityType { PLAYER1, PLAYER2, PLAYER3, PLAYER4, ENEMY, ALLY_PROJECTILE, ENEMY_PROJECTILE, PARTICLE, BUILDING, TEXT, RECTANGLE, STATIC_SPRITE, UNKNOWN };
             /// @brief Entity class
             class Entity {
               public:

@@ -104,7 +104,7 @@ void rtype::menu::IntroScreen::init()
 int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     handleNickname(event);
-    if (isButtonPressed(5, gameEngine, event) && _pseudo.size() > 2 && _pseudo.size() <= 10) {
+    if ((isButtonPressed(5, gameEngine, event) || event.key.enter ) && _pseudo.size() > 2 && _pseudo.size() <= 10) {
         saveParalax();
         return 2;
     }
@@ -184,7 +184,7 @@ void rtype::menu::IntroScreen::handleNickname(rtype::Event &event)
 {
     ecs::component::Drawable2D *pseudoCompo = _world.getEntity(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
     std::string tmp = pseudoCompo->getText();
-    if (isAlpha(event) && _pseudo.size() <= 10) {
+    if (isAlpha(event) && _pseudo.size() <= 9) {
         pseudoCompo->setText(tmp + event.key.code);
         event.key.code = '\0';
     }

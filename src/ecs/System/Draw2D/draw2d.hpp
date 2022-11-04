@@ -81,6 +81,8 @@ namespace rtype
                 sf::Clock _rusherClock;
                 sf::Clock _turretClock;
                 sf::Clock _kamikazeClock;
+                sf::Clock _bossClock;
+                sf::Clock _mineClock;
 
             };
         } // namespace system

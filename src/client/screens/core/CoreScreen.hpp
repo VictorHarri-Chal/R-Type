@@ -124,13 +124,11 @@ namespace rtype
             * @brief Generic function to create an enemy
             * 
             * @param shipType Type of the enemy
-            * @param dirHor Boolean to know if the enemy is horizontal
-            * @param dirVer Boolean to know if the enemy is vertical
             * @param currWave Current wave of the game
             * @param x X position of the enemy
             * @param y Y position of the enemy
             */
-            void generateEnemy(int currWave, int shipType, bool dirHor, bool dirVer, float x, float y);
+            void generateEnemy(int currWave, int shipType, float x, float y);
             /**
             * @brief Spawn enemies depending on the script
             * 

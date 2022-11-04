@@ -7,10 +7,8 @@
 
 #include "zigzag.hpp"
 
-rtype::ecs::component::Zigzag::Zigzag(bool dirHor, bool dirVer, int currWave)
+rtype::ecs::component::Zigzag::Zigzag(int currWave)
 {
-    _directionHorizontal = dirHor;
-    _directionVertical = dirVer;
     _health = 2.0f * (currWave * 0.4f);
     _damage = 1.0f;
     _speed = 0.15f;
