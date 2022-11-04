@@ -91,8 +91,10 @@ int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
             break;
         }
     }
-    if (_isGameEnded && event.key.enter)
+    if (_isGameEnded && event.key.enter) {
+        saveParalax();
         return 2;
+    }
     return 0;
 }
 
@@ -384,7 +386,7 @@ void rtype::menu::SoloScreen::spawnEnemiesFromScript(void)
         _script.restartClock();
     }
     for (size_t i = 0; i < _script.getLines().size(); i++) {
-        if (_script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
+        if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
             sf::Time time = sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)));
             if (_script.getClock().getElapsedTime() >= time) {
                 generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
@@ -411,13 +413,13 @@ sf::Time rtype::menu::SoloScreen::getWaveDuration(void)
     sf::Time tmp;
     switch (_currWave) {
         case 1:
-            tmp = sf::seconds(5.f);
+            tmp = sf::seconds(10.f);
             break;
         case 2:
-            tmp = sf::seconds(5.f);
+            tmp = sf::seconds(15.f);
             break;
         case 3:
-            tmp = sf::seconds(50.f);
+            tmp = sf::seconds(20.f);
             break;
         case 4:
             tmp = sf::seconds(60.f);

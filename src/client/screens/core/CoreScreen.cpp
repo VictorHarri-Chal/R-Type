@@ -364,7 +364,7 @@ sf::Time rtype::menu::CoreScreen::getWaveDuration(void)
     sf::Time tmp;
     switch (_currWave) {
         case 1:
-            tmp = sf::seconds(5.f);
+            tmp = sf::seconds(15.f);
             break;
         case 2:
             tmp = sf::seconds(5.f);
