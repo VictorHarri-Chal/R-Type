@@ -132,7 +132,7 @@ class Server {
      *
      */
     size_t _nbClientsInRoom;
-
+    void startGame();
   private:
     /**
      * @brief Start receiving
@@ -140,12 +140,24 @@ class Server {
      */
     void listen();
     /**
+     * @brief Start receiving game info
+     *
+     */
+    void listenInGame();
+    /**
      * @brief Handle receive
      *
      * @param error Error
      * @param bytesTransferred Bytes transferred
      */
     void handleReceive(const boost::system::error_code &error, std::size_t /*bytesTransferred*/);
+    /**
+     * @brief Handle receive
+     *
+     * @param error Error
+     * @param bytesTransferred Bytes transferred
+     */
+    void handleReceiveInGame(const boost::system::error_code &error, std::size_t /*bytesTransferred*/);
     /**
      * @brief Get the or create client id object
      *
@@ -213,6 +225,7 @@ class Server {
      *
      */
     bool _isGameInit;
+    bool waitCommand;
 };
 /**
  * @brief HandleCommand class who execut command

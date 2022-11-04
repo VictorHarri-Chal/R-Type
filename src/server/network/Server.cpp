@@ -111,7 +111,7 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
  **/
 
 Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port),
-_nbClients(0), _isGameLaunched(false), _isGameInit(false)
+_nbClients(0), _isGameLaunched(false), _isGameInit(false), waitCommand(false)
 {
     listen();
 }
@@ -122,6 +122,16 @@ void Server::listen()
   _socket.async_receive_from(
       boost::asio::buffer(_recvBuffer), _remoteEndpoint,
       boost::bind(&Server::handleReceive, this,
+        boost::asio::placeholders::error,
+        boost::asio::placeholders::bytes_transferred));
+}
+
+void Server::listenInGame()
+{
+//   std::cout << "start receive" << std::endl;
+  _socket.async_receive_from(
+      boost::asio::buffer(_recvBuffer), _remoteEndpoint,
+      boost::bind(&Server::handleReceiveInGame, this,
         boost::asio::placeholders::error,
         boost::asio::placeholders::bytes_transferred));
 }
@@ -138,8 +148,22 @@ void Server::handleReceive(const boost::system::error_code& error, std::size_t b
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
         idClient = getOrCreateClientId(this->_remoteEndpoint);
         commandHandler.findCmd(this, msg, idClient);
-        gameLoop();
-        listen();
+        if (this->_isGameLaunched)
+            this->gameLoop();
+        else
+            listen();
+    }
+}
+
+void Server::handleReceiveInGame(const boost::system::error_code& error, std::size_t bytesTransferred)
+  {
+    if (!error || error == boost::asio::error::message_size)
+    {
+        size_t idClient;
+        message msg = this->getStreamData(bytesTransferred);
+        idClient = getOrCreateClientId(this->_remoteEndpoint);
+        msg.print();
+        listenInGame();
     }
 }
 
@@ -192,14 +216,16 @@ void Server::SendToAllInRoom(message::request type, size_t actualId, std::string
 
 void Server::gameLoop(void)
 {
-    if (getIsGameLaunched()) {
-        if (!getIsGameInit()) {
-            _game = new rtype::Game();
-            _game->init();
-            setIsGameInit(true);
-        }
-        _game->update();
-    }
+    _game = new rtype::Game();
+    _game->init();
+
+    listenInGame();
+    // if (getIsGameLaunched()) {
+    //     if (!getIsGameInit()) {
+    //         
+    //         setIsGameInit(true);
+    //     }
+    // }
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)
