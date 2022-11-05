@@ -32,6 +32,7 @@ namespace rtype
          *
          */
         void init();
+        void initPlayersEntities();
         /**
          * @brief Update for the server loop
          *

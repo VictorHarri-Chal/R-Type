@@ -35,31 +35,107 @@ void rtype::Game::init()
         throw ScreensExceptions("CoreScreen: Error while creating ParticleSystem");
     this->_world.addSystem(particleSystem);
 
-
-    rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
-    if (ship == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
-    ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
-    ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
-    ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-    this->_world.addEntity(ship);
-    rtype::ecs::entity::Entity *ship2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
-    if (ship2 == nullptr)
-        throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
-    ship2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
-    ship2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    ship2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
-    ship2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
-    this->_world.addEntity(ship2);
+    this->initPlayersEntities();
 }
 
-// void rtype::Game::initPlayers(void)
-// {
+void rtype::Game::initPlayersEntities(void)
+{
+    if (this->_nbPlayers == 2) {
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
 
-// }
+        if (player1 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+        if (player2 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+
+        player1->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player1->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player1->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player1->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player1);
+        player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player2);
+    }
+
+    if (this->_nbPlayers == 3) {
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
+        rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
+
+        if (player1 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+        if (player2 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+        if (player3 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+
+        player1->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player1->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player1->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player1->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player1);
+        player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player2);
+        player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player3);
+    }
+
+    if (this->_nbPlayers == 4) {
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
+        rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
+        rtype::ecs::entity::Entity *player4 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
+
+        if (player1 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+        if (player2 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+        if (player3 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+        if (player4 == nullptr)
+            throw ScreensExceptions("CoreScreen: Error while creating Entity (5)");
+
+        player1->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player1->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player1->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player1->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player1);
+        player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player2);
+        player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player3);
+        player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
+        player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(player4);
+    }
+}
 
 
 void rtype::Game::update(void)
