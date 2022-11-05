@@ -21,7 +21,7 @@ namespace rtype
          * @brief Construct a new Core Screen object
          *
          */
-        Game();
+        Game(size_t nbPlayers);
         /**
          * @brief Destroy the Core Screen object
          *
@@ -44,5 +44,7 @@ namespace rtype
          *
          */
         rtype::ecs::world::World _world;
+
+        size_t _nbPlayers;
     };
 }

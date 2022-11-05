@@ -79,7 +79,7 @@ static void InRoomCommand(std::string value, Server *server, size_t actualId)
     (void)value;
     (void)server;
     (void)actualId;
-    
+
     std::cout << "In Room Command" << std::endl;
 }
 
@@ -194,7 +194,7 @@ void Server::gameLoop(void)
 {
     if (getIsGameLaunched()) {
         if (!getIsGameInit()) {
-            _game = new rtype::Game();
+            _game = new rtype::Game(this->getPlayersInRoom());
             _game->init();
             setIsGameInit(true);
         }
@@ -245,6 +245,11 @@ void Server::removePlayerInRoom(size_t idPlayer)
     this->_room._idPeopleInRoom.erase(it);
 }
 
+size_t Server::getPlayersInRoom()
+{
+    return this->_room._idPeopleInRoom.size();
+}
+
 room_t Server::getRoom() const
 {
     return(this->_room);
@@ -275,6 +280,11 @@ void Server::setPlayerReady(size_t idClient)
 {
     this->_room._idPeopleInRoom.at(idClient) = true;
 }
+
+// size_t Server::getPlayerReady(void)
+// {
+//     return this->_room._idPeopleInRoom.at(idClient);
+// }
 
 bool Server::getIsGameLaunched()
 {

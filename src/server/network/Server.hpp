@@ -133,11 +133,13 @@ class Server {
      */
     size_t _nbClientsInRoom;
 
-  private:
+    size_t getPlayersInRoom();
+
+    private:
     /**
-     * @brief Start receiving
-     *
-     */
+        * @brief Start receiving
+        *
+        */
     void listen();
     /**
      * @brief Handle receive

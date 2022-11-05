@@ -12,9 +12,8 @@
 #include "../ecs/System/Particles/particles.hpp"
 #include "../exceptions/ScreensExceptions.hpp"
 
-rtype::Game::Game()
+rtype::Game::Game(size_t nbPlayers) : _nbPlayers(nbPlayers)
 {
-
 }
 
 void rtype::Game::init()
@@ -56,6 +55,12 @@ void rtype::Game::init()
     ship2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
     this->_world.addEntity(ship2);
 }
+
+// void rtype::Game::initPlayers(void)
+// {
+
+// }
+
 
 void rtype::Game::update(void)
 {
