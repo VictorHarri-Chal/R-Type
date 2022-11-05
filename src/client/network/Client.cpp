@@ -16,6 +16,7 @@ Client::Client(boost::asio::io_service &io_service, const std::string &host, con
     _actualNbRooms = 0;
     _actualNbPeopleInRoom = 0;
     _gameStart = false;
+    std::cout << "Client started." << std::endl;
     listen();
 }
 
@@ -26,7 +27,6 @@ Client::~Client()
 
 void Client::listen()
 {
-    std::cout << "start receive" << std::endl;
     _socket.async_receive_from(boost::asio::buffer(_recvBuffer), _endpoint,
         boost::bind(&Client::handleReceive, this, boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
@@ -34,7 +34,6 @@ void Client::listen()
 
 void Client::handleReceive(const boost::system::error_code &error, std::size_t bytesTransferred)
 {
-    std::cout << "handle receive" << std::endl;
     if (!error || error == boost::asio::error::message_size) {
         message msg = getStreamData(bytesTransferred);
         if (msg.type == message::INROOM)
@@ -61,7 +60,7 @@ message Client::getStreamData(std::size_t bytesTransferred)
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
     boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Server received message: ";
+    std::cout << "Client received: ";
     msg.print();
 
     return msg;

@@ -85,7 +85,7 @@ namespace rtype
             * @brief Init the player number
             *
             */
-            // void initPlayerNumber(rtype::Game *gameEngine);
+            void initPlayerNumber(rtype::Game *gameEngine);
             /**
             * @brief Handle all function for the player
             *

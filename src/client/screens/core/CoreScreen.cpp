@@ -27,7 +27,7 @@ void rtype::menu::CoreScreen::init()
 void rtype::menu::CoreScreen::initPlayersEntities(void)
 {
     if (this->_nbPlayers == 2) {
-        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
         rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
 
         if (player1 == nullptr)
@@ -52,8 +52,8 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
     }
 
     if (this->_nbPlayers == 3) {
-        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
-        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
         rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
 
         if (player1 == nullptr)
@@ -87,9 +87,9 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
     }
 
     if (this->_nbPlayers == 4) {
-        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
-        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
-        rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
+        rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
         rtype::ecs::entity::Entity *player4 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
 
         if (player1 == nullptr)
@@ -134,9 +134,8 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
-    // this->initPlayerNumber(gameEngine);
-    std::cout << "nbPlayers: " << this->_nbPlayers << std::endl;
-    std::cout << "layernbumber: " << this->_playerNumber << std::endl;
+    this->initPlayerNumber(gameEngine);
+
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == _playerNumber) {
             managePlayer(i, event, gameEngine);
@@ -157,21 +156,21 @@ void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
     this->_world.draw(gameEngine);
 }
 
-// void rtype::menu::CoreScreen::initPlayerNumber(rtype::Game *gameEngine)
-// {
-//     if (!_isPlayerNumInit) {
-//         std::string tmp = gameEngine->_client->getPlayerNumber();
-//         if (tmp == "1")
-//             _playerNumber = rtype::ecs::entity::PLAYER1;
-//         if (tmp == "2")
-//             _playerNumber = rtype::ecs::entity::PLAYER2;
-//         if (tmp == "3")
-//             _playerNumber = rtype::ecs::entity::PLAYER3;
-//         if (tmp == "4")
-//             _playerNumber = rtype::ecs::entity::PLAYER4;
-//         _isPlayerNumInit = true;
-//     }
-// }
+void rtype::menu::CoreScreen::initPlayerNumber(rtype::Game *gameEngine)
+{
+    if (!_isPlayerNumInit) {
+        std::string tmp = gameEngine->_client->getPlayerNumber();
+        if (tmp == "1")
+            _playerNumber = rtype::ecs::entity::PLAYER1;
+        if (tmp == "2")
+            _playerNumber = rtype::ecs::entity::PLAYER2;
+        if (tmp == "3")
+            _playerNumber = rtype::ecs::entity::PLAYER3;
+        if (tmp == "4")
+            _playerNumber = rtype::ecs::entity::PLAYER4;
+        _isPlayerNumInit = true;
+    }
+}
 
 bool rtype::menu::CoreScreen::isButtonPressed(size_t index, rtype::Game *gameEngine, rtype::Event &event)
 {
@@ -210,18 +209,22 @@ void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *tr
     transformCompo->setSpeedX(0.0f);
     transformCompo->setSpeedY(0.0f);
     if (event.key.right && !event.key.left) {
+        std::cout << "RIGHT" << std::endl;
         transformCompo->setSpeedX(shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "R");
     }
     if (event.key.left && !event.key.right) {
+        std::cout << "RIGHT" << std::endl;
         transformCompo->setSpeedX(-1 * shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "L");
     }
     if (event.key.up && !event.key.down) {
+        std::cout << "RIGHT" << std::endl;
         transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "U");
     }
     if (event.key.down && !event.key.up) {
+        std::cout << "RIGHT" << std::endl;
         transformCompo->setSpeedY(shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "D");
     }

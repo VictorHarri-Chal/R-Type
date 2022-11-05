@@ -87,7 +87,8 @@ static void MoveCommand(std::string body, Server *server, size_t actualId)
 {
     (void)actualId;
     // (void)body;
-    std::cout << "Move Command Asked" << std::endl;
+    std::cout << "Move Command Asked - " << body << std::endl;
+
     // server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
 }
 
@@ -113,12 +114,12 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
 Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port),
 _nbClients(0), _isGameLaunched(false), _isGameInit(false)
 {
+    std::cout << "Server started." << std::endl;
     listen();
 }
 
 void Server::listen()
 {
-  std::cout << "start receive" << std::endl;
   _socket.async_receive_from(
       boost::asio::buffer(_recvBuffer), _remoteEndpoint,
       boost::bind(&Server::handleReceive, this,
@@ -211,7 +212,7 @@ message Server::getStreamData(std::size_t bytesTransferred)
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
     boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Server received message:" << std::endl;
+    std::cout << "Server received :" << std::endl;
     msg.print();
 
     return msg;
