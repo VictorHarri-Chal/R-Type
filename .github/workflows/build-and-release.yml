@@ -2,6 +2,9 @@ name: Build and create release
 
 on:
   workflow_dispatch:
+env:
+  RUNNER: true
+
 jobs:
   Build-And-Release:
     strategy:
