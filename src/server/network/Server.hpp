@@ -47,7 +47,7 @@ class Server {
      * @param type of the request
      * @param value a std::string value if is needed
      */
-    void sendMessage(message::request type, std::string value = "");
+    void sendMessage(message::request type, udp::endpoint targetEndpoint, std::string value = "");
 
     room_t getRoom() const;
 
@@ -77,7 +77,7 @@ class Server {
      * @brief Handle the server loop
      *
      */
-    void gameLoop();
+    void gameLoop(message msg, size_t actualId);
     /**
      * @brief Get the Buffer object
      *
@@ -123,9 +123,31 @@ class Server {
      * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
+    /**
+     * @brief Get the Is Game Launched object
+     * 
+     * @return true 
+     * @return false 
+     */
     bool getIsGameLaunched(void);
+    /**
+     * @brief Get the Is Game Init object
+     * 
+     * @return true 
+     * @return false 
+     */
     bool getIsGameInit(void);
+    /**
+     * @brief Set the Is Game Launched object
+     * 
+     * @param value 
+     */
     void setIsGameLaunched(bool value);
+    /**
+     * @brief Set the Is Game Init object
+     * 
+     * @param value 
+     */
     void setIsGameInit(bool value);
     /**
      * @brief nb client connect in room
@@ -140,24 +162,12 @@ class Server {
      */
     void listen();
     /**
-     * @brief Start receiving game info
-     *
-     */
-    void listenInGame();
-    /**
      * @brief Handle receive
      *
      * @param error Error
      * @param bytesTransferred Bytes transferred
      */
     void handleReceive(const boost::system::error_code &error, std::size_t /*bytesTransferred*/);
-    /**
-     * @brief Handle receive
-     *
-     * @param error Error
-     * @param bytesTransferred Bytes transferred
-     */
-    void handleReceiveInGame(const boost::system::error_code &error, std::size_t /*bytesTransferred*/);
     /**
      * @brief Get the or create client id object
      *
@@ -226,6 +236,11 @@ class Server {
      */
     bool _isGameInit;
     bool waitCommand;
+    /**
+     * @brief send all information about entities to all client
+     * 
+     */
+    void sendAllEntities();
 };
 /**
  * @brief HandleCommand class who execut command

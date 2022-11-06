@@ -28,7 +28,7 @@ class message {
      * @param MOVE Move command
      *
      */
-    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH, MOVE };
+    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH, MOVE, ENTITY };
     request type;
     std::string body;
 

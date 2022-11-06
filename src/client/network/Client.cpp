@@ -43,6 +43,8 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
             this->_gameStart = true;
             this->_playerNumber = msg.body;
         }
+        if (msg.type == message::ENTITY)
+            msg.print();
         listen();
     }
 }
