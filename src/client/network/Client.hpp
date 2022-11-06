@@ -98,7 +98,7 @@ class Client {
      * @brief Buffer for receiving
      * 
      */
-    std::array<char, 64> _recvBuffer;
+    std::array<char, 512> _recvBuffer;
     /**
      * @brief Start receiving
      * 

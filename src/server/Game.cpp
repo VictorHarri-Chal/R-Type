@@ -18,22 +18,23 @@ rtype::Game::Game(size_t nbPlayers) : _nbPlayers(nbPlayers)
 
 void rtype::Game::init()
 {
+    this->_world = new rtype::ecs::world::World;
     rtype::ecs::system::ISystem *movementSystem = new rtype::ecs::system::MovementSystem();
     if (movementSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating MovementSystem");
-    this->_world.addSystem(movementSystem);
+    this->_world->addSystem(movementSystem);
     rtype::ecs::system::ISystem *collideSystem = new rtype::ecs::system::CollideSystem();
     if (collideSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating CollideSystem");
-    this->_world.addSystem(collideSystem);
+    this->_world->addSystem(collideSystem);
     rtype::ecs::system::ISystem *enemypathSystem = new rtype::ecs::system::EnemypathSystem();
     if (enemypathSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating EnemypathSystem");
-    this->_world.addSystem(enemypathSystem);
+    this->_world->addSystem(enemypathSystem);
     rtype::ecs::system::ISystem *particleSystem = new rtype::ecs::system::ParticlesSystem();
     if (particleSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating ParticleSystem");
-    this->_world.addSystem(particleSystem);
+    this->_world->addSystem(particleSystem);
 
     this->initPlayersEntities();
 }
@@ -54,13 +55,13 @@ void rtype::Game::initPlayersEntities(void)
         player1->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player1->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player1);
+        this->_world->addEntity(player1);
         player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
         player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player2);
+        this->_world->addEntity(player2);
     }
 
     if (this->_nbPlayers == 3) {
@@ -80,19 +81,19 @@ void rtype::Game::initPlayersEntities(void)
         player1->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player1->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player1);
+        this->_world->addEntity(player1);
         player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
         player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player2);
+        this->_world->addEntity(player2);
         player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
         player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player3);
+        this->_world->addEntity(player3);
     }
 
     if (this->_nbPlayers == 4) {
@@ -115,32 +116,32 @@ void rtype::Game::initPlayersEntities(void)
         player1->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player1->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player1);
+        this->_world->addEntity(player1);
         player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
         player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player2);
+        this->_world->addEntity(player2);
         player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
         player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player3);
+        this->_world->addEntity(player3);
         player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
         player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-        this->_world.addEntity(player4);
+        this->_world->addEntity(player4);
     }
 }
 
 
 void rtype::Game::update(void)
 {
-    this->_world.update();
+    this->_world->update();
 
     // if (_clock.getElapsedTime() >= sf::seconds(1.0f / 120.0f)) {
     //     if (!handleEvents())
@@ -151,19 +152,19 @@ void rtype::Game::update(void)
 
 int rtype::Game::handleEvents(std::string direction)
 {
-    for (size_t i = 0; i < _world.getEntities().size(); i++) {
-        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+    for (size_t i = 0; i < _world->getEntities().size(); i++) {
+        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
             if (direction == "L") {
-                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() - 10);
+                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() - 10);
             }
             if (direction == "R") {
-                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() + 10);
+                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() + 10);
             }
             if (direction == "U") {
-                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() - 10);
+                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() - 10);
             }
             if (direction == "D") {
-                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() + 10);
+                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() + 10);
             }
         }
     }

@@ -112,9 +112,11 @@ void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
  **/
 
 Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port),
-_nbClients(0), _isGameLaunched(false), _isGameInit(false)
+_nbClients(0), _isGameLaunched(false), _isGameInit(false), waitCommand(false)
 {
     std::cout << "Server started." << std::endl;
+    // _game = new rtype::Game(this->getPlayersInRoom());
+    // _game->init();
     listen();
 }
 
@@ -138,8 +140,10 @@ void Server::handleReceive(const boost::system::error_code& error, std::size_t b
         _queue.pop();
         std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
         idClient = getOrCreateClientId(this->_remoteEndpoint);
-        commandHandler.findCmd(this, msg, idClient);
-        gameLoop();
+        if (this->_isGameLaunched)
+            this->gameLoop(msg, idClient);
+        else
+            commandHandler.findCmd(this, msg, idClient);
         listen();
     }
 }
@@ -159,9 +163,9 @@ uint32_t Server::getOrCreateClientId(udp::endpoint endpoint)
     return nbClient;
 }
 
-void Server::sendMessage(message::request request, std::string value)
+void Server::sendMessage(message::request request, udp::endpoint targetEndpoint, std::string value)
 {
-    _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), _remoteEndpoint, boost::bind(&Server::listen, this));
+    _socket.async_send_to(boost::asio::buffer(createPaquet(request, value)), targetEndpoint, boost::bind(&Server::listen, this));
 }
 
 void Server::sendToClient(message::request request, udp::endpoint targetEndpoint, std::string value)
@@ -191,7 +195,7 @@ void Server::SendToAllInRoom(message::request type, size_t actualId, std::string
     }
 }
 
-void Server::gameLoop(void)
+void Server::gameLoop(message msg, size_t actualId)
 {
     if (getIsGameLaunched()) {
         if (!getIsGameInit()) {
@@ -201,6 +205,9 @@ void Server::gameLoop(void)
         }
         _game->update();
     }
+    // std::cout << "receive in game" << std::endl;
+    msg.print();
+    this->sendAllEntities();
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)
@@ -305,4 +312,22 @@ void Server::setIsGameLaunched(bool value)
 void Server::setIsGameInit(bool value)
 {
     this->_isGameInit = value;
+}
+
+void Server::sendAllEntities()
+{
+    std::cout << "check 1" << std::endl;
+    size_t nbEntity = this->_game->getWorld()->getNbEntities();
+    std::string entity;
+
+    for (size_t i = 0; i < nbEntity; i++) {
+        std::cout << "check 2" << std::endl;
+        entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+        std::cout << "check 3" << std::endl;
+        std::cout << entity << std::endl;
+        for (auto client : clients)
+            _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
+        entity.clear();
+    }
+
 }
