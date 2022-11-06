@@ -88,7 +88,7 @@ static void MoveCommand(std::string body, Server *server, size_t actualId)
     (void)actualId;
     // (void)body;
     std::cout << "Move Command Asked - " << body << std::endl;
-
+    server->_game->handleEvents(body);
     // server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
 }
 

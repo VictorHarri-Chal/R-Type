@@ -38,13 +38,18 @@ namespace rtype
          *
          */
         void update();
+        int handleEvents(std::string direction);
 
+        void run();
         private:
         /**
          * @brief World object will contain all the entities and system
          *
          */
         rtype::ecs::world::World _world;
+
+        /// @brief Clock
+        sf::Clock _clock;
 
         size_t _nbPlayers;
     };

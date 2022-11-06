@@ -41,7 +41,7 @@ void rtype::Game::init()
 void rtype::Game::initPlayersEntities(void)
 {
     if (this->_nbPlayers == 2) {
-        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
         rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
 
         if (player1 == nullptr)
@@ -64,8 +64,8 @@ void rtype::Game::initPlayersEntities(void)
     }
 
     if (this->_nbPlayers == 3) {
-        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
-        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
         rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
 
         if (player1 == nullptr)
@@ -96,9 +96,9 @@ void rtype::Game::initPlayersEntities(void)
     }
 
     if (this->_nbPlayers == 4) {
-        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
-        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
-        rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
+        rtype::ecs::entity::Entity *player1 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        rtype::ecs::entity::Entity *player2 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER2);
+        rtype::ecs::entity::Entity *player3 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER3);
         rtype::ecs::entity::Entity *player4 = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER4);
 
         if (player1 == nullptr)
@@ -141,4 +141,30 @@ void rtype::Game::initPlayersEntities(void)
 void rtype::Game::update(void)
 {
     this->_world.update();
+
+    // if (_clock.getElapsedTime() >= sf::seconds(1.0f / 120.0f)) {
+    //     if (!handleEvents())
+    //         break;
+    //     _clock.restart();
+    // }
+}
+
+int rtype::Game::handleEvents(std::string direction)
+{
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+            if (direction == "L") {
+                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() - 10);
+            }
+            if (direction == "R") {
+                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() + 10);
+            }
+            if (direction == "U") {
+                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() - 10);
+            }
+            if (direction == "D") {
+                _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() + 10);
+            }
+        }
+    }
 }

@@ -133,6 +133,12 @@ class Server {
      */
     size_t _nbClientsInRoom;
 
+    /**
+     * @brief Game class
+     *
+     */
+    rtype::Game *_game;
+
     size_t getPlayersInRoom();
 
     private:
@@ -200,11 +206,6 @@ class Server {
      *
      */
     size_t _nbClients;
-    /**
-     * @brief Game class
-     *
-     */
-    rtype::Game *_game;
     /**
      * @brief Is game launched ?
      *
