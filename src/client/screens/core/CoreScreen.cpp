@@ -47,7 +47,7 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
         player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
-            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
         this->_world.addEntity(player2);
     }
 
@@ -75,14 +75,14 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
         player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
-            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
         this->_world.addEntity(player2);
         player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 550.f, 0.0f, 0.0f);
         player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
-            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 34, 33, 17));
         this->_world.addEntity(player3);
     }
 
@@ -108,26 +108,26 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
         player1->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
             sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
         this->_world.addEntity(player1);
-        player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 300.f, 0.0f, 0.0f);
+        player2->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
         player2->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player2->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player2->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player2->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
-            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 17, 33, 17));
         this->_world.addEntity(player2);
-        player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 550.f, 0.0f, 0.0f);
+        player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 350.f, 0.0f, 0.0f);
         player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
         player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
-            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 34, 33, 17));
         this->_world.addEntity(player3);
-        player3->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 700.f, 0.0f, 0.0f);
-        player3->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-        player3->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-        player3->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
-        player3->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
-            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        player4->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 500.f, 0.0f, 0.0f);
+        player4->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        player4->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        player4->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        player4->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true,
+            sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 51, 33, 17));
         this->_world.addEntity(player4);
     }
 }

@@ -125,6 +125,7 @@ void Server::handleReceive(const boost::system::error_code& error, std::size_t b
         size_t idClient;
         message msg = this->getStreamData(bytesTransferred);
         idClient = getOrCreateClientId(this->_remoteEndpoint);
+
         if (this->_isGameLaunched)
             this->gameLoop(msg, idClient);
         else
