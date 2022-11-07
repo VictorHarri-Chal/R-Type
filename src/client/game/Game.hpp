@@ -92,7 +92,7 @@ namespace rtype
         //  */
         // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
 
-        /// @brief Game client 
+        /// @brief Game client
         Client *_client;
 
         /// @brief Game window

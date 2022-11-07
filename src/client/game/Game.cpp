@@ -34,23 +34,23 @@ void rtype::Game::init(std::string flag)
     // music.play();
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _eventClass.initEvents(_event);
-    if (flag == "-g") {
-        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
-        _actualScreen = Screens::Core;
-        _core = new rtype::menu::CoreScreen;
-        if (_core == nullptr)
-            throw GameExceptions("Game init: Error while creating CoreScreen");
-        _lastScene = Screens::Core;
-        _core->init();
-    } else if (flag == "-gw") {
-        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
-        _actualScreen = Screens::Core;
-        _core = new rtype::menu::CoreScreen();
-        if (_core == nullptr)
-            throw GameExceptions("Game init: Error while creating CoreScreen");
-        _lastScene = Screens::Core;
-        _core->init();
-    } else if (flag == "-w") {
+    // if (flag == "-g") {
+    //     _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+    //     _actualScreen = Screens::Core;
+    //     _core = new rtype::menu::CoreScreen;
+    //     if (_core == nullptr)
+    //         throw GameExceptions("Game init: Error while creating CoreScreen");
+    //     _lastScene = Screens::Core;
+    //     _core->init();
+    // } else if (flag == "-gw") {
+    //     _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
+    //     _actualScreen = Screens::Core;
+    //     _core = new rtype::menu::CoreScreen();
+    //     if (_core == nullptr)
+    //         throw GameExceptions("Game init: Error while creating CoreScreen");
+    //     _lastScene = Screens::Core;
+    //     _core->init();
+    if (flag == "-w") {
         _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
         _actualScreen = Screens::Intro;
         _intro = new rtype::menu::IntroScreen;
@@ -180,7 +180,7 @@ void rtype::Game::handleScreensSwap(int ret)
             break;
         case 7:
             destroyLastScene();
-            _core = new rtype::menu::CoreScreen;
+            _core = new rtype::menu::CoreScreen(this->_client->getNbPeopleInRoom());
             if (_core == nullptr)
                 throw GameExceptions("Game handleScreensSwap: Error while creating CoreScreen");
             _lastScene = Screens::Core;

@@ -90,6 +90,10 @@ namespace rtype
                  *
                  */
                 void update(rtype::Game *gameEngine = nullptr);
+                size_t getNbEntities() const
+                {
+                    return (_nbEntities);
+                };
 
               private:
                 /**
