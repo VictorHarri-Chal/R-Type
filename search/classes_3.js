@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['ecsexceptions_336',['EcsExceptions',['../classEcsExceptions.html',1,'']]],
-  ['enemypathsystem_337',['EnemypathSystem',['../classrtype_1_1ecs_1_1system_1_1EnemypathSystem.html',1,'rtype::ecs::system']]],
-  ['entity_338',['Entity',['../classrtype_1_1ecs_1_1entity_1_1Entity.html',1,'rtype::ecs::entity']]],
-  ['entitytmp_339',['entityTmp',['../structentityTmp.html',1,'']]],
-  ['event_340',['Event',['../structrtype_1_1Event.html',1,'rtype']]],
-  ['events_341',['Events',['../classrtype_1_1Events.html',1,'rtype']]],
-  ['exceptions_342',['Exceptions',['../classExceptions.html',1,'']]]
+  ['draw2dsystem_332',['Draw2DSystem',['../classrtype_1_1ecs_1_1system_1_1Draw2DSystem.html',1,'rtype::ecs::system']]],
+  ['drawable2d_333',['Drawable2D',['../classrtype_1_1ecs_1_1component_1_1Drawable2D.html',1,'rtype::ecs::component']]]
 ];

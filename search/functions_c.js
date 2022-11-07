@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['optionsscreen_512',['OptionsScreen',['../classrtype_1_1menu_1_1OptionsScreen.html#a11649a997f8365d845a6e87687a9c5ad',1,'rtype::menu::OptionsScreen']]]
+  ['nonemptyqueue_508',['NonEmptyQueue',['../classNonEmptyQueue.html#ae2aba0ba09fa47eae7adc3fd3378726b',1,'NonEmptyQueue']]]
 ];

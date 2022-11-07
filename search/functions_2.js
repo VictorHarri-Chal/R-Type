@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['deleteroom_400',['deleteRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#aca6548d3f82899ff62f4efe3e40481e7',1,'rtype::menu::MultiplayerScreen']]],
-  ['destroy_401',['destroy',['../classrtype_1_1Game.html#ab754fac0847903a6a0332697038566af',1,'rtype::Game']]],
-  ['destroylastscene_402',['destroyLastScene',['../classrtype_1_1Game.html#ace8b04de937cdf1c79008a45215470cb',1,'rtype::Game']]],
-  ['destroysprites_403',['destroySprites',['../classrtype_1_1menu_1_1CoreScreen.html#adda3bcda7180a4360ba09fd3a8eca49b',1,'rtype::menu::CoreScreen']]],
-  ['draw_404',['draw',['../classrtype_1_1ecs_1_1world_1_1World.html#ae1510dee131c425317ea57c3ee7bc4e5',1,'rtype::ecs::world::World']]],
-  ['draw2dsystem_405',['Draw2DSystem',['../classrtype_1_1ecs_1_1system_1_1Draw2DSystem.html#a5839a13f6ec3d6fb3b761e3bb5b7ef25',1,'rtype::ecs::system::Draw2DSystem']]],
-  ['drawable2d_406',['Drawable2D',['../classrtype_1_1ecs_1_1component_1_1Drawable2D.html#a20075f72a03881ba57cb09fa03283e31',1,'rtype::ecs::component::Drawable2D::Drawable2D()'],['../classrtype_1_1ecs_1_1component_1_1Drawable2D.html#a058597c29b7d04ec3c357120ac9d56ef',1,'rtype::ecs::component::Drawable2D::Drawable2D(std::string text, float fontSize, sf::Color color, bool bold)'],['../classrtype_1_1ecs_1_1component_1_1Drawable2D.html#a55d342bcbd1528caa06c13310bd90059',1,'rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect=sf::IntRect(0, 0, 0, 0))'],['../classrtype_1_1ecs_1_1component_1_1Drawable2D.html#a7ad217cc387848b69eb3ce20dd2c02fe',1,'rtype::ecs::component::Drawable2D::Drawable2D(float width, float height, sf::Color color, bool outline, float thickness=float(0.0f), sf::Color outline_color=sf::Color(sf::Color::Transparent))']]],
-  ['drawrectangle_407',['drawRectangle',['../classrtype_1_1ecs_1_1system_1_1Draw2DSystem.html#af6c59f05bf340f8bc411bf919883ae9f',1,'rtype::ecs::system::Draw2DSystem']]],
-  ['drawsprite_408',['drawSprite',['../classrtype_1_1ecs_1_1system_1_1Draw2DSystem.html#abbedb9826051ce4871128b74155bf5e2',1,'rtype::ecs::system::Draw2DSystem']]],
-  ['drawtext_409',['drawText',['../classrtype_1_1ecs_1_1system_1_1Draw2DSystem.html#a3eed2c70292ae394bafe8335a7f5e372',1,'rtype::ecs::system::Draw2DSystem']]]
+  ['checkforfreeslot_391',['checkForFreeSlot',['../classrtype_1_1menu_1_1MultiplayerScreen.html#a94051ba0ca51eff5b34711a73503da2e',1,'rtype::menu::MultiplayerScreen']]],
+  ['cleanplayers_392',['cleanPlayers',['../classrtype_1_1menu_1_1RoomScreen.html#a21f5568b2211dbb997628398969306c3',1,'rtype::menu::RoomScreen']]],
+  ['client_393',['Client',['../classClient.html#aa025cebb8105b28dc1691ac245eb150f',1,'Client::Client(boost::asio::io_service &amp;ioService, const std::string &amp;host, const std::string &amp;port)'],['../classClient.html#ae89218f5098833d904d713e32ccda7d9',1,'Client::Client(size_t id, udp::endpoint endpoint)']]],
+  ['collide_394',['Collide',['../classrtype_1_1ecs_1_1component_1_1Collide.html#aab63d8685e570a70c6092d719010aaa0',1,'rtype::ecs::component::Collide']]],
+  ['collidesystem_395',['CollideSystem',['../classrtype_1_1ecs_1_1system_1_1CollideSystem.html#aebf9b094ad41d899b13db53bb97b7f0b',1,'rtype::ecs::system::CollideSystem']]],
+  ['corescreen_396',['CoreScreen',['../classrtype_1_1menu_1_1CoreScreen.html#ad4fe1f005c68e02e601b609e576f6467',1,'rtype::menu::CoreScreen']]],
+  ['countnbpeoplereadyinroom_397',['countNbPeopleReadyInRoom',['../classServer.html#a5ea15c5656e0c849fcbfb9838cb4011a',1,'Server']]],
+  ['createparticle_398',['createParticle',['../classrtype_1_1menu_1_1CoreScreen.html#a9730ea41d16cba7d6846b44fd198c4ed',1,'rtype::menu::CoreScreen::createParticle()'],['../classrtype_1_1menu_1_1SoloScreen.html#afc0900c5efdede5e3f734be4ae31aa7f',1,'rtype::menu::SoloScreen::createParticle()']]],
+  ['createroom_399',['createRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc',1,'rtype::menu::MultiplayerScreen']]]
 ];

@@ -73,15 +73,15 @@ How it works</h1>
 <p>Our script reader parse the lines from the script one by one. Each line is representing an enemy entity with all his caracteristics:</p>
 <h1><a class="anchor" id="autotoc_md10"></a>
 An exemple</h1>
-<p>Ex : 5 1 1 0 1 1000 1100 1 Means sf::seconds(5.f) 1 ZIGZAG false true 1000.f 1100.f true</p>
-<p>First param -&gt; timestamp : sf::Time elapsed since the start in second Second param -&gt; current wave number Third param -&gt; ship type : 1 if ZIGZAG - 2 if RUSHER - 3 if KAMIKAZE - 4 if TURRET Fourth param -&gt; horizontal direction : 0 if left - 1 if right Fifth param -&gt; vertical direction : 0 if up - 1 if down Sixth param -&gt; x position Seventh param -&gt; y position Eight param -&gt; is the sprite printed ?</p>
+<p>Ex : 5 1 1 1000 1100 1 Means sf::seconds(5.f) 1 ZIGZAG 1000.f 1100.f true</p>
+<p>First param -&gt; timestamp : sf::Time elapsed since the start in second Second param -&gt; current wave number Third param -&gt; ship type : 1 if ZIGZAG - 2 if RUSHER - 3 if KAMIKAZE - 4 if TURRET - 5 if BOSS Fourth param -&gt; x position Fifth param -&gt; y position Sixth param -&gt; is the sprite printed ?</p>
 <h1><a class="anchor" id="autotoc_md11"></a>
 Your turn</h1>
-<p>You can add new enemies as you wish, you just need to write a new line with custom caracteristics !</p>
+<p>You can add new enemies as you wish, you just need to write a new line with custom caracteristics ! You can place new enemies in the order you want but keep wave amount to 10 if you want it to work</p>
 <h1><a class="anchor" id="autotoc_md12"></a>
 About ship type</h1>
-<p>You maybe don't know much about the differents enemies you can create, so i'll explain it</p>
-<p>ZIGZAG : Moves verticaly - Normal health - Normal damage - Slow cadency RUSHER : Moves horizontaly on you - Low health - Normal damage - Normal cadency KAMIKAZE : Moves horizontaly on you and then explode - Low health - High damage - Don't shoot TURRET : Place himself and then stay static - High health - Normal damage - High cadency </p>
+<p>You maybe don't know much about the differents enemies you can create, so i'll explain it:</p>
+<p>ZIGZAG : Moves verticaly - Normal health - Normal damage - Slow cadency RUSHER : Moves horizontaly on you - Low health - Normal damage - Normal cadency KAMIKAZE : Moves horizontaly on you and then explode - Low health - High damage - Don't shoot TURRET : Place himself and then stay static - High health - Normal damage - High cadency BOSS : Move from left to right - Spawn vertical moving mines </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

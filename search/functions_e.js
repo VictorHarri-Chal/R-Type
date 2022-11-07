@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['recruit_522',['Recruit',['../classrtype_1_1ecs_1_1component_1_1Recruit.html#a3c3bad365fd351c16b813dc7bca6f694',1,'rtype::ecs::component::Recruit']]],
-  ['remove_523',['remove',['../classrtype_1_1ecs_1_1entity_1_1Entity.html#a2de44f6359097539733e59a2ba20e8f7',1,'rtype::ecs::entity::Entity']]],
-  ['removeentity_524',['removeEntity',['../classrtype_1_1ecs_1_1world_1_1World.html#a1154841591892ec9216b85a8060491b1',1,'rtype::ecs::world::World']]],
-  ['removeplayerinroom_525',['removePlayerInRoom',['../classServer.html#a778138808807a5a6a18f806cb6af5128',1,'Server']]],
-  ['restartclock_526',['restartClock',['../classrtype_1_1Script.html#a01653986d9e5352ee1fa08e5a6405df7',1,'rtype::Script::restartClock()'],['../classrtype_1_1ecs_1_1component_1_1AShip.html#ac82906b57985f3b7a3ef38ca5bc7953d',1,'rtype::ecs::component::AShip::restartClock()'],['../classrtype_1_1ecs_1_1component_1_1IShip.html#a0d137195c213d713be63bf212fc9d95c',1,'rtype::ecs::component::IShip::restartClock()']]],
-  ['roomscreen_527',['RoomScreen',['../classrtype_1_1menu_1_1RoomScreen.html#a55e8911fc40cbe3507320bcb1b505d30',1,'rtype::menu::RoomScreen']]],
-  ['run_528',['run',['../classrtype_1_1Game.html#a52550985c07cec824279098c2cec645e',1,'rtype::Game']]],
-  ['rusher_529',['Rusher',['../classrtype_1_1ecs_1_1component_1_1Rusher.html#a06525a4ff675a5209cce1da11629c656',1,'rtype::ecs::component::Rusher']]]
+  ['paralax_510',['paralax',['../classrtype_1_1menu_1_1CoreScreen.html#a766904e1e2283c731f7a23818f971257',1,'rtype::menu::CoreScreen::paralax()'],['../classrtype_1_1menu_1_1IntroScreen.html#a8bfd9017d4215ab065af3eb7246b1a6e',1,'rtype::menu::IntroScreen::paralax()'],['../classrtype_1_1IScreen.html#a9db27ffad642e5e54a3950fe195dff6f',1,'rtype::IScreen::paralax()'],['../classrtype_1_1menu_1_1MenuScreen.html#ab47c0c26d93e5c054e7d726a69376421',1,'rtype::menu::MenuScreen::paralax()'],['../classrtype_1_1menu_1_1MultiplayerScreen.html#a8ea1cd4bc1c124d8ef6aa4ad64a61c1d',1,'rtype::menu::MultiplayerScreen::paralax()'],['../classrtype_1_1menu_1_1OptionsScreen.html#a57849e399518c378979e3d024de00004',1,'rtype::menu::OptionsScreen::paralax()'],['../classrtype_1_1menu_1_1RoomScreen.html#a4453c64489a29880daaa3dca70fe1b65',1,'rtype::menu::RoomScreen::paralax()'],['../classrtype_1_1menu_1_1SoloScreen.html#a1c4257eb8313677a1a69674e842b8a6f',1,'rtype::menu::SoloScreen::paralax()']]],
+  ['parsescript_511',['parseScript',['../classrtype_1_1Script.html#a22fec79d1d3de60696577700a6f3c565',1,'rtype::Script']]],
+  ['particlessystem_512',['ParticlesSystem',['../classrtype_1_1ecs_1_1system_1_1ParticlesSystem.html#ac13dc462af5f56a6b18af867ffff0384',1,'rtype::ecs::system::ParticlesSystem']]],
+  ['pop_513',['pop',['../classSafeQueue.html#a3a859b88a11008f840597053d4aa6d2d',1,'SafeQueue']]],
+  ['print_514',['print',['../classmessage.html#a3401631826e8bf5ec9f09faa080f5291',1,'message']]],
+  ['printwavenumber_515',['printWaveNumber',['../classrtype_1_1menu_1_1CoreScreen.html#aa19c406a827677a48478d69e68415f32',1,'rtype::menu::CoreScreen::printWaveNumber()'],['../classrtype_1_1menu_1_1SoloScreen.html#a4e1d310bb0f0fa7d0e8121ec7f0c7940',1,'rtype::menu::SoloScreen::printWaveNumber()']]],
+  ['processevents_516',['processEvents',['../classrtype_1_1Game.html#ab265419c254eb25493d0eccde5912e8f',1,'rtype::Game']]],
+  ['projectile_517',['Projectile',['../classrtype_1_1ecs_1_1component_1_1Projectile.html#ab9fd84963205b3ca9688fdcdf95ba68c',1,'rtype::ecs::component::Projectile']]],
+  ['push_518',['push',['../classSafeQueue.html#a46741d15e4a3678918ba0e0ecb787a0d',1,'SafeQueue']]]
 ];

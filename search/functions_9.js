@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kamikaze_503',['Kamikaze',['../classrtype_1_1ecs_1_1component_1_1Kamikaze.html#a65cb876a3cc82e24b5afb9ceccf90502',1,'rtype::ecs::component::Kamikaze']]]
+  ['joinroom_498',['joinRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#a4f7bb92c51a607822474b001bd1b172b',1,'rtype::menu::MultiplayerScreen']]]
 ];
