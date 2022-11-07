@@ -83,15 +83,6 @@ static void InRoomCommand(std::string value, Server *server, size_t playerId)
     std::cout << "In Room Command" << std::endl;
 }
 
-static void MoveCommand(std::string body, Server *server, size_t playerId)
-{
-    (void)playerId;
-    // (void)body;
-    std::cout << "Move Command Asked - " << body << std::endl;
-    // server->_game->handleEvents(body);
-    // server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
-}
-
 HandleCommand::HandleCommand()
 {
     _allCommand.emplace_back(JoinCommand);
@@ -99,7 +90,6 @@ HandleCommand::HandleCommand()
     _allCommand.emplace_back(DisconectCommand);
     _allCommand.emplace_back(InRoomCommand);
     _allCommand.emplace_back(LaunchCommand);
-    _allCommand.emplace_back(MoveCommand);
 
 }
 
@@ -115,8 +105,6 @@ Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_servi
 _nbClients(0), _isGameLaunched(false), _isGameInit(false), waitCommand(false)
 {
     std::cout << "Server started." << std::endl;
-    // _game = new rtype::Game(this->getPlayersInRoom());
-    // _game->init();
     listen();
 }
 
@@ -136,9 +124,6 @@ void Server::handleReceive(const boost::system::error_code& error, std::size_t b
         HandleCommand commandHandler;
         size_t idClient;
         message msg = this->getStreamData(bytesTransferred);
-        // std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
-        // _queue.pop();
-        // std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
         idClient = getOrCreateClientId(this->_remoteEndpoint);
         if (this->_isGameLaunched)
             this->gameLoop(msg, idClient);
@@ -206,7 +191,6 @@ void Server::gameLoop(message msg, size_t playerId)
         _game->handleEvents(msg.body, playerId);
         _game->update();
     }
-    // std::cout << "receive in game" << std::endl;
     msg.print();
     this->sendAllEntities();
 }
@@ -290,11 +274,6 @@ void Server::setPlayerReady(size_t idClient)
     this->_room._idPeopleInRoom.at(idClient) = true;
 }
 
-// size_t Server::getPlayerReady(void)
-// {
-//     return this->_room._idPeopleInRoom.at(idClient);
-// }
-
 bool Server::getIsGameLaunched()
 {
     return (this->_isGameLaunched);
@@ -317,15 +296,11 @@ void Server::setIsGameInit(bool value)
 
 void Server::sendAllEntities()
 {
-    // std::cout << "check 1" << std::endl;
     size_t nbEntity = this->_game->getWorld()->getNbEntities();
     std::string entity;
 
     for (size_t i = 0; i < nbEntity; i++) {
-        // std::cout << "check 2" << std::endl;
         entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId())     + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
-        // std::cout << "check 3" << std::endl;
-        // std::cout << entity << std::endl;
         for (auto client : clients)
             _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
         entity.clear();
