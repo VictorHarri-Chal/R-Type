@@ -83,52 +83,70 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;boost/array.hpp&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;boost/thread.hpp&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;boost/bind/bind.hpp&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;boost/archive/binary_oarchive.hpp&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;boost/archive/binary_iarchive.hpp&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;boost/iostreams/device/back_inserter.hpp&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;boost/iostreams/stream.hpp&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../../utils/Message.hpp&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;boost/bind/bind.hpp&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;boost/iostreams/stream.hpp&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;boost/thread.hpp&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;../../ecs/world.hpp&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../../utils/Message.hpp&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;boost/archive/binary_iarchive.hpp&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;boost/archive/binary_oarchive.hpp&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;boost/iostreams/device/back_inserter.hpp&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;regex&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classClient.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classClient.html">Client</a> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classClient.html#aa025cebb8105b28dc1691ac245eb150f">Client</a>(boost::asio::io_service&amp; ioService,<span class="keyword">const</span> std::string&amp; host, <span class="keyword">const</span> std::string&amp; port);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classClient.html#a840e519ca781888cbd54181572ebe3a7">~Client</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">send</a>(<a class="code" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> request, std::string body = <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classmessage.html">message</a> <a class="code" href="classClient.html#a2d194cdbf13ce7d1b1e0e2743b63b3f9">getStreamData</a>(std::size_t bytesTransferred);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classClient.html#a3735e4286be3a81b692278616504336f">getNbRoom</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classClient.html#a7dba8ec71a20d56f85f742bef08fae9e">getNbPeopleInRoom</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classClient.html#a2673fbbe8b52b9cde4332a18f5a1a3a1">getGameStart</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::string <a class="code" href="classClient.html#a72b908be48d60d473773f8ff144c0748">getPlayerNumber</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    boost::asio::io_service &amp;_ioService;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    udp::socket _socket;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    udp::endpoint _endpoint;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    std::array&lt;char, 64&gt; _recvBuffer;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> listen();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> handleReceive(<span class="keyword">const</span> boost::system::error_code &amp;error, std::size_t bytes_transferred);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    std::string createPaquet(<a class="code" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> request, std::string body);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">size_t</span> _actualNbRooms;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">size_t</span> _actualNbPeopleInRoom;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">bool</span> _gameStart;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    std::string _playerNumber;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structentityTmp.html">   26</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structentityTmp.html">entityTmp</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">size_t</span> id;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> posX;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">float</span> posY;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">typedef</span> std::vector&lt;entityTmp&gt; entitiesReceive;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classClient.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classClient.html">Client</a> {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classClient.html#aa025cebb8105b28dc1691ac245eb150f">Client</a>(boost::asio::io_service &amp;ioService, <span class="keyword">const</span> std::string &amp;host, <span class="keyword">const</span> std::string &amp;port);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classClient.html#a840e519ca781888cbd54181572ebe3a7">~Client</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">send</a>(<a class="code" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> request, std::string body = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classmessage.html">message</a> <a class="code" href="classClient.html#a2d194cdbf13ce7d1b1e0e2743b63b3f9">getStreamData</a>(std::size_t bytesTransferred);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classClient.html#a3735e4286be3a81b692278616504336f">getNbRoom</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classClient.html#a7dba8ec71a20d56f85f742bef08fae9e">getNbPeopleInRoom</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classClient.html#a2673fbbe8b52b9cde4332a18f5a1a3a1">getGameStart</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    std::string <a class="code" href="classClient.html#a72b908be48d60d473773f8ff144c0748">getPlayerNumber</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> popEntity();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    entitiesReceive getEntities() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="structentityTmp.html">entityTmp</a> getEntitiesAt(<span class="keywordtype">size_t</span> pos) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    boost::asio::io_service &amp;_ioService;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    udp::socket _socket;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    udp::endpoint _endpoint;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    std::array&lt;char, 512&gt; _recvBuffer;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> listen();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> handleReceive(<span class="keyword">const</span> boost::system::error_code &amp;error, std::size_t bytes_transferred);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    std::string createPaquet(<a class="code" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> request, std::string body);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">size_t</span> _actualNbRooms;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">size_t</span> _actualNbPeopleInRoom;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">bool</span> _gameStart;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    std::string _playerNumber;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    entitiesReceive entities;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">void</span> addEntity(std::string body);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassClient_html_aa025cebb8105b28dc1691ac245eb150f"><div class="ttname"><a href="classClient.html#aa025cebb8105b28dc1691ac245eb150f">Client::Client</a></div><div class="ttdeci">Client(boost::asio::io_service &amp;ioService, const std::string &amp;host, const std::string &amp;port)</div><div class="ttdoc">Construct a new Client object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:10</div></div>
-<div class="ttc" id="aclassClient_html_a2d194cdbf13ce7d1b1e0e2743b63b3f9"><div class="ttname"><a href="classClient.html#a2d194cdbf13ce7d1b1e0e2743b63b3f9">Client::getStreamData</a></div><div class="ttdeci">message getStreamData(std::size_t bytesTransferred)</div><div class="ttdoc">Get the Stream Data object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:55</div></div>
-<div class="ttc" id="aclassClient_html_a7dba8ec71a20d56f85f742bef08fae9e"><div class="ttname"><a href="classClient.html#a7dba8ec71a20d56f85f742bef08fae9e">Client::getNbPeopleInRoom</a></div><div class="ttdeci">size_t getNbPeopleInRoom() const</div><div class="ttdoc">Get the Nb People In Room object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:91</div></div>
-<div class="ttc" id="aclassClient_html_a72b908be48d60d473773f8ff144c0748"><div class="ttname"><a href="classClient.html#a72b908be48d60d473773f8ff144c0748">Client::getPlayerNumber</a></div><div class="ttdeci">std::string getPlayerNumber() const</div><div class="ttdoc">Get the current player number.</div><div class="ttdef"><b>Definition:</b> Client.cpp:101</div></div>
+<div class="ttc" id="aclassClient_html_a2d194cdbf13ce7d1b1e0e2743b63b3f9"><div class="ttname"><a href="classClient.html#a2d194cdbf13ce7d1b1e0e2743b63b3f9">Client::getStreamData</a></div><div class="ttdeci">message getStreamData(std::size_t bytesTransferred)</div><div class="ttdoc">Get the Stream Data object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:56</div></div>
+<div class="ttc" id="aclassClient_html_a7dba8ec71a20d56f85f742bef08fae9e"><div class="ttname"><a href="classClient.html#a7dba8ec71a20d56f85f742bef08fae9e">Client::getNbPeopleInRoom</a></div><div class="ttdeci">size_t getNbPeopleInRoom() const</div><div class="ttdoc">Get the Nb People In Room object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:92</div></div>
+<div class="ttc" id="aclassClient_html_a72b908be48d60d473773f8ff144c0748"><div class="ttname"><a href="classClient.html#a72b908be48d60d473773f8ff144c0748">Client::getPlayerNumber</a></div><div class="ttdeci">std::string getPlayerNumber() const</div><div class="ttdoc">Get the current player number.</div><div class="ttdef"><b>Definition:</b> Client.cpp:102</div></div>
+<div class="ttc" id="astructentityTmp_html"><div class="ttname"><a href="structentityTmp.html">entityTmp</a></div><div class="ttdef"><b>Definition:</b> Client.hpp:26</div></div>
 <div class="ttc" id="aclassmessage_html_a3a5c36e316e76ed1bf1caf6d176495aa"><div class="ttname"><a href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a></div><div class="ttdeci">request</div><div class="ttdoc">Request type enum.</div><div class="ttdef"><b>Definition:</b> Message.hpp:31</div></div>
-<div class="ttc" id="aclassClient_html_a840e519ca781888cbd54181572ebe3a7"><div class="ttname"><a href="classClient.html#a840e519ca781888cbd54181572ebe3a7">Client::~Client</a></div><div class="ttdeci">~Client()</div><div class="ttdoc">Destroy the Client object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:22</div></div>
-<div class="ttc" id="aclassClient_html_a62c7b47664cf32f7d5e7934eb35abe33"><div class="ttname"><a href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">Client::send</a></div><div class="ttdeci">void send(message::request request, std::string body=&quot;&quot;)</div><div class="ttdoc">Send a message to the server.</div><div class="ttdef"><b>Definition:</b> Client.cpp:50</div></div>
+<div class="ttc" id="aclassClient_html_a840e519ca781888cbd54181572ebe3a7"><div class="ttname"><a href="classClient.html#a840e519ca781888cbd54181572ebe3a7">Client::~Client</a></div><div class="ttdeci">~Client()</div><div class="ttdoc">Destroy the Client object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:23</div></div>
+<div class="ttc" id="aclassClient_html_a62c7b47664cf32f7d5e7934eb35abe33"><div class="ttname"><a href="classClient.html#a62c7b47664cf32f7d5e7934eb35abe33">Client::send</a></div><div class="ttdeci">void send(message::request request, std::string body=&quot;&quot;)</div><div class="ttdoc">Send a message to the server.</div><div class="ttdef"><b>Definition:</b> Client.cpp:51</div></div>
 <div class="ttc" id="aclassmessage_html"><div class="ttname"><a href="classmessage.html">message</a></div><div class="ttdoc">Message class.</div><div class="ttdef"><b>Definition:</b> Message.hpp:17</div></div>
-<div class="ttc" id="aclassClient_html_a3735e4286be3a81b692278616504336f"><div class="ttname"><a href="classClient.html#a3735e4286be3a81b692278616504336f">Client::getNbRoom</a></div><div class="ttdeci">size_t getNbRoom() const</div><div class="ttdoc">Get the Nb Room object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:86</div></div>
-<div class="ttc" id="aclassClient_html"><div class="ttname"><a href="classClient.html">Client</a></div><div class="ttdoc">Client class.</div><div class="ttdef"><b>Definition:</b> Client.hpp:27</div></div>
-<div class="ttc" id="aclassClient_html_a2673fbbe8b52b9cde4332a18f5a1a3a1"><div class="ttname"><a href="classClient.html#a2673fbbe8b52b9cde4332a18f5a1a3a1">Client::getGameStart</a></div><div class="ttdeci">bool getGameStart() const</div><div class="ttdoc">Get if the Game Start.</div><div class="ttdef"><b>Definition:</b> Client.cpp:96</div></div>
+<div class="ttc" id="aclassClient_html_a3735e4286be3a81b692278616504336f"><div class="ttname"><a href="classClient.html#a3735e4286be3a81b692278616504336f">Client::getNbRoom</a></div><div class="ttdeci">size_t getNbRoom() const</div><div class="ttdoc">Get the Nb Room object.</div><div class="ttdef"><b>Definition:</b> Client.cpp:87</div></div>
+<div class="ttc" id="aclassClient_html"><div class="ttname"><a href="classClient.html">Client</a></div><div class="ttdoc">Client class.</div><div class="ttdef"><b>Definition:</b> Client.hpp:39</div></div>
+<div class="ttc" id="aclassClient_html_a2673fbbe8b52b9cde4332a18f5a1a3a1"><div class="ttname"><a href="classClient.html#a2673fbbe8b52b9cde4332a18f5a1a3a1">Client::getGameStart</a></div><div class="ttdeci">bool getGameStart() const</div><div class="ttdoc">Get if the Game Start.</div><div class="ttdef"><b>Definition:</b> Client.cpp:97</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

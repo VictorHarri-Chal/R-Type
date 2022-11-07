@@ -109,17 +109,21 @@ $(function() {
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                std::vector&lt;rtype::ecs::system::ISystem *&gt; <a class="code" href="classrtype_1_1ecs_1_1world_1_1World.html#a352e56b52f7ff12106005b5d57b7ab20">getSystems</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1ecs_1_1world_1_1World.html#ae1510dee131c425317ea57c3ee7bc4e5">draw</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1ecs_1_1world_1_1World.html#a8024e32eebd9a631933c337528e5b8d5">update</a>(<a class="code" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;              <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                std::vector&lt;rtype::ecs::entity::Entity *&gt; _entitiesVector;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                std::vector&lt;rtype::ecs::system::ISystem *&gt; _systemsVector;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordtype">size_t</span> _nbEntities;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordtype">size_t</span> _maxEntities;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            };</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        } <span class="comment">// namespace world</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }     <span class="comment">// namespace ecs</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;} <span class="comment">// namespace rtype</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordtype">size_t</span> getNbEntities()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">                </span>{</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    <span class="keywordflow">return</span> (_nbEntities);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                };</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;              <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                std::vector&lt;rtype::ecs::entity::Entity *&gt; _entitiesVector;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                std::vector&lt;rtype::ecs::system::ISystem *&gt; _systemsVector;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordtype">size_t</span> _nbEntities;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordtype">size_t</span> _maxEntities;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            };</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        } <span class="comment">// namespace world</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }     <span class="comment">// namespace ecs</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;} <span class="comment">// namespace rtype</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassrtype_1_1ecs_1_1world_1_1World_html_a522e07213739d180c2641da924cfd31b"><div class="ttname"><a href="classrtype_1_1ecs_1_1world_1_1World.html#a522e07213739d180c2641da924cfd31b">rtype::ecs::world::World::addSystem</a></div><div class="ttdeci">void addSystem(system::ISystem *system)</div><div class="ttdoc">Add System to world.</div><div class="ttdef"><b>Definition:</b> world.cpp:64</div></div>
 <div class="ttc" id="aclassrtype_1_1ecs_1_1world_1_1World_html"><div class="ttname"><a href="classrtype_1_1ecs_1_1world_1_1World.html">rtype::ecs::world::World</a></div><div class="ttdoc">World class don't delete entity in world the destructor will do it.</div><div class="ttdef"><b>Definition:</b> world.hpp:22</div></div>

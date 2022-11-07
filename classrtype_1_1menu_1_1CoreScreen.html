@@ -92,15 +92,18 @@ Inheritance diagram for rtype::menu::CoreScreen:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1a3fc7a42c814e6b844652f87cf436d2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a1a3fc7a42c814e6b844652f87cf436d2">CoreScreen</a> ()</td></tr>
-<tr class="memdesc:a1a3fc7a42c814e6b844652f87cf436d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Core Screen object.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a1a3fc7a42c814e6b844652f87cf436d2">More...</a><br /></td></tr>
-<tr class="separator:a1a3fc7a42c814e6b844652f87cf436d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fe1f005c68e02e601b609e576f6467"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#ad4fe1f005c68e02e601b609e576f6467">CoreScreen</a> (size_t nbPlayers)</td></tr>
+<tr class="memdesc:ad4fe1f005c68e02e601b609e576f6467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Core Screen object.  <a href="classrtype_1_1menu_1_1CoreScreen.html#ad4fe1f005c68e02e601b609e576f6467">More...</a><br /></td></tr>
+<tr class="separator:ad4fe1f005c68e02e601b609e576f6467"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae00c0051e6e78d8ec15a5c581cd3e030"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#ae00c0051e6e78d8ec15a5c581cd3e030">~CoreScreen</a> ()=default</td></tr>
 <tr class="memdesc:ae00c0051e6e78d8ec15a5c581cd3e030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Core Screen object.  <a href="classrtype_1_1menu_1_1CoreScreen.html#ae00c0051e6e78d8ec15a5c581cd3e030">More...</a><br /></td></tr>
 <tr class="separator:ae00c0051e6e78d8ec15a5c581cd3e030"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9332e4c2a7528c361476b1da0003fbb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a9332e4c2a7528c361476b1da0003fbb5">init</a> () override</td></tr>
 <tr class="memdesc:a9332e4c2a7528c361476b1da0003fbb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the Core Screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a9332e4c2a7528c361476b1da0003fbb5">More...</a><br /></td></tr>
 <tr class="separator:a9332e4c2a7528c361476b1da0003fbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913210ace60e4a261eab9c45d2cfa93e"><td class="memItemLeft" align="right" valign="top"><a id="a913210ace60e4a261eab9c45d2cfa93e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>initPlayersEntities</b> (void)</td></tr>
+<tr class="separator:a913210ace60e4a261eab9c45d2cfa93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68681ede36eba8aa4fd0cfbab7d91525"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a68681ede36eba8aa4fd0cfbab7d91525">update</a> (<a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine) override</td></tr>
 <tr class="memdesc:a68681ede36eba8aa4fd0cfbab7d91525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the Core Screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a68681ede36eba8aa4fd0cfbab7d91525">More...</a><br /></td></tr>
 <tr class="separator:a68681ede36eba8aa4fd0cfbab7d91525"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,8 +166,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for the Core Screen. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a1a3fc7a42c814e6b844652f87cf436d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a3fc7a42c814e6b844652f87cf436d2">&#9670;&nbsp;</a></span>CoreScreen()</h2>
+<a id="ad4fe1f005c68e02e601b609e576f6467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4fe1f005c68e02e601b609e576f6467">&#9670;&nbsp;</a></span>CoreScreen()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +175,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">rtype::menu::CoreScreen::CoreScreen </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nbPlayers</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
