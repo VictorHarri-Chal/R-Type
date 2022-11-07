@@ -316,15 +316,15 @@ void Server::setIsGameInit(bool value)
 
 void Server::sendAllEntities()
 {
-    std::cout << "check 1" << std::endl;
+    // std::cout << "check 1" << std::endl;
     size_t nbEntity = this->_game->getWorld()->getNbEntities();
     std::string entity;
 
     for (size_t i = 0; i < nbEntity; i++) {
-        std::cout << "check 2" << std::endl;
+        // std::cout << "check 2" << std::endl;
         entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
-        std::cout << "check 3" << std::endl;
-        std::cout << entity << std::endl;
+        // std::cout << "check 3" << std::endl;
+        // std::cout << entity << std::endl;
         for (auto client : clients)
             _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
         entity.clear();

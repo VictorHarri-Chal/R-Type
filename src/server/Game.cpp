@@ -141,8 +141,8 @@ void rtype::Game::initPlayersEntities(void)
 
 void rtype::Game::update(void)
 {
+    // this->handleEvents();
     this->_world->update();
-
     // if (_clock.getElapsedTime() >= sf::seconds(1.0f / 120.0f)) {
     //     if (!handleEvents())
     //         break;
@@ -152,19 +152,30 @@ void rtype::Game::update(void)
 
 int rtype::Game::handleEvents(std::string direction)
 {
-    for (size_t i = 0; i < _world->getEntities().size(); i++) {
+    ecs::component::Transform *transformCompo;
+    ecs::component::IShip *shipCompo;
+
+    for (size_t i = 0; i < _world->getEntities().size(); i++)
+    {
+            transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            shipCompo = _world->getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+            transformCompo->setSpeedX(0.0f);
+            transformCompo->setSpeedY(0.0f);
+
         if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
             if (direction == "L") {
-                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() - 10);
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+                transformCompo->setSpeedX(shipCompo->getSpeed());
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
             }
             if (direction == "R") {
-                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setX(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getX() + 10);
+                transformCompo->setSpeedX(-1 *shipCompo->getSpeed());
             }
             if (direction == "U") {
-                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() - 10);
+                transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
             }
             if (direction == "D") {
-                _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->setY(_world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::TRANSFORM)->getY() + 10);
+                transformCompo->setSpeedY(shipCompo->getSpeed());
             }
         }
     }
