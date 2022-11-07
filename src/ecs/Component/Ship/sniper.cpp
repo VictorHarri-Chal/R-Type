@@ -12,7 +12,7 @@ rtype::ecs::component::Sniper::Sniper()
     _health = 3.0f;
     _damage = 1.5f;
     _speed = 5.0f;
-    _cadency = sf::seconds(1.0/4.0f);
+    _cadency = sf::seconds(1.0/2.0f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Sniper::getType() const

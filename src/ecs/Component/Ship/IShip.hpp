@@ -27,7 +27,7 @@ namespace rtype
              * @param TURRET Type 3 enemy ship
              * @param KAMIKAZE Type 4 enemy ship
              */
-            enum shipType { RECRUIT, SNIPER, TANK, STEALTHY, SUPPORT, ZIGZAG, RUSHER, TURRET, KAMIKAZE, UNKNOWNSHIP };
+            enum shipType { RECRUIT, SNIPER, TANK, STEALTHY, SUPPORT, ZIGZAG, RUSHER, TURRET, KAMIKAZE, BOSS, UNKNOWNSHIP };
 
             /**
              * @brief Class for the IShip component
@@ -45,35 +45,6 @@ namespace rtype
                  * @return rtype::ecs::component::shipType The shipType value of the component.
                  */
                 virtual rtype::ecs::component::shipType getShipType() const = 0;
-                /**
-                 * @brief Getter for the current horizontal direction.
-                 *
-                 * @return True if going down
-                 * @return False if going up
-
-                 */
-                virtual bool getDirectionHorizontal() const = 0;
-                /**
-                 * @brief Getter for the current vertical direction.
-                 *
-                 * @return True if going right
-                 * @return False if going left
-                 */
-                virtual bool getDirectionVertical() const = 0;
-                /**
-                 * @brief Setter for the current horizontal direction.
-                 * 
-                 * @param dir True if horizontal
-                 *
-                 */
-                virtual void setDirectionHorizontal(bool dir) = 0;
-                /**
-                 * @brief Setter for the current vertical direction.
-                 *
-                 * @param dir True if vertical
-                 * 
-                 */
-                virtual void setDirectionVertical(bool dir) = 0;
                 /**
                  * @brief Getter for the current ship life points.
                  *

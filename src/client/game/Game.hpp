@@ -14,6 +14,7 @@
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
 #include "../screens/room/RoomScreen.hpp"
 #include "../screens/core/CoreScreen.hpp"
+#include "../screens/solo/SoloScreen.hpp"
 #include "../network/Client.hpp"
 
 namespace rtype
@@ -22,11 +23,7 @@ namespace rtype
     class Game {
       public:
         /// @brief enum containing all navigable screens
-        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Room, Core, Count };
-        /// @brief enum containing all type of sounds
-        enum Sounds {};
-        /// @brief enum containing all musics
-        enum Musics {};
+        enum class Screens { Intro = 1, Menu, Htp, Options, Multiplayer, Room, Core, Solo, Count };
         /// @brief Constructor
         /// @param baseFps base fps (60 by default)
         Game(size_t baseFps = 60);
@@ -50,16 +47,6 @@ namespace rtype
         /// @return int The scene number
         int handleEvent(rtype::Game *gameEngine);
         /**
-         * @brief Init all sounds
-         *
-         */
-        void initSounds();
-        /**
-         * @brief Init all musics
-         *
-         */
-        void initMusic();
-        /**
          * @brief Destroy all
          *
          */
@@ -73,24 +60,6 @@ namespace rtype
         /// @brief Set the actual screen
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
-        // /**
-        //  * @brief Set the Sound Event
-        //  *
-        //  * @param entititesIndex Index for entity
-        //  */
-        // void setSoundEvent(int entititesIndex);
-        // /**
-        //  * @brief Add sound entity
-        //  *
-        //  * @param entity Entity sound to add
-        //  */
-        // void addSoundEntity(std::unique_ptr<rtype::ecs::entity::Entity> entity);
-        // /**
-        //  * @brief Add sound system
-        //  *
-        //  * @param system System sound to add
-        //  */
-        // void addSoundSystem(std::unique_ptr<rtype::ecs::system::ISystem> system);
 
         /// @brief Game client
         Client *_client;
@@ -116,6 +85,8 @@ namespace rtype
         rtype::menu::RoomScreen *_room;
         /// @brief Core screen
         rtype::menu::CoreScreen *_core;
+        /// @brief Solo screen
+        rtype::menu::SoloScreen *_solo;
         /// @brief Last sfml evecaught
         sf::Event _sfmlEvent;
         /// @brief Event class

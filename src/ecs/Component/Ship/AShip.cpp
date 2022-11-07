@@ -7,26 +7,6 @@
 
 #include "AShip.hpp"
 
-bool rtype::ecs::component::AShip::getDirectionHorizontal() const
-{
-    return this->_directionHorizontal;
-}
-
-bool rtype::ecs::component::AShip::getDirectionVertical() const
-{
-    return this->_directionVertical;
-}
-
-void rtype::ecs::component::AShip::setDirectionHorizontal(bool dir)
-{
-    _directionHorizontal = dir;
-}
-
-void rtype::ecs::component::AShip::setDirectionVertical(bool dir)
-{
-    _directionVertical = dir;
-}
-
 float rtype::ecs::component::AShip::getHealth() const
 {
     return (this->_health);

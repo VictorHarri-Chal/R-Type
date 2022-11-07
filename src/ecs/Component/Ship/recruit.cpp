@@ -12,7 +12,7 @@ rtype::ecs::component::Recruit::Recruit()
     _health = 3.0f;
     _damage = 1.0f;
     _speed = 10.0f;
-    _cadency = sf::seconds(1.0/6.0f);
+    _cadency = sf::seconds(1.0/3.0f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Recruit::getType() const
