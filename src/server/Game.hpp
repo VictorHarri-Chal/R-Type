@@ -38,7 +38,7 @@ namespace rtype
          *
          */
         void update();
-        void handleEvents(std::string direction);
+        void handleEvents(std::string direction, size_t playerId);
 
         void run();
         rtype::ecs::world::World *getWorld() const { return _world; };

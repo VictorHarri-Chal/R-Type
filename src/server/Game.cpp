@@ -34,7 +34,7 @@ void rtype::Game::init()
     rtype::ecs::system::ISystem *particleSystem = new rtype::ecs::system::ParticlesSystem();
     if (particleSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating ParticleSystem");
-    this->_world->addS  ystem(particleSystem);
+    this->_world->addSystem(particleSystem);
 
     this->initPlayersEntities();
 }
@@ -150,7 +150,7 @@ void rtype::Game::update(void)
     // }
 }
 
-void rtype::Game::handleEvents(std::string direction)
+void rtype::Game::handleEvents(std::string direction, size_t playerId)
 {
     ecs::component::Transform *transformCompo;
     ecs::component::IShip *shipCompo;
@@ -164,7 +164,55 @@ void rtype::Game::handleEvents(std::string direction)
             transformCompo->setSpeedX(0.0f);
             transformCompo->setSpeedY(0.0f);
 
+        if (playerId == 0) {
+            if (direction == "L") {
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+                transformCompo->setSpeedX(shipCompo->getSpeed());
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+            }
+            if (direction == "R") {
+                transformCompo->setSpeedX(-1 *shipCompo->getSpeed());
+            }
+            if (direction == "U") {
+                transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
+            }
+            if (direction == "D") {
+                transformCompo->setSpeedY(shipCompo->getSpeed());
+            }
+        }
         if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER2) {
+            if (direction == "L") {
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+                transformCompo->setSpeedX(shipCompo->getSpeed());
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+            }
+            if (direction == "R") {
+                transformCompo->setSpeedX(-1 *shipCompo->getSpeed());
+            }
+            if (direction == "U") {
+                transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
+            }
+            if (direction == "D") {
+                transformCompo->setSpeedY(shipCompo->getSpeed());
+            }
+        }
+        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER3) {
+            if (direction == "L") {
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+                transformCompo->setSpeedX(shipCompo->getSpeed());
+                std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
+            }
+            if (direction == "R") {
+                transformCompo->setSpeedX(-1 *shipCompo->getSpeed());
+            }
+            if (direction == "U") {
+                transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
+            }
+            if (direction == "D") {
+                transformCompo->setSpeedY(shipCompo->getSpeed());
+            }
+        }
+        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER4) {
             if (direction == "L") {
                 std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
                 transformCompo->setSpeedX(shipCompo->getSpeed());

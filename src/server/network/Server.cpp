@@ -12,14 +12,14 @@
  *
  * @param value
  * @param server
- * @param actualId
+ * @param playerId
  */
-static void JoinCommand(std::string value, Server *server, size_t actualId)
+static void JoinCommand(std::string value, Server *server, size_t playerId)
 {
     (void)server;
-    (void)actualId;
+    (void)playerId;
     std::cout << "Player join room " << value << std::endl;
-    server->addPlayerInRoom(actualId);
+    server->addPlayerInRoom(playerId);
     server->_nbClientsInRoom++;
     server->SendToAll(message::request::INROOM, std::to_string(server->_nbClientsInRoom));
 }
@@ -29,13 +29,13 @@ static void JoinCommand(std::string value, Server *server, size_t actualId)
  *
  * @param value
  * @param server
- * @param actualId
+ * @param playerId
  */
-static void LaunchCommand(std::string value, Server *server, size_t actualId)
+static void LaunchCommand(std::string value, Server *server, size_t playerId)
 {
     (void)value;
     std::cout << "Launch Command Asked" << std::endl;
-    server->SendToAllInRoom(message::request::LAUNCH, actualId, "");
+    server->SendToAllInRoom(message::request::LAUNCH, playerId, "");
     server->setIsGameLaunched(true);
 }
 
@@ -44,51 +44,51 @@ static void LaunchCommand(std::string value, Server *server, size_t actualId)
  *
  * @param value
  * @param server
- * @param actualId
+ * @param playerId
  */
-static void ReadyCommand(std::string value, Server *server, size_t actualId)
+static void ReadyCommand(std::string value, Server *server, size_t playerId)
 {
-    (void)actualId;
+    (void)playerId;
     (void)value;
     (void)server;
     size_t nbPlayer = server->getRoom()._idPeopleInRoom.size();
 
-    std::cout << "Player " << actualId << " is ready" << std::endl;
-    server->getClients().at(actualId).setReady(true);
-    server->setPlayerReady(actualId);
-    if (nbPlayer >= 2 && server->countNbPeopleReadyInRoom(server->getClients().at(actualId).getIdRoom()) == nbPlayer)
-        LaunchCommand(value, server, actualId);
+    std::cout << "Player " << playerId << " is ready" << std::endl;
+    server->getClients().at(playerId).setReady(true);
+    server->setPlayerReady(playerId);
+    if (nbPlayer >= 2 && server->countNbPeopleReadyInRoom(server->getClients().at(playerId).getIdRoom()) == nbPlayer)
+        LaunchCommand(value, server, playerId);
 }
 /**
  * @brief Execute disconect room command
  *
  * @param value
  * @param server
- * @param actualId
+ * @param playerId
  */
-static void DisconectCommand(std::string value, Server *server, size_t actualId)
+static void DisconectCommand(std::string value, Server *server, size_t playerId)
 {
     std::cout << "Disconect Command value = " << value << std::endl;
-    server->removePlayerInRoom(actualId);
+    server->removePlayerInRoom(playerId);
     server->_nbClientsInRoom--;
     server->SendToAll(message::request::INROOM, std::to_string(server->_nbClientsInRoom));
 }
 
-static void InRoomCommand(std::string value, Server *server, size_t actualId)
+static void InRoomCommand(std::string value, Server *server, size_t playerId)
 {
     (void)value;
     (void)server;
-    (void)actualId;
+    (void)playerId;
 
     std::cout << "In Room Command" << std::endl;
 }
 
-static void MoveCommand(std::string body, Server *server, size_t actualId)
+static void MoveCommand(std::string body, Server *server, size_t playerId)
 {
-    (void)actualId;
+    (void)playerId;
     // (void)body;
     std::cout << "Move Command Asked - " << body << std::endl;
-    server->_game->handleEvents(body);
+    // server->_game->handleEvents(body);
     // server->sendMessage(message::request::ROOM, std::to_string(server->countRoom()));
 }
 
@@ -103,9 +103,9 @@ HandleCommand::HandleCommand()
 
 }
 
-void HandleCommand::findCmd(Server *server, message msg, size_t actualId)
+void HandleCommand::findCmd(Server *server, message msg, size_t playerId)
 {
-    this->_allCommand[msg.type](msg.body, server, actualId);
+    this->_allCommand[msg.type](msg.body, server, playerId);
 }
 /**
  * Before handle command function
@@ -179,9 +179,9 @@ void Server::SendToAll(message::request type, std::string body)
         sendToClient(type, client.second.getEndpoint(), body);
 }
 
-void Server::SendToAllInRoom(message::request type, size_t actualId, std::string body)
+void Server::SendToAllInRoom(message::request type, size_t playerId, std::string body)
 {
-    size_t actualRoom = this->clients.at(actualId).getIdRoom();
+    size_t actualRoom = this->clients.at(playerId).getIdRoom();
     int i = 1;
     for (auto client : clients) {
         if (client.second.getIdRoom() == actualRoom) {
@@ -195,7 +195,7 @@ void Server::SendToAllInRoom(message::request type, size_t actualId, std::string
     }
 }
 
-void Server::gameLoop(message msg, size_t actualId)
+void Server::gameLoop(message msg, size_t playerId)
 {
     if (getIsGameLaunched()) {
         if (!getIsGameInit()) {
@@ -203,7 +203,7 @@ void Server::gameLoop(message msg, size_t actualId)
             _game->init();
             setIsGameInit(true);
         }
-        _game->handleEvents(msg.body);
+        _game->handleEvents(msg.body, playerId);
         _game->update();
     }
     // std::cout << "receive in game" << std::endl;
