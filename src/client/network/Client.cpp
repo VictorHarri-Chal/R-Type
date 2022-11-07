@@ -43,7 +43,7 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
             this->_playerNumber = msg.body;
         }
         if (msg.type == message::ENTITY)
-            msg.print();
+            addEntity(msg.body);
         listen();
     }
 }
@@ -102,4 +102,35 @@ bool Client::getGameStart() const
 std::string Client::getPlayerNumber() const
 {
     return (this->_playerNumber);
+}
+
+entitiesReceive Client::getEntities() const
+{
+    return(this->entities);
+}
+
+entityTmp Client::getEntitiesAt(size_t pos) const
+{
+    return(this->entities.at(pos));
+}
+
+void Client::popEntity()
+{
+    this->entities.erase(this->entities.begin());
+}
+
+void Client::addEntity(std::string body)
+{
+    std::regex playerTemplate("(\\d);(([0-9]*[.])?[0-9]+);(([0-9]*[.])?[0-9]+)");
+    std::smatch sm;
+
+    std::regex_search(body, sm, playerTemplate);
+    entityTmp newEntity;
+    newEntity.id = std::stoi(sm.str(1));
+    newEntity.posX = std::stof(sm.str(2));
+    newEntity.posY = std::stof(sm.str(4));
+    std::cout << "id " << newEntity.id << std::endl;
+    std::cout << "posX " << newEntity.posX << std::endl;
+    std::cout << "posY " << newEntity.posY << std::endl;
+    this->entities.push_back(newEntity);
 }

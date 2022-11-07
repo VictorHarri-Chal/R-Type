@@ -189,6 +189,7 @@ namespace rtype
             int _currWave;
 
             size_t _nbPlayers;
+            void updateEntities(rtype::Game *gameEngine);
         };
     }
 }

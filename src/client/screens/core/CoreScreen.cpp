@@ -152,6 +152,7 @@ void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
     // spawnEnemiesFromScript();
     // manageEnemiesShooting();
     // handleWindowBorder();
+    updateEntities(gameEngine);
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
 }
@@ -232,6 +233,7 @@ void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *tr
 
 void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
 {
+    (void)gameEngine;
     if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
         if (event.key.code == ' ') {
             rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
@@ -490,5 +492,14 @@ void rtype::menu::CoreScreen::handleWindowBorder(void)
                 transformCompo->setY(1080.f - drawableCompo->getHeight());
             break;
         }
+    }
+}
+
+void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
+{
+    while (0 < gameEngine->_client->getEntities().size()) {
+        this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setX(gameEngine->_client->getEntitiesAt(0).posX);
+        this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setY(gameEngine->_client->getEntitiesAt(0).posY);
+        gameEngine->_client->popEntity();
     }
 }

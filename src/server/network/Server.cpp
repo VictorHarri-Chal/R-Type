@@ -329,5 +329,4 @@ void Server::sendAllEntities()
             _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
         entity.clear();
     }
-
 }
