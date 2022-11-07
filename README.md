@@ -1,5 +1,4 @@
 [![Build](https://img.shields.io/github/workflow/status/JohanCDev/Bomberman/Build)](https://github.com/VictorHarri-Chal/R-Type/actions/workflows/build.yml)
-[![License](https://img.shields.io/github/license/VictorHarri-Chal/R-Type)](https://github.com/VictorHarri-Chal/R-Type)
 
 # :rocket:  What is R-Type ?
 Our project R-Type is an ersatz of the famous [R-Type](https://www.youtube.com/watch?v=2xAX6XTzpg0) arcade game, the purpose of the game is to control a ship and navigate throught the space while shooting and destroying ennemy ships.
