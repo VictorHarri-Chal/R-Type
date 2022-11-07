@@ -89,7 +89,11 @@ namespace rtype
                  * @param gameEngine the gameEngine
                  *
                  */
-                void update(rtype::Game *gameEngine);
+                void update(rtype::Game *gameEngine = nullptr);
+                size_t getNbEntities() const
+                {
+                    return (_nbEntities);
+                };
 
               private:
                 /**

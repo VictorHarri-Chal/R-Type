@@ -16,6 +16,7 @@ Client::Client(boost::asio::io_service &io_service, const std::string &host, con
     _actualNbRooms = 0;
     _actualNbPeopleInRoom = 0;
     _gameStart = false;
+    std::cout << "Client started." << std::endl;
     listen();
 }
 
@@ -26,7 +27,6 @@ Client::~Client()
 
 void Client::listen()
 {
-    std::cout << "start receive" << std::endl;
     _socket.async_receive_from(boost::asio::buffer(_recvBuffer), _endpoint,
         boost::bind(&Client::handleReceive, this, boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
@@ -34,13 +34,16 @@ void Client::listen()
 
 void Client::handleReceive(const boost::system::error_code &error, std::size_t bytesTransferred)
 {
-    std::cout << "handle receive" << std::endl;
     if (!error || error == boost::asio::error::message_size) {
         message msg = getStreamData(bytesTransferred);
         if (msg.type == message::INROOM)
             this->_actualNbPeopleInRoom = std::stoi(msg.body);
-        if (msg.type == message::LAUNCH)
+        if (msg.type == message::LAUNCH) {
             this->_gameStart = true;
+            this->_playerNumber = msg.body;
+        }
+        if (msg.type == message::ENTITY)
+            addEntity(msg.body);
         listen();
     }
 }
@@ -59,7 +62,7 @@ message Client::getStreamData(std::size_t bytesTransferred)
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
     boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Server received message: ";
+    std::cout << "Client received: ";
     msg.print();
 
     return msg;
@@ -94,4 +97,37 @@ size_t Client::getNbPeopleInRoom() const
 bool Client::getGameStart() const
 {
     return (this->_gameStart);
+}
+
+std::string Client::getPlayerNumber() const
+{
+    return (this->_playerNumber);
+}
+
+entitiesReceive Client::getEntities() const
+{
+    return(this->entities);
+}
+
+entityTmp Client::getEntitiesAt(size_t pos) const
+{
+    return(this->entities.at(pos));
+}
+
+void Client::popEntity()
+{
+    this->entities.erase(this->entities.begin());
+}
+
+void Client::addEntity(std::string body)
+{
+    std::regex playerTemplate("(\\d);(([+-]?[0-9]*[.])?[0-9]+);(([+-]?[0-9]*[.])?[0-9]+)");
+    std::smatch sm;
+
+    std::regex_search(body, sm, playerTemplate);
+    entityTmp newEntity;
+    newEntity.id = std::stoi(sm.str(1));
+    newEntity.posX = std::stof(sm.str(2));
+    newEntity.posY = std::stof(sm.str(4));
+    this->entities.push_back(newEntity);
 }

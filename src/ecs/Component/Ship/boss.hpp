@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** zigzag.hpp
+** boss.hpp
 */
 
 #pragma once
@@ -16,22 +16,22 @@ namespace rtype
         namespace component
         {
             /**
-             * @brief Zigzag component
+             * @brief Boss component
              *
              */
-            class Zigzag : public AShip {
+            class Boss : public AShip {
               public:
                 /**
-                 * @brief Construct a new Zigzag object
+                 * @brief Construct a new Boss object
                  * 
-                 * @param currWave Current wave of the ship
+                 * @param currWave Current wave
                  */
-                Zigzag(int currWave = 1);
+                Boss(int currWave = 5);
                 /**
-                 * @brief Destroy the Zigzag object
+                 * @brief Destroy the Boss object
                  * 
                  */
-                ~Zigzag() = default;
+                ~Boss() = default;
                 /**
                  * @brief Get the Type of the component
                  * 

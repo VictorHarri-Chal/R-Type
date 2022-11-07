@@ -130,7 +130,7 @@ int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
     if (isButtonPressed(4, gameEngine, event)) {
         saveParalax();
-        return 7;
+        return 8;
     }
     if (isButtonPressed(6, gameEngine, event)) {
         gameEngine->_client->send(message::JOIN);

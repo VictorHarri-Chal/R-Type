@@ -36,20 +36,20 @@ void rtype::Game::init(std::string flag)
     _eventClass.initEvents(_event);
     if (flag == "-g") {
         _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
-        _actualScreen = Screens::Core;
-        _core = new rtype::menu::CoreScreen;
-        if (_core == nullptr)
-            throw GameExceptions("Game init: Error while creating CoreScreen");
-        _lastScene = Screens::Core;
-        _core->init();
+        _actualScreen = Screens::Solo;
+        _solo = new rtype::menu::SoloScreen;
+        if (_solo == nullptr)
+            throw GameExceptions("Game init: Error while creating SoloScreen");
+        _lastScene = Screens::Solo;
+        _solo->init();
     } else if (flag == "-gw") {
         _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
-        _actualScreen = Screens::Core;
-        _core = new rtype::menu::CoreScreen();
-        if (_core == nullptr)
-            throw GameExceptions("Game init: Error while creating CoreScreen");
-        _lastScene = Screens::Core;
-        _core->init();
+        _actualScreen = Screens::Solo;
+        _solo = new rtype::menu::SoloScreen;
+        if (_solo == nullptr)
+            throw GameExceptions("Game init: Error while creating SoloScreen");
+        _lastScene = Screens::Solo;
+        _solo->init();
     } else if (flag == "-w") {
         _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
         _actualScreen = Screens::Intro;
@@ -67,16 +67,6 @@ void rtype::Game::init(std::string flag)
         _lastScene = Screens::Intro;
         _intro->init();
     }
-}
-
-void rtype::Game::initMusic()
-{
-
-}
-
-void rtype::Game::initSounds()
-{
-
 }
 
 bool rtype::Game::processEvents(rtype::Game *gameEngine)
@@ -104,6 +94,7 @@ void rtype::Game::update(rtype::Game *gameEngine)
         case Screens::Options: _options->update(gameEngine); break;
         case Screens::Room: _room->update(gameEngine); break;
         case Screens::Core: _core->update(gameEngine); break;
+        case Screens::Solo: _solo->update(gameEngine); break;
         default: break;
     }
 }
@@ -116,6 +107,7 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
         case Screens::Room: return (_room->handleEvent(_event, gameEngine));
         case Screens::Core: return (_core->handleEvent(_event, gameEngine));
+        case Screens::Solo: return (_solo->handleEvent(_event, gameEngine));
         default: break;
     }
     return true;
@@ -180,12 +172,21 @@ void rtype::Game::handleScreensSwap(int ret)
             break;
         case 7:
             destroyLastScene();
-            _core = new rtype::menu::CoreScreen;
+            _core = new rtype::menu::CoreScreen(this->_client->getNbPeopleInRoom());
             if (_core == nullptr)
                 throw GameExceptions("Game handleScreensSwap: Error while creating CoreScreen");
             _lastScene = Screens::Core;
             _core->init();
             setActualScreen(Screens::Core);
+            break;
+        case 8:
+            destroyLastScene();
+            _solo = new rtype::menu::SoloScreen;
+            if (_solo == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating SoloScreen");
+            _lastScene = Screens::Solo;
+            _solo->init();
+            setActualScreen(Screens::Solo);
             break;
         default:
             break;
@@ -211,6 +212,8 @@ void rtype::Game::destroyLastScene()
         delete _room;
     if (_lastScene == Screens::Core)
         delete _core;
+    if (_lastScene == Screens::Solo)
+        delete _solo;
 }
 
 void rtype::Game::destroy()

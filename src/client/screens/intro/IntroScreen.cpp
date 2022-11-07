@@ -96,15 +96,15 @@ void rtype::menu::IntroScreen::init()
     rtype::ecs::entity::Entity *warning = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
     if (warning == nullptr)
         throw ScreensExceptions("IntroScreen: Error while creating Entity (11)");
-    warning->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 650.f, 280.f, 0.0f, 0.0f);
-    warning->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Your nickname need to have at least 3 letters", 30.f, sf::Color::Red, true);
+    warning->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 600.f, 280.f, 0.0f, 0.0f);
+    warning->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Your nickname need to have between 3 and 10 letters", 30.f, sf::Color::White, true);
     this->_world.addEntity(warning);
 }
 
 int rtype::menu::IntroScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
 {
     handleNickname(event);
-    if (isButtonPressed(5, gameEngine, event) && _pseudo.size() > 2) {
+    if ((isButtonPressed(5, gameEngine, event) || event.key.enter ) && _pseudo.size() > 2 && _pseudo.size() <= 10) {
         saveParalax();
         return 2;
     }
@@ -184,7 +184,7 @@ void rtype::menu::IntroScreen::handleNickname(rtype::Event &event)
 {
     ecs::component::Drawable2D *pseudoCompo = _world.getEntity(8)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
     std::string tmp = pseudoCompo->getText();
-    if (isAlpha(event)) {
+    if (isAlpha(event) && _pseudo.size() <= 9) {
         pseudoCompo->setText(tmp + event.key.code);
         event.key.code = '\0';
     }

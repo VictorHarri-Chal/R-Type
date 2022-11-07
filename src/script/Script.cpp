@@ -29,13 +29,13 @@ std::vector<std::vector<int>> rtype::Script::getLines() const
 
 void rtype::Script::spriteIsPrinted(size_t i)
 {
-    _lines[i][7] = 0;
+    _lines[i][5] = 0;
 }
 
 void rtype::Script::parseScript()
 {
     std::ifstream file;
-    file.open("src/client/script/script.txt");
+    file.open("src/script/script.txt");
     std::string line;
     std::string value;
     

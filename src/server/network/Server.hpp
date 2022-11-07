@@ -10,15 +10,18 @@
 #include <boost/array.hpp>
 #include <boost/bind/bind.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/shared_ptr.hpp>
 #include <fstream>
 #include "../../utils/Message.hpp"
 #include "../../utils/Rooms.hpp"
 #include "Client.hpp"
 #include "SafeQueue.hpp"
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
-#include <boost/shared_ptr.hpp>
+#include "../Game.hpp"
+#include <boost/thread/thread.hpp>
+
 
 /**
  * @brief map of all the clients
@@ -39,13 +42,14 @@ class Server {
      * @param port Port to listen
      */
     Server(boost::asio::io_service &io_service, int port);
+    ~Server();
     /**
      * @brief Send a message to client
      *
      * @param type of the request
      * @param value a std::string value if is needed
      */
-    void sendMessage(message::request type, std::string value = "");
+    void sendMessage(message::request type, udp::endpoint targetEndpoint, std::string value = "");
 
     room_t getRoom() const;
 
@@ -71,6 +75,11 @@ class Server {
      * @param value
      */
     void SendToAllInRoom(message::request type, size_t acutalId, std::string value = "");
+    /**
+     * @brief Handle the server loop
+     *
+     */
+    void gameLoop(message msg, size_t actualId);
     /**
      * @brief Get the Buffer object
      *
@@ -117,16 +126,52 @@ class Server {
      */
     message getStreamData(std::size_t bytesTransferred);
     /**
+     * @brief Get the Is Game Launched object
+     *
+     * @return true
+     * @return false
+     */
+    bool getIsGameLaunched(void);
+    /**
+     * @brief Get the Is Game Init object
+     *
+     * @return true
+     * @return false
+     */
+    bool getIsGameInit(void);
+    /**
+     * @brief Set the Is Game Launched object
+     *
+     * @param value
+     */
+    void setIsGameLaunched(bool value);
+    /**
+     * @brief Set the Is Game Init object
+     *
+     * @param value
+     */
+    void setIsGameInit(bool value);
+    /**
      * @brief nb client connect in room
      *
      */
     size_t _nbClientsInRoom;
 
-  private:
+    void startGame();
     /**
-     * @brief Start receiving
+     * @brief Game class
      *
      */
+    rtype::Game *_game;
+  private:
+
+    size_t getPlayersInRoom();
+
+    private:
+    /**
+        * @brief Start receiving
+        *
+        */
     void listen();
     /**
      * @brief Handle receive
@@ -187,6 +232,24 @@ class Server {
      *
      */
     size_t _nbClients;
+    /**
+     * @brief Is game launched ?
+     *
+     */
+    bool _isGameLaunched;
+    /**
+     * @brief Is game initialised ?
+     *
+     */
+    bool _isGameInit;
+    bool waitCommand;
+    /**
+     * @brief send all information about entities to all client
+     *
+     */
+    void sendAllEntities();
+    sf::Clock _clock;
+    boost::thread t1;
 };
 /**
  * @brief HandleCommand class who execut command

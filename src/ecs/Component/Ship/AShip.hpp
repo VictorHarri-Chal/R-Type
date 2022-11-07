@@ -35,32 +35,6 @@ namespace rtype
                  */
                 virtual rtype::ecs::component::shipType getShipType() const = 0;
                 /**
-                 * @brief Getter for the current horizontal direction.
-                 *
-                 * @return True if going down
-                 * @return False if going up
-                 */
-                bool getDirectionHorizontal() const;
-                /**
-                 * @brief Getter for the current vertical direction.
-                 *
-                 * @return True if going right
-                 * @return False if going left
-                 */
-                bool getDirectionVertical() const;
-                /**
-                 * @brief Setter for the current horizontal direction.
-                 *
-                 * @param dir True if horizontal
-                 */
-                void setDirectionHorizontal(bool dir);
-                /**
-                 * @brief Setter for the current vertical direction.
-                 * 
-                 * @param dir True if vertical
-                 */
-                void setDirectionVertical(bool dir);
-                /**
                  * @brief Getter for the current ship life points.
                  *
                  * @return The health amount.

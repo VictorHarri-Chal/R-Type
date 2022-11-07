@@ -8,8 +8,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-jobs:
 
+jobs:
   Clean-Repo:
     name: Clean repo
     runs-on: ubuntu-latest

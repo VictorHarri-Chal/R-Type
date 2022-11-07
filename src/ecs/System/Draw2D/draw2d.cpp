@@ -82,7 +82,8 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
 {
     if (_allyClock.getElapsedTime() >= sf::seconds(1.0/8.0f)) {
         for (auto &entity : entities) {
-            if (entity->getEntityType() == rtype::ecs::entity::PLAYER) {
+            if (entity->getEntityType() == rtype::ecs::entity::PLAYER1 || entity->getEntityType() == rtype::ecs::entity::PLAYER2 ||
+            entity->getEntityType() == rtype::ecs::entity::PLAYER3 || entity->getEntityType() == rtype::ecs::entity::PLAYER4) {
                 rtype::ecs::component::Drawable2D *drawable2dCompo =
                 entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
                 sf::IntRect rect = drawable2dCompo->getRect();
@@ -168,6 +169,42 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
                 } 
             }
             _turretClock.restart();
+        }
+    } else if (_bossClock.getElapsedTime() >= sf::seconds(1.0/4.0f)) {
+        for (auto &entity : entities) {
+            if (entity->getEntityType() == rtype::ecs::entity::ENEMY) {
+                ecs::component::IShip *shipCompo = entity->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+                if (shipCompo->getShipType() == ecs::component::shipType::BOSS) {
+                    rtype::ecs::component::Drawable2D *drawable2dCompo =
+                        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                    sf::IntRect rect = drawable2dCompo->getRect();
+                    if (rect.top == 429) {
+                        rect.top = 0;
+                    } else {
+                        rect.top += 143;
+                    }
+                    drawable2dCompo->setRect(rect);
+                } 
+            }
+            _bossClock.restart();
+        }
+    } else if (_mineClock.getElapsedTime() >= sf::seconds(1.0/5.0f)) {
+        for (auto &entity : entities) {
+            if (entity->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE) {
+                ecs::component::Transform *transformCompo = entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+                if (transformCompo->getSpeedY() == -2.0f) {
+                    rtype::ecs::component::Drawable2D *drawable2dCompo =
+                        entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                    sf::IntRect rect = drawable2dCompo->getRect();
+                    if (rect.left == 187) {
+                        rect.left = 0;
+                    } else {
+                        rect.left += 17;
+                    }
+                    drawable2dCompo->setRect(rect);
+                } 
+            }
+            _mineClock.restart();
         }
     }  
 }

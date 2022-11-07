@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../../sfml/Sfml.hpp"
+#include "../sfml/Sfml.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
