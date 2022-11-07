@@ -108,9 +108,14 @@ _nbClients(0), _isGameLaunched(false), _isGameInit(false), waitCommand(false)
     listen();
 }
 
+Server::~Server()
+{
+    this->t1.join();
+}
+
 void Server::listen()
 {
-  _socket.async_receive_from(
+    _socket.async_receive_from(
       boost::asio::buffer(_recvBuffer), _remoteEndpoint,
       boost::bind(&Server::handleReceive, this,
         boost::asio::placeholders::error,
@@ -180,6 +185,25 @@ void Server::SendToAllInRoom(message::request type, size_t playerId, std::string
     }
 }
 
+void Server::sendAllEntities()
+{
+    size_t nbEntity;
+    std::string entity;
+
+    while(true) {
+        if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 45.0f)) {
+            nbEntity = this->_game->getWorld()->getNbEntities();
+            for (size_t i = 0; i < nbEntity; i++) {
+                entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId())     + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+                for (auto client : clients)
+                    _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
+                entity.clear();
+            }
+            this->_clock.restart();
+        }
+    }
+}
+
 void Server::gameLoop(message msg, size_t playerId)
 {
     if (getIsGameLaunched()) {
@@ -187,12 +211,12 @@ void Server::gameLoop(message msg, size_t playerId)
             _game = new rtype::Game(this->getPlayersInRoom());
             _game->init();
             setIsGameInit(true);
+            this->t1 = boost::thread(&Server::sendAllEntities, this);
         }
         _game->handleEvents(msg.body, playerId);
         _game->update();
     }
     msg.print();
-    this->sendAllEntities();
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)
@@ -292,17 +316,4 @@ void Server::setIsGameLaunched(bool value)
 void Server::setIsGameInit(bool value)
 {
     this->_isGameInit = value;
-}
-
-void Server::sendAllEntities()
-{
-    size_t nbEntity = this->_game->getWorld()->getNbEntities();
-    std::string entity;
-
-    for (size_t i = 0; i < nbEntity; i++) {
-        entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId())     + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
-        for (auto client : clients)
-            _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
-        entity.clear();
-    }
 }

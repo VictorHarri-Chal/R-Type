@@ -20,6 +20,7 @@
 #include "Client.hpp"
 #include "SafeQueue.hpp"
 #include "../Game.hpp"
+#include <boost/thread/thread.hpp>
 
 
 /**
@@ -41,6 +42,7 @@ class Server {
      * @param port Port to listen
      */
     Server(boost::asio::io_service &io_service, int port);
+    ~Server();
     /**
      * @brief Send a message to client
      *
@@ -246,6 +248,8 @@ class Server {
      *
      */
     void sendAllEntities();
+    sf::Clock _clock;
+    boost::thread t1;
 };
 /**
  * @brief HandleCommand class who execut command
