@@ -38,7 +38,7 @@ namespace rtype
          *
          */
         void update();
-        int handleEvents(std::string direction);
+        void handleEvents(std::string direction);
 
         void run();
         rtype::ecs::world::World *getWorld() const { return _world; };

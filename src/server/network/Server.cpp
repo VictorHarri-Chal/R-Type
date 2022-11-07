@@ -136,9 +136,9 @@ void Server::handleReceive(const boost::system::error_code& error, std::size_t b
         HandleCommand commandHandler;
         size_t idClient;
         message msg = this->getStreamData(bytesTransferred);
-        std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
-        _queue.pop();
-        std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
+        // std::cout << "Queue size after the push:" << _queue.getSize() << std::endl;
+        // _queue.pop();
+        // std::cout << "Queue size after the pop:" << _queue.getSize() << std::endl;
         idClient = getOrCreateClientId(this->_remoteEndpoint);
         if (this->_isGameLaunched)
             this->gameLoop(msg, idClient);
@@ -203,6 +203,7 @@ void Server::gameLoop(message msg, size_t actualId)
             _game->init();
             setIsGameInit(true);
         }
+        _game->handleEvents(msg.body);
         _game->update();
     }
     // std::cout << "receive in game" << std::endl;
@@ -322,7 +323,7 @@ void Server::sendAllEntities()
 
     for (size_t i = 0; i < nbEntity; i++) {
         // std::cout << "check 2" << std::endl;
-        entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+        entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId())     + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
         // std::cout << "check 3" << std::endl;
         // std::cout << entity << std::endl;
         for (auto client : clients)

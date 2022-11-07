@@ -34,7 +34,7 @@ void rtype::Game::init()
     rtype::ecs::system::ISystem *particleSystem = new rtype::ecs::system::ParticlesSystem();
     if (particleSystem == nullptr)
         throw ScreensExceptions("CoreScreen: Error while creating ParticleSystem");
-    this->_world->addSystem(particleSystem);
+    this->_world->addS  ystem(particleSystem);
 
     this->initPlayersEntities();
 }
@@ -150,11 +150,13 @@ void rtype::Game::update(void)
     // }
 }
 
-int rtype::Game::handleEvents(std::string direction)
+void rtype::Game::handleEvents(std::string direction)
 {
     ecs::component::Transform *transformCompo;
     ecs::component::IShip *shipCompo;
 
+    if (direction == "")
+        return;
     for (size_t i = 0; i < _world->getEntities().size(); i++)
     {
             transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
@@ -162,7 +164,7 @@ int rtype::Game::handleEvents(std::string direction)
             transformCompo->setSpeedX(0.0f);
             transformCompo->setSpeedY(0.0f);
 
-        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER2) {
             if (direction == "L") {
                 std::cout << "GetX: " << transformCompo->getSpeedX() << std::endl;
                 transformCompo->setSpeedX(shipCompo->getSpeed());

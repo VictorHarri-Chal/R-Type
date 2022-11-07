@@ -136,6 +136,7 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 {
     this->initPlayerNumber(gameEngine);
 
+    std::cout << "playerNumber: " << _playerNumber << std::endl;
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == _playerNumber) {
             managePlayer(i, event, gameEngine);
@@ -207,26 +208,26 @@ void rtype::menu::CoreScreen::managePlayer(size_t entityId, rtype::Event &event,
 
 void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
 {
-    transformCompo->setSpeedX(0.0f);
-    transformCompo->setSpeedY(0.0f);
+    // transformCompo->setSpeedX(0.0f);
+    // transformCompo->setSpeedY(0.0f);
     if (event.key.right && !event.key.left) {
         std::cout << "RIGHT" << std::endl;
-        transformCompo->setSpeedX(shipCompo->getSpeed());
+        // transformCompo->setSpeedX(shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "R");
     }
     if (event.key.left && !event.key.right) {
         std::cout << "RIGHT" << std::endl;
-        transformCompo->setSpeedX(-1 * shipCompo->getSpeed());
+        // transformCompo->setSpeedX(-1 * shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "L");
     }
     if (event.key.up && !event.key.down) {
         std::cout << "RIGHT" << std::endl;
-        transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
+        // transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "U");
     }
     if (event.key.down && !event.key.up) {
         std::cout << "RIGHT" << std::endl;
-        transformCompo->setSpeedY(shipCompo->getSpeed());
+        // transformCompo->setSpeedY(shipCompo->getSpeed());
         gameEngine->_client->send(message::MOVE, "D");
     }
 }
