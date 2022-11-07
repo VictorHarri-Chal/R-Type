@@ -97,7 +97,7 @@ void rtype::menu::IntroScreen::init()
     if (warning == nullptr)
         throw ScreensExceptions("IntroScreen: Error while creating Entity (11)");
     warning->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 600.f, 280.f, 0.0f, 0.0f);
-    warning->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Your nickname need to have between 3 and 10 letters", 30.f, sf::Color::Red, true);
+    warning->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Your nickname need to have between 3 and 10 letters", 30.f, sf::Color::White, true);
     this->_world.addEntity(warning);
 }
 
