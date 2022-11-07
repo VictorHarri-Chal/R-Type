@@ -14,7 +14,7 @@
 #include "../../../exceptions/ScreensExceptions.hpp"
 
 
-rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(6), _isGameEnded(false)
 {
 }
 
@@ -419,28 +419,28 @@ sf::Time rtype::menu::SoloScreen::getWaveDuration(void)
             tmp = sf::seconds(15.f);
             break;
         case 3:
-            tmp = sf::seconds(20.f);
+            tmp = sf::seconds(15.f);
             break;
         case 4:
-            tmp = sf::seconds(60.f);
+            tmp = sf::seconds(15.f);
             break;
         case 5:
-            tmp = sf::seconds(30.f);
+            tmp = sf::seconds(20.f);
             break;
         case 6:
-            tmp = sf::seconds(40.f);
+            tmp = sf::seconds(20.f);
             break;
         case 7:
-            tmp = sf::seconds(50.f);
+            tmp = sf::seconds(20.f);
             break;
         case 8:
-            tmp = sf::seconds(60.f);
+            tmp = sf::seconds(20.f);
             break;
         case 9:
-            tmp = sf::seconds(70.f);
+            tmp = sf::seconds(20.f);
             break;
         case 10:
-            tmp = sf::seconds(60.f);
+            tmp = sf::seconds(20.f);
             break;
         default:
             break;

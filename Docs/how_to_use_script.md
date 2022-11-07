@@ -23,7 +23,7 @@ Sixth param -> is the sprite printed ?
 ## Your turn
 
 You can add new enemies as you wish, you just need to write a new line with custom caracteristics !
-You can place new enemies in the order you want but keep wave amount to 15 if you want it to work
+You can place new enemies in the order you want but keep wave amount to 10 if you want it to work
 
 ## About ship type
 

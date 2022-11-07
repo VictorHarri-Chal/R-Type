@@ -22,7 +22,7 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
                     transformCompo->setSpeedY(transformCompo->getSpeedY() - 0.01);
                 }
             } else if (shipCompo->getShipType() == ecs::component::shipType::RUSHER) {
-                if (transformCompo->getX() < -100) {
+                if (transformCompo->getX() < -200) {
                     ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                     aliveCompo->setAlive(false);
                 }
