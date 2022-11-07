@@ -136,7 +136,6 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 {
     this->initPlayerNumber(gameEngine);
 
-    std::cout << "playerNumber: " << _playerNumber << std::endl;
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == _playerNumber) {
             managePlayer(i, event, gameEngine);
