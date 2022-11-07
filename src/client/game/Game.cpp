@@ -172,7 +172,7 @@ void rtype::Game::handleScreensSwap(int ret)
             break;
         case 7:
             destroyLastScene();
-            _core = new rtype::menu::CoreScreen;
+            _core = new rtype::menu::CoreScreen(this->_client->getNbPeopleInRoom());
             if (_core == nullptr)
                 throw GameExceptions("Game handleScreensSwap: Error while creating CoreScreen");
             _lastScene = Screens::Core;

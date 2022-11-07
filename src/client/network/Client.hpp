@@ -9,134 +9,151 @@
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
-#include <boost/thread.hpp>
 #include <boost/bind/bind.hpp>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <boost/thread.hpp>
 #include <iostream>
+#include "../../ecs/world.hpp"
 #include "../../utils/Message.hpp"
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <regex>
 
 using boost::asio::ip::udp;
 
+
+struct entityTmp
+{
+    size_t id;
+    float posX;
+    float posY;
+};
+
+typedef std::vector<entityTmp> entitiesReceive;
+
 /**
  * @brief Client class
- * 
+ *
  */
 class Client {
   public:
     /**
      * @brief Construct a new Client object
-     * 
-     * @param ioService 
-     * @param host 
-     * @param port 
+     *
+     * @param ioService
+     * @param host
+     * @param port
      */
-    Client(boost::asio::io_service& ioService,const std::string& host, const std::string& port);
+    Client(boost::asio::io_service &ioService, const std::string &host, const std::string &port);
     /**
      * @brief Destroy the Client object
-     * 
+     *
      */
     ~Client();
     /**
      * @brief Send a message to the server
-     * 
+     *
      * @param request Request type
      * @param body Body of the message
      */
     void send(message::request request, std::string body = "");
     /**
      * @brief Get the Stream Data object
-     * 
+     *
      * @param bytesTransferred Bytes transferred
      * @return message Message received
      */
     message getStreamData(std::size_t bytesTransferred);
     /**
      * @brief Get the Nb Room object
-     * 
-     * @return size_t 
+     *
+     * @return size_t
      */
     size_t getNbRoom() const;
     /**
      * @brief Get the Nb People In Room object
-     * 
-     * @return size_t 
+     *
+     * @return size_t
      */
     size_t getNbPeopleInRoom() const;
     /**
      * @brief Get if the Game Start
-     * 
-     * @return true 
-     * @return false 
+     *
+     * @return true
+     * @return false
      */
     bool getGameStart() const;
     /**
      * @brief Get the current player number
-     * 
+     *
      * @return the number of the player
      */
     std::string getPlayerNumber() const;
+    void popEntity();
+    entitiesReceive getEntities() const;
+    entityTmp getEntitiesAt(size_t pos) const;
   private:
     /**
      * @brief IO Service
-     * 
+     *
      */
     boost::asio::io_service &_ioService;
     /**
      * @brief Socket
-     * 
+     *
      */
     udp::socket _socket;
     /**
      * @brief Endpoint
-     * 
+     *
      */
     udp::endpoint _endpoint;
     /**
      * @brief Buffer for receiving
-     * 
+     *
      */
-    std::array<char, 64> _recvBuffer;
+    std::array<char, 512> _recvBuffer;
     /**
      * @brief Start receiving
-     * 
+     *
      */
     void listen();
     /**
      * @brief Handle receiving
-     * 
+     *
      * @param error Error
      * @param bytes_transferred Bytes transferred
      */
     void handleReceive(const boost::system::error_code &error, std::size_t bytes_transferred);
     /**
      * @brief Create a Paquet object
-     * 
-     * @param request 
-     * @param value 
-     * @return std::string 
+     *
+     * @param request
+     * @param value
+     * @return std::string
      */
     std::string createPaquet(message::request request, std::string body);
     /**
      * @brief number of room create
-     * 
+     *
      */
     size_t _actualNbRooms;
     /**
      * @brief number of people who have join same room user
-     * 
+     *
      */
     size_t _actualNbPeopleInRoom;
     /**
      * @brief if the game start or not
-     * 
+     *
      */
     bool _gameStart;
     /**
      * @brief store which player is this client
-     * 
+     *
      */
     std::string _playerNumber;
+    entitiesReceive entities;
+    void addEntity(std::string body);
 };

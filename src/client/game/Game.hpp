@@ -61,7 +61,7 @@ namespace rtype
         /// @param newScreen The new screen
         void setActualScreen(Screens newScreen);
 
-        /// @brief Game client 
+        /// @brief Game client
         Client *_client;
 
         /// @brief Game window
