@@ -14,8 +14,7 @@
 #include "network/Server.hpp"
 
 namespace rtype
-{
-    class Game {
+{    class Game {
         public:
         /**
          * @brief Construct a new Core Screen object
@@ -38,7 +37,8 @@ namespace rtype
          *
          */
         void update();
-        void handleEvents(std::string direction, size_t playerId);
+        int handleEvents(std::string direction, size_t playerId);
+        void createShoot(size_t playerId);
 
         void run();
         rtype::ecs::world::World *getWorld() const { return _world; };
@@ -53,7 +53,10 @@ namespace rtype
         /// @brief Clock
         sf::Clock _clock;
 
+        // Server *_server;
+
         size_t _nbPlayers;
         rtype::ecs::world::World *_world;
+        // Server *_server;
     };
 }

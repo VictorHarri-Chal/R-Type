@@ -68,6 +68,7 @@ class Server {
      * @param value
      */
     void SendToAll(message::request type, std::string value = "");
+    static void SendToAll(::Server, message::request type, std::string value = "");
     /**
      * @brief Send Message to all Client in the same room
      *

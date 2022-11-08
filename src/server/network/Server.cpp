@@ -170,6 +170,12 @@ void Server::SendToAll(message::request type, std::string body)
         sendToClient(type, client.second.getEndpoint(), body);
 }
 
+void Server::SendToAll(::Server server, message::request type, std::string body)
+{
+    for (auto client : server.clients)
+        server.sendToClient(type, client.second.getEndpoint(), body);
+}
+
 void Server::SendToAllInRoom(message::request type, size_t playerId, std::string body)
 {
     size_t actualRoom = this->clients.at(playerId).getIdRoom();
@@ -207,7 +213,6 @@ void Server::sendAllEntities()
 
 void Server::gameLoop(message msg, size_t playerId)
 {
-    if (getIsGameLaunched()) {
         if (!getIsGameInit()) {
             _game = new rtype::Game(this->getPlayersInRoom());
             _game->init();
@@ -215,10 +220,13 @@ void Server::gameLoop(message msg, size_t playerId)
             this->t1 = boost::thread(&Server::sendAllEntities, this);
         }
         std::cout << "Game Loop" << std::endl;
-        _game->handleEvents(msg.body, playerId);
+        int ret = _game->handleEvents(msg.body, playerId);
+
+        if (ret == 1) {
+            SendToAll(message::request::SHOOT, std::to_string(playerId));
+            _game->createShoot(playerId);
+        }
         _game->update();
-        // this->t1 = boost::thread(&Server::sendAllEntities, this);
-    }
     // msg.print();
 }
 

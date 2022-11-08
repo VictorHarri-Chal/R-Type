@@ -93,6 +93,8 @@ class Client {
     void popEntity();
     entitiesReceive getEntities() const;
     entityTmp getEntitiesAt(size_t pos) const;
+    std::vector<size_t> getShoots() const;
+    void popShoots();
   private:
     /**
      * @brief IO Service
@@ -144,6 +146,8 @@ class Client {
      *
      */
     size_t _actualNbPeopleInRoom;
+    size_t _nbMissile;
+    std::vector<size_t> _shoots;
     /**
      * @brief if the game start or not
      *

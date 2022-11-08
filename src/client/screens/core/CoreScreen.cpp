@@ -138,6 +138,7 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == _playerNumber) {
+
             managePlayer(i, event, gameEngine);
             break;
         }
@@ -224,19 +225,10 @@ void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *tr
 void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
 {
     (void)gameEngine;
+
     if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
         if (event.key.code == ' ') {
-            rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
-            if (shot == nullptr)
-                throw ScreensExceptions("Error: Can't create a entity (6)");
-            shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
-            // shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-            // shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-            shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
-            this->_world.addEntity(shot);
-
             gameEngine->_client->send(message::SHOOT, "S");
-
             event.key.code = '\0';
             shipCompo->restartClock();
         }
@@ -510,9 +502,33 @@ void rtype::menu::CoreScreen::handleWindowBorder(void)
 
 void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
 {
+    createMissiles(gameEngine);
+
     while (0 < gameEngine->_client->getEntities().size()) {
         this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setX(gameEngine->_client->getEntitiesAt(0).posX);
         this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setY(gameEngine->_client->getEntitiesAt(0).posY);
+        std::cout << "Entity " << gameEngine->_client->getEntitiesAt(0).id << " updated" << std::endl;
         gameEngine->_client->popEntity();
+    }
+}
+
+void rtype::menu::CoreScreen::createMissiles(rtype::Game *gameEngine)
+{
+    while (gameEngine->_client->getShoots().size() > 0) {
+        ecs::component::Transform *transformCompo =
+            _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+
+        rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
+        if (shot == nullptr)
+            throw ScreensExceptions("Error: Can't create a entity (6)");
+        shot->addComponent<ecs::component::Transform>(
+            rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
+        shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true,
+            sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
+        this->_world.addEntity(shot);
+
+        gameEngine->_client->popShoots();
     }
 }
