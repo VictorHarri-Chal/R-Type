@@ -55,6 +55,7 @@ if [ "$(uname)" = "Linux" ]; then
       sudo pip3 install conan
       if [ "$(dpkg --print-architecture)" = "arm64" ]; then
         sudo apt install -y \
+        p7zip-full \
         pkg-config \
         libxkbfile-dev \
         xkb-data \
