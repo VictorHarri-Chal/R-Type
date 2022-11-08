@@ -11,97 +11,47 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
-          - macos-latest
           - windows-latest
-          - self-hosted
     runs-on: ${{matrix.os}}
     name: Build and release ${{matrix.os}}
     steps:
 
-      - name: Set build name
-        shell: bash
-        run: |
-          {
-            if [ "${{matrix.os}}" = "ubuntu-latest" ]; then
-              echo build_name=linux-amd64
-              echo archive_name=r-type-linux-amd64.7z
-
-            elif [ "${{matrix.os}}" = "macos-latest" ]; then
-              echo build_name=darwin-amd64
-              echo archive_name=r-type-darwin-amd64.7z
-
-            elif [ "${{matrix.os}}" = "windows-latest" ]; then
-              # do not remove the file extension,
-              # softprops/action-gh-release action will fail
-              # "Pattern 'r-type_*-windows-amd64' does not match any files."
-              echo build_name=windows-amd64.exe
-              echo archive_name=r-type-windows-amd64.7z
-
-            elif [ "${{matrix.os}}" = "self-hosted" ]; then
-              # change this, repo's self-hosted runner is Debian arm64
-              echo build_name=linux-arm64
-              echo archive_name=r-type-linux-arm64.7z
-
-            else
-              exit 1
-            fi
-          } >> $GITHUB_ENV
-          exit 0
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set release name
-        shell: bash
-        run: echo release_name=release-$(git rev-parse --short $GITHUB_SHA) >> $GITHUB_ENV
-
-      - name: Get env variables (debug)
-        shell: bash
-        run: |
-          echo ${{env.release_name}}
-          echo ${{env.build_name}}
-          echo ${{env.archive_name}}
-          #exit 1
-
       - name: Build
-        run: bash install.sh
-
-      - name: Check build (Windows)
-        if: matrix.os == 'windows-latest'
-        shell: bash
-        run: |
-          test -f Debug/r-type_client.exe
-          test -f Debug/r-type_server.exe
+        run: bash install.sh --installer
 
       - name: Check build
-        if: matrix.os != 'windows-latest'
         shell: bash
-        run: |
-          test -f r-type_client
-          test -f r-type_server
+        run: find . -type f > files.txt
 
-      - name: Rename build (Windows)
-        if: matrix.os == 'windows-latest'
-        shell: bash
-        run: |
-          mv Debug/r-type_client.exe r-type_client-${{env.build_name}}
-          mv Debug/r-type_server.exe r-type_server-${{env.build_name}}
-
-      - name: Rename build
-        if: matrix.os != 'windows-latest'
-        shell: bash
-        run: |
-          mv r-type_client r-type_client-${{env.build_name}}
-          mv r-type_server r-type_server-${{env.build_name}}
-
-      - name: Archive build
-        shell: bash
-        run: 7z a ${{env.archive_name}} r-type_{client,server}-${{env.build_name}}
-
-      - name: Create release
-        uses: softprops/action-gh-release@v1
+      - uses: actions/upload-artifact@v3
         with:
-          tag_name: ${{env.release_name}}
-          files: ${{env.archive_name}}
-          fail_on_unmatched_files: true
+          name: files
+          path: files.txt
+
+     # - name: Rename build (Windows)
+     #   if: matrix.os == 'windows-latest'
+     #   shell: bash
+     #   run: |
+     #     mv Debug/r-type_client.exe r-type_client-${{env.build_name}}
+     #     mv Debug/r-type_server.exe r-type_server-${{env.build_name}}
+
+     # - name: Rename build
+     #   if: matrix.os != 'windows-latest'
+     #   shell: bash
+     #   run: |
+     #     mv r-type_client r-type_client-${{env.build_name}}
+     #     mv r-type_server r-type_server-${{env.build_name}}
+
+     # - name: Archive build
+     #   shell: bash
+     #   run: 7z a ${{env.archive_name}} r-type_{client,server}-${{env.build_name}}
+
+     # - name: Create release
+     #   uses: softprops/action-gh-release@v1
+     #   with:
+     #     tag_name: ${{env.release_name}}
+     #     files: ${{env.archive_name}}
+     #     fail_on_unmatched_files: true
