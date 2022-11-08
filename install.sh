@@ -110,6 +110,11 @@ fi
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build . -j 4
 
+if [ "$1" = "--installer" ]; then
+  cpack --config CPackConfig.cmake
+  cpack --config CPackSourceConfig.cmake
+fi
+
 [ -n "$RUNNER" ] && set +x
 
 echo "__________        ________________.___._____________________"
