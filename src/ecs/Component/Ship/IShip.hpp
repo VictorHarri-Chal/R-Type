@@ -14,7 +14,6 @@ namespace rtype
     {
         namespace component
         {
-            class Transform;
             /**
              * @brief Enum for ship type
              * @param RECRUIT Basic ally ship
@@ -58,6 +57,19 @@ namespace rtype
                  *
                  */
                 virtual void setHealth(float health) = 0;
+                /**
+                 * @brief Getter for the ship max life points.
+                 *
+                 * @return The health amount.
+                 */
+                virtual float getMaxHealth() const = 0;
+                /**
+                 * @brief Setter to set new max health points.
+                 * 
+                 * @param maxhealth The new max health amount.
+                 *
+                 */
+                virtual void setMaxHealth(float maxHealth) = 0;
                 /**
                  * @brief Getter for the current ship damage.
                  *

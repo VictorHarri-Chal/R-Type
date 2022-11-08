@@ -10,6 +10,7 @@
 rtype::ecs::component::Stealthy::Stealthy()
 {
     _health = 2.0f;
+    _maxHealth = _health;
     _damage = 0.6f;
     _speed = 8.0f;
     _cadency = sf::seconds(1.0/3.0f);

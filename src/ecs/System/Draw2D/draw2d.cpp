@@ -63,9 +63,9 @@ void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::En
             continue;
         }
         for (auto &compo : compoVector) {
-            if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D) {
-                rtype::ecs::component::Transform *transformCompo =
-                    entity->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+            rtype::ecs::component::Transform *transformCompo =
+                entity->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+            if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D && (transformCompo->getX() < 1920) && (transformCompo->getY() < 1080)) {
                 switch (compo->getDrawType()) {
                     case rtype::ecs::component::drawableType::RECTANGLE: drawRectangle(*compo, *transformCompo, gameEngine); break;
                     case rtype::ecs::component::drawableType::TEXT: drawText(*compo, *transformCompo, gameEngine); break;

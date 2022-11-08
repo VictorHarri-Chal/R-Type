@@ -14,7 +14,7 @@
 #include "../../../exceptions/ScreensExceptions.hpp"
 
 
-rtype::menu::SoloScreen::SoloScreen(): _currWave(5), _isGameEnded(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false)
 {
 }
 
@@ -80,6 +80,12 @@ void rtype::menu::SoloScreen::init()
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
 
+    rtype::ecs::entity::Entity *lifebar = new rtype::ecs::entity::Entity(rtype::ecs::entity::HEART);
+    if (lifebar == nullptr)
+        throw ScreensExceptions("SoloScreen: Error while creating enemy entity");
+    lifebar->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 45.f, 0.0f, 0.0f);
+    lifebar->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 80.f, 6.f, sf::Color::Green, false);
+    this->_world.addEntity(lifebar);
 }
 
 int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
@@ -107,6 +113,7 @@ void rtype::menu::SoloScreen::update(rtype::Game *gameEngine)
     spawnEnemiesFromScript();
     manageEnemiesShooting();
     handleWindowBorder();
+    handleHud();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
 }
@@ -171,7 +178,7 @@ void rtype::menu::SoloScreen::managePlayerShot(ecs::component::Transform *transf
             shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
             shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
             shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-            shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ALLY_PROJECTILE);
+            shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage());
             shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
             this->_world.addEntity(shot);
             event.key.code = '\0';
@@ -292,7 +299,7 @@ void rtype::menu::SoloScreen::manageEnemiesShooting(void)
                     shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() - 15.f, transformCompo->getY() + 40.f, -20.0f, 0.0f);
                     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-                    shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ENEMY_PROJECTILE);
+                    shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ENEMY_PROJECTILE, shipCompo->getDamage());
                     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.f, 1.f), 180, sf::IntRect(165, 133, 50, 17));
                     this->_world.addEntity(shot);
                     shipCompo->restartClock();
@@ -306,7 +313,7 @@ void rtype::menu::SoloScreen::manageEnemiesShooting(void)
                     mine->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 220.f, transformCompo->getY() + 10.f, 0.0f, -2.0f);
                     mine->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     mine->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-                    mine->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::MINE);
+                    mine->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::MINE, shipCompo->getDamage());
                     mine->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/mine.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 18, 18));
                     this->_world.addEntity(mine);
                     shipCompo->restartClock();
@@ -396,15 +403,17 @@ void rtype::menu::SoloScreen::spawnEnemiesFromScript(void)
         printWaveNumber();
         _script.restartClock();
     }
-    for (size_t i = 0; i < _script.getLines().size(); i++) {
-        if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
-            sf::Time time = sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)));
-            if (_script.getClock().getElapsedTime() >= time) {
-                generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
-                static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
-                _script.spriteIsPrinted(i);
+    if (_clockScriptCall.getElapsedTime() >= sf::seconds(1.0f)) {
+        for (size_t i = 0; i < _script.getLines().size(); i++) {
+            if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
+                if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)))) {
+                    generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
+                    static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
+                    _script.spriteIsPrinted(i);
+                }
             }
         }
+        _clockScriptCall.restart();
     }
 }
 
@@ -457,6 +466,31 @@ sf::Time rtype::menu::SoloScreen::getWaveDuration(void)
             break;
     };
     return tmp;
+}
+
+void rtype::menu::SoloScreen::handleHud(void)
+{
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+            auto shipCompo = _world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+            auto transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            for (size_t j = 0; j < _world.getEntities().size(); j++) {
+                if (_world.getEntity(j)->getEntityType() == rtype::ecs::entity::HEART) {
+                    auto transformCompo2 = _world.getEntity(j)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+                    auto drawableCompo2 = _world.getEntity(j)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+                    drawableCompo2->setWidth(80.f - ((80.f / shipCompo->getMaxHealth()) * (shipCompo->getMaxHealth() - shipCompo->getHealth())));
+                    transformCompo2->setX(transformCompo->getX());
+                    transformCompo2->setY(transformCompo->getY());
+                    return;
+                }
+            }
+        }
+    }
+    for (size_t k = 0; k < _world.getEntities().size(); k++) {
+        if (_world.getEntity(k)->getEntityType() == rtype::ecs::entity::HEART) {
+            _world.removeEntity(k);
+        }
+    }
 }
 
 void rtype::menu::SoloScreen::saveParalax(void)

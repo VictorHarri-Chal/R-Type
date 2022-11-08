@@ -153,6 +153,11 @@ namespace rtype
             * @param y Position y
             */
             void createParticle(float x, float y, float scale);
+            /**
+            * @brief Handle hud display
+            * 
+            */
+            void handleHud(void);
 
           private:
             /**
@@ -175,7 +180,11 @@ namespace rtype
              * 
              */
             bool _isGameEnded;
-
+            /**
+             * @brief Clock to read the script
+             * 
+             */
+            sf::Clock _clockScriptCall;
         };
     }
 }

@@ -30,7 +30,7 @@ namespace rtype
                  *
                  * @param type Type of the projectile
                  */
-                Projectile(rtype::ecs::component::projectileType type);
+                Projectile(rtype::ecs::component::projectileType type, float damage);
                 /**
                  * @brief Destroy the Projectile object
                  *
@@ -48,6 +48,19 @@ namespace rtype
                  * @return rtype::ecs::component::projectileType Type of the projectile
                  */
                 rtype::ecs::component::projectileType getProjectileType() const;
+                /**
+                 * @brief Getter for the current ship damage.
+                 *
+                 * @return The damage per shot.
+                 */
+                float getDamage() const;
+                /**
+                 * @brief Setter to set new damage per shot.
+                 * 
+                 * @param damage The new damage per shot.
+                 *
+                 */
+                void setDamage(float damage);
 
               private:
                 /**
@@ -55,6 +68,11 @@ namespace rtype
                  * 
                  */
                 rtype::ecs::component::projectileType _projectileType;
+                /**
+                 * @brief Damage of the projectile
+                 * 
+                 */
+                float _damage;
             };
         } // namespace component
     }     // namespace ecs
