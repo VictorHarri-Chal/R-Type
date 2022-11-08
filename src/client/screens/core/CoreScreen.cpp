@@ -230,10 +230,13 @@ void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transf
             if (shot == nullptr)
                 throw ScreensExceptions("Error: Can't create a entity (6)");
             shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
-            shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-            shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+            // shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+            // shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
             shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
             this->_world.addEntity(shot);
+
+            gameEngine->_client->send(message::SHOOT, "S");
+
             event.key.code = '\0';
             shipCompo->restartClock();
         }
@@ -292,7 +295,7 @@ void rtype::menu::CoreScreen::manageEnemiesShooting(void)
                     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.f, 1.f), 180, sf::IntRect(165, 133, 50, 17));
                     this->_world.addEntity(shot);
                     shipCompo->restartClock();
-                }  
+                }
             } else if (shipCompo->getShipType() == ecs::component::shipType::BOSS) {
                 if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
                     ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
@@ -305,7 +308,7 @@ void rtype::menu::CoreScreen::manageEnemiesShooting(void)
                     mine->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/mine.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 18, 18));
                     this->_world.addEntity(mine);
                     shipCompo->restartClock();
-                } 
+                }
             }
         }
     }

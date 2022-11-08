@@ -108,7 +108,7 @@ namespace rtype
                     std::vector<std::unique_ptr<rtype::ecs::component::IComponent>>::iterator it = this->_componentVector.begin();
 
                     if (hasCompoType(type) == false) {
-                        std::cout << "Component not found" << std::endl;
+                        std::cout << "Component not found: " << type << std::endl;
                         return;
                     }
                     for (auto &compo : _componentVector) {
@@ -150,7 +150,7 @@ namespace rtype
                             return (dynamic_cast<T *>(compo.get()));
                         }
                     }
-                    std::cout << "Component not found" << std::endl;
+                    std::cout << "Component not found:" << type << std::endl;
                     return (nullptr);
                 }
 

@@ -214,10 +214,12 @@ void Server::gameLoop(message msg, size_t playerId)
             setIsGameInit(true);
             this->t1 = boost::thread(&Server::sendAllEntities, this);
         }
+        std::cout << "Game Loop" << std::endl;
         _game->handleEvents(msg.body, playerId);
         _game->update();
+        // this->t1 = boost::thread(&Server::sendAllEntities, this);
     }
-    msg.print();
+    // msg.print();
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)

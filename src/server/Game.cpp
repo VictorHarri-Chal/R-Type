@@ -155,8 +155,31 @@ void rtype::Game::handleEvents(std::string direction, size_t playerId)
     ecs::component::Transform *transformCompo;
     ecs::component::IShip *shipCompo;
 
-    if (direction == "")
+    if (direction == "S")
+    {
+        for (size_t i = 0; i < _world->getEntities().size(); i++) {
+            if (playerId == i) {
+                transformCompo =
+                    _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+                // shipCompo = _world->getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+
+                rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
+                if (shot == nullptr)
+                    throw ScreensExceptions("Error: Can't create a entity (6)");
+                shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX()
+                + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
+                shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+                shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+                shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D,
+                "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
+                this->_world->addEntity(shot);
+
+                // create
+                std::cout << "SHOOT PLAYER ID : " << playerId << std::endl;
+            }
+        }
         return;
+    }
     for (size_t i = 0; i < _world->getEntities().size(); i++)
     {
             transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);

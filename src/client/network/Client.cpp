@@ -62,8 +62,8 @@ message Client::getStreamData(std::size_t bytesTransferred)
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
     boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Client received: ";
-    msg.print();
+    // std::cout << "Client received: ";
+    // msg.print();
 
     return msg;
 }
