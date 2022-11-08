@@ -35,7 +35,7 @@ namespace rtype
                  * @brief Destroy the Projectile object
                  *
                  */
-                ~Projectile();
+                ~Projectile() = default;
                 /**
                  * @brief Get the Type of the component
                  * 

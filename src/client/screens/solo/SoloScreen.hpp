@@ -152,7 +152,7 @@ namespace rtype
             * @param x Position x
             * @param y Position y
             */
-            void createParticle(float x, float y);
+            void createParticle(float x, float y, float scale);
 
           private:
             /**

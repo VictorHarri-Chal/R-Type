@@ -191,8 +191,8 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
     } else if (_mineClock.getElapsedTime() >= sf::seconds(1.0/5.0f)) {
         for (auto &entity : entities) {
             if (entity->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE) {
-                ecs::component::Transform *transformCompo = entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-                if (transformCompo->getSpeedY() == -2.0f) {
+                if (entity->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE)->getProjectileType() ==
+                rtype::ecs::component::projectileType::MINE) {
                     rtype::ecs::component::Drawable2D *drawable2dCompo =
                         entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
                     sf::IntRect rect = drawable2dCompo->getRect();

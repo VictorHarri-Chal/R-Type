@@ -16,7 +16,6 @@
 #include "../Component/Ship/IShip.hpp"
 #include "../Component/Drawable2D/drawable2d.hpp"
 #include "../Component/Projectile/projectile.hpp"
-#include "../Component/Inventory/inventory.hpp"
 #include "../Component/Sound/sound.hpp"
 #include "../Component/Transform/transform.hpp"
 #include "../Component/Ship/recruit.hpp"

@@ -12,10 +12,6 @@ rtype::ecs::component::Projectile::Projectile(rtype::ecs::component::projectileT
     _projectileType = type;
 }   
 
-rtype::ecs::component::Projectile::~Projectile()
-{
-}
-
 rtype::ecs::component::compoType rtype::ecs::component::Projectile::getType() const
 {
     return (rtype::ecs::component::compoType::PROJECTILE);

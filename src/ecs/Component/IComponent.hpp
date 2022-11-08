@@ -42,8 +42,9 @@ namespace rtype
              * @brief Enum for projectile type
              * @param ALLY Allies projectile
              * @param ENEMY Enemy projectile
+             * @param MINE Enemy boss projectile
              */
-            enum projectileType { ALLY_PROJECTILE, ENEMY_PROJECTILE, UNKNOWNPROJECTILE };
+            enum projectileType { ALLY_PROJECTILE, ENEMY_PROJECTILE, MINE, UNKNOWNPROJECTILE };
             /**
              * @brief Enum for bonus type
              *
