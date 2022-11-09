@@ -1,7 +1,7 @@
-rm -fr build
 mkdir build
-cd build
+Set-Location build
+
 conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
-cd ..
+Set-Location ../
 cmake --build build
