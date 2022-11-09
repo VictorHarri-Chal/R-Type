@@ -107,7 +107,7 @@ else
   -c tools.system.package_manager:sudo=True
 fi
 
-cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . -j 4
 
 if [ "$1" = "--installer" ]; then
