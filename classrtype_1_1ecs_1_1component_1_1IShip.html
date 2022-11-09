@@ -116,6 +116,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a41c61f616cd434b19cff3a05ff8f4f1b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1ecs_1_1component_1_1IShip.html#a41c61f616cd434b19cff3a05ff8f4f1b">setHealth</a> (float health)=0</td></tr>
 <tr class="memdesc:a41c61f616cd434b19cff3a05ff8f4f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter to set new health points.  <a href="classrtype_1_1ecs_1_1component_1_1IShip.html#a41c61f616cd434b19cff3a05ff8f4f1b">More...</a><br /></td></tr>
 <tr class="separator:a41c61f616cd434b19cff3a05ff8f4f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8302e50a368987e94b55a836cd526bc6"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1ecs_1_1component_1_1IShip.html#a8302e50a368987e94b55a836cd526bc6">getMaxHealth</a> () const =0</td></tr>
+<tr class="memdesc:a8302e50a368987e94b55a836cd526bc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the ship max life points.  <a href="classrtype_1_1ecs_1_1component_1_1IShip.html#a8302e50a368987e94b55a836cd526bc6">More...</a><br /></td></tr>
+<tr class="separator:a8302e50a368987e94b55a836cd526bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c7587c0572607fbeecad2ba0ea13d8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1ecs_1_1component_1_1IShip.html#ad3c7587c0572607fbeecad2ba0ea13d8">setMaxHealth</a> (float maxHealth)=0</td></tr>
+<tr class="memdesc:ad3c7587c0572607fbeecad2ba0ea13d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter to set new max health points.  <a href="classrtype_1_1ecs_1_1component_1_1IShip.html#ad3c7587c0572607fbeecad2ba0ea13d8">More...</a><br /></td></tr>
+<tr class="separator:ad3c7587c0572607fbeecad2ba0ea13d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d03f1804a349afbf8131f744634e93"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1ecs_1_1component_1_1IShip.html#ae7d03f1804a349afbf8131f744634e93">getDamage</a> () const =0</td></tr>
 <tr class="memdesc:ae7d03f1804a349afbf8131f744634e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the current ship damage.  <a href="classrtype_1_1ecs_1_1component_1_1IShip.html#ae7d03f1804a349afbf8131f744634e93">More...</a><br /></td></tr>
 <tr class="separator:ae7d03f1804a349afbf8131f744634e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,6 +275,36 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl class="section return"><dt>Returns</dt><dd>The health amount. </dd></dl>
 
 <p>Implemented in <a class="el" href="classrtype_1_1ecs_1_1component_1_1AShip.html#a72aeaf331f48aad5e44e93775797d44a">rtype::ecs::component::AShip</a>.</p>
+
+</div>
+</div>
+<a id="a8302e50a368987e94b55a836cd526bc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8302e50a368987e94b55a836cd526bc6">&#9670;&nbsp;</a></span>getMaxHealth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual float rtype::ecs::component::IShip::getMaxHealth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Getter for the ship max life points. </p>
+<dl class="section return"><dt>Returns</dt><dd>The health amount. </dd></dl>
+
+<p>Implemented in <a class="el" href="classrtype_1_1ecs_1_1component_1_1AShip.html#a7618bfac2218c1acba4fb051cac3210a">rtype::ecs::component::AShip</a>.</p>
 
 </div>
 </div>
@@ -466,6 +502,42 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </dl>
 
 <p>Implemented in <a class="el" href="classrtype_1_1ecs_1_1component_1_1AShip.html#a50fac84d3d41879ff913270338b5ad9c">rtype::ecs::component::AShip</a>.</p>
+
+</div>
+</div>
+<a id="ad3c7587c0572607fbeecad2ba0ea13d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c7587c0572607fbeecad2ba0ea13d8">&#9670;&nbsp;</a></span>setMaxHealth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void rtype::ecs::component::IShip::setMaxHealth </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxHealth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setter to set new max health points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxhealth</td><td>The new max health amount. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classrtype_1_1ecs_1_1component_1_1AShip.html#ab820a4ab850f1b2317ca05be14a47097">rtype::ecs::component::AShip</a>.</p>
 
 </div>
 </div>

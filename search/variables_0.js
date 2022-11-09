@@ -9,7 +9,8 @@ var searchData=
   ['_5fgame_666',['_game',['../classServer.html#aaea81fb8f9ff9d964ca86ab0809576a2',1,'Server']]],
   ['_5fhealth_667',['_health',['../classrtype_1_1ecs_1_1component_1_1AShip.html#a9a37a07b09e89bdbdd4d252d0b43fa45',1,'rtype::ecs::component::AShip']]],
   ['_5fidpeopleinroom_668',['_idPeopleInRoom',['../structroom__t.html#a131d32e114a3d2e369cdc86a11fa87fb',1,'room_t']]],
-  ['_5fnbclientsinroom_669',['_nbClientsInRoom',['../classServer.html#a948aea17e08d07cc1d170637dda597f3',1,'Server']]],
-  ['_5fspeed_670',['_speed',['../classrtype_1_1ecs_1_1component_1_1AShip.html#ac59105411046d7b2f2c74c2c9a7e3b20',1,'rtype::ecs::component::AShip']]],
-  ['_5fwindow_671',['_window',['../classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616',1,'rtype::Game']]]
+  ['_5fmaxhealth_669',['_maxHealth',['../classrtype_1_1ecs_1_1component_1_1AShip.html#a5243fb91a2955d764ac6ed48a32a2ea2',1,'rtype::ecs::component::AShip']]],
+  ['_5fnbclientsinroom_670',['_nbClientsInRoom',['../classServer.html#a948aea17e08d07cc1d170637dda597f3',1,'Server']]],
+  ['_5fspeed_671',['_speed',['../classrtype_1_1ecs_1_1component_1_1AShip.html#ac59105411046d7b2f2c74c2c9a7e3b20',1,'rtype::ecs::component::AShip']]],
+  ['_5fwindow_672',['_window',['../classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616',1,'rtype::Game']]]
 ];

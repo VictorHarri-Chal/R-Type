@@ -7,6 +7,6 @@ var searchData=
   ['collidesystem_412',['CollideSystem',['../classrtype_1_1ecs_1_1system_1_1CollideSystem.html#aebf9b094ad41d899b13db53bb97b7f0b',1,'rtype::ecs::system::CollideSystem']]],
   ['corescreen_413',['CoreScreen',['../classrtype_1_1menu_1_1CoreScreen.html#ad4fe1f005c68e02e601b609e576f6467',1,'rtype::menu::CoreScreen']]],
   ['countnbpeoplereadyinroom_414',['countNbPeopleReadyInRoom',['../classServer.html#a5ea15c5656e0c849fcbfb9838cb4011a',1,'Server']]],
-  ['createparticle_415',['createParticle',['../classrtype_1_1menu_1_1CoreScreen.html#a9730ea41d16cba7d6846b44fd198c4ed',1,'rtype::menu::CoreScreen::createParticle()'],['../classrtype_1_1menu_1_1SoloScreen.html#afc0900c5efdede5e3f734be4ae31aa7f',1,'rtype::menu::SoloScreen::createParticle()']]],
+  ['createparticle_415',['createParticle',['../classrtype_1_1menu_1_1CoreScreen.html#a9730ea41d16cba7d6846b44fd198c4ed',1,'rtype::menu::CoreScreen::createParticle()'],['../classrtype_1_1menu_1_1SoloScreen.html#aa317ac95d01d7734509c23fd50952f64',1,'rtype::menu::SoloScreen::createParticle()']]],
   ['createroom_416',['createRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc',1,'rtype::menu::MultiplayerScreen']]]
 ];
