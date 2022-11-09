@@ -10,18 +10,18 @@
 rtype::ecs::component::Boss::Boss(int currWave)
 {
     if (currWave == 5) {
-        _health = 50.0f;
-        _damage = 0.0f;
+        _health = 30.0f;
+        _damage = 1.0f;
         _speed = 2.0f;
         _cadency = sf::seconds(1.0/1.0f);
     } else if (currWave == 10) {
-        _health = 150.0f;
-        _damage = 0.0f;
+        _health = 70.0f;
+        _damage = 1.0f;
         _speed = 2.0f;
         _cadency = sf::seconds(1.0/1.2f);
     } else {
-        _health = 50.0f;
-        _damage = 0.0f;
+        _health = 30.0f;
+        _damage = 1.0f;
         _speed = 2.0f;
         _cadency = sf::seconds(1.0/1.0f);
     }

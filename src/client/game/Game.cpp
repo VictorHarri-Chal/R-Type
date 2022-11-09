@@ -28,10 +28,6 @@ rtype::Game::~Game()
 
 void rtype::Game::init(std::string flag)
 {
-    // sf::Music music;
-    // if (!music.openFromFile("assets/music.ogg"))
-    //     throw GameExceptions("Game init: Error while loading the music");
-    // music.play();
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _eventClass.initEvents(_event);
     if (flag == "-g") {
