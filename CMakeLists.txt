@@ -185,3 +185,8 @@ set_property(TARGET r-type_server PROPERTY MSVC_RUNTIME_LIBRARY "")
 
 set_target_properties(r-type_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set_target_properties(r-type_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+install(TARGETS r-type_client RUNTIME DESTINATION bin)
+install(TARGETS r-type_server RUNTIME DESTINATION bin)
+
+include(CPack)
