@@ -11,9 +11,9 @@ rtype::ecs::component::Support::Support()
 {
     _health = 5.0f;
     _maxHealth = _health;
-    _damage = 0.7f;
+    _damage = 1.0f;
     _speed = 5.0f;
-    _cadency = sf::seconds(1.0/3.0f);
+    _cadency = sf::seconds(1.0/4.0f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Support::getType() const

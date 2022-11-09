@@ -76,7 +76,7 @@ void rtype::menu::SoloScreen::init()
     ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
     ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+    ship->addComponent<ecs::component::Tank>(rtype::ecs::component::SHIP);
     ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
     this->_world.addEntity(ship);
 
@@ -203,14 +203,18 @@ void rtype::menu::SoloScreen::destroySprites(void)
             if (!aliveCompo->getAlive()) {
                 if (_world.getEntity(i)->hasCompoType(ecs::component::compoType::SHIP) && (_world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP)->getShipType() !=
                 rtype::ecs::component::shipType::BOSS))
-                    createParticle(transformCompo->getX(), transformCompo->getY(), 4.0f);
+                    createParticle(transformCompo->getX(), transformCompo->getY(), 4.0f, 1);
                 else if (_world.getEntity(i)->hasCompoType(ecs::component::compoType::SHIP) && (_world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP)->getShipType() ==
                 rtype::ecs::component::shipType::BOSS))
-                    createParticle(transformCompo->getX(), transformCompo->getY(), 8.0f);
+                    createParticle(transformCompo->getX(), transformCompo->getY(), 8.0f, 1);
                 else if (_world.getEntity(i)->hasCompoType(ecs::component::compoType::PROJECTILE) &&
                 (_world.getEntity(i)->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE)->getProjectileType() ==
-                rtype::ecs::component::projectileType::MINE))
-                    createParticle(transformCompo->getX(), transformCompo->getY(), 2.0f);
+                rtype::ecs::component::projectileType::ALLY_PROJECTILE))
+                    createParticle(transformCompo->getX(), transformCompo->getY(), 4.0f, 2);
+                else if (_world.getEntity(i)->hasCompoType(ecs::component::compoType::PROJECTILE) &&
+                (_world.getEntity(i)->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE)->getProjectileType() ==
+                rtype::ecs::component::projectileType::ENEMY_PROJECTILE))
+                    createParticle(transformCompo->getX(), transformCompo->getY(), 3.0f, 3);
                 _world.removeEntity(i);
             }
         }
@@ -222,7 +226,7 @@ void rtype::menu::SoloScreen::manageGameEnd(void)
     if (_currWave == 11) {
         rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
         if (back == nullptr)
-            throw ScreensExceptions("IntroScreen: Error while creating Entity (è)");
+            throw ScreensExceptions("IntroScreen: Error while creating Entity (7)");
         back->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 200.f, 0.0f, 0.0f);
         sf::Color bgColor(0, 0, 0, 150);
         back->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 900.f, 500.f, bgColor, true, 3.0f, sf::Color::Magenta);
@@ -272,16 +276,34 @@ void rtype::menu::SoloScreen::manageGameEnd(void)
     _isGameEnded = true;
 }
 
-void rtype::menu::SoloScreen::createParticle(float x, float y, float scale)
+void rtype::menu::SoloScreen::createParticle(float x, float y, float scale, int type)
 {
-    rtype::ecs::entity::Entity *explosion = new rtype::ecs::entity::Entity(rtype::ecs::entity::PARTICLE);
-    if (explosion == nullptr)
-        throw ScreensExceptions("SoloScreen: Error while creating particle entity");
-    explosion->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.0f);
-    explosion->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    explosion->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    explosion->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/explosion.png", true, sf::Vector2f(scale, scale), 0, sf::IntRect(95, 50, 35, 35));
-    this->_world.addEntity(explosion);
+    if (type == 1) {
+        rtype::ecs::entity::Entity *explosion = new rtype::ecs::entity::Entity(rtype::ecs::entity::PARTICLE);
+        if (explosion == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating particle entity");
+        explosion->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.0f);
+        explosion->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        explosion->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        explosion->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/explosion.png", true, sf::Vector2f(scale, scale), 0, sf::IntRect(95, 50, 35, 35));
+        this->_world.addEntity(explosion);
+    } else if (type == 2) {
+        rtype::ecs::entity::Entity *hit = new rtype::ecs::entity::Entity(rtype::ecs::entity::HIT);
+        if (hit == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating particle entity");
+        hit->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x + 100.f, y, 0.0f, 0.0f);
+        hit->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        hit->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/hit.png", true, sf::Vector2f(scale, scale), 0, sf::IntRect(246, 303, 20, 18));
+        this->_world.addEntity(hit);
+    } else if (type == 3) {
+        rtype::ecs::entity::Entity *enemyhit = new rtype::ecs::entity::Entity(rtype::ecs::entity::HIT);
+        if (enemyhit == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating particle entity");
+        enemyhit->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x - 100.f, y, 0.0f, 0.0f);
+        enemyhit->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        enemyhit->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/hit.png", true, sf::Vector2f(scale, scale), 0, sf::IntRect(246, 303, 20, 18));
+        this->_world.addEntity(enemyhit);
+    }
 }
 
 void rtype::menu::SoloScreen::manageEnemiesShooting(void)
@@ -439,10 +461,10 @@ sf::Time rtype::menu::SoloScreen::getWaveDuration(void)
             tmp = sf::seconds(15.f);
             break;
         case 3:
-            tmp = sf::seconds(15.f);
+            tmp = sf::seconds(17.f);
             break;
         case 4:
-            tmp = sf::seconds(15.f);
+            tmp = sf::seconds(20.f);
             break;
         case 5:
             tmp = sf::seconds(20.f);
@@ -479,6 +501,10 @@ void rtype::menu::SoloScreen::handleHud(void)
                     auto transformCompo2 = _world.getEntity(j)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                     auto drawableCompo2 = _world.getEntity(j)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
                     drawableCompo2->setWidth(80.f - ((80.f / shipCompo->getMaxHealth()) * (shipCompo->getMaxHealth() - shipCompo->getHealth())));
+                    if (drawableCompo2->getWidth() <= 30.f)
+                        drawableCompo2->setColor(sf::Color::Red);
+                    else if (drawableCompo2->getWidth() > 30.f && drawableCompo2->getWidth() <= 75.f)
+                        drawableCompo2->setColor(sf::Color(250, 125, 0));
                     transformCompo2->setX(transformCompo->getX());
                     transformCompo2->setY(transformCompo->getY());
                     return;
