@@ -161,23 +161,30 @@ int rtype::Game::handleEvents(std::string direction, size_t playerId)
     for (size_t i = 0; i < _world->getEntities().size(); i++)
     {
             transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-            transformCompo->setSpeedX(0.0f);
-            transformCompo->setSpeedY(0.0f);
-
         if (playerId == i) {
+            transformCompo->setSpeedY(0.0f);
+            transformCompo->setSpeedX(0.0f);
             shipCompo = _world->getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
-            if (direction == "R")
+            if (direction == "R") {
                 transformCompo->setSpeedX(shipCompo->getSpeed());
-            if (direction == "L")
+                // transformCompo->setSpeedY(0.0f);
+            }
+            if (direction == "L") {
                 transformCompo->setSpeedX(-1 *shipCompo->getSpeed());
-            if (direction == "U")
+                // transformCompo->setSpeedY(0.0f);
+            }
+            if (direction == "U") {
+                // transformCompo->setSpeedX(0.0f);
                 transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
-            if (direction == "D")
+            }
+            if (direction == "D") {
+                // transformCompo->setSpeedX(0.0f);
                 transformCompo->setSpeedY(shipCompo->getSpeed());
+            }
+            direction.clear();
         }
-        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) {
-            transformCompo->setSpeedX(20.0f);
-        }
+        // if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) {
+        // }
     }
     return 0;
 }
@@ -193,10 +200,24 @@ void rtype::Game::createShoot(size_t playerId)
     if (shot == nullptr)
         throw ScreensExceptions("Error: Can't create a entity (6)");
     shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX()
-    + 45.f, transformCompo->getY() + 8.f, 100.0f, 0.0f);
+    + 45.f, transformCompo->getY() + 8.f, 20.0f, 0.0f);
     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D,
     "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
     this->_world->addEntity(shot);
+}
+
+void rtype::Game::destroySprites(void)
+{
+    for (size_t i = 0; i < _world->getEntities().size(); i++) {
+        ecs::component::Transform *transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE ||
+        _world->getEntity(i)->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) {
+            if (transformCompo->getX() > 1920 || transformCompo->getX() < -100 || transformCompo->getY() < -100 || transformCompo->getY() > 1280) {
+                _world->removeEntity(i);
+                break;
+            }
+        }
+    }
 }

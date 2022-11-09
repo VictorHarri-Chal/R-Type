@@ -42,7 +42,7 @@ namespace rtype
 
         void run();
         rtype::ecs::world::World *getWorld() const { return _world; };
-
+        void destroySprites(void);
         private:
         /**
          * @brief World object will contain all the entities and system

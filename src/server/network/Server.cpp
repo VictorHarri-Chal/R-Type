@@ -196,15 +196,23 @@ void Server::sendAllEntities()
 {
     size_t nbEntity;
     std::string entity;
+    rtype::ecs::component::Transform *transformCompo;
 
     while(true) {
         if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 45.0f)) {
+            this->_game->destroySprites();
+            this->_game->update();
             nbEntity = this->_game->getWorld()->getNbEntities();
             for (size_t i = 0; i < nbEntity; i++) {
-                entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId())     + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+                entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
                 for (auto client : clients)
                     _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
                 entity.clear();
+                if (this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER1 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER2 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER3 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER4) {
+                    transformCompo = this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+                    transformCompo->setSpeedY(0.0f);
+                    transformCompo->setSpeedX(0.0f);
+                }
             }
             this->_clock.restart();
         }
@@ -226,7 +234,6 @@ void Server::gameLoop(message msg, size_t playerId)
             SendToAll(message::request::SHOOT, std::to_string(playerId));
             _game->createShoot(playerId);
         }
-        _game->update();
     // msg.print();
 }
 

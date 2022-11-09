@@ -507,7 +507,7 @@ void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
     while (0 < gameEngine->_client->getEntities().size()) {
         this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setX(gameEngine->_client->getEntitiesAt(0).posX);
         this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setY(gameEngine->_client->getEntitiesAt(0).posY);
-        std::cout << "Entity " << gameEngine->_client->getEntitiesAt(0).id << " updated" << std::endl;
+        std::cout << "Entity " << gameEngine->_client->getEntitiesAt(0).id << " type " << this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getEntityType() << " updated" << std::endl;
         gameEngine->_client->popEntity();
     }
 }
