@@ -154,37 +154,28 @@ int rtype::Game::handleEvents(std::string direction, size_t playerId)
         for (size_t i = 0; i < _world->getEntities().size(); i++) {
             if (playerId == i) {
                 std::cout << "SHOOT PLAYER ID : " << playerId << std::endl;
+                direction.clear();
                 return 1;
             }
         }
     }
     for (size_t i = 0; i < _world->getEntities().size(); i++)
     {
-            transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+        transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         if (playerId == i) {
             transformCompo->setSpeedY(0.0f);
             transformCompo->setSpeedX(0.0f);
             shipCompo = _world->getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
-            if (direction == "R") {
+            if (direction == "R")
                 transformCompo->setSpeedX(shipCompo->getSpeed());
-                // transformCompo->setSpeedY(0.0f);
-            }
-            if (direction == "L") {
+            if (direction == "L")
                 transformCompo->setSpeedX(-1 *shipCompo->getSpeed());
-                // transformCompo->setSpeedY(0.0f);
-            }
-            if (direction == "U") {
-                // transformCompo->setSpeedX(0.0f);
+            if (direction == "U")
                 transformCompo->setSpeedY(-1 * shipCompo->getSpeed());
-            }
-            if (direction == "D") {
-                // transformCompo->setSpeedX(0.0f);
+            if (direction == "D")
                 transformCompo->setSpeedY(shipCompo->getSpeed());
-            }
             direction.clear();
         }
-        // if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) {
-        // }
     }
     return 0;
 }
@@ -193,7 +184,6 @@ void rtype::Game::createShoot(size_t playerId)
 {
     ecs::component::Transform *transformCompo =
         _world->getEntity(playerId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-    // shipCompo = _world->getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
 
 
     rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);

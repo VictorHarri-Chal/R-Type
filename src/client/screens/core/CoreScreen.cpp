@@ -10,7 +10,7 @@
 #include "../../../ecs/System/Movement/movement.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::CoreScreen::CoreScreen(size_t nbPlayers): _nbPlayers(nbPlayers), _isPlayerNumInit(false), _currWave(1)
+rtype::menu::CoreScreen::CoreScreen(size_t nbPlayers): _nbPlayers(nbPlayers), _isPlayerNumInit(false), _currWave(1), window(false)
 {
 }
 
@@ -138,7 +138,6 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == _playerNumber) {
-
             managePlayer(i, event, gameEngine);
             break;
         }
@@ -148,12 +147,17 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
 void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
 {
-    // destroySprites();
+    if (!this->window) {
+        gameEngine->_window.close();
+        gameEngine->_window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
+        this->window = true;
+    }
     // paralax();
     // spawnEnemiesFromScript();
     // manageEnemiesShooting();
     // handleWindowBorder();
     updateEntities(gameEngine);
+    destroySprites();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
 }
@@ -503,11 +507,12 @@ void rtype::menu::CoreScreen::handleWindowBorder(void)
 void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
 {
     createMissiles(gameEngine);
-
-    while (0 < gameEngine->_client->getEntities().size()) {
-        this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setX(gameEngine->_client->getEntitiesAt(0).posX);
-        this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setY(gameEngine->_client->getEntitiesAt(0).posY);
-        std::cout << "Entity " << gameEngine->_client->getEntitiesAt(0).id << " type " << this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getEntityType() << " updated" << std::endl;
+    while (0 < gameEngine->_client->getEntities().size() ) {
+        if (gameEngine->_client->getEntitiesAt(0).id < this->_world.getEntities().size()) {
+            this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setX(gameEngine->_client->getEntitiesAt(0).posX);
+            this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setY(gameEngine->_client->getEntitiesAt(0).posY);
+        }
+        // std::cout << "Entity " << gameEngine->_client->getEntitiesAt(0).id << " type " << this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getEntityType() << " updated" << std::endl;
         gameEngine->_client->popEntity();
     }
 }
@@ -515,14 +520,16 @@ void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
 void rtype::menu::CoreScreen::createMissiles(rtype::Game *gameEngine)
 {
     while (gameEngine->_client->getShoots().size() > 0) {
+        std::cout << "missile -> " << gameEngine->_client->getShoots().size() << std::endl;
+        std::cout << "world -> " << this->_world.getEntities().size() << std::endl;
         ecs::component::Transform *transformCompo =
-            _world.getEntity(0)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            _world.getEntity(gameEngine->_client->getShoots().at(0))->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
 
         rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
         if (shot == nullptr)
             throw ScreensExceptions("Error: Can't create a entity (6)");
         shot->addComponent<ecs::component::Transform>(
-            rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
+            rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 20.0f, 0.0f);
         shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
         shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
         shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true,
@@ -530,5 +537,7 @@ void rtype::menu::CoreScreen::createMissiles(rtype::Game *gameEngine)
         this->_world.addEntity(shot);
 
         gameEngine->_client->popShoots();
+        std::cout << "missile -> " << gameEngine->_client->getShoots().size() << std::endl;
+        std::cout << "world -> " << this->_world.getEntities().size() << std::endl;
     }
 }

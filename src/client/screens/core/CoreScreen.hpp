@@ -190,6 +190,7 @@ namespace rtype
 
             size_t _nbPlayers;
             void updateEntities(rtype::Game *gameEngine);
+            bool window;
         };
     }
 }

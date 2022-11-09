@@ -204,7 +204,7 @@ void Server::sendAllEntities()
             this->_game->update();
             nbEntity = this->_game->getWorld()->getNbEntities();
             for (size_t i = 0; i < nbEntity; i++) {
-                entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+                entity = std::to_string(i) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
                 for (auto client : clients)
                     _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
                 entity.clear();
@@ -221,20 +221,20 @@ void Server::sendAllEntities()
 
 void Server::gameLoop(message msg, size_t playerId)
 {
-        if (!getIsGameInit()) {
-            _game = new rtype::Game(this->getPlayersInRoom());
-            _game->init();
-            setIsGameInit(true);
-            this->t1 = boost::thread(&Server::sendAllEntities, this);
-        }
-        std::cout << "Game Loop" << std::endl;
-        int ret = _game->handleEvents(msg.body, playerId);
+    int ret = 0;
+    if (!getIsGameInit()) {
+        _game = new rtype::Game(this->getPlayersInRoom());
+        _game->init();
+        setIsGameInit(true);
+        this->t1 = boost::thread(&Server::sendAllEntities, this);
+    }
+    std::cout << "Game Loop" << std::endl;
+    ret = _game->handleEvents(msg.body, playerId);
 
-        if (ret == 1) {
-            SendToAll(message::request::SHOOT, std::to_string(playerId));
-            _game->createShoot(playerId);
-        }
-    // msg.print();
+    if (ret == 1) {
+        SendToAll(message::request::SHOOT, std::to_string(playerId));
+        _game->createShoot(playerId);
+    }
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)

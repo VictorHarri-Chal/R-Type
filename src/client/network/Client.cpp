@@ -47,7 +47,7 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
             addEntity(msg.body);
         if (msg.type == message::SHOOT) {
             _shoots.push_back(std::stoi(msg.body));
-            std::cout << "Shoot" << std::endl;
+            std::cout << "Shoot ";
             msg.print();
         }
         listen();
