@@ -42,60 +42,72 @@ class Server {
      * @param port Port to listen
      */
     Server(boost::asio::io_service &io_service, int port);
+    /**
+     * @brief Destroy the Server object
+     *
+     */
     ~Server();
     /**
      * @brief Send a message to client
      *
-     * @param type of the request
+     * @param type Type of the request
+     * @param targetEndpoint endpoint of the client
      * @param value a std::string value if is needed
      */
     void sendMessage(message::request type, udp::endpoint targetEndpoint, std::string value = "");
-
+    /**
+     * @brief Get the Room object
+     * 
+     * @return room_t The room object
+     */
     room_t getRoom() const;
 
     /**
      * @brief Send Message to particular client
      *
-     * @param type
-     * @param target_endpoint
-     * @param value
+     * @param type Type of the request
+     * @param target_endpoint endpoint of the client
+     * @param value a std::string value if is needed
      */
     void sendToClient(message::request type, udp::endpoint target_endpoint, std::string value = "");
     /**
      * @brief Send Message to all Client
      *
-     * @param type
-     * @param value
+     * @param type Type of the request
+     * @param value a std::string value if is needed
      */
     void SendToAll(message::request type, std::string value = "");
     /**
      * @brief Send Message to all Client in the same room
      *
-     * @param type
-     * @param value
+     * @param type Type of the request
+     * @param actualId Id of the client
+     * @param value a std::string value if is needed
      */
-    void SendToAllInRoom(message::request type, size_t acutalId, std::string value = "");
+    void SendToAllInRoom(message::request type, size_t actualId, std::string value = "");
     /**
      * @brief Handle the server loop
-     *
+     * 
+     * @param msg Message received
+     * @param actualId Id of the client
      */
     void gameLoop(message msg, size_t actualId);
     /**
      * @brief Get the Buffer object
      *
-     * @return std::array<char, 64>
+     * @return std::array<char, 64> The buffer
      */
     std::array<char, 64> getBuffer() const;
     /**
-     * @brief add one to nb player in room
+     * @brief Add player in room
      *
-     * @param id
+     * @param idPlayer Id of the player
      */
     void addPlayerInRoom(size_t idPlayer);
     /**
-     * @brief remove one to nb player in room
+     * @brief Remove player from a room
      *
-     * @param id
+     * @param idPlayer Id of the player
      */
     void removePlayerInRoom(size_t idPlayer);
     /**
@@ -142,36 +154,43 @@ class Server {
     /**
      * @brief Set the Is Game Launched object
      *
-     * @param value
+     * @param value Value to set to determine if game is launched or not
      */
     void setIsGameLaunched(bool value);
     /**
      * @brief Set the Is Game Init object
      *
-     * @param value
+     * @param value Value to set to determine if the game is init or not
      */
     void setIsGameInit(bool value);
     /**
-     * @brief nb client connect in room
+     * @brief Number of clients connected in room
      *
      */
     size_t _nbClientsInRoom;
-
+    /**
+     * @brief Start the game
+     * 
+     */
     void startGame();
     /**
-     * @brief Game class
+     * @brief Game object
      *
      */
     rtype::Game *_game;
   private:
-
+    /**
+     * @brief Get all the players in the room
+     * 
+     * @return size_t Number of players in the room
+     */
     size_t getPlayersInRoom();
 
     private:
     /**
-        * @brief Start receiving
-        *
-        */
+     * @brief Start receiving
+     *
+     */
     void listen();
     /**
      * @brief Handle receive
@@ -190,9 +209,9 @@ class Server {
     /**
      * @brief Create binary packet ready to be send
      *
-     * @param request
-     * @param value
-     * @return std::string
+     * @param request Request to send
+     * @param value Value to send
+     * @return std::string Binary packet
      */
     std::string createPaquet(message::request request, std::string value);
     /**
@@ -220,15 +239,18 @@ class Server {
      *
      */
     SafeQueue<message> _queue;
-
+    /**
+     * @brief Room object
+     * 
+     */
     room_t _room;
     /**
-     * @brief Client connect to server
+     * @brief List of clients
      *
      */
     ClientList clients;
     /**
-     * @brief Number of client connect to server
+     * @brief Number of client connected to server
      *
      */
     size_t _nbClients;
@@ -248,7 +270,15 @@ class Server {
      *
      */
     void sendAllEntities();
+    /**
+     * @brief Clock for game
+     * 
+     */
     sf::Clock _clock;
+    /**
+     * @brief Thread for game
+     * 
+     */
     boost::thread t1;
 };
 /**
@@ -277,7 +307,7 @@ class HandleCommand {
     /**
      * @brief Exectut the command ask
      *
-     * @param server Server
+     * @param server Server object
      * @param msg Message received
      * @param actualId Id of the client
      */
