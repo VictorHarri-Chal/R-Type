@@ -55,6 +55,7 @@ if [ "$(uname)" = "Linux" ]; then
       sudo pip3 install conan
       if [ "$(dpkg --print-architecture)" = "arm64" ]; then
         sudo apt install -y \
+        p7zip-full \
         pkg-config \
         libxkbfile-dev \
         xkb-data \
@@ -109,8 +110,17 @@ else
   -c tools.system.package_manager:sudo=True
 fi
 
-cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . -j 4
+
+if [ "$1" = "--installer" ]; then
+  [ -d Release ] && rm -fr Release
+  mkdir Release
+  mv r-type_client Release
+  mv r-type_server Release
+  cpack --config CPackConfig.cmake
+  cpack --config CPackSourceConfig.cmake
+fi
 
 [ -n "$RUNNER" ] && set +x
 

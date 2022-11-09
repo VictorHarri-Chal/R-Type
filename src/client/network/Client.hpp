@@ -22,14 +22,32 @@
 
 using boost::asio::ip::udp;
 
-
+/**
+ * @brief Temporary entities structure
+ * 
+ */
 struct entityTmp
 {
+    /**
+     * @brief Id of the temporary entity
+     * 
+     */
     size_t id;
+    /**
+     * @brief Position X of the temporary entity
+     * 
+     */
     float posX;
+    /**
+     * @brief Position Y of the temporary entity
+     * 
+     */
     float posY;
 };
-
+/**
+ * @brief Vector of entities received from the server
+ * 
+ */
 typedef std::vector<entityTmp> entitiesReceive;
 
 /**
@@ -41,9 +59,9 @@ class Client {
     /**
      * @brief Construct a new Client object
      *
-     * @param ioService
-     * @param host
-     * @param port
+     * @param ioService Boost io_service
+     * @param host Host to connect
+     * @param port Port to connect
      */
     Client(boost::asio::io_service &ioService, const std::string &host, const std::string &port);
     /**
@@ -74,24 +92,39 @@ class Client {
     /**
      * @brief Get the Nb People In Room object
      *
-     * @return size_t
+     * @return size_t Number of rooms
      */
     size_t getNbPeopleInRoom() const;
     /**
      * @brief Get if the Game Start
      *
-     * @return true
-     * @return false
+     * @return true If the game start
+     * @return false If the game doesn't start
      */
     bool getGameStart() const;
     /**
      * @brief Get the current player number
      *
-     * @return the number of the player
+     * @return The number of the player
      */
     std::string getPlayerNumber() const;
+    /**
+     * @brief Pop entity from the entities list
+     * 
+     */
     void popEntity();
+    /**
+     * @brief Get the Entities object
+     * 
+     * @return entitiesReceive Entities received from the server
+     */
     entitiesReceive getEntities() const;
+    /**
+     * @brief Get the Entities At index
+     * 
+     * @param pos Index of the entity
+     * @return entityTmp The temporary entity
+     */
     entityTmp getEntitiesAt(size_t pos) const;
   private:
     /**
@@ -154,6 +187,15 @@ class Client {
      *
      */
     std::string _playerNumber;
+    /**
+     * @brief Entities received from the server
+     * 
+     */
     entitiesReceive entities;
+    /**
+     * @brief Add entity in the list of entities
+     * 
+     * @param body Body for the entity
+     */
     void addEntity(std::string body);
 };

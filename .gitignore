@@ -4,6 +4,7 @@
 # Build Data
 *.o
 /build
+/Debug
 Makefile
 
 # Doc
@@ -15,6 +16,8 @@ Makefile
 src/client/client
 src/server/server
 /r-type
+/r-type_server.exe
+/r-type_client.exe
 
 # Shame on you!
 vgcore.*
