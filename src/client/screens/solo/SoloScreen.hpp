@@ -134,6 +134,8 @@ namespace rtype
            /**
             * @brief Return wave duration based on current wave nbr
             * 
+            * @return sf::Time Wave duration
+            * 
             */
            sf::Time getWaveDuration(void);
            /**

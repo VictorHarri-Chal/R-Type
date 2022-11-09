@@ -16,6 +16,7 @@
 
 namespace rtype
 {
+    /// \file Docs/how_to_use_script.md
     /**
      * @brief Class for some useful Script
      *
@@ -35,6 +36,7 @@ namespace rtype
         /**
         * @brief Getter for the current clock.
         *
+        * @return sf::Clock The current clock.
         */
         sf::Clock getClock() const;
         /**
@@ -44,11 +46,15 @@ namespace rtype
        void restartClock();
         /**
         * @brief Set the current sprite to "printed".
+        * 
+        * @param i Index of the sprite to set.
         *
         */
         void spriteIsPrinted(size_t i);
         /**
         * @brief Getter for the script parsed vector.
+        * 
+        * @return std::vector<std::vector<int> The script parsed vector.
         *
         */
         std::vector<std::vector<int>> getLines() const;
