@@ -175,6 +175,7 @@ namespace rtype
              * 
              */
             bool _isGameEnded;
+            bool _window;
 
         };
     }

@@ -35,7 +35,7 @@ void rtype::Game::init(std::string flag)
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _eventClass.initEvents(_event);
     if (flag == "-g") {
-        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
         _actualScreen = Screens::Solo;
         _solo = new rtype::menu::SoloScreen;
         if (_solo == nullptr)
@@ -59,7 +59,7 @@ void rtype::Game::init(std::string flag)
         _lastScene = Screens::Intro;
         _intro->init();
     } else {
-        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
         _actualScreen = Screens::Intro;
         _intro = new rtype::menu::IntroScreen;
         if (_intro == nullptr)

@@ -10,7 +10,7 @@
 #include "../../../ecs/System/Movement/movement.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::CoreScreen::CoreScreen(size_t nbPlayers): _nbPlayers(nbPlayers), _isPlayerNumInit(false), _currWave(1), window(false)
+rtype::menu::CoreScreen::CoreScreen(size_t nbPlayers): _nbPlayers(nbPlayers), _isPlayerNumInit(false), _currWave(1)
 {
 }
 
@@ -147,11 +147,6 @@ int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
 void rtype::menu::CoreScreen::update(rtype::Game *gameEngine)
 {
-    if (!this->window) {
-        gameEngine->_window.close();
-        gameEngine->_window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
-        this->window = true;
-    }
     // paralax();
     // spawnEnemiesFromScript();
     // manageEnemiesShooting();
