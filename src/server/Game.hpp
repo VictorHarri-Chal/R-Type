@@ -19,6 +19,8 @@ namespace rtype
         public:
         /**
          * @brief Construct a new Core Screen object
+         * 
+         * @param nbPlayers Number of players
          *
          */
         Game(size_t nbPlayers);
@@ -32,28 +34,51 @@ namespace rtype
          *
          */
         void init();
+        /**
+         * @brief Init Player's entities
+         * 
+         */
         void initPlayersEntities();
         /**
          * @brief Update for the server loop
          *
          */
         void update();
+        /**
+         * @brief Handle event for the game
+         *
+         * @param direction Direction of the player
+         * @param playerId Id of the player
+         *
+         */
         void handleEvents(std::string direction, size_t playerId);
-
+        /**
+         * @brief Run the game
+         * 
+         */
         void run();
+        /**
+         * @brief Get the World object
+         * 
+         * @return rtype::ecs::world::World* The world object 
+         */
         rtype::ecs::world::World *getWorld() const { return _world; };
 
         private:
         /**
-         * @brief World object will contain all the entities and system
-         *
+         * @brief Clock for the game
+         * 
          */
-        // rtype::ecs::world::World _world;
-
-        /// @brief Clock
         sf::Clock _clock;
-
+        /**
+         * @brief Number of players in the game
+         * 
+         */
         size_t _nbPlayers;
+        /**
+         * @brief World object for the game
+         * 
+         */
         rtype::ecs::world::World *_world;
     };
 }

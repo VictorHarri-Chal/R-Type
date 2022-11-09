@@ -26,17 +26,32 @@ class message {
      * @param INROOM In room message
      * @param LAUNCH Launch game
      * @param MOVE Move command
+     * @param ENTITY Entity command
      *
      */
     enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH, MOVE, ENTITY };
+    /**
+     * @brief Request variable
+     * 
+     */
     request type;
+    /**
+     * @brief Body variable
+     * 
+     */
     std::string body;
-
-    /*default constructor for class*/
+    /**
+     * @brief Construct a new message object
+     * 
+     */
     message(){};
-    /*parameterized constructor for class*/    message(request t, std::string b) : type(t), body(b)
-    {
-    }
+    /**
+     * @brief Construct a new message object
+     * 
+     * @param t Type of the request
+     * @param b Body of the request
+     */
+    message(request t, std::string b) : type(t), body(b) {}
     /**
      * @brief Print the message
      * 
