@@ -103,14 +103,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a72b908be48d60d473773f8ff144c0748"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a72b908be48d60d473773f8ff144c0748">getPlayerNumber</a> () const</td></tr>
 <tr class="memdesc:a72b908be48d60d473773f8ff144c0748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current player number.  <a href="classClient.html#a72b908be48d60d473773f8ff144c0748">More...</a><br /></td></tr>
 <tr class="separator:a72b908be48d60d473773f8ff144c0748"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c534c37814042994495866e27329aff"><td class="memItemLeft" align="right" valign="top"><a id="a0c534c37814042994495866e27329aff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>popEntity</b> ()</td></tr>
+<tr class="memitem:a0c534c37814042994495866e27329aff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a0c534c37814042994495866e27329aff">popEntity</a> ()</td></tr>
+<tr class="memdesc:a0c534c37814042994495866e27329aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop entity from the entities list.  <a href="classClient.html#a0c534c37814042994495866e27329aff">More...</a><br /></td></tr>
 <tr class="separator:a0c534c37814042994495866e27329aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd021e62e1a8fd3c65fc14f977926547"><td class="memItemLeft" align="right" valign="top"><a id="afd021e62e1a8fd3c65fc14f977926547"></a>
-entitiesReceive&#160;</td><td class="memItemRight" valign="bottom"><b>getEntities</b> () const</td></tr>
+<tr class="memitem:afd021e62e1a8fd3c65fc14f977926547"><td class="memItemLeft" align="right" valign="top">entitiesReceive&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#afd021e62e1a8fd3c65fc14f977926547">getEntities</a> () const</td></tr>
+<tr class="memdesc:afd021e62e1a8fd3c65fc14f977926547"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Entities object.  <a href="classClient.html#afd021e62e1a8fd3c65fc14f977926547">More...</a><br /></td></tr>
 <tr class="separator:afd021e62e1a8fd3c65fc14f977926547"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bb6b478fbabbe8b4cae585c43ea2b84"><td class="memItemLeft" align="right" valign="top"><a id="a5bb6b478fbabbe8b4cae585c43ea2b84"></a>
-<a class="el" href="structentityTmp.html">entityTmp</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getEntitiesAt</b> (size_t pos) const</td></tr>
+<tr class="memitem:a5bb6b478fbabbe8b4cae585c43ea2b84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structentityTmp.html">entityTmp</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a5bb6b478fbabbe8b4cae585c43ea2b84">getEntitiesAt</a> (size_t pos) const</td></tr>
+<tr class="memdesc:a5bb6b478fbabbe8b4cae585c43ea2b84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Entities At index.  <a href="classClient.html#a5bb6b478fbabbe8b4cae585c43ea2b84">More...</a><br /></td></tr>
 <tr class="separator:a5bb6b478fbabbe8b4cae585c43ea2b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae89218f5098833d904d713e32ccda7d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#ae89218f5098833d904d713e32ccda7d9">Client</a> (size_t id, udp::endpoint endpoint)</td></tr>
 <tr class="memdesc:ae89218f5098833d904d713e32ccda7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classClient.html" title="Client class.">Client</a> object.  <a href="classClient.html#ae89218f5098833d904d713e32ccda7d9">More...</a><br /></td></tr>
@@ -172,9 +172,9 @@ entitiesReceive&#160;</td><td class="memItemRight" valign="bottom"><b>getEntitie
 <p>Construct a new <a class="el" href="classClient.html" title="Client class.">Client</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ioService</td><td></td></tr>
-    <tr><td class="paramname">host</td><td></td></tr>
-    <tr><td class="paramname">port</td><td></td></tr>
+    <tr><td class="paramname">ioService</td><td>Boost io_service </td></tr>
+    <tr><td class="paramname">host</td><td>Host to connect </td></tr>
+    <tr><td class="paramname">port</td><td>Port to connect </td></tr>
   </table>
   </dd>
 </dl>
@@ -274,6 +274,53 @@ entitiesReceive&#160;</td><td class="memItemRight" valign="bottom"><b>getEntitie
 
 </div>
 </div>
+<a id="afd021e62e1a8fd3c65fc14f977926547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd021e62e1a8fd3c65fc14f977926547">&#9670;&nbsp;</a></span>getEntities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">entitiesReceive Client::getEntities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the Entities object. </p>
+<dl class="section return"><dt>Returns</dt><dd>entitiesReceive Entities received from the server </dd></dl>
+
+</div>
+</div>
+<a id="a5bb6b478fbabbe8b4cae585c43ea2b84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bb6b478fbabbe8b4cae585c43ea2b84">&#9670;&nbsp;</a></span>getEntitiesAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structentityTmp.html">entityTmp</a> Client::getEntitiesAt </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the Entities At index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Index of the entity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structentityTmp.html" title="Temporary entities structure.">entityTmp</a> The temporary entity </dd></dl>
+
+</div>
+</div>
 <a id="a2673fbbe8b52b9cde4332a18f5a1a3a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2673fbbe8b52b9cde4332a18f5a1a3a1">&#9670;&nbsp;</a></span>getGameStart()</h2>
 
@@ -290,9 +337,9 @@ entitiesReceive&#160;</td><td class="memItemRight" valign="bottom"><b>getEntitie
 </div><div class="memdoc">
 
 <p>Get if the Game Start. </p>
-<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dl class="section return"><dt>Returns</dt><dd>true If the game start </dd>
 <dd>
-false </dd></dl>
+false If the game doesn't start </dd></dl>
 
 </div>
 </div>
@@ -368,7 +415,7 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Get the Nb People In Room object. </p>
-<dl class="section return"><dt>Returns</dt><dd>size_t </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>size_t Number of rooms </dd></dl>
 
 </div>
 </div>
@@ -408,7 +455,7 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Get the current player number. </p>
-<dl class="section return"><dt>Returns</dt><dd>the number of the player </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of the player </dd></dl>
 
 </div>
 </div>
@@ -466,6 +513,25 @@ false If not ready to play </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>message Message received </dd></dl>
+
+</div>
+</div>
+<a id="a0c534c37814042994495866e27329aff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c534c37814042994495866e27329aff">&#9670;&nbsp;</a></span>popEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Client::popEntity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pop entity from the entities list. </p>
 
 </div>
 </div>

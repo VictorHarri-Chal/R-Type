@@ -83,11 +83,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7351104356303935152a859cfb0fb1b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a7351104356303935152a859cfb0fb1b4">Server</a> (boost::asio::io_service &amp;io_service, int port)</td></tr>
 <tr class="memdesc:a7351104356303935152a859cfb0fb1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classServer.html" title="Server class.">Server</a> object.  <a href="classServer.html#a7351104356303935152a859cfb0fb1b4">More...</a><br /></td></tr>
 <tr class="separator:a7351104356303935152a859cfb0fb1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b3aa2579cb1c8cd1d069582c14d0fa6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a4b3aa2579cb1c8cd1d069582c14d0fa6">~Server</a> ()</td></tr>
+<tr class="memdesc:a4b3aa2579cb1c8cd1d069582c14d0fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classServer.html" title="Server class.">Server</a> object.  <a href="classServer.html#a4b3aa2579cb1c8cd1d069582c14d0fa6">More...</a><br /></td></tr>
+<tr class="separator:a4b3aa2579cb1c8cd1d069582c14d0fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8b462b82936b506c7b2c96c2a79450c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae8b462b82936b506c7b2c96c2a79450c">sendMessage</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, udp::endpoint targetEndpoint, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:ae8b462b82936b506c7b2c96c2a79450c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to client.  <a href="classServer.html#ae8b462b82936b506c7b2c96c2a79450c">More...</a><br /></td></tr>
 <tr class="separator:ae8b462b82936b506c7b2c96c2a79450c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a627809258b2ea06717f893b99994cb06"><td class="memItemLeft" align="right" valign="top"><a id="a627809258b2ea06717f893b99994cb06"></a>
-<a class="el" href="structroom__t.html">room_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRoom</b> () const</td></tr>
+<tr class="memitem:a627809258b2ea06717f893b99994cb06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structroom__t.html">room_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a627809258b2ea06717f893b99994cb06">getRoom</a> () const</td></tr>
+<tr class="memdesc:a627809258b2ea06717f893b99994cb06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Room object.  <a href="classServer.html#a627809258b2ea06717f893b99994cb06">More...</a><br /></td></tr>
 <tr class="separator:a627809258b2ea06717f893b99994cb06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5c78cc95a90ae2a591af7d6e3bc1df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae5c78cc95a90ae2a591af7d6e3bc1df8">sendToClient</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, udp::endpoint target_endpoint, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:ae5c78cc95a90ae2a591af7d6e3bc1df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to particular client.  <a href="classServer.html#ae5c78cc95a90ae2a591af7d6e3bc1df8">More...</a><br /></td></tr>
@@ -95,9 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b1eb51c5943f85fb29e68992ef8c206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a7b1eb51c5943f85fb29e68992ef8c206">SendToAll</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, std::string value=&quot;&quot;)</td></tr>
 <tr class="memdesc:a7b1eb51c5943f85fb29e68992ef8c206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a>.  <a href="classServer.html#a7b1eb51c5943f85fb29e68992ef8c206">More...</a><br /></td></tr>
 <tr class="separator:a7b1eb51c5943f85fb29e68992ef8c206"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fffb4e807606970dda6e5359d02a4d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0fffb4e807606970dda6e5359d02a4d9">SendToAllInRoom</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, size_t acutalId, std::string value=&quot;&quot;)</td></tr>
-<tr class="memdesc:a0fffb4e807606970dda6e5359d02a4d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a> in the same room.  <a href="classServer.html#a0fffb4e807606970dda6e5359d02a4d9">More...</a><br /></td></tr>
-<tr class="separator:a0fffb4e807606970dda6e5359d02a4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae205cc63ac3023d5fd81477c6e95c74d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae205cc63ac3023d5fd81477c6e95c74d">SendToAllInRoom</a> (<a class="el" href="classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa">message::request</a> type, size_t actualId, std::string value=&quot;&quot;)</td></tr>
+<tr class="memdesc:ae205cc63ac3023d5fd81477c6e95c74d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a> in the same room.  <a href="classServer.html#ae205cc63ac3023d5fd81477c6e95c74d">More...</a><br /></td></tr>
+<tr class="separator:ae205cc63ac3023d5fd81477c6e95c74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72bfe1d7f77cfa6ef862610bfa621308"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a72bfe1d7f77cfa6ef862610bfa621308">gameLoop</a> (<a class="el" href="classmessage.html">message</a> msg, size_t actualId)</td></tr>
 <tr class="memdesc:a72bfe1d7f77cfa6ef862610bfa621308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the server loop.  <a href="classServer.html#a72bfe1d7f77cfa6ef862610bfa621308">More...</a><br /></td></tr>
 <tr class="separator:a72bfe1d7f77cfa6ef862610bfa621308"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,10 +108,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae99eb6bf31a97820edbb59e1797848eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Buffer object.  <a href="classServer.html#ae99eb6bf31a97820edbb59e1797848eb">More...</a><br /></td></tr>
 <tr class="separator:ae99eb6bf31a97820edbb59e1797848eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa47a448121e228d6fe7766e4efa661f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#aa47a448121e228d6fe7766e4efa661f7">addPlayerInRoom</a> (size_t idPlayer)</td></tr>
-<tr class="memdesc:aa47a448121e228d6fe7766e4efa661f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">add one to nb player in room  <a href="classServer.html#aa47a448121e228d6fe7766e4efa661f7">More...</a><br /></td></tr>
+<tr class="memdesc:aa47a448121e228d6fe7766e4efa661f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add player in room.  <a href="classServer.html#aa47a448121e228d6fe7766e4efa661f7">More...</a><br /></td></tr>
 <tr class="separator:aa47a448121e228d6fe7766e4efa661f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a778138808807a5a6a18f806cb6af5128"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a778138808807a5a6a18f806cb6af5128">removePlayerInRoom</a> (size_t idPlayer)</td></tr>
-<tr class="memdesc:a778138808807a5a6a18f806cb6af5128"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove one to nb player in room  <a href="classServer.html#a778138808807a5a6a18f806cb6af5128">More...</a><br /></td></tr>
+<tr class="memdesc:a778138808807a5a6a18f806cb6af5128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove player from a room.  <a href="classServer.html#a778138808807a5a6a18f806cb6af5128">More...</a><br /></td></tr>
 <tr class="separator:a778138808807a5a6a18f806cb6af5128"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f8a81931606c8f07473d22023761163"><td class="memItemLeft" align="right" valign="top">ClientList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0f8a81931606c8f07473d22023761163">getClients</a> () const</td></tr>
 <tr class="memdesc:a0f8a81931606c8f07473d22023761163"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Clients object.  <a href="classServer.html#a0f8a81931606c8f07473d22023761163">More...</a><br /></td></tr>
@@ -134,17 +137,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afa9874484faef93fc6ede89dd899e6e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#afa9874484faef93fc6ede89dd899e6e0">setIsGameInit</a> (bool value)</td></tr>
 <tr class="memdesc:afa9874484faef93fc6ede89dd899e6e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Is Game Init object.  <a href="classServer.html#afa9874484faef93fc6ede89dd899e6e0">More...</a><br /></td></tr>
 <tr class="separator:afa9874484faef93fc6ede89dd899e6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1574f3bedbb825909ce77fe986c87a8"><td class="memItemLeft" align="right" valign="top"><a id="aa1574f3bedbb825909ce77fe986c87a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startGame</b> ()</td></tr>
+<tr class="memitem:aa1574f3bedbb825909ce77fe986c87a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#aa1574f3bedbb825909ce77fe986c87a8">startGame</a> ()</td></tr>
+<tr class="memdesc:aa1574f3bedbb825909ce77fe986c87a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the game.  <a href="classServer.html#aa1574f3bedbb825909ce77fe986c87a8">More...</a><br /></td></tr>
 <tr class="separator:aa1574f3bedbb825909ce77fe986c87a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a948aea17e08d07cc1d170637dda597f3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a948aea17e08d07cc1d170637dda597f3">_nbClientsInRoom</a></td></tr>
-<tr class="memdesc:a948aea17e08d07cc1d170637dda597f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">nb client connect in room  <a href="classServer.html#a948aea17e08d07cc1d170637dda597f3">More...</a><br /></td></tr>
+<tr class="memdesc:a948aea17e08d07cc1d170637dda597f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of clients connected in room.  <a href="classServer.html#a948aea17e08d07cc1d170637dda597f3">More...</a><br /></td></tr>
 <tr class="separator:a948aea17e08d07cc1d170637dda597f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaea81fb8f9ff9d964ca86ab0809576a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#aaea81fb8f9ff9d964ca86ab0809576a2">_game</a></td></tr>
-<tr class="memdesc:aaea81fb8f9ff9d964ca86ab0809576a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Game class.  <a href="classServer.html#aaea81fb8f9ff9d964ca86ab0809576a2">More...</a><br /></td></tr>
+<tr class="memdesc:aaea81fb8f9ff9d964ca86ab0809576a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Game object.  <a href="classServer.html#aaea81fb8f9ff9d964ca86ab0809576a2">More...</a><br /></td></tr>
 <tr class="separator:aaea81fb8f9ff9d964ca86ab0809576a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -188,6 +191,25 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a4b3aa2579cb1c8cd1d069582c14d0fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b3aa2579cb1c8cd1d069582c14d0fa6">&#9670;&nbsp;</a></span>~Server()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Server::~Server </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy the <a class="el" href="classServer.html" title="Server class.">Server</a> object. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa47a448121e228d6fe7766e4efa661f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa47a448121e228d6fe7766e4efa661f7">&#9670;&nbsp;</a></span>addPlayerInRoom()</h2>
@@ -205,10 +227,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>add one to nb player in room </p>
+<p>Add player in room. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">idPlayer</td><td>Id of the player </td></tr>
   </table>
   </dd>
 </dl>
@@ -269,6 +291,13 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Handle the server loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Message received </td></tr>
+    <tr><td class="paramname">actualId</td><td>Id of the client </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -288,7 +317,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the Buffer object. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::array&lt;char, 64&gt; </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::array&lt;char, 64&gt; The buffer </dd></dl>
 
 </div>
 </div>
@@ -358,6 +387,26 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="a627809258b2ea06717f893b99994cb06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a627809258b2ea06717f893b99994cb06">&#9670;&nbsp;</a></span>getRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structroom__t.html">room_t</a> Server::getRoom </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the Room object. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structroom__t.html" title="Room struct.">room_t</a> The room object </dd></dl>
+
+</div>
+</div>
 <a id="add90a4a1b854a20116f4e829d42218af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#add90a4a1b854a20116f4e829d42218af">&#9670;&nbsp;</a></span>getStreamData()</h2>
 
@@ -401,10 +450,10 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>remove one to nb player in room </p>
+<p>Remove player from a room. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">idPlayer</td><td>Id of the player </td></tr>
   </table>
   </dd>
 </dl>
@@ -446,7 +495,8 @@ false </dd></dl>
 <p>Send a message to client. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>of the request </td></tr>
+    <tr><td class="paramname">type</td><td>Type of the request </td></tr>
+    <tr><td class="paramname">targetEndpoint</td><td>endpoint of the client </td></tr>
     <tr><td class="paramname">value</td><td>a std::string value if is needed </td></tr>
   </table>
   </dd>
@@ -483,16 +533,16 @@ false </dd></dl>
 <p>Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td></td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">type</td><td>Type of the request </td></tr>
+    <tr><td class="paramname">value</td><td>a std::string value if is needed </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a0fffb4e807606970dda6e5359d02a4d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fffb4e807606970dda6e5359d02a4d9">&#9670;&nbsp;</a></span>SendToAllInRoom()</h2>
+<a id="ae205cc63ac3023d5fd81477c6e95c74d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae205cc63ac3023d5fd81477c6e95c74d">&#9670;&nbsp;</a></span>SendToAllInRoom()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -507,7 +557,7 @@ false </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>acutalId</em>, </td>
+          <td class="paramname"><em>actualId</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -526,8 +576,9 @@ false </dd></dl>
 <p>Send Message to all <a class="el" href="classClient.html" title="Client class.">Client</a> in the same room. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td></td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">type</td><td>Type of the request </td></tr>
+    <tr><td class="paramname">actualId</td><td>Id of the client </td></tr>
+    <tr><td class="paramname">value</td><td>a std::string value if is needed </td></tr>
   </table>
   </dd>
 </dl>
@@ -569,9 +620,9 @@ false </dd></dl>
 <p>Send Message to particular client. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td></td></tr>
-    <tr><td class="paramname">target_endpoint</td><td></td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">type</td><td>Type of the request </td></tr>
+    <tr><td class="paramname">target_endpoint</td><td>endpoint of the client </td></tr>
+    <tr><td class="paramname">value</td><td>a std::string value if is needed </td></tr>
   </table>
   </dd>
 </dl>
@@ -597,7 +648,7 @@ false </dd></dl>
 <p>Set the Is Game Init object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">value</td><td>Value to set to determine if the game is init or not </td></tr>
   </table>
   </dd>
 </dl>
@@ -623,7 +674,7 @@ false </dd></dl>
 <p>Set the Is Game Launched object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">value</td><td>Value to set to determine if game is launched or not </td></tr>
   </table>
   </dd>
 </dl>
@@ -656,6 +707,25 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="aa1574f3bedbb825909ce77fe986c87a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1574f3bedbb825909ce77fe986c87a8">&#9670;&nbsp;</a></span>startGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::startGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the game. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="aaea81fb8f9ff9d964ca86ab0809576a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaea81fb8f9ff9d964ca86ab0809576a2">&#9670;&nbsp;</a></span>_game</h2>
@@ -669,7 +739,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Game class. </p>
+<p>Game object. </p>
 
 </div>
 </div>
@@ -685,7 +755,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>nb client connect in room </p>
+<p>Number of clients connected in room. </p>
 
 </div>
 </div>

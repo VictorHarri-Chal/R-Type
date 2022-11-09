@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['up_666',['up',['../structrtype_1_1Event_1_1KeyEvent.html#ac76e4b10cbd93e6fb9fc8a9572dcd8ad',1,'rtype::Event::KeyEvent']]]
+  ['type_696',['type',['../classmessage.html#a2da8fd964a9d9cb63f10baf2238e8df9',1,'message']]]
 ];
