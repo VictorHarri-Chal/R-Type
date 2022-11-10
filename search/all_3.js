@@ -13,6 +13,5 @@ var searchData=
   ['createmissiles_34',['createMissiles',['../classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204',1,'rtype::menu::CoreScreen']]],
   ['createparticle_35',['createParticle',['../classrtype_1_1menu_1_1CoreScreen.html#a9730ea41d16cba7d6846b44fd198c4ed',1,'rtype::menu::CoreScreen::createParticle()'],['../classrtype_1_1menu_1_1SoloScreen.html#aa317ac95d01d7734509c23fd50952f64',1,'rtype::menu::SoloScreen::createParticle()']]],
   ['createroom_36',['createRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc',1,'rtype::menu::MultiplayerScreen']]],
-  ['currplayers_37',['currPlayers',['../structroom__t.html#aca6800decf861b2fcacf770ab2f6d2d0',1,'room_t']]],
-  ['cursorposition_38',['cursorPosition',['../classrtype_1_1menu_1_1OptionsScreen.html#a2a58cf0c87a2ffff9e9c16a8efc1e4cd',1,'rtype::menu::OptionsScreen']]]
+  ['currplayers_37',['currPlayers',['../structroom__t.html#aca6800decf861b2fcacf770ab2f6d2d0',1,'room_t']]]
 ];

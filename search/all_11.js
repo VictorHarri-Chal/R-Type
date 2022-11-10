@@ -13,7 +13,7 @@ var searchData=
   ['removeplayerinroom_213',['removePlayerInRoom',['../classServer.html#a778138808807a5a6a18f806cb6af5128',1,'Server']]],
   ['request_214',['request',['../classmessage.html#a3a5c36e316e76ed1bf1caf6d176495aa',1,'message']]],
   ['restartclock_215',['restartClock',['../classrtype_1_1ecs_1_1component_1_1AShip.html#ac82906b57985f3b7a3ef38ca5bc7953d',1,'rtype::ecs::component::AShip::restartClock()'],['../classrtype_1_1ecs_1_1component_1_1IShip.html#a0d137195c213d713be63bf212fc9d95c',1,'rtype::ecs::component::IShip::restartClock()'],['../classrtype_1_1Script.html#a01653986d9e5352ee1fa08e5a6405df7',1,'rtype::Script::restartClock()']]],
-  ['right_216',['right',['../structrtype_1_1Event_1_1KeyEvent.html#a9dc0b93c003e29ec705907943f915d3c',1,'rtype::Event::KeyEvent::right()'],['../structrtype_1_1Event.html#ace1aa5eb043a1d5cfb0201e5d52121ebad54a520137f81e9c76eb9563a4023934',1,'rtype::Event::RIGHT()']]],
+  ['right_216',['RIGHT',['../structrtype_1_1Event.html#ace1aa5eb043a1d5cfb0201e5d52121ebad54a520137f81e9c76eb9563a4023934',1,'rtype::Event::RIGHT()'],['../structrtype_1_1Event_1_1KeyEvent.html#a9dc0b93c003e29ec705907943f915d3c',1,'rtype::Event::KeyEvent::right()']]],
   ['right_5fbutton_217',['RIGHT_BUTTON',['../structrtype_1_1Event.html#a842109ed366738906b69256444aca8f3ac4c53834b2d7e0122d23835c43cddf0a',1,'rtype::Event']]],
   ['room_5ft_218',['room_t',['../structroom__t.html',1,'']]],
   ['roomscreen_219',['RoomScreen',['../classrtype_1_1menu_1_1RoomScreen.html',1,'rtype::menu::RoomScreen'],['../classrtype_1_1menu_1_1RoomScreen.html#a55e8911fc40cbe3507320bcb1b505d30',1,'rtype::menu::RoomScreen::RoomScreen()']]],
