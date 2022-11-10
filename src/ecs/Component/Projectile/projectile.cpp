@@ -7,14 +7,11 @@
 
 #include "projectile.hpp"
 
-rtype::ecs::component::Projectile::Projectile(rtype::ecs::component::projectileType type)
+rtype::ecs::component::Projectile::Projectile(rtype::ecs::component::projectileType type, float damage)
 {
     _projectileType = type;
+    _damage = damage;
 }   
-
-rtype::ecs::component::Projectile::~Projectile()
-{
-}
 
 rtype::ecs::component::compoType rtype::ecs::component::Projectile::getType() const
 {
@@ -24,4 +21,14 @@ rtype::ecs::component::compoType rtype::ecs::component::Projectile::getType() co
 rtype::ecs::component::projectileType rtype::ecs::component::Projectile::getProjectileType() const
 {
     return this->_projectileType;
+}
+
+float rtype::ecs::component::Projectile::getDamage() const
+{
+    return (this->_damage);
+}
+
+void rtype::ecs::component::Projectile::setDamage(float damage)
+{
+    this->_damage = damage;
 }

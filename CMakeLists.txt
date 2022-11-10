@@ -41,8 +41,6 @@ set(SRC_ECS
     ${ECSROOT}Component/Drawable2D/drawable2d.hpp
     ${ECSROOT}Component/Projectile/projectile.cpp
     ${ECSROOT}Component/Projectile/projectile.hpp
-    ${ECSROOT}Component/Inventory/inventory.cpp
-    ${ECSROOT}Component/Inventory/inventory.hpp
     ${ECSROOT}Component/Sound/sound.cpp
     ${ECSROOT}Component/Sound/sound.hpp
     ${ECSROOT}Component/Transform/transform.cpp
@@ -185,3 +183,8 @@ set_property(TARGET r-type_server PROPERTY MSVC_RUNTIME_LIBRARY "")
 
 set_target_properties(r-type_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set_target_properties(r-type_server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+install(TARGETS r-type_client RUNTIME DESTINATION bin)
+install(TARGETS r-type_server RUNTIME DESTINATION bin)
+
+include(CPack)

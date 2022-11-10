@@ -27,7 +27,7 @@ void rtype::ecs::system::EnemypathSystem::update(std::vector<rtype::ecs::entity:
                     aliveCompo->setAlive(false);
                 }
             } else if (shipCompo->getShipType() == ecs::component::shipType::KAMIKAZE) {
-                if (transformCompo->getX() < 200) {
+                if (transformCompo->getX() < 30) {
                     ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                     aliveCompo->setAlive(false);
                 }

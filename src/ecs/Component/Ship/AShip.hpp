@@ -48,6 +48,19 @@ namespace rtype
                  */
                 void setHealth(float health);
                 /**
+                 * @brief Getter for the ship max life points.
+                 *
+                 * @return The health amount.
+                 */
+                float getMaxHealth() const;
+                /**
+                 * @brief Setter to set new max health points.
+                 * 
+                 * @param maxhealth The new max health amount.
+                 *
+                 */
+                void setMaxHealth(float maxHealth);
+                /**
                  * @brief Getter for the current ship damage.
                  *
                  * @return The damage per shot.
@@ -104,6 +117,9 @@ namespace rtype
 
                 /// @brief True if down, false if up
                 bool _directionVertical;
+
+                /// @brief Current life points
+                float _maxHealth;
 
                 /// @brief Current life points
                 float _health;

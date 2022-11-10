@@ -142,7 +142,7 @@ void Client::addEntity(std::string body)
 
     std::regex_search(body, sm, playerTemplate);
     entityTmp newEntity;
-    newEntity.id = std::stoi(sm.str(1));
+    newEntity.id = std::stoi(sm.str(1)) + 4;
     newEntity.posX = std::stof(sm.str(2));
     newEntity.posY = std::stof(sm.str(4));
     this->entities.push_back(newEntity);

@@ -13,7 +13,7 @@
 
 namespace rtype
 {
-    /// \file Docs/doc_Ecs.md
+    /// \file Docs/how_to_use_ecs.md
     namespace ecs
     {
         namespace world
@@ -90,6 +90,11 @@ namespace rtype
                  *
                  */
                 void update(rtype::Game *gameEngine = nullptr);
+                /**
+                 * @brief Get the number of entities in the world
+                 * 
+                 * @return size_t Number of entities in the world
+                 */
                 size_t getNbEntities() const
                 {
                     return (_nbEntities);

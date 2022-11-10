@@ -23,6 +23,16 @@ void rtype::ecs::system::ParticlesSystem::update(std::vector<rtype::ecs::entity:
                 } else
                     rect.left += 35;
                 drawable2dCompo->setRect(rect);
+            } else if (entity->getEntityType() == rtype::ecs::entity::HIT) {
+                rtype::ecs::component::Drawable2D *drawable2dCompo =
+                entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
+                sf::IntRect rect = drawable2dCompo->getRect();
+                if (rect.left == 266) {
+                    ecs::component::Alive *aliveCompo = entity->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
+                    aliveCompo->setAlive(false);
+                } else
+                    rect.left += 20;
+                drawable2dCompo->setRect(rect);
             }
         }
         _particleClock.restart();

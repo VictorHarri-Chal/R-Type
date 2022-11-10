@@ -9,7 +9,7 @@
 
 rtype::ecs::component::Turret::Turret(int currWave)
 {
-    _health = 4.0f * (currWave * 0.6f);
+    _health = 2.0f * (currWave * 0.5f);
     _damage = 1.0f;
     _speed = 0.15f;
     _cadency = sf::seconds(1.0/1.7f);

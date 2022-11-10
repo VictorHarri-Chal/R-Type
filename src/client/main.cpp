@@ -14,6 +14,11 @@
 int main(int argc, char **argv)
 {
   try {
+        sf::Music music;
+        if (!music.openFromFile("assets/music.ogg"))
+            throw GameExceptions("Game init: Error while loading the music");
+        music.play();
+        music.setLoop(true);
         rtype::Game Game(60);
 
         if ((argc == 2) && (strcmp(argv[1], "-g") == 0))
