@@ -13,8 +13,7 @@
 #include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-
-rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(6), _isGameEnded(false), _window(false)
 {
 }
 
@@ -105,7 +104,12 @@ int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 }
 
 void rtype::menu::SoloScreen::update(rtype::Game *gameEngine)
-{   
+{
+    if (!this->_window) {
+        gameEngine->_window.close();
+        gameEngine->_window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+        this->_window = true;
+    }
     if (!_isGameEnded)
         manageGameEnd();
     destroySprites();

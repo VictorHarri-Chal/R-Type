@@ -124,6 +124,8 @@ namespace rtype
             * @brief Destroy sprites who goes out of the screen
             *
             */
+            void createMissiles(rtype::Game *gameEngine);
+
             void destroySprites(void);
             /**
             * @brief Handle automatic shooting for all enemies
