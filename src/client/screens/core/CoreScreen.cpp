@@ -10,7 +10,7 @@
 #include "../../../ecs/System/Movement/movement.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::CoreScreen::CoreScreen(size_t nbPlayers): _nbPlayers(nbPlayers), _isPlayerNumInit(false), _currWave(1)
+rtype::menu::CoreScreen::CoreScreen(size_t nbPlayers) : _isPlayerNumInit(false), _currWave(1), _nbPlayers(nbPlayers)
 {
 }
 
@@ -230,13 +230,13 @@ bool rtype::menu::CoreScreen::isMouseOnButton(size_t index, rtype::Game *gameEng
 
 void rtype::menu::CoreScreen::managePlayer(size_t entityId, rtype::Event &event, rtype::Game *gameEngine)
 {
-    ecs::component::Transform *transformCompo = _world.getEntity(entityId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
     ecs::component::IShip *shipCompo = _world.getEntity(entityId)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
-    managePlayerMovement(transformCompo, shipCompo, event, gameEngine);
-    managePlayerShot(transformCompo, shipCompo, event, gameEngine);
+
+    managePlayerMovement(event, gameEngine);
+    managePlayerShot(shipCompo, event, gameEngine);
 }
 
-void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
+void rtype::menu::CoreScreen::managePlayerMovement(rtype::Event &event, rtype::Game *gameEngine)
 {
     if (event.key.right && !event.key.left) {
         gameEngine->_client->send(message::MOVE, "R");
@@ -252,10 +252,8 @@ void rtype::menu::CoreScreen::managePlayerMovement(ecs::component::Transform *tr
     }
 }
 
-void rtype::menu::CoreScreen::managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
+void rtype::menu::CoreScreen::managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine)
 {
-    (void)gameEngine;
-
     if (shipCompo->getClock().getElapsedTime() >= shipCompo->getCadency()) {
         if (event.key.code == ' ') {
             gameEngine->_client->send(message::SHOOT, "S");

@@ -20,7 +20,7 @@ namespace rtype
           public:
             /**
              * @brief Construct a new Core Screen object
-             * 
+             *
              * @param nbPlayers Number of players
              *
              */
@@ -37,7 +37,7 @@ namespace rtype
             void init() override;
             /**
              * @brief Init Player's entities
-             * 
+             *
              */
             void initPlayersEntities(void);
 
@@ -89,7 +89,7 @@ namespace rtype
             void paralax(void) override;
             /**
             * @brief Init the player number
-            * 
+            *
             * @param gameEngine Game engine
             *
             */
@@ -110,7 +110,7 @@ namespace rtype
             * @param event Event to be handled
             * @param gameEngine Game engine
             */
-            void managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayerMovement(rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Handle the player shooting depending of the event
             *
@@ -119,7 +119,7 @@ namespace rtype
             * @param event Event to be handled
             * @param gameEngine Game engine
             */
-            void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Destroy sprites who goes out of the screen
             *
@@ -148,7 +148,7 @@ namespace rtype
            void spawnEnemiesFromScript(void);
            /**
             * @brief Return wave duration based on current wave nbr
-            * 
+            *
             * @return sf::Time Wave duration
             *
             */
