@@ -20,7 +20,7 @@ namespace rtype
           public:
             /**
              * @brief Construct a new Core Screen object
-             * 
+             *
              * @param nbPlayers Number of players
              *
              */
@@ -37,9 +37,10 @@ namespace rtype
             void init() override;
             /**
              * @brief Init Player's entities
-             * 
+             *
              */
             void initPlayersEntities(void);
+            void createEnemyEntity(float x, float y);
 
             /**
             * @brief Update the Core Screen
@@ -89,7 +90,7 @@ namespace rtype
             void paralax(void) override;
             /**
             * @brief Init the player number
-            * 
+            *
             * @param gameEngine Game engine
             *
             */
@@ -148,7 +149,7 @@ namespace rtype
            void spawnEnemiesFromScript(void);
            /**
             * @brief Return wave duration based on current wave nbr
-            * 
+            *
             * @return sf::Time Wave duration
             *
             */

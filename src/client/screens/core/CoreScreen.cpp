@@ -53,6 +53,7 @@ void rtype::menu::CoreScreen::init()
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
     this->initPlayersEntities();
+    // this->createEnemyEntity(650.0f, 50.0f);
 }
 
 void rtype::menu::CoreScreen::initPlayersEntities(void)
@@ -161,6 +162,20 @@ void rtype::menu::CoreScreen::initPlayersEntities(void)
             sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 51, 33, 17));
         this->_world.addEntity(player4);
     }
+}
+
+void rtype::menu::CoreScreen::createEnemyEntity(float x, float y)
+{
+    rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+    if (enemy == nullptr)
+        throw ScreensExceptions("SoloScreen: Error while creating enemy entity");
+    enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.15f);
+    enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/zigzag.png", true,
+        sf::Vector2f(3.f, 3.f), 0, sf::IntRect(34, 34, 32, 32));
+    enemy->addComponent<ecs::component::Zigzag>(rtype::ecs::component::SHIP, 1);
+    this->_world.addEntity(enemy);
 }
 
 int rtype::menu::CoreScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
@@ -533,6 +548,7 @@ void rtype::menu::CoreScreen::handleWindowBorder(void)
 void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
 {
     createMissiles(gameEngine);
+    // createEnemies(gameEngine);
     while (0 < gameEngine->_client->getEntities().size() ) {
         if (gameEngine->_client->getEntitiesAt(0).id < this->_world.getEntities().size()) {
             this->_world.getEntity(gameEngine->_client->getEntitiesAt(0).id)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->setX(gameEngine->_client->getEntitiesAt(0).posX);

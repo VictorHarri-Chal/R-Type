@@ -37,6 +37,7 @@ void rtype::Game::init()
     this->_world->addSystem(particleSystem);
 
     this->initPlayersEntities();
+    this->createEnemyEntity(650.0f, 50.0f);
 }
 
 void rtype::Game::initPlayersEntities(void)
@@ -138,7 +139,6 @@ void rtype::Game::initPlayersEntities(void)
     }
 }
 
-
 void rtype::Game::update(void)
 {
     this->_world->update();
@@ -185,7 +185,6 @@ void rtype::Game::createShoot(size_t playerId)
     ecs::component::Transform *transformCompo =
         _world->getEntity(playerId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
 
-
     rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
     if (shot == nullptr)
         throw ScreensExceptions("Error: Can't create a entity (6)");
@@ -198,8 +197,23 @@ void rtype::Game::createShoot(size_t playerId)
     this->_world->addEntity(shot);
 }
 
+void rtype::Game::createEnemyEntity(float x, float y)
+{
+    rtype::ecs::entity::Entity *enemy = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY);
+    if (enemy == nullptr)
+        throw ScreensExceptions("SoloScreen: Error while creating enemy entity");
+    enemy->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.15f);
+    enemy->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    enemy->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    enemy->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/zigzag.png", true,
+        sf::Vector2f(3.f, 3.f), 0, sf::IntRect(34, 34, 32, 32));
+    enemy->addComponent<ecs::component::Zigzag>(rtype::ecs::component::SHIP, 1);
+    this->_world->addEntity(enemy);
+}
+
 void rtype::Game::destroySprites(void)
 {
+
     for (size_t i = 0; i < _world->getEntities().size(); i++) {
         ecs::component::Transform *transformCompo = _world->getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
         if (_world->getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE ||
@@ -207,6 +221,15 @@ void rtype::Game::destroySprites(void)
             if (transformCompo->getX() > 1920 || transformCompo->getX() < -100 || transformCompo->getY() < -100 || transformCompo->getY() > 1280) {
                 _world->removeEntity(i);
                 break;
+            }
+        }
+        if (_world->getEntity(i)->hasCompoType(rtype::ecs::component::compoType::ALIVE)) {
+            ecs::component::Alive *aliveCompo =
+                _world->getEntity(i)->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
+            if (!aliveCompo->getAlive()) {
+                // if (_world->getEntity(i)->hasCompoType(ecs::component::compoType::SHIP))
+                //     createParticle(transformCompo->getX(), transformCompo->getY());
+                _world->removeEntity(i);
             }
         }
     }
