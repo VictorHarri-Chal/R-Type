@@ -82,7 +82,7 @@ void rtype::menu::SoloScreen::init()
 
     rtype::ecs::entity::Entity *lifebar = new rtype::ecs::entity::Entity(rtype::ecs::entity::HEART);
     if (lifebar == nullptr)
-        throw ScreensExceptions("SoloScreen: Error while creating enemy entity");
+        throw ScreensExceptions("SoloScreen: Error while creating Entity (6)");
     lifebar->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 45.f, 0.0f, 0.0f);
     lifebar->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 80.f, 6.f, sf::Color::Green, false);
     this->_world.addEntity(lifebar);
