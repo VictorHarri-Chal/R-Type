@@ -10,8 +10,9 @@ var searchData=
   ['controllercode_31',['ControllerCode',['../structrtype_1_1Event.html#a842109ed366738906b69256444aca8f3',1,'rtype::Event']]],
   ['corescreen_32',['CoreScreen',['../classrtype_1_1menu_1_1CoreScreen.html',1,'rtype::menu::CoreScreen'],['../classrtype_1_1menu_1_1CoreScreen.html#ad4fe1f005c68e02e601b609e576f6467',1,'rtype::menu::CoreScreen::CoreScreen()']]],
   ['countnbpeoplereadyinroom_33',['countNbPeopleReadyInRoom',['../classServer.html#a5ea15c5656e0c849fcbfb9838cb4011a',1,'Server']]],
-  ['createparticle_34',['createParticle',['../classrtype_1_1menu_1_1CoreScreen.html#a9730ea41d16cba7d6846b44fd198c4ed',1,'rtype::menu::CoreScreen::createParticle()'],['../classrtype_1_1menu_1_1SoloScreen.html#aa317ac95d01d7734509c23fd50952f64',1,'rtype::menu::SoloScreen::createParticle()']]],
-  ['createroom_35',['createRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc',1,'rtype::menu::MultiplayerScreen']]],
-  ['currplayers_36',['currPlayers',['../structroom__t.html#aca6800decf861b2fcacf770ab2f6d2d0',1,'room_t']]],
-  ['cursorposition_37',['cursorPosition',['../classrtype_1_1menu_1_1OptionsScreen.html#a2a58cf0c87a2ffff9e9c16a8efc1e4cd',1,'rtype::menu::OptionsScreen']]]
+  ['createmissiles_34',['createMissiles',['../classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204',1,'rtype::menu::CoreScreen']]],
+  ['createparticle_35',['createParticle',['../classrtype_1_1menu_1_1CoreScreen.html#a9730ea41d16cba7d6846b44fd198c4ed',1,'rtype::menu::CoreScreen::createParticle()'],['../classrtype_1_1menu_1_1SoloScreen.html#aa317ac95d01d7734509c23fd50952f64',1,'rtype::menu::SoloScreen::createParticle()']]],
+  ['createroom_36',['createRoom',['../classrtype_1_1menu_1_1MultiplayerScreen.html#abec59f075d686780abddfd9bc455d8cc',1,'rtype::menu::MultiplayerScreen']]],
+  ['currplayers_37',['currPlayers',['../structroom__t.html#aca6800decf861b2fcacf770ab2f6d2d0',1,'room_t']]],
+  ['cursorposition_38',['cursorPosition',['../classrtype_1_1menu_1_1OptionsScreen.html#a2a58cf0c87a2ffff9e9c16a8efc1e4cd',1,'rtype::menu::OptionsScreen']]]
 ];

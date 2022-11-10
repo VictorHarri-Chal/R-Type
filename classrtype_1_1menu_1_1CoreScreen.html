@@ -134,8 +134,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a00c2cc5e5115cd1cab2bc8fc45514fdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a00c2cc5e5115cd1cab2bc8fc45514fdb">managePlayerShot</a> (<a class="el" href="classrtype_1_1ecs_1_1component_1_1Transform.html">ecs::component::Transform</a> *transformCompo, <a class="el" href="classrtype_1_1ecs_1_1component_1_1IShip.html">ecs::component::IShip</a> *shipCompo, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
 <tr class="memdesc:a00c2cc5e5115cd1cab2bc8fc45514fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the player shooting depending of the event.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a00c2cc5e5115cd1cab2bc8fc45514fdb">More...</a><br /></td></tr>
 <tr class="separator:a00c2cc5e5115cd1cab2bc8fc45514fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adda3bcda7180a4360ba09fd3a8eca49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#adda3bcda7180a4360ba09fd3a8eca49b">destroySprites</a> (void)</td></tr>
-<tr class="memdesc:adda3bcda7180a4360ba09fd3a8eca49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy sprites who goes out of the screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#adda3bcda7180a4360ba09fd3a8eca49b">More...</a><br /></td></tr>
+<tr class="memitem:a8822a1eefaf013e49a71048f0a970204"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204">createMissiles</a> (<a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
+<tr class="memdesc:a8822a1eefaf013e49a71048f0a970204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy sprites who goes out of the screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204">More...</a><br /></td></tr>
+<tr class="separator:a8822a1eefaf013e49a71048f0a970204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adda3bcda7180a4360ba09fd3a8eca49b"><td class="memItemLeft" align="right" valign="top"><a id="adda3bcda7180a4360ba09fd3a8eca49b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>destroySprites</b> (void)</td></tr>
 <tr class="separator:adda3bcda7180a4360ba09fd3a8eca49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec8cbcfdab922849077ecb10016fbc48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#aec8cbcfdab922849077ecb10016fbc48">manageEnemiesShooting</a> (void)</td></tr>
 <tr class="memdesc:aec8cbcfdab922849077ecb10016fbc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle automatic shooting for all enemies.  <a href="classrtype_1_1menu_1_1CoreScreen.html#aec8cbcfdab922849077ecb10016fbc48">More...</a><br /></td></tr>
@@ -220,6 +223,26 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8822a1eefaf013e49a71048f0a970204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8822a1eefaf013e49a71048f0a970204">&#9670;&nbsp;</a></span>createMissiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::menu::CoreScreen::createMissiles </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *&#160;</td>
+          <td class="paramname"><em>gameEngine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy sprites who goes out of the screen. </p>
+
+</div>
+</div>
 <a id="a9730ea41d16cba7d6846b44fd198c4ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9730ea41d16cba7d6846b44fd198c4ed">&#9670;&nbsp;</a></span>createParticle()</h2>
 
@@ -254,26 +277,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="adda3bcda7180a4360ba09fd3a8eca49b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adda3bcda7180a4360ba09fd3a8eca49b">&#9670;&nbsp;</a></span>destroySprites()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rtype::menu::CoreScreen::destroySprites </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Destroy sprites who goes out of the screen. </p>
 
 </div>
 </div>

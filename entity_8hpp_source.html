@@ -140,7 +140,7 @@ $(function() {
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    std::vector&lt;std::unique_ptr&lt;rtype::ecs::component::IComponent&gt;&gt;::iterator it = this-&gt;_componentVector.begin();</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    <span class="keywordflow">if</span> (<a class="code" href="classrtype_1_1ecs_1_1entity_1_1Entity.html#ab5e258d8de372bf05553ab4a3873df4d">hasCompoType</a>(type) == <span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot;Component not found&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot;Component not found: &quot;</span> &lt;&lt; type &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    }</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;compo : _componentVector) {</div>
@@ -169,7 +169,7 @@ $(function() {
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                            <span class="keywordflow">return</span> (<span class="keyword">dynamic_cast&lt;</span>T *<span class="keyword">&gt;</span>(compo.get()));</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        }</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;Component not found&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;Component not found:&quot;</span> &lt;&lt; type &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    <span class="keywordflow">return</span> (<span class="keyword">nullptr</span>);</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                }</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
