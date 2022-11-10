@@ -43,7 +43,6 @@ namespace rtype
          *
          */
         void update();
-        int handleEvents(std::string direction, size_t playerId);
         void createShoot(size_t playerId);
         /**
          * @brief Handle event for the game
@@ -52,7 +51,7 @@ namespace rtype
          * @param playerId Id of the player
          *
          */
-        void handleEvents(std::string direction, size_t playerId);
+        int handleEvents(std::string direction, size_t playerId);
         /**
          * @brief Run the game
          * 
