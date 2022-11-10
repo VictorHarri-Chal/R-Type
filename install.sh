@@ -97,8 +97,11 @@ elif [ "$os_name" = "Darwin" ]; then
   if [[ $? != 0 ]] ; then
       /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
-  brew install cmake pip conan
   xcode-select --install
+  brew install \
+  pip \
+  cmake \
+  conan 
 
   conan install .. --build=missing \
   -c tools.system.package_manager:mode=install \

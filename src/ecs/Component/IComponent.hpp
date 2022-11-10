@@ -16,8 +16,6 @@ namespace rtype
     {
         namespace component
         {
-            class Transform;
-
             /**
              * @brief Enum for component type
              *
@@ -42,14 +40,9 @@ namespace rtype
              * @brief Enum for projectile type
              * @param ALLY Allies projectile
              * @param ENEMY Enemy projectile
+             * @param MINE Enemy boss projectile
              */
-            enum projectileType { ALLY_PROJECTILE, ENEMY_PROJECTILE, UNKNOWNPROJECTILE };
-            /**
-             * @brief Enum for bonus type
-             *
-             */
-            enum bonusType { UNKNOWNBONUS };
-
+            enum projectileType { ALLY_PROJECTILE, ENEMY_PROJECTILE, MINE, UNKNOWNPROJECTILE };
             /// @brief Component interface
             class IComponent {
               public:

@@ -17,6 +17,16 @@ void rtype::ecs::component::AShip::setHealth(float health)
     this->_health = health;
 }
 
+float rtype::ecs::component::AShip::getMaxHealth() const
+{
+    return (this->_maxHealth);
+}
+
+void rtype::ecs::component::AShip::setMaxHealth(float maxHealth)
+{
+    this->_maxHealth = maxHealth;
+}
+
 float rtype::ecs::component::AShip::getDamage() const
 {
     return (this->_damage);

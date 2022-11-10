@@ -45,7 +45,7 @@ namespace rtype
                  * @param rotation Rotation of the texture
                  * @param rect Rectangle of the texture
                  */
-                Drawable2D(std::string texturePath, bool isRect, sf::Vector2f scale, int rotation, sf::IntRect rect = sf::IntRect(0, 0, 0, 0));
+                Drawable2D(std::string texturePath, bool isRect, sf::Vector2f scale, int rotation = 0, sf::IntRect rect = sf::IntRect(0, 0, 0, 0));
                 /**
                  * @brief Construct a new Drawable 2D object
                  * 

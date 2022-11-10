@@ -63,9 +63,9 @@ void rtype::ecs::system::Draw2DSystem::update(std::vector<rtype::ecs::entity::En
             continue;
         }
         for (auto &compo : compoVector) {
-            if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D) {
-                rtype::ecs::component::Transform *transformCompo =
-                    entity->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+            rtype::ecs::component::Transform *transformCompo =
+                entity->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+            if (compo->getType() == rtype::ecs::component::compoType::DRAWABLE2D && (transformCompo->getX() < 1920) && (transformCompo->getY() < 1080)) {
                 switch (compo->getDrawType()) {
                     case rtype::ecs::component::drawableType::RECTANGLE: drawRectangle(*compo, *transformCompo, gameEngine); break;
                     case rtype::ecs::component::drawableType::TEXT: drawText(*compo, *transformCompo, gameEngine); break;
@@ -191,8 +191,8 @@ void rtype::ecs::system::Draw2DSystem::animations(std::vector<rtype::ecs::entity
     } else if (_mineClock.getElapsedTime() >= sf::seconds(1.0/5.0f)) {
         for (auto &entity : entities) {
             if (entity->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE) {
-                ecs::component::Transform *transformCompo = entity->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
-                if (transformCompo->getSpeedY() == -2.0f) {
+                if (entity->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE)->getProjectileType() ==
+                rtype::ecs::component::projectileType::MINE) {
                     rtype::ecs::component::Drawable2D *drawable2dCompo =
                         entity->getComponent<rtype::ecs::component::Drawable2D>(rtype::ecs::component::compoType::DRAWABLE2D);
                     sf::IntRect rect = drawable2dCompo->getRect();
