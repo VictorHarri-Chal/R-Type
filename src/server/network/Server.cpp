@@ -101,8 +101,9 @@ void HandleCommand::findCmd(Server *server, message msg, size_t playerId)
  * Before handle command function
  **/
 
-Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port),
-_nbClients(0), _isGameLaunched(false), _isGameInit(false), waitCommand(false)
+Server::Server(boost::asio::io_service &io_service, int port)
+    : _nbClientsInRoom(0), _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _nbClients(0),
+      _isGameLaunched(false), _isGameInit(false), waitCommand(false)
 {
     std::cout << "Server started." << std::endl;
     listen();

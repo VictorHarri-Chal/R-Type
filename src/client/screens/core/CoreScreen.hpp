@@ -111,7 +111,7 @@ namespace rtype
             * @param event Event to be handled
             * @param gameEngine Game engine
             */
-            void managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayerMovement(rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Handle the player shooting depending of the event
             *
@@ -120,7 +120,7 @@ namespace rtype
             * @param event Event to be handled
             * @param gameEngine Game engine
             */
-            void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
+            void managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
             /**
             * @brief Destroy sprites who goes out of the screen
             *
