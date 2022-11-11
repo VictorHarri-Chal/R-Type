@@ -3,6 +3,11 @@
 # RUNNER=1 ./install.sh
 
 set -eo pipefail
+
+cmd_found() {
+  command -v "$1" >/dev/null 2>&1 
+}
+
 [ -n "$RUNNER" ] && set -x
 
 [ -d build ] && rm -fr build
@@ -93,11 +98,10 @@ if [ "$(uname)" = "Linux" ]; then
   -c tools.system.package_manager:mode=install \
   -c tools.system.package_manager:sudo=True
 elif [ "$os_name" = "Darwin" ]; then
-  which -s brew
-  if [[ $? != 0 ]] ; then
+  xcode-select --install
+  if ! cmd_found brew; then
       /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
-  xcode-select --install
   brew install \
   pip \
   cmake \
