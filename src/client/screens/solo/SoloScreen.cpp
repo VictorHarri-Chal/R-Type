@@ -205,8 +205,10 @@ void rtype::menu::SoloScreen::destroySprites(void)
                 rtype::ecs::component::shipType::BOSS))
                     createParticle(transformCompo->getX(), transformCompo->getY(), 4.0f, 1);
                 else if (_world.getEntity(i)->hasCompoType(ecs::component::compoType::SHIP) && (_world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP)->getShipType() ==
-                rtype::ecs::component::shipType::BOSS))
+                rtype::ecs::component::shipType::BOSS)) {
                     createParticle(transformCompo->getX(), transformCompo->getY(), 8.0f, 1);
+                    releaseHealthBonus(transformCompo->getX() + 190, transformCompo->getY() + 170);
+                }
                 else if (_world.getEntity(i)->hasCompoType(ecs::component::compoType::PROJECTILE) &&
                 (_world.getEntity(i)->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE)->getProjectileType() ==
                 rtype::ecs::component::projectileType::ALLY_PROJECTILE))
@@ -317,7 +319,7 @@ void rtype::menu::SoloScreen::manageEnemiesShooting(void)
                     ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                     rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY_PROJECTILE);
                     if (shot == nullptr)
-                        throw ScreensExceptions("Error: Can't create a entity (10)");
+                        throw ScreensExceptions("Error: Can't create an entity (10)");
                     shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() - 15.f, transformCompo->getY() + 40.f, -20.0f, 0.0f);
                     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
@@ -331,7 +333,7 @@ void rtype::menu::SoloScreen::manageEnemiesShooting(void)
                     ecs::component::Transform *transformCompo = _world.getEntity(i)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                     rtype::ecs::entity::Entity *mine = new rtype::ecs::entity::Entity(rtype::ecs::entity::ENEMY_PROJECTILE);
                     if (mine == nullptr)
-                        throw ScreensExceptions("Error: Can't create a entity (10)");
+                        throw ScreensExceptions("Error: Can't create an entity (10)");
                     mine->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 220.f, transformCompo->getY() + 10.f, 0.0f, -2.0f);
                     mine->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     mine->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
@@ -517,6 +519,18 @@ void rtype::menu::SoloScreen::handleHud(void)
             _world.removeEntity(k);
         }
     }
+}
+
+void rtype::menu::SoloScreen::releaseHealthBonus(float x, float y)
+{
+    rtype::ecs::entity::Entity *healthBonus = new rtype::ecs::entity::Entity(rtype::ecs::entity::HEALTHBONUS);
+    if (healthBonus == nullptr)
+        throw ScreensExceptions("SoloScreen: Error while creating health bonus entity");
+    healthBonus->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, x, y, 0.0f, 0.0f);
+    healthBonus->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+    healthBonus->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    healthBonus->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/powerup.png", true, sf::Vector2f(0.2f, 0.2f), 0, sf::IntRect(1191, 725, 261, 256));
+    this->_world.addEntity(healthBonus);
 }
 
 void rtype::menu::SoloScreen::saveParalax(void)

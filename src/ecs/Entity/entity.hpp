@@ -41,7 +41,7 @@ namespace rtype
              * @brief Entity Type for entity object creation
              *
              */
-            enum entityType { PLAYER1, PLAYER2, PLAYER3, PLAYER4, ENEMY, ALLY_PROJECTILE, ENEMY_PROJECTILE, PARTICLE, HIT, HEART, TEXT, RECTANGLE, STATIC_SPRITE, UNKNOWN };
+            enum entityType { PLAYER1, PLAYER2, PLAYER3, PLAYER4, ENEMY, ALLY_PROJECTILE, ENEMY_PROJECTILE, PARTICLE, HIT, HEART, HEALTHBONUS, TEXT, RECTANGLE, STATIC_SPRITE, UNKNOWN };
             /// @brief Entity class
             class Entity {
               public:
