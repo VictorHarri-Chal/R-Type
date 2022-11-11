@@ -93,11 +93,13 @@ if [ "$(uname)" = "Linux" ]; then
       sudo pip3 install conan
     fi
   fi
+
   conan install -s compiler.libcxx=libstdc++11 \
   .. --build=missing \
   -c tools.system.package_manager:mode=install \
   -c tools.system.package_manager:sudo=True
-elif [ "$os_name" = "Darwin" ]; then
+
+elif [ "$(uname)" = "Darwin" ]; then
   xcode-select --install
   if ! cmd_found brew; then
       /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -105,11 +107,11 @@ elif [ "$os_name" = "Darwin" ]; then
   brew install \
   pip \
   cmake \
-  conan 
-
+  conan
   conan install .. --build=missing \
   -c tools.system.package_manager:mode=install \
   -c tools.system.package_manager:sudo=True
+
 else
   pip3 install conan
   conan install .. --build=missing \
