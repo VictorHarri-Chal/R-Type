@@ -13,7 +13,7 @@
 #include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::SoloScreen::SoloScreen(): _currWave(6), _isGameEnded(false), _window(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false), _window(false)
 {
 }
 
@@ -421,7 +421,7 @@ void rtype::menu::SoloScreen::spawnEnemiesFromScript(void)
     }
     if (_script.getClock().getElapsedTime() >= getWaveDuration()) {
         for (size_t i = 0; i < _world.getEntities().size(); i++) {
-            if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY) {
+            if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY || (_currWave > 10)) {
                 return;
             }
         }
@@ -430,12 +430,12 @@ void rtype::menu::SoloScreen::spawnEnemiesFromScript(void)
         _script.restartClock();
     }
     if (_clockScriptCall.getElapsedTime() >= sf::seconds(1.0f)) {
-        for (size_t i = 0; i < _script.getLines().size(); i++) {
-            if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
-                if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)))) {
-                    generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
-                    static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
-                    _script.spriteIsPrinted(i);
+        for (size_t i = 0; i < _script.getWave(_currWave).size(); i++) {
+            if (_script.getWave(_currWave).at(i).size() == 6 && _script.getWave(_currWave).at(i).at(5)) {
+                if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getWave(_currWave).at(i).at(0)))) {
+                    generateEnemy(_script.getWave(_currWave).at(i).at(1),  _script.getWave(_currWave).at(i).at(2),
+                    static_cast<float>(_script.getWave(_currWave).at(i).at(3)), static_cast<float>(_script.getWave(_currWave).at(i).at(4)));
+                    _script.spriteIsPrinted(_currWave, i);
                 }
             }
         }

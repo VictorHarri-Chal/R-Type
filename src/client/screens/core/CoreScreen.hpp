@@ -197,8 +197,22 @@ namespace rtype
              *
              */
             int _currWave;
-
+            /**
+             * @brief Clock to read the script
+             * 
+             */
+            sf::Clock _clockScriptCall;
+            /**
+             * @brief Number of player in the game
+             * 
+             */
             size_t _nbPlayers;
+            /**
+             * @brief Update entities from the server
+             * 
+             * @param gameEngine Game engine
+             * 
+             */
             void updateEntities(rtype::Game *gameEngine);
         };
     }

@@ -50,21 +50,35 @@ namespace rtype
         * @param i Index of the sprite to set.
         *
         */
-        void spriteIsPrinted(size_t i);
+        void spriteIsPrinted(int wave, size_t i);
         /**
         * @brief Getter for the script parsed vector.
+        * 
+        * @param wave Index of the wave.
+        * @param i Index of the sprite.
         * 
         * @return std::vector<std::vector<int> The script parsed vector.
         *
         */
-        std::vector<std::vector<int>> getLines() const;
+        std::vector<std::vector<int>> getWave(int wave) const;
         /**
         * @brief Parse the script to define ennemy spawning
         *
+        * @param wave The wave number
+        * @return std::vector<std::vector<int>> The script parsed vector.
         */
         void parseScript();
         private:
-            std::vector<std::vector<int>> _lines;
+            std::vector<std::vector<int>> _waveOne;
+            std::vector<std::vector<int>> _waveTwo;
+            std::vector<std::vector<int>> _waveThree;
+            std::vector<std::vector<int>> _waveFour;
+            std::vector<std::vector<int>> _waveFive;
+            std::vector<std::vector<int>> _waveSix;
+            std::vector<std::vector<int>> _waveSeven;
+            std::vector<std::vector<int>> _waveEight;
+            std::vector<std::vector<int>> _waveNine;
+            std::vector<std::vector<int>> _waveTen;
             sf::Clock _clock;
 
     };

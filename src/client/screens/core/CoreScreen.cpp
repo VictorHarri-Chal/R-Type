@@ -389,7 +389,7 @@ void rtype::menu::CoreScreen::generateEnemy(int currWave, int shipType, float x,
     }
 }
 
-void rtype::menu::CoreScreen::spawnEnemiesFromScript(void)
+void rtype::menu::SoloScreen::spawnEnemiesFromScript(void)
 {
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::TEXT) {
@@ -406,7 +406,7 @@ void rtype::menu::CoreScreen::spawnEnemiesFromScript(void)
     }
     if (_script.getClock().getElapsedTime() >= getWaveDuration()) {
         for (size_t i = 0; i < _world.getEntities().size(); i++) {
-            if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY) {
+            if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY || (_currWave > 10)) {
                 return;
             }
         }
@@ -414,15 +414,17 @@ void rtype::menu::CoreScreen::spawnEnemiesFromScript(void)
         printWaveNumber();
         _script.restartClock();
     }
-    for (size_t i = 0; i < _script.getLines().size(); i++) {
-        if (_script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
-            sf::Time time = sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)));
-            if (_script.getClock().getElapsedTime() >= time) {
-                generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
-                static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
-                _script.spriteIsPrinted(i);
+    if (_clockScriptCall.getElapsedTime() >= sf::seconds(1.0f)) {
+        for (size_t i = 0; i < _script.getWave(_currWave).size(); i++) {
+            if (_script.getWave(_currWave).at(i).size() == 6 && _script.getWave(_currWave).at(i).at(5)) {
+                if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getWave(_currWave).at(i).at(0)))) {
+                    generateEnemy(_script.getWave(_currWave).at(i).at(1),  _script.getWave(_currWave).at(i).at(2),
+                    static_cast<float>(_script.getWave(_currWave).at(i).at(3)), static_cast<float>(_script.getWave(_currWave).at(i).at(4)));
+                    _script.spriteIsPrinted(_currWave, i);
+                }
             }
         }
+        _clockScriptCall.restart();
     }
 }
 
