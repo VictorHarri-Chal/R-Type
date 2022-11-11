@@ -55,7 +55,7 @@ var searchData=
   ['soundsystem_275',['SoundSystem',['../classrtype_1_1ecs_1_1system_1_1SoundSystem.html',1,'rtype::ecs::system::SoundSystem'],['../classrtype_1_1ecs_1_1system_1_1SoundSystem.html#a3f0730fe6b2334ada15c0720d0dd6812',1,'rtype::ecs::system::SoundSystem::SoundSystem()']]],
   ['space_276',['space',['../structrtype_1_1Event_1_1KeyEvent.html#aedecd064a9a8fe6e41c13be2bd10c903',1,'rtype::Event::KeyEvent']]],
   ['spawnenemiesfromscript_277',['spawnEnemiesFromScript',['../classrtype_1_1menu_1_1CoreScreen.html#a364f3e41b579b1119447cd780741090b',1,'rtype::menu::CoreScreen::spawnEnemiesFromScript()'],['../classrtype_1_1menu_1_1SoloScreen.html#a84a899095c35c8240691b88cb445d386',1,'rtype::menu::SoloScreen::spawnEnemiesFromScript()']]],
-  ['spriteisprinted_278',['spriteIsPrinted',['../classrtype_1_1Script.html#a41f9130ec5f0ff6322bd565df83cfab4',1,'rtype::Script']]],
+  ['spriteisprinted_278',['spriteIsPrinted',['../classrtype_1_1Script.html#a329e0bc69148c47d701788fa51457be1',1,'rtype::Script']]],
   ['startgame_279',['startGame',['../classServer.html#aa1574f3bedbb825909ce77fe986c87a8',1,'Server']]],
   ['stealthy_280',['Stealthy',['../classrtype_1_1ecs_1_1component_1_1Stealthy.html',1,'rtype::ecs::component::Stealthy'],['../classrtype_1_1ecs_1_1component_1_1Stealthy.html#aa6c1186bfa9027faf36784b4e56978cc',1,'rtype::ecs::component::Stealthy::Stealthy()']]],
   ['support_281',['Support',['../classrtype_1_1ecs_1_1component_1_1Support.html',1,'rtype::ecs::component::Support'],['../classrtype_1_1ecs_1_1component_1_1Support.html#aca34cf333de29228de720ae30f3942de',1,'rtype::ecs::component::Support::Support()']]]
