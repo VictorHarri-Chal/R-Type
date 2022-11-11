@@ -9,16 +9,21 @@
 
 rtype::ecs::component::Boss::Boss(int currWave)
 {
-    if (currWave == 5) {
+    if (currWave == 5 ) {
         _health = 30.0f;
         _damage = 1.0f;
         _speed = 2.0f;
         _cadency = sf::seconds(1.0/1.0f);
-    } else if (currWave == 10) {
-        _health = 70.0f;
+    } else if (currWave == 9) {
+        _health = 20.0f;
         _damage = 1.0f;
         _speed = 2.0f;
-        _cadency = sf::seconds(1.0/1.2f);
+        _cadency = sf::seconds(1.0/1.0f);
+    } else if (currWave == 10) {
+        _health = 100.0f;
+        _damage = 2.0f;
+        _speed = 2.0f;
+        _cadency = sf::seconds(1.0/2.0f);
     } else {
         _health = 30.0f;
         _damage = 1.0f;

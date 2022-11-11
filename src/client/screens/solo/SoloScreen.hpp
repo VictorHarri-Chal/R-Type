@@ -191,6 +191,10 @@ namespace rtype
              * 
              */
             bool _isGameEnded;
+            /**
+             * @brief Current window
+             * 
+             */
             bool _window;
             /**
              * @brief Clock to read the script
