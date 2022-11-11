@@ -104,7 +104,6 @@ elif [ "$(uname)" = "Darwin" ]; then
     /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   brew install \
-  pip \
   cmake \
   conan
   conan install .. --build=missing \
