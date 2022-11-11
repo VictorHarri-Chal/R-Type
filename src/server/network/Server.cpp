@@ -101,8 +101,9 @@ void HandleCommand::findCmd(Server *server, message msg, size_t playerId)
  * Before handle command function
  **/
 
-Server::Server(boost::asio::io_service& io_service, int port) : _socket(io_service, udp::endpoint(udp::v4(), port)), _nbClientsInRoom(0), _port(port),
-_nbClients(0), _isGameLaunched(false), _isGameInit(false), waitCommand(false)
+Server::Server(boost::asio::io_service &io_service, int port)
+    : _nbClientsInRoom(0), _socket(io_service, udp::endpoint(udp::v4(), port)), _port(port), _nbClients(0),
+      _isGameLaunched(false), _isGameInit(false), waitCommand(false)
 {
     std::cout << "Server started." << std::endl;
     listen();
@@ -170,6 +171,12 @@ void Server::SendToAll(message::request type, std::string body)
         sendToClient(type, client.second.getEndpoint(), body);
 }
 
+void Server::SendToAll(::Server server, message::request type, std::string body)
+{
+    for (auto client : server.clients)
+        server.sendToClient(type, client.second.getEndpoint(), body);
+}
+
 void Server::SendToAllInRoom(message::request type, size_t playerId, std::string body)
 {
     size_t actualRoom = this->clients.at(playerId).getIdRoom();
@@ -190,15 +197,23 @@ void Server::sendAllEntities()
 {
     size_t nbEntity;
     std::string entity;
+    rtype::ecs::component::Transform *transformCompo;
 
     while(true) {
         if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 45.0f)) {
+            this->_game->destroySprites();
+            this->_game->update();
             nbEntity = this->_game->getWorld()->getNbEntities();
             for (size_t i = 0; i < nbEntity; i++) {
-                entity = std::to_string(this->_game->getWorld()->getEntity(i)->getId())     + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+                entity = std::to_string(i) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
                 for (auto client : clients)
                     _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
                 entity.clear();
+                if (this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER1 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER2 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER3 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER4) {
+                    transformCompo = this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+                    transformCompo->setSpeedY(0.0f);
+                    transformCompo->setSpeedX(0.0f);
+                }
             }
             this->_clock.restart();
         }
@@ -207,17 +222,20 @@ void Server::sendAllEntities()
 
 void Server::gameLoop(message msg, size_t playerId)
 {
-    if (getIsGameLaunched()) {
-        if (!getIsGameInit()) {
-            _game = new rtype::Game(this->getPlayersInRoom());
-            _game->init();
-            setIsGameInit(true);
-            this->t1 = boost::thread(&Server::sendAllEntities, this);
-        }
-        _game->handleEvents(msg.body, playerId);
-        _game->update();
+    int ret = 0;
+    if (!getIsGameInit()) {
+        _game = new rtype::Game(this->getPlayersInRoom());
+        _game->init();
+        setIsGameInit(true);
+        this->t1 = boost::thread(&Server::sendAllEntities, this);
     }
-    msg.print();
+    std::cout << "Game Loop" << std::endl;
+    ret = _game->handleEvents(msg.body, playerId);
+
+    if (ret == 1) {
+        SendToAll(message::request::SHOOT, std::to_string(playerId));
+        _game->createShoot(playerId);
+    }
 }
 
 message Server::getStreamData(std::size_t bytesTransferred)

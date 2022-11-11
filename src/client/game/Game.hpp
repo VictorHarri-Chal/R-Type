@@ -10,6 +10,7 @@
 #include "../events/Events.hpp"
 #include "../screens/intro/IntroScreen.hpp"
 #include "../screens/menu/MenuScreen.hpp"
+#include "../screens/htp/HtpScreen.hpp"
 #include "../screens/options/OptionsScreen.hpp"
 #include "../screens/multiplayer/MultiplayerScreen.hpp"
 #include "../screens/room/RoomScreen.hpp"
@@ -77,6 +78,8 @@ namespace rtype
         rtype::menu::IntroScreen *_intro;
         /// @brief Menu screen
         rtype::menu::MenuScreen *_menu;
+        /// @brief Htp screen
+        rtype::menu::HtpScreen *_htp;
         /// @brief Options screen
         rtype::menu::OptionsScreen *_options;
         /// @brief Multiplayer screen

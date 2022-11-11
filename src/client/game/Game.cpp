@@ -31,7 +31,7 @@ void rtype::Game::init(std::string flag)
     boost::thread t(boost::bind(&boost::asio::io_service::run, &_ioService));
     _eventClass.initEvents(_event);
     if (flag == "-g") {
-        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
         _actualScreen = Screens::Solo;
         _solo = new rtype::menu::SoloScreen;
         if (_solo == nullptr)
@@ -55,7 +55,7 @@ void rtype::Game::init(std::string flag)
         _lastScene = Screens::Intro;
         _intro->init();
     } else {
-        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+        _window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close);
         _actualScreen = Screens::Intro;
         _intro = new rtype::menu::IntroScreen;
         if (_intro == nullptr)
@@ -87,6 +87,7 @@ void rtype::Game::update(rtype::Game *gameEngine)
     switch (_actualScreen) {
         case Screens::Intro: _intro->update(gameEngine); break;
         case Screens::Menu: _menu->update(gameEngine); break;
+        case Screens::Htp: _htp->update(gameEngine); break;
         case Screens::Options: _options->update(gameEngine); break;
         case Screens::Room: _room->update(gameEngine); break;
         case Screens::Core: _core->update(gameEngine); break;
@@ -100,6 +101,7 @@ int rtype::Game::handleEvent(rtype::Game *gameEngine)
     switch (_actualScreen) {
         case Screens::Intro: return (_intro->handleEvent(_event, gameEngine));
         case Screens::Menu: return (_menu->handleEvent(_event, gameEngine));
+        case Screens::Htp: return (_htp->handleEvent(_event, gameEngine));
         case Screens::Options: return (_options->handleEvent(_event, gameEngine));
         case Screens::Room: return (_room->handleEvent(_event, gameEngine));
         case Screens::Core: return (_core->handleEvent(_event, gameEngine));
@@ -137,6 +139,11 @@ void rtype::Game::handleScreensSwap(int ret)
             break;
         case 3:
             destroyLastScene();
+            _htp = new rtype::menu::HtpScreen;
+            if (_htp == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating HtpScreen");
+            _lastScene = Screens::Htp;
+            _htp->init();
             setActualScreen(Screens::Htp);
             break;
         case 4:
@@ -200,6 +207,8 @@ void rtype::Game::destroyLastScene()
         delete _intro;
     if (_lastScene == Screens::Menu)
         delete _menu;
+    if (_lastScene == Screens::Htp)
+        delete _htp;
     if (_lastScene == Screens::Options)
         delete _options;
     if (_lastScene == Screens::Multiplayer)

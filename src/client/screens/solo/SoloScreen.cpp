@@ -13,8 +13,7 @@
 #include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-
-rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(6), _isGameEnded(false), _window(false)
 {
 }
 
@@ -82,7 +81,7 @@ void rtype::menu::SoloScreen::init()
 
     rtype::ecs::entity::Entity *lifebar = new rtype::ecs::entity::Entity(rtype::ecs::entity::HEART);
     if (lifebar == nullptr)
-        throw ScreensExceptions("SoloScreen: Error while creating enemy entity");
+        throw ScreensExceptions("SoloScreen: Error while creating Entity (6)");
     lifebar->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 45.f, 0.0f, 0.0f);
     lifebar->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 80.f, 6.f, sf::Color::Green, false);
     this->_world.addEntity(lifebar);
@@ -105,7 +104,12 @@ int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 }
 
 void rtype::menu::SoloScreen::update(rtype::Game *gameEngine)
-{   
+{
+    if (!this->_window) {
+        gameEngine->_window.close();
+        gameEngine->_window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
+        this->_window = true;
+    }
     if (!_isGameEnded)
         manageGameEnd();
     destroySprites();

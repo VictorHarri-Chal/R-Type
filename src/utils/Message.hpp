@@ -12,7 +12,7 @@
 
 /**
  * @brief Message class
- * 
+ *
  */
 class message {
   public:
@@ -29,7 +29,7 @@ class message {
      * @param ENTITY Entity command
      *
      */
-    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH, MOVE, ENTITY };
+    enum request { JOIN, READY, DISCONNECT, INROOM, LAUNCH, MOVE, ENTITY, SHOOT  };
     /**
      * @brief Request variable
      * 
@@ -54,7 +54,7 @@ class message {
     message(request t, std::string b) : type(t), body(b) {}
     /**
      * @brief Print the message
-     * 
+     *
      */
     void print()
     {
@@ -68,7 +68,7 @@ namespace boost
     {
         /**
          * @brief Serialize message
-         * 
+         *
          * @tparam Archive Archive type
          * @param archive Archive
          * @param object Message to serialize

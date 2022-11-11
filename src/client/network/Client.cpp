@@ -15,6 +15,7 @@ Client::Client(boost::asio::io_service &io_service, const std::string &host, con
     _endpoint = *iter;
     _actualNbRooms = 0;
     _actualNbPeopleInRoom = 0;
+    _nbMissile = 0;
     _gameStart = false;
     std::cout << "Client started." << std::endl;
     listen();
@@ -44,6 +45,11 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
         }
         if (msg.type == message::ENTITY)
             addEntity(msg.body);
+        if (msg.type == message::SHOOT) {
+            _shoots.push_back(std::stoi(msg.body));
+            std::cout << "Shoot ";
+            msg.print();
+        }
         listen();
     }
 }
@@ -62,8 +68,8 @@ message Client::getStreamData(std::size_t bytesTransferred)
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> ss(source);
     boost::archive::binary_iarchive ia(ss);
     ia >> msg;
-    std::cout << "Client received: ";
-    msg.print();
+    // std::cout << "Client received: ";
+    // msg.print();
 
     return msg;
 }
@@ -112,6 +118,16 @@ entitiesReceive Client::getEntities() const
 entityTmp Client::getEntitiesAt(size_t pos) const
 {
     return(this->entities.at(pos));
+}
+
+std::vector<size_t> Client::getShoots() const
+{
+    return (this->_shoots);
+}
+
+void Client::popShoots()
+{
+    this->_shoots.erase(this->_shoots.begin());
 }
 
 void Client::popEntity()
