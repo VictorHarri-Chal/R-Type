@@ -389,7 +389,7 @@ void rtype::menu::CoreScreen::generateEnemy(int currWave, int shipType, float x,
     }
 }
 
-void rtype::menu::SoloScreen::spawnEnemiesFromScript(void)
+void rtype::menu::CoreScreen::spawnEnemiesFromScript(void)
 {
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::TEXT) {
