@@ -53,7 +53,7 @@ void rtype::menu::CoreScreen::init()
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
     this->initPlayersEntities();
-    // this->createEnemyEntity(650.0f, 50.0f);
+    this->createEnemyEntity(650.0f, 50.0f);
 }
 
 void rtype::menu::CoreScreen::initPlayersEntities(void)

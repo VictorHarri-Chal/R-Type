@@ -228,7 +228,7 @@ void rtype::Game::destroySprites(void)
                 _world->getEntity(i)->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
             if (!aliveCompo->getAlive()) {
                 // if (_world->getEntity(i)->hasCompoType(ecs::component::compoType::SHIP))
-                //     createParticle(transformCompo->getX(), transformCompo->getY());
+                //    Particle(transformCompo->getX(), transformCompo->getY());
                 _world->removeEntity(i);
             }
         }
