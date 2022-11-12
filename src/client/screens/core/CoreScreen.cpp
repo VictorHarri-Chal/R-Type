@@ -547,6 +547,7 @@ void rtype::menu::CoreScreen::updateEntities(rtype::Game *gameEngine)
         }
         gameEngine->_client->popEntity();
     }
+    std::cout << "Updating entities..." << std::endl;
     gameEngine->_client->getEntities().clear();
     gameEngine->_client->unlockMutex();
 }
@@ -556,7 +557,7 @@ void rtype::menu::CoreScreen::createMissiles(rtype::Game *gameEngine)
     gameEngine->_client->lockMutex();
     while (gameEngine->_client->getShoots().size() > 0) {
         ecs::component::Transform *transformCompo =
-            _world.getEntity(gameEngine->_client->getShoots().at(0))->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+            _world.getEntity(gameEngine->_client->getShoots().at(0) + 4)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
 
         rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
         if (shot == nullptr)

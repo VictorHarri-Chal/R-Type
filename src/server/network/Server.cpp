@@ -204,17 +204,20 @@ void Server::sendAllEntities()
             this->_game->spawnEnemiesFromScript();
             this->_game->update();
             this->_game->destroySprites();
-            nbEntity = this->_game->getWorld()->getNbEntities();
+                nbEntity = this->_game->getWorld()->getNbEntities();
             for (size_t i = 0; i < nbEntity; i++) {
-                entity = std::to_string(i) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
-                std::cout << "entity type " << this->_game->getWorld()->getEntity(i)->getEntityType() << std::endl;
-                for (auto client : clients)
-                    _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
-                entity.clear();
-                if (this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER1 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER2 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER3 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER4) {
-                    transformCompo = this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
-                    transformCompo->setSpeedY(0.0f);
-                    transformCompo->setSpeedX(0.0f);
+                if (this->_game->getWorld()->getEntity(i)->getEntityType() != rtype::ecs::entity::entityType::ALLY_PROJECTILE)
+                {
+                    entity = std::to_string(i) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+                    // std::cout << "entity type " << this->_game->getWorld()->getEntity(i)->getEntityType() << std::endl;
+                    for (auto client : clients)
+                        _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
+                    entity.clear();
+                    if (this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER1 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER2 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER3 || this->_game->getWorld()->getEntity(i)->getEntityType() == rtype::ecs::entity::entityType::PLAYER4) {
+                        transformCompo = this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::compoType::TRANSFORM);
+                        transformCompo->setSpeedY(0.0f);
+                        transformCompo->setSpeedX(0.0f);
+                    }
                 }
             }
             this->_clock.restart();
@@ -231,11 +234,13 @@ void Server::gameLoop(message msg, size_t playerId)
         setIsGameInit(true);
         this->t1 = boost::thread(&Server::sendAllEntities, this);
     }
-    std::cout << "Game Loop" << std::endl;
+    // std::cout << "Game Loop" << std::endl;
     ret = _game->handleEvents(msg.body, playerId);
     if (ret == 1) {
+        std::cout << "Size b4:" << _game->getWorld()->getNbEntities();
         SendToAll(message::request::SHOOT, std::to_string(playerId));
         _game->createShoot(playerId);
+        std::cout << "Size after:" << _game->getWorld()->getNbEntities();
     }
 }
 
@@ -263,8 +268,8 @@ std::string Server::createPaquet(message::request request, std::string value)
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
     boost::archive::binary_oarchive oa(ss);
 
-    std::cout << "Sending message: ";
-    msg.print();
+    // std::cout << "Sending message: ";
+    // msg.print();
     oa << msg;
     ss.flush();
     return (str);

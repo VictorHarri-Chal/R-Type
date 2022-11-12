@@ -184,7 +184,11 @@ void rtype::Game::createShoot(size_t playerId)
 {
     ecs::component::Transform *transformCompo =
         _world->getEntity(playerId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
+    // ecs::component::Transform *transformCompo =
+    //     _world->getEntity(playerId)->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
 
+    ecs::component::IShip *shipCompo =
+        _world->getEntity(playerId)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
 
     rtype::ecs::entity::Entity *shot = new rtype::ecs::entity::Entity(rtype::ecs::entity::ALLY_PROJECTILE);
     if (shot == nullptr)
@@ -193,6 +197,8 @@ void rtype::Game::createShoot(size_t playerId)
     + 45.f, transformCompo->getY() + 8.f, 20.0f, 0.0f);
     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+    shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE,
+        rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage());
     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D,
     "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
     this->_world->addEntity(shot);
@@ -294,7 +300,7 @@ void rtype::Game::spawnEnemiesFromScript(void)
         for (size_t i = 0; i < _script.getLines().size(); i++) {
             if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
                 if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)))) {
-                    std::cout << "x = " << _script.getLines().at(i).at(1) << " y = " << _script.getLines().at(i).at(2) << std::endl;
+                    // std::cout << "x = " << _script.getLines().at(i).at(1) << " y = " << _script.getLines().at(i).at(2) << std::endl;
                     generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
                     static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
                     _script.spriteIsPrinted(i);
