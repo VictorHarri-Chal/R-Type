@@ -41,8 +41,6 @@ set(SRC_ECS
     ${ECSROOT}Component/Drawable2D/drawable2d.hpp
     ${ECSROOT}Component/Projectile/projectile.cpp
     ${ECSROOT}Component/Projectile/projectile.hpp
-    ${ECSROOT}Component/Sound/sound.cpp
-    ${ECSROOT}Component/Sound/sound.hpp
     ${ECSROOT}Component/Transform/transform.cpp
     ${ECSROOT}Component/Transform/transform.hpp
     ${ECSROOT}Component/IComponent.hpp

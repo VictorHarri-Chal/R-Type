@@ -30,7 +30,7 @@ namespace rtype
                  *
                  * @param type Type of the projectile
                  */
-                Projectile(rtype::ecs::component::projectileType type, float damage);
+                Projectile(rtype::ecs::component::projectileType type, float damage, bool isPoweredUp);
                 /**
                  * @brief Destroy the Projectile object
                  *
@@ -61,6 +61,20 @@ namespace rtype
                  *
                  */
                 void setDamage(float damage);
+                /**
+                 * @brief Get if the projectile powered up.
+                 *
+                 * @return value.
+                 */
+                bool getIsPoweredUp() const;
+                /**
+                 * @brief Setter to set if the projectile is powered up.
+                 * 
+                 * @param isPoweredUp value.
+                 *
+                 */
+                void setIsPoweredUp(bool isPoweredUp);
+
 
               private:
                 /**
@@ -73,6 +87,11 @@ namespace rtype
                  * 
                  */
                 float _damage;
+                /**
+                 * @brief Is shot powered up ?
+                 * 
+                 */
+                bool _isPoweredUp;
             };
         } // namespace component
     }     // namespace ecs

@@ -43,9 +43,9 @@ namespace rtype
                  * @return rtype::ecs::component::shipType  Ship Type of the component
                  */
                 rtype::ecs::component::shipType getShipType() const;
-
               protected:
               private:
+                bool _isInvisible;
 
             };
         } // namespace component
