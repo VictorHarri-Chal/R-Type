@@ -214,11 +214,6 @@ namespace rtype
              * 
              */
             void updateEntities(rtype::Game *gameEngine);
-            /**
-             * @brief Clock to read the script
-             * 
-             */
-            sf::Clock _clockScriptCall;
         };
     }
 }

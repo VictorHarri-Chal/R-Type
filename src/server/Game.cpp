@@ -297,13 +297,13 @@ void rtype::Game::spawnEnemiesFromScript(void)
         _script.restartClock();
     }
     if (_clockScriptCall.getElapsedTime() >= sf::seconds(1.0f)) {
-        for (size_t i = 0; i < _script.getLines().size(); i++) {
-            if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
-                if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)))) {
-                    // std::cout << "x = " << _script.getLines().at(i).at(1) << " y = " << _script.getLines().at(i).at(2) << std::endl;
-                    generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
-                    static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
-                    _script.spriteIsPrinted(i);
+        for (size_t i = 0; i < _script.getWave(this->_currWave).size(); i++) {
+            if (_script.getWave(this->_currWave).at(i).size() == 6 && _script.getWave(this->_currWave).at(i).at(5) && (_script.getWave(this->_currWave).at(i).at(1) == _currWave)) {
+                if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getWave(this->_currWave).at(i).at(0)))) {
+                    // std::cout << "x = " << _script.getWave(this->_currWave).at(i).at(1) << " y = " << _script.getWave(this->_currWave).at(i).at(2) << std::endl;
+                    generateEnemy(_script.getWave(this->_currWave).at(i).at(1),  _script.getWave(this->_currWave).at(i).at(2),
+                    static_cast<float>(_script.getWave(this->_currWave).at(i).at(3)), static_cast<float>(_script.getWave(this->_currWave).at(i).at(4)));
+                    _script.spriteIsPrinted(this->_currWave, i);
                 }
             }
         }

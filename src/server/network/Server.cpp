@@ -268,8 +268,8 @@ std::string Server::createPaquet(message::request request, std::string value)
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
     boost::archive::binary_oarchive oa(ss);
 
-    // std::cout << "Sending message: ";
-    // msg.print();
+    std::cout << "Sending message: ";
+    msg.print();
     oa << msg;
     ss.flush();
     return (str);
