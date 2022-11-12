@@ -7,10 +7,11 @@
 
 #include "projectile.hpp"
 
-rtype::ecs::component::Projectile::Projectile(rtype::ecs::component::projectileType type, float damage)
+rtype::ecs::component::Projectile::Projectile(rtype::ecs::component::projectileType type, float damage, bool isPoweredUp)
 {
     _projectileType = type;
     _damage = damage;
+    _isPoweredUp = isPoweredUp;
 }   
 
 rtype::ecs::component::compoType rtype::ecs::component::Projectile::getType() const
@@ -31,4 +32,14 @@ float rtype::ecs::component::Projectile::getDamage() const
 void rtype::ecs::component::Projectile::setDamage(float damage)
 {
     this->_damage = damage;
+}
+
+bool rtype::ecs::component::Projectile::getIsPoweredUp() const
+{
+    return (this->_isPoweredUp);
+}
+
+void rtype::ecs::component::Projectile::setIsPoweredUp(bool isPoweredUp)
+{
+    this->_isPoweredUp = isPoweredUp;
 }

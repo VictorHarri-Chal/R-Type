@@ -73,6 +73,38 @@ namespace rtype
             */
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
             /**
+             * @brief Check if surface is clicked
+             *
+             * @param x X position of the surface
+             * @param y Y position of the surface
+             * @param width Width of the surface
+             * @param height Height of the surface
+             * @param event Event to be handled
+             * @param gameEngine Game engine
+             * @return true If surface is clicked
+             * @return false If surface is not clicked
+             */
+            bool isSurfaceClicked(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
+            /**
+             * @brief Check if surface is hovered
+             *
+             * @param x X position of the surface
+             * @param y Y position of the surface
+             * @param width Width of the surface
+             * @param height Height of the surface
+             * @param event Event to be handled
+             * @param gameEngine Game engine
+             * @return true If surface is hovered
+             * @return false If surface is not hovered
+             */
+            bool isMouseOnSurface(
+                float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
+            /**
+            * @brief Init of the sprite of the pop up
+            * 
+            */
+            void popUp(void);
+            /**
             * @brief Save the paralax assets x and y throught scenes
             * 
             */
@@ -93,6 +125,11 @@ namespace rtype
              *
              */
             std::vector<bool> _buttons;
+            /**
+             * @brief Is the player in the class pop up
+             *
+             */
+            bool _isPopUpOpen;
         };
     }
 }

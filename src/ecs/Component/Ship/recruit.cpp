@@ -9,7 +9,7 @@
 
 rtype::ecs::component::Recruit::Recruit()
 {
-    _health = 3.0f;
+    _health = 4.0f;
     _maxHealth = _health;
     _damage = 1.0f;
     _speed = 5.0f;
