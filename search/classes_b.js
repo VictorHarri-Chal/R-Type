@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['optionsscreen_376',['OptionsScreen',['../classrtype_1_1menu_1_1OptionsScreen.html',1,'rtype::menu']]]
+  ['optionsscreen_388',['OptionsScreen',['../classrtype_1_1menu_1_1OptionsScreen.html',1,'rtype::menu']]]
 ];

@@ -113,6 +113,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abd0adf8fd41810b5c1a2787bb20eafd5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MenuScreen.html#abd0adf8fd41810b5c1a2787bb20eafd5">isMouseOnButton</a> (size_t index, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event) override</td></tr>
 <tr class="memdesc:abd0adf8fd41810b5c1a2787bb20eafd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if mouse is on button.  <a href="classrtype_1_1menu_1_1MenuScreen.html#abd0adf8fd41810b5c1a2787bb20eafd5">More...</a><br /></td></tr>
 <tr class="separator:abd0adf8fd41810b5c1a2787bb20eafd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae482891a42b96a2df06052f505cd111b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MenuScreen.html#ae482891a42b96a2df06052f505cd111b">isSurfaceClicked</a> (float x, float y, float width, float height, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
+<tr class="memdesc:ae482891a42b96a2df06052f505cd111b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if surface is clicked.  <a href="classrtype_1_1menu_1_1MenuScreen.html#ae482891a42b96a2df06052f505cd111b">More...</a><br /></td></tr>
+<tr class="separator:ae482891a42b96a2df06052f505cd111b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae45d20d3e3df6ca09d9a5a4978c5c318"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MenuScreen.html#ae45d20d3e3df6ca09d9a5a4978c5c318">isMouseOnSurface</a> (float x, float y, float width, float height, <a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;event, <a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
+<tr class="memdesc:ae45d20d3e3df6ca09d9a5a4978c5c318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if surface is hovered.  <a href="classrtype_1_1menu_1_1MenuScreen.html#ae45d20d3e3df6ca09d9a5a4978c5c318">More...</a><br /></td></tr>
+<tr class="separator:ae45d20d3e3df6ca09d9a5a4978c5c318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c44a062f2ba891b249ae1f6877f4ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MenuScreen.html#ac7c44a062f2ba891b249ae1f6877f4ae">popUp</a> (void)</td></tr>
+<tr class="memdesc:ac7c44a062f2ba891b249ae1f6877f4ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init of the sprite of the pop up.  <a href="classrtype_1_1menu_1_1MenuScreen.html#ac7c44a062f2ba891b249ae1f6877f4ae">More...</a><br /></td></tr>
+<tr class="separator:ac7c44a062f2ba891b249ae1f6877f4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a463ebdb72b612c62b329e83f07c5a3f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1MenuScreen.html#a463ebdb72b612c62b329e83f07c5a3f0">saveParalax</a> (void) override</td></tr>
 <tr class="memdesc:a463ebdb72b612c62b329e83f07c5a3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the paralax assets x and y throught scenes.  <a href="classrtype_1_1menu_1_1MenuScreen.html#a463ebdb72b612c62b329e83f07c5a3f0">More...</a><br /></td></tr>
 <tr class="separator:a463ebdb72b612c62b329e83f07c5a3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -365,6 +374,142 @@ false If mouse is not on button </dd></dl>
 
 </div>
 </div>
+<a id="ae45d20d3e3df6ca09d9a5a4978c5c318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae45d20d3e3df6ca09d9a5a4978c5c318">&#9670;&nbsp;</a></span>isMouseOnSurface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rtype::menu::MenuScreen::isMouseOnSurface </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *&#160;</td>
+          <td class="paramname"><em>gameEngine</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if surface is hovered. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X position of the surface </td></tr>
+    <tr><td class="paramname">y</td><td>Y position of the surface </td></tr>
+    <tr><td class="paramname">width</td><td>Width of the surface </td></tr>
+    <tr><td class="paramname">height</td><td>Height of the surface </td></tr>
+    <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
+    <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If surface is hovered </dd>
+<dd>
+false If surface is not hovered </dd></dl>
+
+</div>
+</div>
+<a id="ae482891a42b96a2df06052f505cd111b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae482891a42b96a2df06052f505cd111b">&#9670;&nbsp;</a></span>isSurfaceClicked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rtype::menu::MenuScreen::isSurfaceClicked </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrtype_1_1Event.html">rtype::Event</a> &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *&#160;</td>
+          <td class="paramname"><em>gameEngine</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if surface is clicked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X position of the surface </td></tr>
+    <tr><td class="paramname">y</td><td>Y position of the surface </td></tr>
+    <tr><td class="paramname">width</td><td>Width of the surface </td></tr>
+    <tr><td class="paramname">height</td><td>Height of the surface </td></tr>
+    <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
+    <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If surface is clicked </dd>
+<dd>
+false If surface is not clicked </dd></dl>
+
+</div>
+</div>
 <a id="ab47c0c26d93e5c054e7d726a69376421"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab47c0c26d93e5c054e7d726a69376421">&#9670;&nbsp;</a></span>paralax()</h2>
 
@@ -392,6 +537,26 @@ false If mouse is not on button </dd></dl>
 <p>Handle the background paralax. </p>
 
 <p>Implements <a class="el" href="classrtype_1_1IScreen.html#a9db27ffad642e5e54a3950fe195dff6f">rtype::IScreen</a>.</p>
+
+</div>
+</div>
+<a id="ac7c44a062f2ba891b249ae1f6877f4ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c44a062f2ba891b249ae1f6877f4ae">&#9670;&nbsp;</a></span>popUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::menu::MenuScreen::popUp </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Init of the sprite of the pop up. </p>
 
 </div>
 </div>
