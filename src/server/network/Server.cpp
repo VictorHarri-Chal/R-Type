@@ -200,12 +200,14 @@ void Server::sendAllEntities()
     rtype::ecs::component::Transform *transformCompo;
 
     while(true) {
-        if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 45.0f)) {
-            this->_game->destroySprites();
+        if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 20.0f)) {
+            this->_game->spawnEnemiesFromScript();
             this->_game->update();
+            this->_game->destroySprites();
             nbEntity = this->_game->getWorld()->getNbEntities();
             for (size_t i = 0; i < nbEntity; i++) {
                 entity = std::to_string(i) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
+                std::cout << "entity type " << this->_game->getWorld()->getEntity(i)->getEntityType() << std::endl;
                 for (auto client : clients)
                     _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
                 entity.clear();
@@ -231,7 +233,6 @@ void Server::gameLoop(message msg, size_t playerId)
     }
     std::cout << "Game Loop" << std::endl;
     ret = _game->handleEvents(msg.body, playerId);
-
     if (ret == 1) {
         SendToAll(message::request::SHOOT, std::to_string(playerId));
         _game->createShoot(playerId);

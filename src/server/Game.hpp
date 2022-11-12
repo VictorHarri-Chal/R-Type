@@ -12,6 +12,7 @@
 
 #include "../ecs/world.hpp"
 #include "network/Server.hpp"
+#include "../script/Script.hpp"
 
 namespace rtype
 {    class Game {
@@ -64,6 +65,7 @@ namespace rtype
          */
         rtype::ecs::world::World *getWorld() const { return _world; };
         void destroySprites(void);
+        void spawnEnemiesFromScript(void);
         private:
         /**
          * @brief Clock for the game
@@ -81,6 +83,23 @@ namespace rtype
          * 
          */
         rtype::ecs::world::World *_world;
-        // Server *_server;
+        /**
+         * @brief Current wave in game
+         *
+         */
+        int _currWave;
+        /**
+         * @brief Clock to read the script
+         * 
+         */
+        sf::Clock _clockScriptCall;
+        /**
+         * @brief Script object to make enemies spawn
+         *
+         */
+        rtype::Script _script;
+        void printWaveNumber(void);
+        void generateEnemy(int currWave, int shipType, float x, float y);
+        sf::Time getWaveDuration(void);
     };
 }

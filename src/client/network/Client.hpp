@@ -19,6 +19,7 @@
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <regex>
+#include <mutex>
 
 using boost::asio::ip::udp;
 
@@ -128,6 +129,8 @@ class Client {
     entityTmp getEntitiesAt(size_t pos) const;
     std::vector<size_t> getShoots() const;
     void popShoots();
+    void lockMutex();
+    void unlockMutex();
   private:
     /**
      * @brief IO Service
@@ -202,4 +205,5 @@ class Client {
      * @param body Body for the entity
      */
     void addEntity(std::string body);
+    std::mutex mtx;
 };
