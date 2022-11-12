@@ -201,6 +201,11 @@ namespace rtype
 
             size_t _nbPlayers;
             void updateEntities(rtype::Game *gameEngine);
+            /**
+             * @brief Clock to read the script
+             * 
+             */
+            sf::Clock _clockScriptCall;
         };
     }
 }

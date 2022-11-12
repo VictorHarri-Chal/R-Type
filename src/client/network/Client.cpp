@@ -37,16 +37,23 @@ void Client::handleReceive(const boost::system::error_code &error, std::size_t b
 {
     if (!error || error == boost::asio::error::message_size) {
         message msg = getStreamData(bytesTransferred);
-        if (msg.type == message::INROOM)
+        if (msg.type == message::INROOM) {
+            this->mtx.lock();
             this->_actualNbPeopleInRoom = std::stoi(msg.body);
+            this->mtx.unlock();
+        }
         if (msg.type == message::LAUNCH) {
+            this->mtx.lock();
             this->_gameStart = true;
             this->_playerNumber = msg.body;
+            this->mtx.unlock();
         }
         if (msg.type == message::ENTITY)
             addEntity(msg.body);
         if (msg.type == message::SHOOT) {
+            this->mtx.lock();
             _shoots.push_back(std::stoi(msg.body));
+            this->mtx.unlock();
             std::cout << "Shoot ";
             msg.print();
         }
@@ -137,8 +144,10 @@ void Client::popEntity()
 
 void Client::addEntity(std::string body)
 {
+    this->mtx.lock();
     std::regex playerTemplate("(\\d);(([+-]?[0-9]*[.])?[0-9]+);(([+-]?[0-9]*[.])?[0-9]+)");
     std::smatch sm;
+
 
     std::regex_search(body, sm, playerTemplate);
     entityTmp newEntity;
@@ -146,4 +155,15 @@ void Client::addEntity(std::string body)
     newEntity.posX = std::stof(sm.str(2));
     newEntity.posY = std::stof(sm.str(4));
     this->entities.push_back(newEntity);
+    this->mtx.unlock();
+}
+
+void Client::lockMutex()
+{
+    this->mtx.lock();
+}
+
+void Client::unlockMutex()
+{
+    this->mtx.unlock();
 }

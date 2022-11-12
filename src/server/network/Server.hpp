@@ -10,18 +10,17 @@
 #include <boost/array.hpp>
 #include <boost/bind/bind.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <boost/thread/thread.hpp>
+#include <fstream>
+#include "../../utils/Message.hpp"
+#include "../../utils/Rooms.hpp"
+#include "../Game.hpp"
+#include "Client.hpp"
+#include "SafeQueue.hpp"
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/shared_ptr.hpp>
-#include <fstream>
-#include "../../utils/Message.hpp"
-#include "../../utils/Rooms.hpp"
-#include "Client.hpp"
-#include "SafeQueue.hpp"
-#include "../Game.hpp"
-#include <boost/thread/thread.hpp>
-
 
 /**
  * @brief map of all the clients
@@ -57,7 +56,7 @@ class Server {
     void sendMessage(message::request type, udp::endpoint targetEndpoint, std::string value = "");
     /**
      * @brief Get the Room object
-     * 
+     *
      * @return room_t The room object
      */
     room_t getRoom() const;
@@ -88,7 +87,7 @@ class Server {
     void SendToAllInRoom(message::request type, size_t actualId, std::string value = "");
     /**
      * @brief Handle the server loop
-     * 
+     *
      * @param msg Message received
      * @param actualId Id of the client
      */
@@ -171,7 +170,7 @@ class Server {
     size_t _nbClientsInRoom;
     /**
      * @brief Start the game
-     * 
+     *
      */
     void startGame();
     /**
@@ -179,15 +178,16 @@ class Server {
      *
      */
     rtype::Game *_game;
+
   private:
     /**
      * @brief Get all the players in the room
-     * 
+     *
      * @return size_t Number of players in the room
      */
     size_t getPlayersInRoom();
 
-    private:
+  private:
     /**
      * @brief Start receiving
      *
@@ -242,7 +242,7 @@ class Server {
     SafeQueue<message> _queue;
     /**
      * @brief Room object
-     * 
+     *
      */
     room_t _room;
     /**
@@ -273,14 +273,15 @@ class Server {
     void sendAllEntities();
     /**
      * @brief Clock for game
-     * 
+     *
      */
     sf::Clock _clock;
     /**
      * @brief Thread for game
-     * 
+     *
      */
     boost::thread t1;
+    std::mutex mtx;
 };
 /**
  * @brief HandleCommand class who execut command

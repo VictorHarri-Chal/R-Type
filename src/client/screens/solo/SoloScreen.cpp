@@ -13,7 +13,7 @@
 #include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::SoloScreen::SoloScreen(): _currWave(6), _isGameEnded(false), _window(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(0), _isGameEnded(false), _window(false)
 {
 }
 
