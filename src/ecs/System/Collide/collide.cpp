@@ -29,6 +29,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
             for (size_t y = 0; y < entities.size(); y++) {
                 if (entities[y] != entities[x] && entities[y]->hasCompoType(rtype::ecs::component::compoType::COLLIDE) &&
                     entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->getCollide()) {
+                    std::cout << "1" << std::endl;
                     auto transformCompo2 = entities[y]->getComponent<ecs::component::Transform>(ecs::component::compoType::TRANSFORM);
                     auto drawableCompo2 = entities[y]->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
                     sf::Sprite otherSprite;
@@ -38,7 +39,9 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                     if (drawableCompo2->getIsRect())
                         otherSprite.setTextureRect(drawableCompo2->getRect());
                     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
+                        std::cout << "2" << std::endl;
                         if (entities[x]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::ENEMY) {
+                            std::cout << "3" << std::endl;
                             auto projectileCompo = entities[x]->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE);
                             auto shipCompo = entities[y]->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
                             shipCompo->setHealth(shipCompo->getHealth() - projectileCompo->getDamage());
@@ -46,13 +49,14 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo->setAlive(false);
                             if (shipCompo->getHealth() <= 0) {
+                                std::cout << "4" << std::endl;
                                 entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                                 ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                                 aliveCompo2->setAlive(false);
                             }
                             return;
                         } else if (entities[y]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::ENEMY) {
-                           std::cout << "1" << std::endl;
+                            std::cout << "5" << std::endl;
                             auto projectileCompo = entities[y]->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE);
                             auto shipCompo = entities[x]->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
                             shipCompo->setHealth(shipCompo->getHealth() - projectileCompo->getDamage());
@@ -67,6 +71,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             return;
                         } else if ((entities[x]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && (entities[y]->getEntityType() == rtype::ecs::entity::PLAYER1 ||
                         entities[y]->getEntityType() == rtype::ecs::entity::PLAYER2 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER4))) {
+                            std::cout << "6" << std::endl;
                             auto projectileCompo = entities[x]->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE);
                             auto shipCompo = entities[y]->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
                             shipCompo->setHealth(shipCompo->getHealth() - projectileCompo->getDamage());
@@ -81,6 +86,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             return;
                         } else if (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && (entities[x]->getEntityType() == rtype::ecs::entity::PLAYER1 ||
                         entities[x]->getEntityType() == rtype::ecs::entity::PLAYER2 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER4)) {
+                            std::cout << "7" << std::endl;
                             auto projectileCompo = entities[y]->getComponent<ecs::component::Projectile>(ecs::component::compoType::PROJECTILE);
                             auto shipCompo = entities[x]->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
                             shipCompo->setHealth(shipCompo->getHealth() - projectileCompo->getDamage());
@@ -95,6 +101,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             return;
                         } else if ((entities[x]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[y]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE) ||
                         (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY_PROJECTILE && entities[x]->getEntityType() == rtype::ecs::entity::ALLY_PROJECTILE)) {
+                            std::cout << "8" << std::endl;
                             entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
@@ -106,6 +113,7 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                         entities[y]->getEntityType() == rtype::ecs::entity::PLAYER2 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER4)) ||
                         (entities[y]->getEntityType() == rtype::ecs::entity::ENEMY && (entities[x]->getEntityType() == rtype::ecs::entity::PLAYER1 ||
                         entities[x]->getEntityType() == rtype::ecs::entity::PLAYER2 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER4))) {
+                            std::cout << "9" << std::endl;
                             entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
@@ -115,12 +123,14 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             return;
                         } else if ((entities[x]->getEntityType() == rtype::ecs::entity::PLAYER1 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER2 ||
                         entities[x]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER4) && entities[y]->getEntityType() == rtype::ecs::entity::PARTICLE) {
+                            std::cout << "10" << std::endl;
                             entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             ecs::component::Alive *aliveCompo = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo->setAlive(false);
                             return;
                         } else if ((entities[y]->getEntityType() == rtype::ecs::entity::PLAYER1 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER2 ||
                         entities[y]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER4) && entities[x]->getEntityType() == rtype::ecs::entity::PARTICLE) {
+                            std::cout << "11" << std::endl;
                             entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo2->setAlive(false);
