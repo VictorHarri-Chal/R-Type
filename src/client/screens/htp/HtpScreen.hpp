@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** OptionsScreen.hpp
+** HtpScreen.hpp
 */
 
 #pragma once
@@ -22,18 +22,18 @@ namespace rtype
          * @brief Class for the Options Screen
          *
          */
-        class OptionsScreen : public IScreen {
+        class HtpScreen : public IScreen {
           public:
             /**
              * @brief Construct a new Options Screen object
              *
              */
-            OptionsScreen();
+            HtpScreen();
             /**
              * @brief Destroy the Options Screen object
              *
              */
-            ~OptionsScreen() = default;
+            ~HtpScreen() = default;
             /**
              * @brief Init the Options Screen
              *

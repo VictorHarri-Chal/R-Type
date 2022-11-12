@@ -125,6 +125,24 @@ void rtype::ecs::system::CollideSystem::update(std::vector<rtype::ecs::entity::E
                             ecs::component::Alive *aliveCompo2 = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
                             aliveCompo2->setAlive(false);
                             return;
+                        } else if ((entities[x]->getEntityType() == rtype::ecs::entity::PLAYER1 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER2 ||
+                        entities[x]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[x]->getEntityType() == rtype::ecs::entity::PLAYER4) && entities[y]->getEntityType() == rtype::ecs::entity::HEALTHBONUS) {
+                            ecs::component::IShip *shipComponent = entities[x]->getComponent<ecs::component::IShip>(rtype::ecs::component::compoType::SHIP);
+                            shipComponent->setMaxHealth(shipComponent->getMaxHealth() + 2);
+                            shipComponent->setHealth(shipComponent->getHealth() + 2);
+                            entities[y]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
+                            ecs::component::Alive *aliveCompo = entities[y]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
+                            aliveCompo->setAlive(false);
+                            return;
+                        } else if ((entities[y]->getEntityType() == rtype::ecs::entity::PLAYER1 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER2 ||
+                        entities[y]->getEntityType() == rtype::ecs::entity::PLAYER3 || entities[y]->getEntityType() == rtype::ecs::entity::PLAYER4) && entities[x]->getEntityType() == rtype::ecs::entity::HEALTHBONUS) {
+                            ecs::component::IShip *shipComponent = entities[y]->getComponent<ecs::component::IShip>(rtype::ecs::component::compoType::SHIP);
+                            shipComponent->setMaxHealth(shipComponent->getMaxHealth() + 2);
+                            shipComponent->setHealth(shipComponent->getHealth() + 2);
+                            entities[x]->getComponent<rtype::ecs::component::Collide>(rtype::ecs::component::compoType::COLLIDE)->setCollide(false);
+                            ecs::component::Alive *aliveCompo2 = entities[x]->getComponent<ecs::component::Alive>(ecs::component::compoType::ALIVE);
+                            aliveCompo2->setAlive(false);
+                            return;
                         }
                     }
                 }

@@ -98,6 +98,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}core/CoreScreen.hpp
     ${SCREENSROOT}solo/SoloScreen.cpp
     ${SCREENSROOT}solo/SoloScreen.hpp
+    ${SCREENSROOT}htp/HtpScreen.cpp
+    ${SCREENSROOT}htp/HtpScreen.hpp
 )
 
 set(SRC_GAME

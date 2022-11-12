@@ -153,6 +153,8 @@ namespace rtype
             * 
             * @param x Position x
             * @param y Position y
+            * @param scale Size of the particle
+            * @param type 1 = death particle, 2 = hit particle from enemies, 3 = hit particle from allies
             */
             void createParticle(float x, float y, float scale, int type);
             /**
@@ -160,6 +162,13 @@ namespace rtype
             * 
             */
             void handleHud(void);
+            /**
+            * @brief Create a collectable health bonus
+            * 
+            * @param x Position x
+            * @param y Position y
+            */
+            void releaseHealthBonus(float x, float y);
 
           private:
             /**
@@ -182,6 +191,10 @@ namespace rtype
              * 
              */
             bool _isGameEnded;
+            /**
+             * @brief Current window
+             * 
+             */
             bool _window;
             /**
              * @brief Clock to read the script

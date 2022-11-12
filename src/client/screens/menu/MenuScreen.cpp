@@ -137,6 +137,10 @@ int rtype::menu::MenuScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         saveParalax();
         return 6;
     }
+    if (isButtonPressed(8, gameEngine, event)) {
+        saveParalax();
+        return 3;
+    }
     if (isButtonPressed(10, gameEngine, event)) {
         saveParalax();
         return 4;
