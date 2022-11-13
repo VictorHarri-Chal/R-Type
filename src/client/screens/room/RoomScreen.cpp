@@ -99,6 +99,12 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         player->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);
         player->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
         this->_world.addEntity(player);
+        rtype::ecs::entity::Entity *nickname = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+        if (nickname == nullptr)
+            throw ScreensExceptions("RoomScreen: Error while creating Entity (9)");
+        nickname->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 360.f, 120.f + (i * 100.f), 0.0f, 0.0f);
+        nickname->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Player " + std::to_string(i), 40.f, sf::Color::Blue, true);
+        this->_world.addEntity(nickname);
     }
     if (isButtonPressed(5, gameEngine, event)) {
         _nbPlayers--;
@@ -178,20 +184,20 @@ bool rtype::menu::RoomScreen::isMouseOnSurface(float x, float y, float width, fl
 
 void rtype::menu::RoomScreen::cleanPlayers(void)
 {
-    if (_world.getEntities().size() == 10) {
-        _world.removeEntity(9);
-    } else if (_world.getEntities().size() == 11) {
+    if (_world.getEntities().size() == 11) {
         _world.removeEntity(10);
-        _world.removeEntity(9);
     } else if (_world.getEntities().size() == 12) {
         _world.removeEntity(11);
         _world.removeEntity(10);
-        _world.removeEntity(9);
     } else if (_world.getEntities().size() == 13) {
         _world.removeEntity(12);
         _world.removeEntity(11);
         _world.removeEntity(10);
-        _world.removeEntity(9);
+    } else if (_world.getEntities().size() == 14) {
+        _world.removeEntity(13);
+        _world.removeEntity(12);
+        _world.removeEntity(11);
+        _world.removeEntity(10);
     }
 }
 
