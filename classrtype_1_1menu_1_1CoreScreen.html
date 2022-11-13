@@ -135,10 +135,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2bf27d338ce6501d951c8eb3e2072b70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the player shooting depending of the event.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a2bf27d338ce6501d951c8eb3e2072b70">More...</a><br /></td></tr>
 <tr class="separator:a2bf27d338ce6501d951c8eb3e2072b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8822a1eefaf013e49a71048f0a970204"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204">createMissiles</a> (<a class="el" href="classrtype_1_1Game.html">rtype::Game</a> *gameEngine)</td></tr>
-<tr class="memdesc:a8822a1eefaf013e49a71048f0a970204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy sprites who goes out of the screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204">More...</a><br /></td></tr>
+<tr class="memdesc:a8822a1eefaf013e49a71048f0a970204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create missiles.  <a href="classrtype_1_1menu_1_1CoreScreen.html#a8822a1eefaf013e49a71048f0a970204">More...</a><br /></td></tr>
 <tr class="separator:a8822a1eefaf013e49a71048f0a970204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adda3bcda7180a4360ba09fd3a8eca49b"><td class="memItemLeft" align="right" valign="top"><a id="adda3bcda7180a4360ba09fd3a8eca49b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroySprites</b> (void)</td></tr>
+<tr class="memitem:adda3bcda7180a4360ba09fd3a8eca49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#adda3bcda7180a4360ba09fd3a8eca49b">destroySprites</a> (void)</td></tr>
+<tr class="memdesc:adda3bcda7180a4360ba09fd3a8eca49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy sprites who goes out of the screen.  <a href="classrtype_1_1menu_1_1CoreScreen.html#adda3bcda7180a4360ba09fd3a8eca49b">More...</a><br /></td></tr>
 <tr class="separator:adda3bcda7180a4360ba09fd3a8eca49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec8cbcfdab922849077ecb10016fbc48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1menu_1_1CoreScreen.html#aec8cbcfdab922849077ecb10016fbc48">manageEnemiesShooting</a> (void)</td></tr>
 <tr class="memdesc:aec8cbcfdab922849077ecb10016fbc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle automatic shooting for all enemies.  <a href="classrtype_1_1menu_1_1CoreScreen.html#aec8cbcfdab922849077ecb10016fbc48">More...</a><br /></td></tr>
@@ -239,7 +239,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>destroySprites</b> (v
       </table>
 </div><div class="memdoc">
 
-<p>Destroy sprites who goes out of the screen. </p>
+<p>Create missiles. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -277,6 +283,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>destroySprites</b> (v
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="adda3bcda7180a4360ba09fd3a8eca49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adda3bcda7180a4360ba09fd3a8eca49b">&#9670;&nbsp;</a></span>destroySprites()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::menu::CoreScreen::destroySprites </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy sprites who goes out of the screen. </p>
 
 </div>
 </div>
@@ -702,8 +728,6 @@ false If mouse is not on button </dd></dl>
 <p>Handle the player movement depending of the event. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">transformCompo</td><td>Component transform of the player </td></tr>
-    <tr><td class="paramname">shipCompo</td><td>Component ship of the player </td></tr>
     <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
     <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine </td></tr>
   </table>
@@ -747,7 +771,6 @@ false If mouse is not on button </dd></dl>
 <p>Handle the player shooting depending of the event. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">transformCompo</td><td>Component transform of the player </td></tr>
     <tr><td class="paramname">shipCompo</td><td>Component ship of the player </td></tr>
     <tr><td class="paramname">event</td><td><a class="el" href="structrtype_1_1Event.html">Event</a> to be handled </td></tr>
     <tr><td class="paramname">gameEngine</td><td><a class="el" href="classrtype_1_1Game.html" title="Game class.">Game</a> engine </td></tr>

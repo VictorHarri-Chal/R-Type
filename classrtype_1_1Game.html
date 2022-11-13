@@ -155,8 +155,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a50e6dd7c1cb4f316ef99cafc2b6651a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4">update</a> ()</td></tr>
 <tr class="memdesc:a50e6dd7c1cb4f316ef99cafc2b6651a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update for the server loop.  <a href="classrtype_1_1Game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4">More...</a><br /></td></tr>
 <tr class="separator:a50e6dd7c1cb4f316ef99cafc2b6651a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecc0a2f76840bb0f80f5fd5c5cf93301"><td class="memItemLeft" align="right" valign="top"><a id="aecc0a2f76840bb0f80f5fd5c5cf93301"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createShoot</b> (size_t playerId)</td></tr>
+<tr class="memitem:aecc0a2f76840bb0f80f5fd5c5cf93301"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Game.html#aecc0a2f76840bb0f80f5fd5c5cf93301">createShoot</a> (size_t playerId)</td></tr>
+<tr class="memdesc:aecc0a2f76840bb0f80f5fd5c5cf93301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Shoot.  <a href="classrtype_1_1Game.html#aecc0a2f76840bb0f80f5fd5c5cf93301">More...</a><br /></td></tr>
 <tr class="separator:aecc0a2f76840bb0f80f5fd5c5cf93301"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91aa460e86a4b24859814f8d59dc38b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Game.html#a91aa460e86a4b24859814f8d59dc38b7">handleEvents</a> (std::string direction, size_t playerId)</td></tr>
 <tr class="memdesc:a91aa460e86a4b24859814f8d59dc38b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle event for the game.  <a href="classrtype_1_1Game.html#a91aa460e86a4b24859814f8d59dc38b7">More...</a><br /></td></tr>
@@ -167,8 +167,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>createShoot</b> (size
 <tr class="memitem:a096b0673a68711339acc6722e14d99fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1ecs_1_1world_1_1World.html">rtype::ecs::world::World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Game.html#a096b0673a68711339acc6722e14d99fd">getWorld</a> () const</td></tr>
 <tr class="memdesc:a096b0673a68711339acc6722e14d99fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the World object.  <a href="classrtype_1_1Game.html#a096b0673a68711339acc6722e14d99fd">More...</a><br /></td></tr>
 <tr class="separator:a096b0673a68711339acc6722e14d99fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5656e7d556be0caab77100f063fce46b"><td class="memItemLeft" align="right" valign="top"><a id="a5656e7d556be0caab77100f063fce46b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>destroySprites</b> (void)</td></tr>
+<tr class="memitem:a5656e7d556be0caab77100f063fce46b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Game.html#a5656e7d556be0caab77100f063fce46b">destroySprites</a> (void)</td></tr>
+<tr class="memdesc:a5656e7d556be0caab77100f063fce46b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy sprites when they are out of the screen.  <a href="classrtype_1_1Game.html#a5656e7d556be0caab77100f063fce46b">More...</a><br /></td></tr>
 <tr class="separator:a5656e7d556be0caab77100f063fce46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -269,6 +269,32 @@ rtype::ecs::component::shipType&#160;</td><td class="memItemRight" valign="botto
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aecc0a2f76840bb0f80f5fd5c5cf93301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecc0a2f76840bb0f80f5fd5c5cf93301">&#9670;&nbsp;</a></span>createShoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::createShoot </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>playerId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a Shoot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playerId</td><td>The player Id </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ab754fac0847903a6a0332697038566af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab754fac0847903a6a0332697038566af">&#9670;&nbsp;</a></span>destroy()</h2>
 
@@ -285,6 +311,26 @@ rtype::ecs::component::shipType&#160;</td><td class="memItemRight" valign="botto
 </div><div class="memdoc">
 
 <p>Destroy all. </p>
+
+</div>
+</div>
+<a id="a5656e7d556be0caab77100f063fce46b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5656e7d556be0caab77100f063fce46b">&#9670;&nbsp;</a></span>destroySprites()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::destroySprites </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy sprites when they are out of the screen. </p>
 
 </div>
 </div>
@@ -373,10 +419,11 @@ rtype::ecs::component::shipType&#160;</td><td class="memItemRight" valign="botto
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">direction</td><td>Direction of the player </td></tr>
-    <tr><td class="paramname">playerId</td><td>Id of the player </td></tr>
+    <tr><td class="paramname">playerId</td><td>Id of the player</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>int The Scene Number </dd></dl>
 
 </div>
 </div>
