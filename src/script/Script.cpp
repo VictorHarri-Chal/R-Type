@@ -7,9 +7,9 @@
 
 #include "Script.hpp"
 
-rtype::Script::Script()
+rtype::Script::Script(bool difficulty)
 {
-    parseScript();
+    parseScript(difficulty);
 }
 
 sf::Clock rtype::Script::getClock() const
@@ -89,10 +89,13 @@ void rtype::Script::spriteIsPrinted(int wave, size_t i)
     }
 }
 
-void rtype::Script::parseScript()
+void rtype::Script::parseScript(bool difficulty)
 {
     std::ifstream file;
-    file.open("src/script/script.txt");
+    if (difficulty)
+        file.open("src/script/script_hard.txt");
+    else if (!difficulty)
+        file.open("src/script/script_easy.txt");
     std::string line;
     std::string value;
     

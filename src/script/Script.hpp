@@ -27,7 +27,12 @@ namespace rtype
          * @brief Construct a new Script object
          *
          */
-        Script();
+        Script() = default;
+        /**
+         * @brief Construct a new Script object with a custom difficulty
+         *
+         */
+        Script(bool difficulty);
         /**
          * @brief Destroy the Script object
          *
@@ -65,8 +70,7 @@ namespace rtype
         * @brief Parse the script to define ennemy spawning
         *
         */
-        void parseScript();
-
+        void parseScript(bool difficulty);
         private:
             std::vector<std::vector<int>> _waveOne;
             std::vector<std::vector<int>> _waveTwo;

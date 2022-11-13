@@ -198,6 +198,8 @@ int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 void rtype::menu::SoloScreen::update(rtype::Game *gameEngine)
 {
     if (!this->_condInit) {
+        rtype::Script script(gameEngine->_difficulty);
+        _script = script;
         initAllyShip(gameEngine);
         this->_condInit = true;
     }

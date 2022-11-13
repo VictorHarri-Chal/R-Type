@@ -71,6 +71,9 @@ namespace rtype
         /// @brief Class type
         rtype::ecs::component::shipType _classType;
 
+        /// @brief Game difficulty
+        bool _difficulty;
+
       private:
         /// @brief Actual screen
         Screens _actualScreen;
