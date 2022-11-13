@@ -186,18 +186,28 @@ void rtype::menu::RoomScreen::cleanPlayers(void)
 {
     if (_world.getEntities().size() == 11) {
         _world.removeEntity(10);
-    } else if (_world.getEntities().size() == 12) {
-        _world.removeEntity(11);
-        _world.removeEntity(10);
+        _world.removeEntity(9);
     } else if (_world.getEntities().size() == 13) {
         _world.removeEntity(12);
         _world.removeEntity(11);
         _world.removeEntity(10);
-    } else if (_world.getEntities().size() == 14) {
+        _world.removeEntity(9);
+    } else if (_world.getEntities().size() == 15) {
+        _world.removeEntity(14);
         _world.removeEntity(13);
         _world.removeEntity(12);
         _world.removeEntity(11);
         _world.removeEntity(10);
+        _world.removeEntity(9);
+    } else if (_world.getEntities().size() == 17) {
+        _world.removeEntity(16);
+        _world.removeEntity(15);
+        _world.removeEntity(14);
+        _world.removeEntity(13);
+        _world.removeEntity(12);
+        _world.removeEntity(11);
+        _world.removeEntity(10);
+        _world.removeEntity(9);
     }
 }
 
