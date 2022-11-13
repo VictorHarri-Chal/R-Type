@@ -66,7 +66,7 @@ namespace rtype
                 /**
                  * @brief Setter to set new max health points.
                  * 
-                 * @param maxhealth The new max health amount.
+                 * @param maxHealth The new max health amount.
                  *
                  */
                 virtual void setMaxHealth(float maxHealth) = 0;

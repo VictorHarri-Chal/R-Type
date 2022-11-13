@@ -126,7 +126,16 @@ class Client {
      * @return entityTmp The temporary entity
      */
     entityTmp getEntitiesAt(size_t pos) const;
+    /**
+     * @brief Get a vector of shoots
+     * 
+     * @return std::vector<size_t> Vector of shoots
+     */
     std::vector<size_t> getShoots() const;
+    /**
+     * @brief Pop shoots from the shoots list
+     * 
+     */
     void popShoots();
   private:
     /**

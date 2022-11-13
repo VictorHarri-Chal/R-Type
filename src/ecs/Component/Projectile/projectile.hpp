@@ -29,6 +29,7 @@ namespace rtype
                  * @brief Construct a new Projectile object
                  *
                  * @param type Type of the projectile
+                 * @param damage Damage of the projectile
                  */
                 Projectile(rtype::ecs::component::projectileType type, float damage, bool isPoweredUp);
                 /**
