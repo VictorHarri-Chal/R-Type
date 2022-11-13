@@ -30,6 +30,7 @@ namespace rtype
                  *
                  * @param type Type of the projectile
                  * @param damage Damage of the projectile
+                 * @param isPoweredUp Is the projectile powered up
                  */
                 Projectile(rtype::ecs::component::projectileType type, float damage, bool isPoweredUp);
                 /**
