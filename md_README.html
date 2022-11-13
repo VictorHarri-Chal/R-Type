@@ -71,20 +71,22 @@ $(function() {
 <div class="textblock"><p><a href="https://github.com/VictorHarri-Chal/R-Type/actions/workflows/build.yml"><img src="https://img.shields.io/github/workflow/status/JohanCDev/Bomberman/Build" alt="Build" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md13"></a>
 :rocket:  What is R-Type ?</h1>
-<p>Our project R-Type is an ersatz of the famous <a href="https://www.youtube.com/watch?v=2xAX6XTzpg0">R-Type</a> arcade game, the purpose of the game is to control a ship and navigate throught the space while shooting and destroying ennemy ships. However, the specifity of our game is that we implemented a multiplayer mode that allow you to play in coop from 2 to 4 players.</p>
+<p>Our project R-Type is an ersatz of the famous <a href="https://www.youtube.com/watch?v=2xAX6XTzpg0">R-Type</a> arcade game, the purpose of the game is to control a ship and navigate throught the space while shooting and destroying ennemy ships.</p>
+<p>However, the specifity of our game is that we implemented a multiplayer mode that allow you to play in coop from 2 to 4 players.</p>
+<p>Our game also dispose of two difficulties, EASY and HARD as well as a WAVE EDITOR in order to modify monster spawning during the game (check SCRIPT.md on the documentation to have more informations about it).</p>
 <h1><a class="anchor" id="autotoc_md14"></a>
 In game preview</h1>
-<p><img src="menu.png" alt="Menu" class="inline"/> </p>
+<p><img src="menu.png" alt="Menu" class="inline"/> <img src="classes.png" alt="Classes" class="inline"/> <img src="game1.png" alt="Game" class="inline"/> <img src="game2.png" alt="Boss" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md15"></a>
 :star:  Pre-compiled version for the impatient ones</h1>
 <p>You can look on the right side of our repository, in the <a href="https://github.com/VictorHarri-Chal/R-Type/releases">Releases</a> section in order to download a pre-compiled version depending on your operating system to play right away</p>
 <h1><a class="anchor" id="autotoc_md16"></a>
 :computer:  Supported Platforms</h1>
-<p>Our project can be played on both <code>Linux</code> and <code>Windows</code> OS as well as <code>MacOS</code></p>
+<p>Our project can be played on both <code>Linux</code> and <code>Windows</code> OS as well as <code>MacOS</code> and <code>Raspberry Pi</code></p>
 <h1><a class="anchor" id="autotoc_md17"></a>
 :hammer:  Building</h1>
 <p>To build our project you need to execute a simple script a the root of our repository.</p>
-<p>It will take care of dowloading the dependencies as well as compiling our code.</p>
+<p>It will take care of dowloading the dependencies as well as compiling the code.</p>
 <div class="fragment"><div class="line"> {/install.sh```}</div>
 <div class="line"> </div>
 <div class="line">After that you need to call the server, you can execute this command: </div>
@@ -93,13 +95,16 @@ In game preview</h1>
 </div><!-- fragment --><p>And then, you can connect as many clients as you wish with this command:</p>
 <div class="fragment"><div class="line"> {/r-type_client```}</div>
 <div class="line"> </div>
+<div class="line">You can specify a ```-g``` after the ```./r-type_client``` if you want to play immediatly in solo mode without going through menus.</div>
+<div class="line"> </div>
+<div class="line">Or you can specify a ```-w``` if you want to have the menus and the solo mode in windowed (fullscreen by default).</div>
+<div class="line"> </div>
 <div class="line">### On Linux, Windows &amp; Mac</div>
 <div class="line">The dependencies are [CMake](https://cmake.org/), [SFML](https://www.sfml-dev.org/index-fr.php) and [Boost](https://boost.org).</div>
 <div class="line"> </div>
 <div class="line"># :video_game:  How to play</div>
-<div class="line">Depending on your setup : (look the settings in game)</div>
 <div class="line"> </div>
-<div class="line">  - No mouse -&gt; Move with the ```ARROW KEYS``` and shoot with ```SPAC</div>
+<div class="line">  Move with the ```ARROW KEYS```, shoot with ```SPACE``` and use your class skill with ```</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
 :page_with_curl:  Documentation</h1>
 <p>To read our project documentation, you need to execute a script in order to open a local web page.</p>
