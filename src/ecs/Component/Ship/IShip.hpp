@@ -110,6 +110,27 @@ namespace rtype
                  */
                 virtual void setCadency(sf::Time cadency) = 0;
                 /**
+                 * @brief Get if the ship skill is active or not
+                 * 
+                 */
+                virtual bool getIfSkillActive() const = 0;
+                /**
+                 * @brief Set if the ship skill is active or not
+                 * 
+                 * @param isSkillActive value
+                 */
+                virtual void setIfSkillActive(bool isSkillActive) = 0;
+                /**
+                 * @brief Get the ship skill duration
+                 * 
+                 */
+                virtual sf::Time getSkillDuration() const = 0;
+                /**
+                 * @brief Get the ship skill cooldown
+                 * 
+                 */
+                virtual sf::Time getSkillCooldown() const = 0;
+                /**
                  * @brief Getter for the current clock.
                  * 
                  * @return The current clock.

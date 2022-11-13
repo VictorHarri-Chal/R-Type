@@ -67,13 +67,17 @@ namespace rtype
 
         /// @brief Game window
         sf::RenderWindow _window;
-        /// @brief Clock
-        sf::Clock _clock;
+
+        /// @brief Class type
+        rtype::ecs::component::shipType _classType;
+
       private:
         /// @brief Actual screen
         Screens _actualScreen;
         /// @brief Game fps
         size_t _fps;
+        /// @brief Local clock
+        sf::Clock _clock;
         /// @brief Intro screen
         rtype::menu::IntroScreen *_intro;
         /// @brief Menu screen

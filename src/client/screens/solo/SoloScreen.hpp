@@ -34,6 +34,13 @@ namespace rtype
              */
             void init() override;
             /**
+             * @brief Init the ally ship with the right class
+             * 
+             * @param gameEngine Game engine
+             * 
+             */
+            void initAllyShip(rtype::Game *gameEngine);
+            /**
              * @brief Update the Core Screen
              * 
              * @param gameEngine Game engine
@@ -102,6 +109,19 @@ namespace rtype
             * @param event Event to be handled
             */
             void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
+            /**
+            * @brief Handle the player class skill
+            * 
+            * @param entityId Id of the player in the _world
+            * @param shipCompo Component ship of the player
+            * @param event Event to be handled
+            */
+            void manageSkill(size_t entityId, ecs::component::IShip *shipCompo, rtype::Event &event);
+            /**
+            * @brief Handle skill duration and end
+            * 
+            */
+            void handleSkillEnd(void);
             /**
             * @brief Destroy sprites who goes out of the screen
             * 
@@ -192,15 +212,26 @@ namespace rtype
              */
             bool _isGameEnded;
             /**
-             * @brief Current window
+             * @brief Boolean to init some things with the gameEngine
              * 
              */
-            bool _window;
+            bool _condInit;
             /**
              * @brief Clock to read the script
              * 
              */
             sf::Clock _clockScriptCall;
+            /**
+             * @brief Clock for the skill duration
+             * 
+             */
+            sf::Clock _clockSkillDuration;
+            /**
+             * @brief Clock for the skill cooldown
+             * 
+             */
+            sf::Clock _clockSkillCooldown;
+
         };
     }
 }

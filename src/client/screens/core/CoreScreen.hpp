@@ -204,6 +204,11 @@ namespace rtype
              */
             sf::Clock _clockScriptCall;
             /**
+             * @brief Boolean to init some things with the gameEngine
+             * 
+             */
+            bool _condInit;
+            /**
              * @brief Number of player in the game
              * 
              */

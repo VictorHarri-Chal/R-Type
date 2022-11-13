@@ -13,7 +13,7 @@
 #include "../../../ecs/System/Particles/particles.hpp"
 #include "../../../exceptions/ScreensExceptions.hpp"
 
-rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false), _window(false)
+rtype::menu::SoloScreen::SoloScreen(): _currWave(1), _isGameEnded(false), _condInit(false)
 {
 }
 
@@ -44,47 +44,139 @@ void rtype::menu::SoloScreen::init()
     if (bg == nullptr)
         throw ScreensExceptions("SoloScreen: Error while creating Entity (1)");
     bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
-    bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (stars == nullptr)
         throw ScreensExceptions("SoloScreen: Error while creating Entity (2)");
     stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
-    stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(stars);
     rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (planets == nullptr)
         throw ScreensExceptions("SoloScreen: Error while creating Entity (3)");
     planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
-    planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(planets);
     rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (bigPlanet == nullptr)
         throw ScreensExceptions("SoloScreen: Error while creating Entity (4)");
     bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
-    bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
-
-    rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
-    if (ship == nullptr)
-        throw ScreensExceptions("SoloScreen: Error while creating Entity (5)");
-    ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
-    ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
-    ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-    ship->addComponent<ecs::component::Tank>(rtype::ecs::component::SHIP);
-    ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
-    this->_world.addEntity(ship);
-
     rtype::ecs::entity::Entity *lifebar = new rtype::ecs::entity::Entity(rtype::ecs::entity::HEART);
     if (lifebar == nullptr)
         throw ScreensExceptions("SoloScreen: Error while creating Entity (6)");
     lifebar->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 45.f, 0.0f, 0.0f);
     lifebar->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 80.f, 6.f, sf::Color::Green, false);
     this->_world.addEntity(lifebar);
+}
+
+void rtype::menu::SoloScreen::initAllyShip(rtype::Game *gameEngine)
+{
+    if (gameEngine->_classType == rtype::ecs::component::shipType::SNIPER) {
+        rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        if (ship == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating Entity (5)");
+        ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 500.f, 0.0f, 0.0f);
+        ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        ship->addComponent<ecs::component::Sniper>(rtype::ecs::component::SHIP);
+        ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(ship);
+        rtype::ecs::entity::Entity *sniperClass = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+        if (sniperClass == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating health bonus entity");
+        sniperClass->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        sniperClass->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        sniperClass->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/powerup.png", true, sf::Vector2f(0.4f, 0.4f), 0, sf::IntRect(519, 725, 261, 256));
+        this->_world.addEntity(sniperClass);
+        rtype::ecs::entity::Entity *cooldown = new rtype::ecs::entity::Entity(rtype::ecs::entity::COOLDOWN);
+        if (cooldown == nullptr)
+            throw ScreensExceptions("IntroScreen: Error while creating cooldown entity");
+        cooldown->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        cooldown->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 104.f, 102.f, sf::Color(255, 255, 255, 150), false);
+        this->_world.addEntity(cooldown);
+    } else if (gameEngine->_classType == rtype::ecs::component::shipType::STEALTHY) {
+        rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        if (ship == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating Entity (5)");
+        ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 500.f, 0.0f, 0.0f);
+        ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        ship->addComponent<ecs::component::Stealthy>(rtype::ecs::component::SHIP);
+        ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(ship);
+        rtype::ecs::entity::Entity *stealthyClass = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+        if (stealthyClass == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating health bonus entity");
+        stealthyClass->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        stealthyClass->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        stealthyClass->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/powerup.png", true, sf::Vector2f(0.4f, 0.4f), 0, sf::IntRect(519, 1347, 261, 256));
+        this->_world.addEntity(stealthyClass);
+        rtype::ecs::entity::Entity *cooldown = new rtype::ecs::entity::Entity(rtype::ecs::entity::COOLDOWN);
+        if (cooldown == nullptr)
+            throw ScreensExceptions("IntroScreen: Error while creating cooldown entity");
+        cooldown->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        cooldown->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 104.f, 102.f, sf::Color(255, 255, 255, 150), false);
+        this->_world.addEntity(cooldown);
+    } else if (gameEngine->_classType == rtype::ecs::component::shipType::TANK) {
+        rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        if (ship == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating Entity (5)");
+        ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 500.f, 0.0f, 0.0f);
+        ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        ship->addComponent<ecs::component::Tank>(rtype::ecs::component::SHIP);
+        ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(ship);
+        rtype::ecs::entity::Entity *tankClass = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+        if (tankClass == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating health bonus entity");
+        tankClass->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        tankClass->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        tankClass->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/powerup.png", true, sf::Vector2f(0.4f, 0.4f), 0, sf::IntRect(1188, 1038, 261, 256));
+        this->_world.addEntity(tankClass);
+            rtype::ecs::entity::Entity *cooldown = new rtype::ecs::entity::Entity(rtype::ecs::entity::COOLDOWN);
+        if (cooldown == nullptr)
+            throw ScreensExceptions("IntroScreen: Error while creating cooldown entity");
+        cooldown->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        cooldown->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 104.f, 102.f, sf::Color(255, 255, 255, 150), false);
+        this->_world.addEntity(cooldown);
+    } else if (gameEngine->_classType == rtype::ecs::component::shipType::SUPPORT) {
+        rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        if (ship == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating Entity (5)");
+        ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 500.f, 0.0f, 0.0f);
+        ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        ship->addComponent<ecs::component::Support>(rtype::ecs::component::SHIP);
+        ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(ship);
+        rtype::ecs::entity::Entity *suppClass = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
+        if (suppClass == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating health bonus entity");
+        suppClass->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        suppClass->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        suppClass->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/powerup.png", true, sf::Vector2f(0.4f, 0.4f), 0, sf::IntRect(519, 1038, 261, 256));
+        this->_world.addEntity(suppClass);
+        rtype::ecs::entity::Entity *cooldown = new rtype::ecs::entity::Entity(rtype::ecs::entity::COOLDOWN);
+        if (cooldown == nullptr)
+            throw ScreensExceptions("IntroScreen: Error while creating cooldown entity");
+        cooldown->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 20.f, 960.f, 0.0f, 0.0f);
+        cooldown->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 104.f, 102.f, sf::Color(255, 255, 255, 150), false);
+        this->_world.addEntity(cooldown);
+    } else {
+        rtype::ecs::entity::Entity *ship = new rtype::ecs::entity::Entity(rtype::ecs::entity::PLAYER1);
+        if (ship == nullptr)
+            throw ScreensExceptions("SoloScreen: Error while creating Entity (5)");
+        ship->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 500.f, 0.0f, 0.0f);
+        ship->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
+        ship->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
+        ship->addComponent<ecs::component::Recruit>(rtype::ecs::component::SHIP);
+        ship->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/ships.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 33, 17));
+        this->_world.addEntity(ship);
+    }
 }
 
 int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
@@ -105,19 +197,27 @@ int rtype::menu::SoloScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
 
 void rtype::menu::SoloScreen::update(rtype::Game *gameEngine)
 {
-    if (!this->_window) {
-        gameEngine->_window.close();
-        gameEngine->_window.create(sf::VideoMode{1920, 1080, 16}, "R-Type", sf::Style::Close | sf::Style::Fullscreen);
-        this->_window = true;
+    if (!this->_condInit) {
+        initAllyShip(gameEngine);
+        this->_condInit = true;
     }
     if (!_isGameEnded)
         manageGameEnd();
     destroySprites();
     paralax();
     spawnEnemiesFromScript();
-    manageEnemiesShooting();
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+            if (_world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP)->getIfSkillActive() &&
+            (_world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP)->getShipType() == rtype::ecs::component::shipType::TANK)) {
+                break;
+            }
+            manageEnemiesShooting();
+        }
+    }
     handleWindowBorder();
     handleHud();
+    handleSkillEnd();
     this->_world.update(gameEngine);
     this->_world.draw(gameEngine);
 }
@@ -152,6 +252,7 @@ void rtype::menu::SoloScreen::managePlayer(size_t entityId, rtype::Event &event)
     ecs::component::IShip *shipCompo = _world.getEntity(entityId)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
     managePlayerMovement(transformCompo, shipCompo, event);
     managePlayerShot(transformCompo, shipCompo, event);
+    manageSkill(entityId, shipCompo, event);
 }
 
 void rtype::menu::SoloScreen::managePlayerMovement(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event)
@@ -182,11 +283,70 @@ void rtype::menu::SoloScreen::managePlayerShot(ecs::component::Transform *transf
             shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 45.f, transformCompo->getY() + 8.f, 25.0f, 0.0f);
             shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
             shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-            shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage());
-            shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
+            if (shipCompo->getShipType() == rtype::ecs::component::shipType::SNIPER && shipCompo->getIfSkillActive()) {
+                shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage(), true);
+                shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(2.5f, 2.5f), 0, sf::IntRect(165, 133, 50, 17));
+            } else {
+                shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage(), false);
+                shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
+            }
             this->_world.addEntity(shot);
             event.key.code = '\0';
             shipCompo->restartClock();
+        }
+    }
+}
+
+void rtype::menu::SoloScreen::manageSkill(size_t entityId, ecs::component::IShip *shipCompo, rtype::Event &event)
+{
+    if (event.key.code == 'c' && (_clockSkillCooldown.getElapsedTime() >= shipCompo->getSkillCooldown())) {
+        shipCompo->setIfSkillActive(true);
+        if (shipCompo->getShipType() == rtype::ecs::component::shipType::SUPPORT) {
+            _world.getEntity(entityId)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setColor(sf::Color(255, 0, 0, 150));
+            shipCompo->setSpeed(7.0f);
+            shipCompo->setCadency(sf::seconds(1.0f/8.0f));
+        } else if (shipCompo->getShipType() == rtype::ecs::component::shipType::STEALTHY) {
+            _world.getEntity(entityId)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setColor(sf::Color(255, 255, 255, 100));
+        } else if (shipCompo->getShipType() == rtype::ecs::component::shipType::TANK) {
+            for (size_t i = 0; i < _world.getEntities().size(); i++) {
+                if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::ENEMY) {
+                    _world.getEntity(i)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setColor(sf::Color(0, 0, 200, 140));
+                }
+            }
+        }
+        _clockSkillDuration.restart();
+        event.key.code = '\0';
+    }
+}
+
+void rtype::menu::SoloScreen::handleSkillEnd(void)
+{
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+            ecs::component::IShip *shipCompo = _world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+            if (shipCompo->getIfSkillActive() == true) {
+                if (_clockSkillDuration.getElapsedTime() >= shipCompo->getSkillDuration()) {
+                    shipCompo->setIfSkillActive(false);
+                    if (shipCompo->getShipType() == rtype::ecs::component::shipType::SUPPORT) {
+                        _world.getEntity(i)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setColor(sf::Color(255, 255, 255, 255));
+                        shipCompo->setSpeed(5.0f);
+                        shipCompo->setCadency(sf::seconds(1.0f/4.0f));
+                    } else if (shipCompo->getShipType() == rtype::ecs::component::shipType::STEALTHY) {
+                        _world.getEntity(i)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setColor(sf::Color(255, 255, 255, 255));
+                    } else if (shipCompo->getShipType() == rtype::ecs::component::shipType::TANK) {
+                        for (size_t j = 0; j < _world.getEntities().size(); j++) {
+                            if (_world.getEntity(j)->getEntityType() == rtype::ecs::entity::ENEMY) {
+                                _world.getEntity(j)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setColor(sf::Color(255, 255, 255, 255));
+                            }
+                        }
+                    }
+                    for (size_t k = 0; k < _world.getEntities().size(); k++) {
+                        if (_world.getEntity(k)->getEntityType() == rtype::ecs::entity::COOLDOWN)
+                            _world.getEntity(k)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D)->setHeight(102.f);
+                    }
+                    _clockSkillCooldown.restart();
+                }
+            }
         }
     }
 }
@@ -327,7 +487,7 @@ void rtype::menu::SoloScreen::manageEnemiesShooting(void)
                     shot->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() - 15.f, transformCompo->getY() + 40.f, -20.0f, 0.0f);
                     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-                    shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ENEMY_PROJECTILE, shipCompo->getDamage());
+                    shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::ENEMY_PROJECTILE, shipCompo->getDamage(), false);
                     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/projectile.png", true, sf::Vector2f(1.f, 1.f), 180, sf::IntRect(165, 133, 50, 17));
                     this->_world.addEntity(shot);
                     shipCompo->restartClock();
@@ -341,7 +501,7 @@ void rtype::menu::SoloScreen::manageEnemiesShooting(void)
                     mine->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, transformCompo->getX() + 220.f, transformCompo->getY() + 10.f, 0.0f, -2.0f);
                     mine->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
                     mine->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
-                    mine->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::MINE, shipCompo->getDamage());
+                    mine->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE, rtype::ecs::component::projectileType::MINE, shipCompo->getDamage(), false);
                     mine->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/mine.png", true, sf::Vector2f(4.f, 4.f), 0, sf::IntRect(0, 0, 18, 18));
                     this->_world.addEntity(mine);
                     shipCompo->restartClock();
@@ -498,6 +658,20 @@ sf::Time rtype::menu::SoloScreen::getWaveDuration(void)
 
 void rtype::menu::SoloScreen::handleHud(void)
 {
+    for (size_t i = 0; i < _world.getEntities().size(); i++) {
+        if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
+            auto shipCompo = _world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
+            for (size_t j = 0; j < _world.getEntities().size(); j++) {
+                if (_world.getEntity(j)->getEntityType() == rtype::ecs::entity::COOLDOWN) {
+                    auto drawableCompo = _world.getEntity(j)->getComponent<ecs::component::Drawable2D>(ecs::component::compoType::DRAWABLE2D);
+                    sf::Time tmp = _clockSkillCooldown.getElapsedTime();
+                    sf::Time cd = shipCompo->getSkillCooldown();
+                    if (drawableCompo->getHeight() >= 0)
+                        drawableCompo->setHeight(((102.f / cd.asSeconds()) * (cd.asSeconds() - tmp.asSeconds())));
+                }
+            }
+        }
+    }
     for (size_t i = 0; i < _world.getEntities().size(); i++) {
         if (_world.getEntity(i)->getEntityType() == rtype::ecs::entity::PLAYER1) {
             auto shipCompo = _world.getEntity(i)->getComponent<ecs::component::IShip>(ecs::component::compoType::SHIP);
