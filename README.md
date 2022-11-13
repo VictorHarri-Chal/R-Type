@@ -5,7 +5,7 @@ Our project R-Type is an ersatz of the famous [R-Type](https://www.youtube.com/w
 However, the specifity of our game is that we implemented a multiplayer mode that allow you to play in coop from 2 to 4 players.
 
 # In game preview
-
+![Menu](menu.png)
 # :star:  Pre-compiled version for the impatient ones
 You can look on the right side of our repository, in the [Releases](https://github.com/VictorHarri-Chal/R-Type/releases) section in order to download a pre-compiled version depending on your operating system to play right away
 
