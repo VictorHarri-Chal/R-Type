@@ -50,24 +50,6 @@ void rtype::menu::OptionsScreen::init()
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
 
-    rtype::ecs::entity::Entity *rectangle = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);
-    if (rectangle == nullptr)
-        throw ScreensExceptions("OptionsScreen: Error while creating Entity (5)");
-    rectangle->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 200.f, 200.f, 0.0f, 0.0f);
-    rectangle->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 250.f, 50.f, sf::Color::White, false);
-    this->_world.addEntity(rectangle);
-    rtype::ecs::entity::Entity *text = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
-    if (text == nullptr)
-        throw ScreensExceptions("OptionsScreen: Error while creating Entity (6)");
-    text->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 250.f, 210.f, 0.0f, 0.0f);
-    text->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Menu", 24.f, sf::Color::Blue, true);
-    this->_world.addEntity(text);
-    rtype::ecs::entity::Entity *poke = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
-    if (poke == nullptr)
-        throw ScreensExceptions("OptionsScreen: Error while creating Entity (7)");
-    poke->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 500.f, 50.f, 0.0f, 0.0f);
-    poke->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/poke.png", false, sf::Vector2f(1.5f, 1.5f), 0);
-    this->_world.addEntity(poke);
 }
 
 int rtype::menu::OptionsScreen::handleEvent(rtype::Event &event, rtype::Game *gameEngine)
