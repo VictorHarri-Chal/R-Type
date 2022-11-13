@@ -102,6 +102,7 @@ namespace rtype
                 /**
                  * @brief Get if the ship skill is active or not
                  * 
+                 * @return true if the skill is active, false otherwise
                  */
                 bool getIfSkillActive() const;
                 /**
@@ -113,20 +114,21 @@ namespace rtype
                 /**
                  * @brief Get the ship skill duration
                  * 
+                 * @return sf::Time the skill duration
                  */
                 sf::Time getSkillDuration() const;
                 /**
                  * @brief Get the ship skill cooldown
                  * 
+                 * @return sf::Time the skill cooldown
                  */
                 sf::Time getSkillCooldown() const;
                 /**
                  * @brief Getter for the current clock.
                  * 
-                 * @return The current clock.
+                 * @return sf::Clock The current clock.
                  *
                  */
-                
                 sf::Clock getClock() const;
                 /**
                  * @brief Restart the current clock.
