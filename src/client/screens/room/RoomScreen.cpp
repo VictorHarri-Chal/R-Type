@@ -103,7 +103,7 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         if (nickname == nullptr)
             throw ScreensExceptions("RoomScreen: Error while creating Entity (9)");
         nickname->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 360.f, 130.f + (i * 100.f), 0.0f, 0.0f);
-        nickname->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Player " + std::to_string(i), 40.f, sf::Color::Blue, true);
+        nickname->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Player " + std::to_string(i+1), 40.f, sf::Color::Blue, true);
         this->_world.addEntity(nickname);
     }
     if (isButtonPressed(5, gameEngine, event)) {
