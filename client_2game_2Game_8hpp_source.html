@@ -116,25 +116,27 @@ $(function() {
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#ab0780b5ebcd37c25ca21bec7f805d7a7">   72</a></span>&#160;        rtype::ecs::component::shipType <a class="code" href="classrtype_1_1Game.html#ab0780b5ebcd37c25ca21bec7f805d7a7">_classType</a>;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _actualScreen;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">size_t</span> _fps;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        sf::Clock _clock;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1IntroScreen.html">rtype::menu::IntroScreen</a> *_intro;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MenuScreen.html">rtype::menu::MenuScreen</a> *_menu;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1HtpScreen.html">rtype::menu::HtpScreen</a> *_htp;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1OptionsScreen.html">rtype::menu::OptionsScreen</a> *_options;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MultiplayerScreen.html">rtype::menu::MultiplayerScreen</a> *_multiplayer;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1RoomScreen.html">rtype::menu::RoomScreen</a> *_room;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1CoreScreen.html">rtype::menu::CoreScreen</a> *_core;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1SoloScreen.html">rtype::menu::SoloScreen</a> *_solo;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        sf::Event _sfmlEvent;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="structrtype_1_1Event.html">rtype::Event</a> _event;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _lastScene;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        boost::asio::io_service _ioService;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="classrtype_1_1Events.html">Events</a> _eventClass;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    };</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classrtype_1_1Game.html#a75d71113dc6f751e1bcad158fa6bfc28">   75</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classrtype_1_1Game.html#a75d71113dc6f751e1bcad158fa6bfc28">_difficulty</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _actualScreen;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">size_t</span> _fps;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        sf::Clock _clock;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1IntroScreen.html">rtype::menu::IntroScreen</a> *_intro;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MenuScreen.html">rtype::menu::MenuScreen</a> *_menu;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1HtpScreen.html">rtype::menu::HtpScreen</a> *_htp;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1OptionsScreen.html">rtype::menu::OptionsScreen</a> *_options;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1MultiplayerScreen.html">rtype::menu::MultiplayerScreen</a> *_multiplayer;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1RoomScreen.html">rtype::menu::RoomScreen</a> *_room;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1CoreScreen.html">rtype::menu::CoreScreen</a> *_core;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="classrtype_1_1menu_1_1SoloScreen.html">rtype::menu::SoloScreen</a> *_solo;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        sf::Event _sfmlEvent;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="structrtype_1_1Event.html">rtype::Event</a> _event;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">Screens</a> _lastScene;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        boost::asio::io_service _ioService;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="classrtype_1_1Events.html">Events</a> _eventClass;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    };</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructrtype_1_1Event_html"><div class="ttname"><a href="structrtype_1_1Event.html">rtype::Event</a></div><div class="ttdef"><b>Definition:</b> EventCode.hpp:21</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_ab630d7ec69c7b917853ceba811c1b3e7"><div class="ttname"><a href="classrtype_1_1Game.html#ab630d7ec69c7b917853ceba811c1b3e7">rtype::Game::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Init the Core Screen.</div><div class="ttdef"><b>Definition:</b> Game.cpp:19</div></div>
@@ -149,7 +151,7 @@ $(function() {
 <div class="ttc" id="aclassrtype_1_1menu_1_1HtpScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1HtpScreen.html">rtype::menu::HtpScreen</a></div><div class="ttdoc">Class for the Options Screen.</div><div class="ttdef"><b>Definition:</b> HtpScreen.hpp:25</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a95ce6f83a8865566fe05c3bee8d75cda"><div class="ttname"><a href="classrtype_1_1Game.html#a95ce6f83a8865566fe05c3bee8d75cda">rtype::Game::Screens</a></div><div class="ttdeci">Screens</div><div class="ttdoc">enum containing all navigable screens</div><div class="ttdef"><b>Definition:</b> Game.hpp:27</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a50e6dd7c1cb4f316ef99cafc2b6651a4"><div class="ttname"><a href="classrtype_1_1Game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4">rtype::Game::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Update for the server loop.</div><div class="ttdef"><b>Definition:</b> Game.cpp:142</div></div>
-<div class="ttc" id="aclassrtype_1_1Game_html_ace8b04de937cdf1c79008a45215470cb"><div class="ttname"><a href="classrtype_1_1Game.html#ace8b04de937cdf1c79008a45215470cb">rtype::Game::destroyLastScene</a></div><div class="ttdeci">void destroyLastScene()</div><div class="ttdoc">Destroy last active scene.</div><div class="ttdef"><b>Definition:</b> Game.cpp:204</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_ace8b04de937cdf1c79008a45215470cb"><div class="ttname"><a href="classrtype_1_1Game.html#ace8b04de937cdf1c79008a45215470cb">rtype::Game::destroyLastScene</a></div><div class="ttdeci">void destroyLastScene()</div><div class="ttdoc">Destroy last active scene.</div><div class="ttdef"><b>Definition:</b> Game.cpp:213</div></div>
 <div class="ttc" id="aclassrtype_1_1menu_1_1MultiplayerScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1MultiplayerScreen.html">rtype::menu::MultiplayerScreen</a></div><div class="ttdoc">Class for the Multiplayer Screen.</div><div class="ttdef"><b>Definition:</b> MultiplayerScreen.hpp:26</div></div>
 <div class="ttc" id="aclassrtype_1_1menu_1_1IntroScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1IntroScreen.html">rtype::menu::IntroScreen</a></div><div class="ttdoc">Class for the Intro Screen.</div><div class="ttdef"><b>Definition:</b> IntroScreen.hpp:25</div></div>
 <div class="ttc" id="aclassrtype_1_1menu_1_1CoreScreen_html"><div class="ttname"><a href="classrtype_1_1menu_1_1CoreScreen.html">rtype::menu::CoreScreen</a></div><div class="ttdoc">Class for the Core Screen.</div><div class="ttdef"><b>Definition:</b> CoreScreen.hpp:19</div></div>
@@ -158,10 +160,11 @@ $(function() {
 <div class="ttc" id="aclassrtype_1_1Game_html"><div class="ttname"><a href="classrtype_1_1Game.html">rtype::Game</a></div><div class="ttdoc">Game class.</div><div class="ttdef"><b>Definition:</b> Game.hpp:24</div></div>
 <div class="ttc" id="aclassrtype_1_1Events_html"><div class="ttname"><a href="classrtype_1_1Events.html">rtype::Events</a></div><div class="ttdoc">Events base class.</div><div class="ttdef"><b>Definition:</b> Events.hpp:19</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_aa03d028860cd463c855e6e5bb716b616"><div class="ttname"><a href="classrtype_1_1Game.html#aa03d028860cd463c855e6e5bb716b616">rtype::Game::_window</a></div><div class="ttdeci">sf::RenderWindow _window</div><div class="ttdoc">Game window.</div><div class="ttdef"><b>Definition:</b> Game.hpp:69</div></div>
-<div class="ttc" id="aclassrtype_1_1Game_html_ab754fac0847903a6a0332697038566af"><div class="ttname"><a href="classrtype_1_1Game.html#ab754fac0847903a6a0332697038566af">rtype::Game::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdoc">Destroy all.</div><div class="ttdef"><b>Definition:</b> Game.cpp:224</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_ab754fac0847903a6a0332697038566af"><div class="ttname"><a href="classrtype_1_1Game.html#ab754fac0847903a6a0332697038566af">rtype::Game::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdoc">Destroy all.</div><div class="ttdef"><b>Definition:</b> Game.cpp:233</div></div>
 <div class="ttc" id="aclassClient_html"><div class="ttname"><a href="classClient.html">Client</a></div><div class="ttdoc">Client class.</div><div class="ttdef"><b>Definition:</b> Client.hpp:57</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a2d5d08ea9f03a880bc09d8f05dfc9736"><div class="ttname"><a href="classrtype_1_1Game.html#a2d5d08ea9f03a880bc09d8f05dfc9736">rtype::Game::handleScreensSwap</a></div><div class="ttdeci">void handleScreensSwap(int ret)</div><div class="ttdoc">Swap between screens.</div><div class="ttdef"><b>Definition:</b> Game.cpp:128</div></div>
-<div class="ttc" id="aclassrtype_1_1Game_html_aeccb692df72b8d5278cb8a2611b060bf"><div class="ttname"><a href="classrtype_1_1Game.html#aeccb692df72b8d5278cb8a2611b060bf">rtype::Game::setActualScreen</a></div><div class="ttdeci">void setActualScreen(Screens newScreen)</div><div class="ttdoc">Set the actual screen.</div><div class="ttdef"><b>Definition:</b> Game.cpp:199</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_a75d71113dc6f751e1bcad158fa6bfc28"><div class="ttname"><a href="classrtype_1_1Game.html#a75d71113dc6f751e1bcad158fa6bfc28">rtype::Game::_difficulty</a></div><div class="ttdeci">bool _difficulty</div><div class="ttdoc">Game difficulty.</div><div class="ttdef"><b>Definition:</b> Game.hpp:75</div></div>
+<div class="ttc" id="aclassrtype_1_1Game_html_aeccb692df72b8d5278cb8a2611b060bf"><div class="ttname"><a href="classrtype_1_1Game.html#aeccb692df72b8d5278cb8a2611b060bf">rtype::Game::setActualScreen</a></div><div class="ttdeci">void setActualScreen(Screens newScreen)</div><div class="ttdoc">Set the actual screen.</div><div class="ttdef"><b>Definition:</b> Game.cpp:208</div></div>
 <div class="ttc" id="aclassrtype_1_1Game_html_a43ab6bac586138e3dd22294ecc1601c3"><div class="ttname"><a href="classrtype_1_1Game.html#a43ab6bac586138e3dd22294ecc1601c3">rtype::Game::_client</a></div><div class="ttdeci">Client * _client</div><div class="ttdoc">Game client.</div><div class="ttdef"><b>Definition:</b> Game.hpp:66</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
