@@ -47,6 +47,7 @@ namespace rtype
         /**
         * @brief Set the current sprite to "printed".
         * 
+        * @param wave Index of the wave.
         * @param i Index of the sprite to set.
         *
         */
@@ -55,7 +56,6 @@ namespace rtype
         * @brief Getter for the script parsed vector.
         * 
         * @param wave Index of the wave.
-        * @param i Index of the sprite.
         * 
         * @return std::vector<std::vector<int> The script parsed vector.
         *
@@ -64,10 +64,9 @@ namespace rtype
         /**
         * @brief Parse the script to define ennemy spawning
         *
-        * @param wave The wave number
-        * @return std::vector<std::vector<int>> The script parsed vector.
         */
         void parseScript();
+
         private:
             std::vector<std::vector<int>> _waveOne;
             std::vector<std::vector<int>> _waveTwo;

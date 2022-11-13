@@ -77,7 +77,14 @@ class Server {
      * @param value a std::string value if is needed
      */
     void SendToAll(message::request type, std::string value = "");
-    static void SendToAll(::Server, message::request type, std::string value = "");
+    /**
+     * @brief Send Message to all Client
+     * 
+     * @param server Server class
+     * @param type Type of the request
+     * @param value a std::string value if is needed
+     */
+    static void SendToAll(::Server server, message::request type, std::string value = "");
     /**
      * @brief Send Message to all Client in the same room
      *
