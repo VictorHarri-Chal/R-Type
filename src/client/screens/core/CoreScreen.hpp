@@ -105,8 +105,6 @@ namespace rtype
             /**
             * @brief Handle the player movement depending of the event
             *
-            * @param transformCompo Component transform of the player
-            * @param shipCompo Component ship of the player
             * @param event Event to be handled
             * @param gameEngine Game engine
             */
@@ -114,18 +112,21 @@ namespace rtype
             /**
             * @brief Handle the player shooting depending of the event
             *
-            * @param transformCompo Component transform of the player
             * @param shipCompo Component ship of the player
             * @param event Event to be handled
             * @param gameEngine Game engine
             */
             void managePlayerShot(ecs::component::IShip *shipCompo, rtype::Event &event, rtype::Game *gameEngine);
             /**
-            * @brief Destroy sprites who goes out of the screen
+            * @brief Create missiles 
+            * @param gameEngine Game engine
             *
             */
             void createMissiles(rtype::Game *gameEngine);
-
+            /**
+             * @brief Destroy sprites who goes out of the screen
+             * 
+             */
             void destroySprites(void);
             /**
             * @brief Handle automatic shooting for all enemies
@@ -197,14 +198,28 @@ namespace rtype
              *
              */
             int _currWave;
-
-            size_t _nbPlayers;
-            void updateEntities(rtype::Game *gameEngine);
             /**
              * @brief Clock to read the script
              * 
              */
             sf::Clock _clockScriptCall;
+            /**
+             * @brief Boolean to init some things with the gameEngine
+             * 
+             */
+            bool _condInit;
+            /**
+             * @brief Number of player in the game
+             * 
+             */
+            size_t _nbPlayers;
+            /**
+             * @brief Update entities from the server
+             * 
+             * @param gameEngine Game engine
+             * 
+             */
+            void updateEntities(rtype::Game *gameEngine);
         };
     }
 }

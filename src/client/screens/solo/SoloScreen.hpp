@@ -34,6 +34,13 @@ namespace rtype
              */
             void init() override;
             /**
+             * @brief Init the ally ship with the right class
+             * 
+             * @param gameEngine Game engine
+             * 
+             */
+            void initAllyShip(rtype::Game *gameEngine);
+            /**
              * @brief Update the Core Screen
              * 
              * @param gameEngine Game engine
@@ -103,6 +110,19 @@ namespace rtype
             */
             void managePlayerShot(ecs::component::Transform *transformCompo, ecs::component::IShip *shipCompo, rtype::Event &event);
             /**
+            * @brief Handle the player class skill
+            * 
+            * @param entityId Id of the player in the _world
+            * @param shipCompo Component ship of the player
+            * @param event Event to be handled
+            */
+            void manageSkill(size_t entityId, ecs::component::IShip *shipCompo, rtype::Event &event);
+            /**
+            * @brief Handle skill duration and end
+            * 
+            */
+            void handleSkillEnd(void);
+            /**
             * @brief Destroy sprites who goes out of the screen
             * 
             */
@@ -153,6 +173,8 @@ namespace rtype
             * 
             * @param x Position x
             * @param y Position y
+            * @param scale Size of the particle
+            * @param type 1 = death particle, 2 = hit particle from enemies, 3 = hit particle from allies
             */
             void createParticle(float x, float y, float scale, int type);
             /**
@@ -160,6 +182,13 @@ namespace rtype
             * 
             */
             void handleHud(void);
+            /**
+            * @brief Create a collectable health bonus
+            * 
+            * @param x Position x
+            * @param y Position y
+            */
+            void releaseHealthBonus(float x, float y);
 
           private:
             /**
@@ -182,12 +211,27 @@ namespace rtype
              * 
              */
             bool _isGameEnded;
-            bool _window;
+            /**
+             * @brief Boolean to init some things with the gameEngine
+             * 
+             */
+            bool _condInit;
             /**
              * @brief Clock to read the script
              * 
              */
             sf::Clock _clockScriptCall;
+            /**
+             * @brief Clock for the skill duration
+             * 
+             */
+            sf::Clock _clockSkillDuration;
+            /**
+             * @brief Clock for the skill cooldown
+             * 
+             */
+            sf::Clock _clockSkillCooldown;
+
         };
     }
 }

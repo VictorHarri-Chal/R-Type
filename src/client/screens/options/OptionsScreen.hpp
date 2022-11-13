@@ -25,11 +25,6 @@ namespace rtype
         class OptionsScreen : public IScreen {
           public:
             /**
-             * @brief Cursor enum for the option choice (New game, Load game or exit game)
-             *
-             */
-            enum cursorPosition { FULLSCREEN = 0,  FPS = 1, SOUND = 2 , DEVICE = 3, SAVE = 4, BACK = 5 };
-            /**
              * @brief Construct a new Options Screen object
              *
              */

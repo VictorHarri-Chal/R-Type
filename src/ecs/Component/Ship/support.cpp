@@ -14,6 +14,10 @@ rtype::ecs::component::Support::Support()
     _damage = 1.0f;
     _speed = 5.0f;
     _cadency = sf::seconds(1.0/4.0f);
+    _isSkillActive = false;
+    _skillDuration = sf::seconds(5.f);
+    _skillCooldown = sf::seconds(15.f);
+
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Support::getType() const

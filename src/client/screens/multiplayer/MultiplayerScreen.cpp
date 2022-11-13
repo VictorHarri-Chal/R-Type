@@ -45,28 +45,24 @@ void rtype::menu::MultiplayerScreen::init()
     if (bg == nullptr)
         throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (1)");
     bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
-    bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (stars == nullptr)
         throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (2)");
     stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
-    stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(stars);
     rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (planets == nullptr)
         throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (3)");
     planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
-    planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(planets);
     rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (bigPlanet == nullptr)
         throw ScreensExceptions("MultiplayerScreen: Error while creating Entity (4)");
     bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
-    bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
     rtype::ecs::entity::Entity *back = new rtype::ecs::entity::Entity(rtype::ecs::entity::RECTANGLE);

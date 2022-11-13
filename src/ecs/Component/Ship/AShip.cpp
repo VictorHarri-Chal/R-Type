@@ -57,6 +57,26 @@ void rtype::ecs::component::AShip::setCadency(sf::Time cadency)
     this->_cadency = cadency;
 }
 
+bool rtype::ecs::component::AShip::getIfSkillActive() const
+{
+    return this->_isSkillActive;
+}
+
+void rtype::ecs::component::AShip::setIfSkillActive(bool isSkillActive)
+{
+    this->_isSkillActive = isSkillActive;
+}
+
+sf::Time rtype::ecs::component::AShip::getSkillDuration() const
+{
+    return this->_skillDuration;
+}
+
+sf::Time rtype::ecs::component::AShip::getSkillCooldown() const
+{
+    return this->_skillCooldown;
+}
+
 sf::Clock rtype::ecs::component::AShip::getClock() const
 {
     return (this->_clock);

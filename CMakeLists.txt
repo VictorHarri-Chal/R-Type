@@ -41,8 +41,6 @@ set(SRC_ECS
     ${ECSROOT}Component/Drawable2D/drawable2d.hpp
     ${ECSROOT}Component/Projectile/projectile.cpp
     ${ECSROOT}Component/Projectile/projectile.hpp
-    ${ECSROOT}Component/Sound/sound.cpp
-    ${ECSROOT}Component/Sound/sound.hpp
     ${ECSROOT}Component/Transform/transform.cpp
     ${ECSROOT}Component/Transform/transform.hpp
     ${ECSROOT}Component/IComponent.hpp
@@ -98,6 +96,8 @@ set(SRC_SCREENS
     ${SCREENSROOT}core/CoreScreen.hpp
     ${SCREENSROOT}solo/SoloScreen.cpp
     ${SCREENSROOT}solo/SoloScreen.hpp
+    ${SCREENSROOT}htp/HtpScreen.cpp
+    ${SCREENSROOT}htp/HtpScreen.hpp
 )
 
 set(SRC_GAME

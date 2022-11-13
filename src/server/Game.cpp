@@ -12,7 +12,7 @@
 #include "../ecs/System/Particles/particles.hpp"
 #include "../exceptions/ScreensExceptions.hpp"
 
-rtype::Game::Game(size_t nbPlayers) : _nbPlayers(nbPlayers), _currWave(0)
+rtype::Game::Game(size_t nbPlayers) : _nbPlayers(nbPlayers), _currWave(0), _script()
 {
 }
 
@@ -37,6 +37,8 @@ void rtype::Game::init()
     this->_world->addSystem(particleSystem);
 
     this->initPlayersEntities();
+    rtype::Script script(false);
+    this->_script = script;
 }
 
 void rtype::Game::initPlayersEntities(void)
@@ -198,7 +200,7 @@ void rtype::Game::createShoot(size_t playerId)
     shot->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     shot->addComponent<ecs::component::Alive>(rtype::ecs::component::ALIVE);
     shot->addComponent<ecs::component::Projectile>(rtype::ecs::component::PROJECTILE,
-        rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage());
+        rtype::ecs::component::projectileType::ALLY_PROJECTILE, shipCompo->getDamage(), false);
     shot->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D,
     "assets/projectile.png", true, sf::Vector2f(1.5f, 1.5f), 0, sf::IntRect(165, 133, 50, 17));
     this->_world->addEntity(shot);
@@ -300,10 +302,9 @@ void rtype::Game::spawnEnemiesFromScript(void)
         for (size_t i = 0; i < _script.getLines().size(); i++) {
             if (_script.getLines().at(i).size() == 6 && _script.getLines().at(i).at(5) && (_script.getLines().at(i).at(1) == _currWave)) {
                 if (_script.getClock().getElapsedTime() >= sf::seconds(static_cast<float>(_script.getLines().at(i).at(0)))) {
-                    // std::cout << "x = " << _script.getLines().at(i).at(1) << " y = " << _script.getLines().at(i).at(2) << std::endl;
                     generateEnemy(_script.getLines().at(i).at(1),  _script.getLines().at(i).at(2),
                     static_cast<float>(_script.getLines().at(i).at(3)), static_cast<float>(_script.getLines().at(i).at(4)));
-                    _script.spriteIsPrinted(i);
+                    _script.spriteIsPrintedOld(i);
                 }
             }
         }

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** R-Type
 ** File description:
-** MenuScreen.hpp
+** HtpScreen.hpp
 */
 
 #pragma once
@@ -19,33 +19,33 @@ namespace rtype
     namespace menu
     {
         /**
-         * @brief Class for the Menu Screen
+         * @brief Class for the Options Screen
          *
          */
-        class MenuScreen : public IScreen {
+        class HtpScreen : public IScreen {
           public:
             /**
-             * @brief Construct a new Menu Screen object
+             * @brief Construct a new Options Screen object
              *
              */
-            MenuScreen();
+            HtpScreen();
             /**
-             * @brief Destroy the Menu Screen object
+             * @brief Destroy the Options Screen object
              *
              */
-            ~MenuScreen() = default;
+            ~HtpScreen() = default;
             /**
-             * @brief Init the Menu Screen
+             * @brief Init the Options Screen
              *
              */
             void init() override;
             /**
-             * @brief Update the Menu Screen
+             * @brief Update the Options Screen
              * @param gameEngine Game engine
              */
             void update(rtype::Game *gameEngine) override;
             /**
-             * @brief Handle event for the Menu Screen
+             * @brief Handle event for the Options Screen
              *
              * @param event Event to be handled
              * @param gameEngine Game engine
@@ -73,38 +73,6 @@ namespace rtype
             */
             bool isMouseOnButton(size_t index, rtype::Game *gameEngine, rtype::Event &event) override;
             /**
-             * @brief Check if surface is clicked
-             *
-             * @param x X position of the surface
-             * @param y Y position of the surface
-             * @param width Width of the surface
-             * @param height Height of the surface
-             * @param event Event to be handled
-             * @param gameEngine Game engine
-             * @return true If surface is clicked
-             * @return false If surface is not clicked
-             */
-            bool isSurfaceClicked(float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
-            /**
-             * @brief Check if surface is hovered
-             *
-             * @param x X position of the surface
-             * @param y Y position of the surface
-             * @param width Width of the surface
-             * @param height Height of the surface
-             * @param event Event to be handled
-             * @param gameEngine Game engine
-             * @return true If surface is hovered
-             * @return false If surface is not hovered
-             */
-            bool isMouseOnSurface(
-                float x, float y, float width, float height, rtype::Event &event, rtype::Game *gameEngine);
-            /**
-            * @brief Init of the sprite of the pop up
-            * 
-            */
-            void popUp(void);
-            /**
             * @brief Save the paralax assets x and y throught scenes
             * 
             */
@@ -125,11 +93,6 @@ namespace rtype
              *
              */
             std::vector<bool> _buttons;
-            /**
-             * @brief Is the player in the class pop up
-             *
-             */
-            bool _isPopUpOpen;
         };
     }
 }

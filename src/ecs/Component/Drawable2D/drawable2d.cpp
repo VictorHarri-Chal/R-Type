@@ -37,6 +37,7 @@ rtype::ecs::component::Drawable2D::Drawable2D(std::string texturePath, bool isRe
     this->_rect = rect;
     this->_scale = scale;
     this->_rotation = rotation;
+    this->_color = sf::Color(255, 255, 255, 255);
     if (!texturePath.empty())
         if (_texture.loadFromFile(texturePath.c_str()) == false)
             throw EcsExceptions("Drawable2D: Error while loading texture");

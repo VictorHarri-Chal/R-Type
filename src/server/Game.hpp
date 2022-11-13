@@ -44,12 +44,19 @@ namespace rtype
          *
          */
         void update();
+        /**
+         * @brief Create a Shoot 
+         * 
+         * @param playerId The player Id
+         */
         void createShoot(size_t playerId);
         /**
          * @brief Handle event for the game
          *
          * @param direction Direction of the player
          * @param playerId Id of the player
+         * 
+         * @return int The Scene Number
          *
          */
         int handleEvents(std::string direction, size_t playerId);
@@ -64,6 +71,10 @@ namespace rtype
          * @return rtype::ecs::world::World* The world object 
          */
         rtype::ecs::world::World *getWorld() const { return _world; };
+        /**
+         * @brief Destroy sprites when they are out of the screen
+         * 
+         */
         void destroySprites(void);
         void spawnEnemiesFromScript(void);
         private:

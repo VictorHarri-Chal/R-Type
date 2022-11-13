@@ -200,7 +200,7 @@ void Server::sendAllEntities()
     rtype::ecs::component::Transform *transformCompo;
 
     while(true) {
-        if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 20.0f)) {
+        if (this->_clock.getElapsedTime() >= sf::seconds(1.0f / 10.0f)) {
             this->_game->spawnEnemiesFromScript();
             this->_game->update();
             this->_game->destroySprites();
@@ -209,7 +209,6 @@ void Server::sendAllEntities()
                 if (this->_game->getWorld()->getEntity(i)->getEntityType() != rtype::ecs::entity::entityType::ALLY_PROJECTILE)
                 {
                     entity = std::to_string(i) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getX()) + ";" + std::to_string(this->_game->getWorld()->getEntity(i)->getComponent<rtype::ecs::component::Transform>(rtype::ecs::component::TRANSFORM)->getY());
-                    // std::cout << "entity type " << this->_game->getWorld()->getEntity(i)->getEntityType() << std::endl;
                     for (auto client : clients)
                         _socket.async_send_to(boost::asio::buffer(createPaquet(message::ENTITY, entity)), client.second.getEndpoint(), boost::bind(&Server::listen, this));
                     entity.clear();
@@ -268,8 +267,8 @@ std::string Server::createPaquet(message::request request, std::string value)
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> ss(insert);
     boost::archive::binary_oarchive oa(ss);
 
-    // std::cout << "Sending message: ";
-    // msg.print();
+    std::cout << "Sending message: ";
+    msg.print();
     oa << msg;
     ss.flush();
     return (str);

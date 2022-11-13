@@ -56,7 +56,7 @@ namespace rtype
                 /**
                  * @brief Setter to set new max health points.
                  * 
-                 * @param maxhealth The new max health amount.
+                 * @param maxHealth The new max health amount.
                  *
                  */
                 void setMaxHealth(float maxHealth);
@@ -100,11 +100,33 @@ namespace rtype
                  */
                 void setCadency(sf::Time cadency);
                 /**
+                 * @brief Get if the ship skill is active or not
+                 * 
+                 */
+                bool getIfSkillActive() const;
+                /**
+                 * @brief Set if the ship skill is active or not
+                 * 
+                 * @param isSkillActive value
+                 */
+                void setIfSkillActive(bool isSkillActive);
+                /**
+                 * @brief Get the ship skill duration
+                 * 
+                 */
+                sf::Time getSkillDuration() const;
+                /**
+                 * @brief Get the ship skill cooldown
+                 * 
+                 */
+                sf::Time getSkillCooldown() const;
+                /**
                  * @brief Getter for the current clock.
                  * 
                  * @return The current clock.
                  *
                  */
+                
                 sf::Clock getClock() const;
                 /**
                  * @brief Restart the current clock.
@@ -132,6 +154,15 @@ namespace rtype
 
                 /// @brief Current shots cadency
                 sf::Time _cadency;
+
+                /// @brief Is the skill active
+                bool _isSkillActive;
+
+                /// @brief Skill duration
+                sf::Time _skillDuration;
+
+                /// @brief Skill cooldown
+                sf::Time _skillCooldown;
 
                 /// @brief Clock for the current object
                 sf::Clock _clock;

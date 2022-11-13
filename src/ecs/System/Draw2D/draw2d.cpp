@@ -40,6 +40,7 @@ void rtype::ecs::system::Draw2DSystem::drawRectangle(rtype::ecs::component::Draw
 void rtype::ecs::system::Draw2DSystem::drawSprite(rtype::ecs::component::Drawable2D drawableCompo, rtype::ecs::component::Transform transformCompo, rtype::Game *gameEngine)
 {
     sf::Sprite sprite = drawableCompo.getSprite();
+    sprite.setColor(drawableCompo.getColor());
     if (drawableCompo.getIsRect())
         sprite.setTextureRect(drawableCompo.getRect());
     sprite.scale(drawableCompo.getScale());

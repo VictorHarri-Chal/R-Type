@@ -29,28 +29,24 @@ void rtype::menu::RoomScreen::init()
     if (bg == nullptr)
         throw ScreensExceptions("RoomScreen: Error while creating Entity (1)");
     bg->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bg_x, 0.0f, -0.5f, 0.0f);
-    bg->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bg->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(bg);
     rtype::ecs::entity::Entity *stars = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (stars == nullptr)
         throw ScreensExceptions("RoomScreen: Error while creating Entity (2)");
     stars->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, stars_x, 0.0f, -0.7f, 0.0f);
-    stars->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     stars->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg2.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(stars);
     rtype::ecs::entity::Entity *planets = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (planets == nullptr)
         throw ScreensExceptions("RoomScreen: Error while creating Entity (3)");
     planets->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, planets_x, 0.0f, -1.0f, 0.0f);
-    planets->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     planets->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg3.png", false, sf::Vector2f(1.f, 1.f), 0);
     this->_world.addEntity(planets);
     rtype::ecs::entity::Entity *bigPlanet = new rtype::ecs::entity::Entity(rtype::ecs::entity::STATIC_SPRITE);
     if (bigPlanet == nullptr)
         throw ScreensExceptions("RoomScreen: Error while creating Entity (4)");
     bigPlanet->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, bigPlanet_x, 700.f, -1.2f, 0.0f);
-    bigPlanet->addComponent<ecs::component::Collide>(rtype::ecs::component::COLLIDE);
     bigPlanet->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "assets/bg4.png", false, sf::Vector2f(3.f, 3.f), 0);
     this->_world.addEntity(bigPlanet);
 
@@ -103,6 +99,12 @@ int rtype::menu::RoomScreen::handleEvent(rtype::Event &event, rtype::Game *gameE
         player->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 320.f, 120.f + (i * 100.f), 0.0f, 0.0f);
         player->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, 1260.f, 80.f, sf::Color::Black, true, 3.0f, sf::Color::Blue);
         this->_world.addEntity(player);
+        rtype::ecs::entity::Entity *nickname = new rtype::ecs::entity::Entity(rtype::ecs::entity::TEXT);
+        if (nickname == nullptr)
+            throw ScreensExceptions("RoomScreen: Error while creating Entity (9)");
+        nickname->addComponent<ecs::component::Transform>(rtype::ecs::component::TRANSFORM, 360.f, 130.f + (i * 100.f), 0.0f, 0.0f);
+        nickname->addComponent<ecs::component::Drawable2D>(rtype::ecs::component::DRAWABLE2D, "Player " + std::to_string(i+1), 40.f, sf::Color::Blue, true);
+        this->_world.addEntity(nickname);
     }
     if (isButtonPressed(5, gameEngine, event)) {
         _nbPlayers--;
@@ -182,16 +184,26 @@ bool rtype::menu::RoomScreen::isMouseOnSurface(float x, float y, float width, fl
 
 void rtype::menu::RoomScreen::cleanPlayers(void)
 {
-    if (_world.getEntities().size() == 10) {
-        _world.removeEntity(9);
-    } else if (_world.getEntities().size() == 11) {
-        _world.removeEntity(10);
-        _world.removeEntity(9);
-    } else if (_world.getEntities().size() == 12) {
-        _world.removeEntity(11);
+    if (_world.getEntities().size() == 11) {
         _world.removeEntity(10);
         _world.removeEntity(9);
     } else if (_world.getEntities().size() == 13) {
+        _world.removeEntity(12);
+        _world.removeEntity(11);
+        _world.removeEntity(10);
+        _world.removeEntity(9);
+    } else if (_world.getEntities().size() == 15) {
+        _world.removeEntity(14);
+        _world.removeEntity(13);
+        _world.removeEntity(12);
+        _world.removeEntity(11);
+        _world.removeEntity(10);
+        _world.removeEntity(9);
+    } else if (_world.getEntities().size() == 17) {
+        _world.removeEntity(16);
+        _world.removeEntity(15);
+        _world.removeEntity(14);
+        _world.removeEntity(13);
         _world.removeEntity(12);
         _world.removeEntity(11);
         _world.removeEntity(10);

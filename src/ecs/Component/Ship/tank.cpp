@@ -14,6 +14,9 @@ rtype::ecs::component::Tank::Tank()
     _damage = 1.0f;
     _speed = 4.0f;
     _cadency = sf::seconds(1.0/4.0f);
+    _isSkillActive = false;
+    _skillDuration = sf::seconds(5.f);
+    _skillCooldown = sf::seconds(15.f);
 }
 
 rtype::ecs::component::compoType rtype::ecs::component::Tank::getType() const
