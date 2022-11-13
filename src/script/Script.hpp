@@ -27,7 +27,12 @@ namespace rtype
          * @brief Construct a new Script object
          *
          */
-        Script();
+        Script() = default;
+        /**
+         * @brief Construct a new Script object with a custom difficulty
+         *
+         */
+        Script(bool difficulty);
         /**
          * @brief Destroy the Script object
          *
@@ -67,7 +72,7 @@ namespace rtype
         * @param wave The wave number
         * @return std::vector<std::vector<int>> The script parsed vector.
         */
-        void parseScript();
+        void parseScript(bool difficulty);
         private:
             std::vector<std::vector<int>> _waveOne;
             std::vector<std::vector<int>> _waveTwo;

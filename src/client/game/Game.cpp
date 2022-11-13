@@ -14,7 +14,7 @@ float stars_x = 0.0f;
 float planets_x = 0.0f;
 float bigPlanet_x = 1600.f;
 
-rtype::Game::Game(size_t baseFps)
+rtype::Game::Game(size_t baseFps): _difficulty(false)
 {
     _fps = baseFps;
     _client = new Client(_ioService, "localhost", "4242");
@@ -128,6 +128,15 @@ void rtype::Game::run()
 void rtype::Game::handleScreensSwap(int ret)
 {
     switch (ret) {
+        case 1:
+            destroyLastScene();
+            _intro = new rtype::menu::IntroScreen;
+            if (_intro == nullptr)
+                throw GameExceptions("Game handleScreensSwap: Error while creating IntroScreen");
+            _lastScene = Screens::Intro;
+            _intro->init();
+            setActualScreen(Screens::Intro);
+            break;
         case 2:
             destroyLastScene();
             _menu = new rtype::menu::MenuScreen;
