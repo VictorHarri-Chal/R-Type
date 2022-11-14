@@ -103,9 +103,9 @@ elif [ "$(uname)" = "Darwin" ]; then
     xcode-select --install
     /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
-  brew install \
-  cmake \
-  conan
+  # brew install \
+  # cmake \
+  # conan
   conan install .. --build=missing \
   -c tools.system.package_manager:mode=install \
   -c tools.system.package_manager:sudo=True
